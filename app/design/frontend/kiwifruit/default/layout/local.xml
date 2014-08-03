@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <!-- Remove default CSS -->
+            <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
+            <action method="removeItem"><type>skin_css</type><name>css/styles-ie.css</name></action>
+            <action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
+            <action method="removeItem"><type>skin_css</type><name>css/print.css</name></action>
+
+            <!-- Remove default support for IE 6 -->
+            <action method="removeItem"><type>js</type><name>lib/ds-sleight.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
+        </reference>
+    </default>
+
+    <print>
+        <reference name="head">
+            <!-- Remove default CSS -->
+            <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
+            <action method="removeItem"><type>skin_css</type><name>css/styles-ie.css</name></action>
+            <action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
+            <action method="removeItem"><type>skin_css</type><name>css/print.css</name></action>
+
+            <!-- Remove default support for IE 6 -->
+            <action method="removeItem"><type>js</type><name>lib/ds-sleight.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
+        </reference>
+    </print>
+</layout>
