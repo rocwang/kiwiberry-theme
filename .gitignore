@@ -115,3 +115,6 @@ skin/frontend/enterprise/
 skin/frontend/rwd/default/
 skin/install/
 var/
+
+htdocs/
+vendor/
