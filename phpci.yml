@@ -8,9 +8,9 @@
 #        user: "root"
 #        pass: ""
 #
-setup:
-    composer:
-        action: "install"
+#setup:
+#    composer:
+#        action: "install"
 #    mysql:
 #        - "DROP DATABASE IF EXISTS test;"
 #        - "CREATE DATABASE test;"
