@@ -1,0 +1,14 @@
+{
+    "name"         : "kiwifruit",
+    "version"      : "0.1.0",
+    "author"       : "Roc <me@rocwang.me>",
+    "private"      : true,
+    "dependencies" : {
+        "animate.css"  : "~3",
+        "bootstrap"    : "~3",
+        "font-awesome" : "~4",
+        "jquery"       : "~2",
+        "modernizr"    : "~2",
+        "underscore"   : "~1"
+    }
+}
