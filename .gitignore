@@ -2,4 +2,10 @@
 .sass-cache/
 bower_components/
 node_modules/
+style_guide/_site/
+style_guide/css/
+style_guide/fonts/
+style_guide/images/
+style_guide/js/
 test/
+bsdocs/

@@ -1,15 +1,18 @@
 {
-    "name"         : "kiwifruit",
-    "version"      : "0.1.0",
-    "author"       : "Roc <me@rocwang.me>",
-    "private"      : true,
-    "dependencies" : {
-        "animate.css"  : "~3",
-        "bootstrap-sass-official"    : "~3",
-        "font-awesome" : "~4",
-        "jquery"       : "~2",
-        "modernizr"    : "~2",
-        "underscore"   : "~1",
-        "livereload"   : "~2"
-    }
+  "name": "kiwifruit",
+  "version": "0.1.0",
+  "author": "Roc <me@rocwang.me>",
+  "private": true,
+  "devDependencies": {
+    "animate.css": "~3",
+    "bootstrap-sass-official": "~3",
+    "font-awesome": "~4",
+    "jquery": "~2",
+    "modernizr": "~2",
+    "underscore": "~1",
+    "livereload": "~2",
+    "prism": "git@github.com:LeaVerou/prism.git#gh-pages",
+    "js-beautify": "~1",
+    "bootstrap": "~3.2.0"
+  }
 }

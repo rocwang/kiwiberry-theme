@@ -1,7 +1,8 @@
 {
   "devDependencies": {
+    "del": "^0.1.2",
     "event-stream": "^3.1.5",
-    "gulp": "^3.5.6",
+    "gulp": "^3.8.7",
     "gulp-autoprefixer": "^0.0.6",
     "gulp-bless": "^1.0",
     "gulp-cache": "^0.2.0",
@@ -17,6 +18,7 @@
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^2.2.14",
     "gulp.spritesmith": "^0.3.0",
+    "path": "^0.4.9",
     "rimraf": "^2.2.8"
   }
 }
