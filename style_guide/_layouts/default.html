@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <!-- Meta, title, CSS, favicons, etc. -->
-  {% include header.html %}
+  {% include head.html %}
 </head>
 <body>
   <!--[if lt IE 7]>
@@ -13,13 +13,13 @@
   <![endif]-->
 
   <!-- Docs master nav -->
-  {% include nav/main.html %}
+  {% include nav.html %}
 
   <div class="container">{{ content }}</div>
 
   <script id="#code-templatetype=" text/template"></script>
 
-  <script src="js/vendor.js"></script>
-  <script src="js/style_guide.js"></script>
+  <script src="/js/vendor.js"></script>
+  <script src="/js/style_guide.js"></script>
   </body>
 </html>

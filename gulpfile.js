@@ -77,7 +77,8 @@ var gulp                = require('gulp'),
 
 
 // CSS plugins
-    sass                = require('gulp-ruby-sass'),
+//    sass                = require('gulp-ruby-sass'),
+    sass                = require('gulp-sass'),
     autoprefixer        = require('gulp-autoprefixer'),
     combineMediaQueries = require('gulp-combine-media-queries'),
     cssmin              = require('gulp-cssmin'),
@@ -107,10 +108,12 @@ function buildVendorCss(target) {
 function buildMainCss(target) {
   return gulp.src(target.main.styles)
     .pipe(sass({
-      style    : isProduction ? 'compressed' : 'expanded',
-      sourcemap: !isProduction
+      style         : isProduction ? 'compressed' : 'expanded',
+      sourcemap     : !isProduction,
+      sourceComments: 'map',
     }))
     .on('error', notify.onError(function (error) {
+      console.log(error);
       return 'SASS Error: ' + error.message;
     }))
     .on('error', function (error) {
@@ -191,10 +194,13 @@ gulp.task('theme:main:css', ['theme:clean'], function () { return buildMainCss(t
 gulp.task('theme:main:js',  ['theme:clean'], function () { return buildMainJs(targets.theme); });
 gulp.task('theme:main:img', ['theme:clean'], function () { return buildImg(targets.theme); });
 
-gulp.task('style-guide:clean', function (cb) { clean(targets.styleGuide, cb); });
+gulp.task('style-guide:clean', function (cb) {
+  //clean(targets.styleGuide, cb);
+  cb();
+});
 
-gulp.task('style-guide:vendor:css',  ['style-guide:clean'], function () { return buildMainCss(targets.styleGuide); });
-gulp.task('style-guide:vendor:js',   ['style-guide:clean'], function () { return buildMainJs(targets.styleGuide); });
+gulp.task('style-guide:vendor:css',  ['style-guide:clean'], function () { return buildVendorCss(targets.styleGuide); });
+gulp.task('style-guide:vendor:js',   ['style-guide:clean'], function () { return buildVendorJs(targets.styleGuide); });
 gulp.task('style-guide:vendor:font', ['style-guide:clean'], function () { return buildFont(targets.styleGuide); });
 
 gulp.task('style-guide:main:css', ['style-guide:clean'], function () { return buildMainCss(targets.styleGuide); });
@@ -232,7 +238,7 @@ gulp.task('watch', ['default'], function (cb) {
 
   server.listen();
 
-  runJekyll(['serve', '-w'], cb);
+  runJekyll(['serve', '-w', '--skip-initial-build'], cb);
 });
 
 // Build the theme
