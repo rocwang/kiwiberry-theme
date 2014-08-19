@@ -1,0 +1,46 @@
+<div class="bs-docs-section">
+
+  <h1 id="color" class="page-header">Color</h1>
+
+  <p>Easily make use of two color schemes: grayscale and semantic. Grayscale colors provide quick access to commonly
+    used shades of black while semantic include various colors assigned to meaningful contextual values.</p>
+
+  <div class="row">
+    <div class="col-md-6 js-demo">
+      <div class="color-swatches">
+        <div class="color-swatch gray-darker"></div>
+        <div class="color-swatch gray-dark"></div>
+        <div class="color-swatch gray"></div>
+        <div class="color-swatch gray-light"></div>
+        <div class="color-swatch gray-lighter"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 js-demo">
+      <div class="color-swatches">
+        <div class="color-swatch brand-primary"></div>
+        <div class="color-swatch brand-success"></div>
+        <div class="color-swatch brand-info"></div>
+        <div class="color-swatch brand-warning"></div>
+        <div class="color-swatch brand-danger"></div>
+      </div>
+    </div>
+  </div>
+
+  <p>Use any of these color variables as they are or reassign them to more meaningful variables for your project.</p>
+  {% highlight scss %}
+  // Use as-is
+  .masthead {
+  background-color: @brand-primary;
+  }
+
+  // Reassigned variables in Less
+  @alert-message-background: @brand-info;
+  .alert {
+  background-color: @alert-message-background;
+  }
+  {% endhighlight %}
+
+</div>
