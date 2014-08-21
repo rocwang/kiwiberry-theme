@@ -1,84 +1,103 @@
 <div class="bs-docs-section">
-  <h1 id="btn-dropdowns" class="page-header">Button dropdowns</h1>
+<h1 id="btn-dropdowns" class="page-header">Button dropdowns</h1>
 
-  <p class="lead">Use any button to trigger a dropdown menu by placing it within a <code>.btn-group</code> and providing the proper menu markup.</p>
+<p class="lead">Use any button to trigger a dropdown menu by placing it within a <code>.btn-group</code> and providing
+  the proper menu markup.</p>
 
-  <div class="alert alert-danger">
-    <h4>Plugin dependency</h4>
-    <p>Button dropdowns require the <a href="../javascript/#dropdowns">dropdown plugin</a> to be included in your version of Bootstrap.</p>
+<div class="alert alert-danger">
+  <h4>Plugin dependency</h4>
+
+  <p>Button dropdowns require the <a href="../javascript/#dropdowns">dropdown plugin</a> to be included in your version
+    of Bootstrap.</p>
+</div>
+
+<h3 id="btn-dropdowns-single">Single button dropdowns</h3>
+
+<p>Turn a button into a dropdown toggle with some basic markup changes.</p>
+
+<div class="row">
+  <div class="col-md-6 js-demo">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Default <span
+        class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <!-- /btn-group -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Primary <span
+        class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <!-- /btn-group -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Success <span
+        class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <!-- /btn-group -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Info <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <!-- /btn-group -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Warning <span
+        class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <!-- /btn-group -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Danger <span
+        class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <!-- /btn-group -->
   </div>
-
-  <h3 id="btn-dropdowns-single">Single button dropdowns</h3>
-  <p>Turn a button into a dropdown toggle with some basic markup changes.</p>
-<div class="row">
-<div class="col-md-6 js-demo">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Default <span class="caret"></span></button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div><!-- /btn-group -->
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Primary <span class="caret"></span></button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div><!-- /btn-group -->
-    <div class="btn-group">
-      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Success <span class="caret"></span></button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div><!-- /btn-group -->
-    <div class="btn-group">
-      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Info <span class="caret"></span></button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div><!-- /btn-group -->
-    <div class="btn-group">
-      <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Warning <span class="caret"></span></button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div><!-- /btn-group -->
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Danger <span class="caret"></span></button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div><!-- /btn-group -->
-</div>
 </div>
 
-  <h3 id="btn-dropdowns-split">Split button dropdowns</h3>
-  <p>Similarly, create split button dropdowns with the same markup changes, only with a separate button.</p>
+<h3 id="btn-dropdowns-split">Split button dropdowns</h3>
+
+<p>Similarly, create split button dropdowns with the same markup changes, only with a separate button.</p>
+
 <div class="row">
-<div class="col-md-6 js-demo">
+  <div class="col-md-6 js-demo">
     <div class="btn-group">
       <button type="button" class="btn btn-default">Default</button>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -92,7 +111,8 @@
         <li class="divider"></li>
         <li><a href="#">Separated link</a></li>
       </ul>
-    </div><!-- /btn-group -->
+    </div>
+    <!-- /btn-group -->
     <div class="btn-group">
       <button type="button" class="btn btn-primary">Primary</button>
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -106,7 +126,8 @@
         <li class="divider"></li>
         <li><a href="#">Separated link</a></li>
       </ul>
-    </div><!-- /btn-group -->
+    </div>
+    <!-- /btn-group -->
     <div class="btn-group">
       <button type="button" class="btn btn-success">Success</button>
       <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -120,7 +141,8 @@
         <li class="divider"></li>
         <li><a href="#">Separated link</a></li>
       </ul>
-    </div><!-- /btn-group -->
+    </div>
+    <!-- /btn-group -->
     <div class="btn-group">
       <button type="button" class="btn btn-info">Info</button>
       <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
@@ -134,7 +156,8 @@
         <li class="divider"></li>
         <li><a href="#">Separated link</a></li>
       </ul>
-    </div><!-- /btn-group -->
+    </div>
+    <!-- /btn-group -->
     <div class="btn-group">
       <button type="button" class="btn btn-warning">Warning</button>
       <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
@@ -148,7 +171,8 @@
         <li class="divider"></li>
         <li><a href="#">Separated link</a></li>
       </ul>
-    </div><!-- /btn-group -->
+    </div>
+    <!-- /btn-group -->
     <div class="btn-group">
       <button type="button" class="btn btn-danger">Danger</button>
       <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
@@ -162,14 +186,17 @@
         <li class="divider"></li>
         <li><a href="#">Separated link</a></li>
       </ul>
-    </div><!-- /btn-group -->
-</div>
+    </div>
+    <!-- /btn-group -->
+  </div>
 </div>
 
-  <h3 id="btn-dropdowns-sizing">Sizing</h3>
-  <p>Button dropdowns work with buttons of all sizes.</p>
+<h3 id="btn-dropdowns-sizing">Sizing</h3>
+
+<p>Button dropdowns work with buttons of all sizes.</p>
+
 <div class="row">
-<div class="col-md-6 js-demo">
+  <div class="col-md-6 js-demo">
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group">
         <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
@@ -182,8 +209,10 @@
           <li class="divider"></li>
           <li><a href="#">Separated link</a></li>
         </ul>
-      </div><!-- /btn-group -->
-    </div><!-- /btn-toolbar -->
+      </div>
+      <!-- /btn-group -->
+    </div>
+    <!-- /btn-toolbar -->
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group">
         <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
@@ -196,8 +225,10 @@
           <li class="divider"></li>
           <li><a href="#">Separated link</a></li>
         </ul>
-      </div><!-- /btn-group -->
-    </div><!-- /btn-toolbar -->
+      </div>
+      <!-- /btn-group -->
+    </div>
+    <!-- /btn-toolbar -->
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group">
         <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
@@ -210,15 +241,19 @@
           <li class="divider"></li>
           <li><a href="#">Separated link</a></li>
         </ul>
-      </div><!-- /btn-group -->
-    </div><!-- /btn-toolbar -->
-</div>
+      </div>
+      <!-- /btn-group -->
+    </div>
+    <!-- /btn-toolbar -->
+  </div>
 </div>
 
-  <h3 id="btn-dropdowns-dropup">Dropup variation</h3>
-  <p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the parent.</p>
+<h3 id="btn-dropdowns-dropup">Dropup variation</h3>
+
+<p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the parent.</p>
+
 <div class="row">
-<div class="col-md-6 js-demo">
+  <div class="col-md-6 js-demo">
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group dropup">
         <button type="button" class="btn btn-default">Dropup</button>
@@ -233,7 +268,8 @@
           <li class="divider"></li>
           <li><a href="#">Separated link</a></li>
         </ul>
-      </div><!-- /btn-group -->
+      </div>
+      <!-- /btn-group -->
       <div class="btn-group dropup">
         <button type="button" class="btn btn-primary">Right dropup</button>
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -247,8 +283,9 @@
           <li class="divider"></li>
           <li><a href="#">Separated link</a></li>
         </ul>
-      </div><!-- /btn-group -->
+      </div>
+      <!-- /btn-group -->
     </div>
-</div>
+  </div>
 </div>
 </div>

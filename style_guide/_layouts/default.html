@@ -13,12 +13,34 @@
   <![endif]-->
 
   <!-- Docs master nav -->
-  {% include nav.html %}
+  {% include nav/main.html %}
 
-  <div class="container">{{ content }}</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="hidden-print hidden-xs hidden-sm" role="complementary">
+          <ul class="nav">
+            {% if page.slug == "css" %}
+            {% include nav/css.html %}
+            {% elsif page.slug == "components" %}
+            {% include nav/components.html %}
+            {% elsif page.slug == "js" %}
+            {% include nav/javascript.html %}
+            {% endif %}
+          </ul>
+          <a class="back-to-top" href="#top">
+            Back to top
+          </a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        {{ content }}
+      </div>
+    </div>
+  </div>
 
   <script id="code-template" type="x-tmpl-mustache">
-    <div class="col-md-6 language-markup"><pre><code></code></pre></div>
+    <div class="col-md-12 language-markup"><pre><code></code></pre></div>
   </script>
 
   <script src="/js/vendor.js"></script>
