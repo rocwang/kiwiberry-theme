@@ -13,9 +13,11 @@
             <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
 
             <!-- Add Kiwifruit CSS -->
+            <action method="addItem"><type>skin_css</type><name>css/vendor.css</name></action>
             <action method="addItem"><type>skin_css</type><name>css/kiwifruit.css</name></action>
 
             <!-- Add Kiwifruit JS -->
+            <action method="addItem"><type>skin_js</type><name>js/modernizr.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/vendor.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/kiwifruit.js</name></action>
         </reference>
