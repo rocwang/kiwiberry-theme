@@ -214,7 +214,7 @@ gulp.task('watch', ['default'], function (cb) {
   gulp.watch(targets.theme.vendor.scripts, ['theme:vendor:js']);
   gulp.watch(targets.theme.vendor.fonts, ['theme:vendor:font']);
 
-  gulp.watch(targets.theme.main.styles, ['theme:main:css']);
+  gulp.watch(paths.src+'scss/**/*', ['theme:main:css']);
   gulp.watch(targets.theme.main.scripts, ['theme:main:js']);
   gulp.watch(targets.theme.main.images, ['theme:main:img']);
 
@@ -223,7 +223,7 @@ gulp.task('watch', ['default'], function (cb) {
   gulp.watch(targets.styleGuide.vendor.scripts, ['style-guide:vendor:js']);
   gulp.watch(targets.styleGuide.vendor.fonts, ['style-guide:vendor:font']);
 
-  gulp.watch(targets.styleGuide.main.styles, ['style-guide:main:css']);
+  gulp.watch(paths.src+'scss/**/*', ['style-guide:main:css']);
   gulp.watch(targets.styleGuide.main.scripts, ['style-guide:main:js']);
   gulp.watch(targets.styleGuide.main.images, ['style-guide:main:img']);
 
