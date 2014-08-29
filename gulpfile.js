@@ -230,15 +230,17 @@ gulp.task('watch', ['default'], function (cb) {
   // Create LiveReload server
   var server = require('gulp-livereload');
 
-  // Watch any files in , reload on change
-  gulp.watch([
-    targets.theme.dest + '**/*',
-    targets.styleGuide.dest + '_site/**/*'
-  ]).on('change', server.changed);
-
   server.listen();
 
-  runJekyll(['serve', '-w', '--skip-initial-build'], cb);
+  gulp.watch([
+    targets.theme.dest + '**/*',
+  ]).on('change', server.changed);
+
+  //gulp.watch([
+  //  targets.styleGuide.dest + '_site/**/*'
+  //]).on('change', server.changed);
+  //
+  //runJekyll(['serve', '-w', '--skip-initial-build'], cb);
 });
 
 // Build the theme
