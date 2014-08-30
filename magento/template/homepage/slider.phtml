@@ -1,0 +1,38 @@
+<div id="homepage-carousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#homepage-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#homepage-carousel" data-slide-to="1"></li>
+    <li data-target="#homepage-carousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <a href="<?php Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'accessories/eyewear.html' ?>">
+        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'wysiwyg/slide-1.jpg' ?>"
+             alt="An eye for detail - Click to Shop Eye Wear">
+      </a>
+    </div>
+    <div class="item">
+      <a href="<?php Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'women.html' ?>">
+        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'wysiwyg/slide-2.jpg' ?>"
+             alt="Style solutions - covet-worthy styles in travel-friendly fabrics - Click to Shop Woman">
+      </a>
+    </div>
+    <div class="item">
+      <a href="<?php Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'men.html' ?>">
+        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'wysiwyg/slide-3.jpg' ?>"
+             alt="Wing man - hit the runway in stylish separates and casuals - Click to Shop Man">
+      </a>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#homepage-carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#homepage-carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>

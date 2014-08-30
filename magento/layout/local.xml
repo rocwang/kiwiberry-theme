@@ -40,4 +40,28 @@
             <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
         </reference>
     </print>
+
+    <cms_page>
+        <reference name="content">
+            <block type="cms/page" name="cms_page"/>
+        </reference>
+        <remove name="cms.wrapper"></remove>
+    </cms_page>
+
+    <cms_index_index>
+        <reference name="content">
+            <!--<block type="core/template" name="slider" template="homepage/slider.phtml" />-->
+            <!--<block type="core/template" name="banner" template="homepage/banner.phtml" />-->
+
+            <block type="catalog/product_new" name="home.catalog.product.new" template="catalog/product/new.phtml" after="cms_page">
+                <action method="setProductsCount"><count>6</count></action>
+                <action method="addPriceBlockType">
+                    <type>bundle</type>
+                    <block>bundle/catalog_product_price</block>
+                    <template>bundle/catalog/product/price.phtml</template>
+                </action>
+                <action method="setColumnCount"><count>6</count></action>
+            </block>
+        </reference>
+    </cms_index_index>
 </layout>
