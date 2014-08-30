@@ -8,7 +8,7 @@ var targets = {
   theme: {
     // Assets of Kiwifruit
     main: {
-      styles : paths.src + 'scss/kiwifruit.scss',
+      styles : paths.src + 'less/kiwifruit.less',
       scripts: [ // The last one will be the name of final concatenated file
         paths.src + 'js/_noconflict.js',
         paths.src + 'js/kiwifruit.js'
@@ -22,10 +22,10 @@ var targets = {
       scripts: [
         paths.vendor + 'jquery/dist/jquery.js',
         paths.vendor + 'underscore/underscore.js',
-        paths.vendor + 'bootstrap-sass-official/assets/javascripts/bootstrap.js'
+        paths.vendor + 'bootstrap/dist/js/bootstrap.js'
       ],
       fonts  : [
-        paths.vendor + 'bootstrap-sass-official/assets/fonts/bootstrap/*',
+        paths.vendor + 'bootstrap/dist/fonts/*',
         paths.vendor + 'font-awesome/fonts/*'
       ]
     },
@@ -35,7 +35,7 @@ var targets = {
 
   styleGuide: {
     main: {
-      styles : paths.src + 'scss/style_guide.scss',
+      styles : paths.src + 'less/style_guide.less',
       scripts: [ // The last one will be the name of final concatenated file
         paths.src + 'js/style_guide.js'
       ],
@@ -49,13 +49,13 @@ var targets = {
       ],
       scripts: [
         paths.vendor + 'jquery/dist/jquery.js',
-        paths.vendor + 'bootstrap-sass-official/assets/javascripts/bootstrap.js',
+        paths.vendor + 'bootstrap/dist/js/bootstrap.js',
         paths.vendor + 'underscore/underscore.js',
         paths.vendor + 'prism/prism.js',
         paths.vendor + 'js-beautify/js/lib/beautify-html.js'
       ],
       fonts  : [
-        paths.vendor + 'bootstrap-sass-official/assets/fonts/bootstrap/*',
+        paths.vendor + 'bootstrap/dist/fonts/*',
         paths.vendor + 'font-awesome/fonts/*'
       ]
     },
@@ -67,13 +67,11 @@ var targets = {
 // Load plugins
 var gulp                = require('gulp'),
     util                = require('gulp-util'),
-    cache               = require('gulp-cache'),
     concat              = require('gulp-concat'),
     notify              = require('gulp-notify'),
-    eventStream         = require('event-stream'),
     path                = require('path'),
     rimraf              = require('rimraf'),
-    childProcess        = require('child_process');
+    sourcemaps          = require('gulp-sourcemaps'),
 
 
 // CSS plugins
@@ -82,6 +80,7 @@ var gulp                = require('gulp'),
     autoprefixer        = require('gulp-autoprefixer'),
     combineMediaQueries = require('gulp-combine-media-queries'),
     cssmin              = require('gulp-cssmin'),
+    less                = require('gulp-less'),
 
     // JS plugins
     jshint              = require('gulp-jshint'),
@@ -107,14 +106,17 @@ function buildVendorCss(target) {
 
 function buildMainCss(target) {
   return gulp.src(target.main.styles)
-    .pipe(sass({
-      style         : isProduction ? 'compressed' : 'expanded',
-      sourcemap     : !isProduction,
-      sourceComments: 'map',
-    }))
+    //.pipe(sass({
+    //  style         : isProduction ? 'compressed' : 'expanded',
+    //  sourcemap     : !isProduction,
+    //  sourceComments: 'map',
+    //  errLogToConsole: true,
+    //}))
+    //.pipe(sourcemaps.init())
+    .pipe(less())
+    //.pipe(sourcemaps.write())
     .on('error', notify.onError(function (error) {
-      console.log(error);
-      return 'SASS Error: ' + error.message;
+      return 'CSS compiling Error: ' + error.message;
     }))
     .on('error', function (error) {
       new util.PluginError('CSS', error, {showStack: true});
@@ -123,7 +125,7 @@ function buildMainCss(target) {
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? cssmin() : util.noop())
     .pipe(gulp.dest(target.dest + 'css'))
-    .pipe(notify('SASS compiled'));
+    .pipe(notify('CSS compiled'));
 }
 
 // Vender scripts
@@ -136,9 +138,6 @@ function buildVendorJs(target) {
   return gulp.src(target.vendor.scripts)
     .pipe(concat('vendor.js'))
     .pipe(isProduction ? uglify() : util.noop())
-    .on('error', notify.onError(function (error) {
-      return 'Unglify Error: ' + error.message;
-    }))
     .pipe(gulp.dest(target.dest + 'js'));
 }
 
@@ -184,63 +183,61 @@ function runJekyll(options, cb) {
   jekyll.on('close', function() { cb(); })
 }
 
-gulp.task('theme:clean', function (cb) { clean(targets.theme, cb); });
-
-gulp.task('theme:vendor:css',  ['theme:clean'], function () { return buildVendorCss(targets.theme); });
-gulp.task('theme:vendor:js',   ['theme:clean'], function () { return buildVendorJs(targets.theme); });
-gulp.task('theme:vendor:font', ['theme:clean'], function () { return buildFont(targets.theme); });
-
-gulp.task('theme:main:css', ['theme:clean'], function () { return buildMainCss(targets.theme); });
-gulp.task('theme:main:js',  ['theme:clean'], function () { return buildMainJs(targets.theme); });
-gulp.task('theme:main:img', ['theme:clean'], function () { return buildImg(targets.theme); });
-
-gulp.task('style-guide:clean', function (cb) {
-  //clean(targets.styleGuide, cb);
-  cb();
+gulp.task('theme:clean', function (cb) {
+  clean(targets.theme, cb);
 });
 
-gulp.task('style-guide:vendor:css',  ['style-guide:clean'], function () { return buildVendorCss(targets.styleGuide); });
-gulp.task('style-guide:vendor:js',   ['style-guide:clean'], function () { return buildVendorJs(targets.styleGuide); });
-gulp.task('style-guide:vendor:font', ['style-guide:clean'], function () { return buildFont(targets.styleGuide); });
+gulp.task('theme:vendor:css',  function () { return buildVendorCss(targets.theme); });
+gulp.task('theme:vendor:js',   function () { return buildVendorJs(targets.theme); });
+gulp.task('theme:vendor:font', function () { return buildFont(targets.theme); });
 
-gulp.task('style-guide:main:css', ['style-guide:clean'], function () { return buildMainCss(targets.styleGuide); });
-gulp.task('style-guide:main:js',  ['style-guide:clean'], function () { return buildMainJs(targets.styleGuide); });
-gulp.task('style-guide:main:img', ['style-guide:clean'], function () { return buildImg(targets.styleGuide); });
+gulp.task('theme:main:css', function () { return buildMainCss(targets.theme); });
+gulp.task('theme:main:js',  function () { return buildMainJs(targets.theme); });
+gulp.task('theme:main:img', function () { return buildImg(targets.theme); });
+
+gulp.task('style-guide:clean', function (cb) {
+  clean(targets.styleGuide, cb);
+});
+
+gulp.task('style-guide:vendor:css',  function () { return buildVendorCss(targets.styleGuide); });
+gulp.task('style-guide:vendor:js',   function () { return buildVendorJs(targets.styleGuide); });
+gulp.task('style-guide:vendor:font', function () { return buildFont(targets.styleGuide); });
+
+gulp.task('style-guide:main:css', function () { return buildMainCss(targets.styleGuide); });
+gulp.task('style-guide:main:js',  function () { return buildMainJs(targets.styleGuide); });
+gulp.task('style-guide:main:img', function () { return buildImg(targets.styleGuide); });
 
 // Watch task
-gulp.task('watch', ['default'], function (cb) {
-
-  gulp.watch(targets.theme.vendor.styles, ['theme:vendor:css']);
-  gulp.watch(targets.theme.vendor.scripts, ['theme:vendor:js']);
-  gulp.watch(targets.theme.vendor.fonts, ['theme:vendor:font']);
-
-  gulp.watch(paths.src+'scss/**/*', ['theme:main:css']);
+gulp.task('watch', ['theme'], function (cb) {
+  gulp.watch(paths.src+'less/**/*', ['theme:main:css']);
   gulp.watch(targets.theme.main.scripts, ['theme:main:js']);
   gulp.watch(targets.theme.main.images, ['theme:main:img']);
 
+  // Create LiveReload server
+  var server = require('gulp-livereload');
+  server.listen();
 
-  gulp.watch(targets.styleGuide.vendor.styles, ['style-guide:vendor:css']);
-  gulp.watch(targets.styleGuide.vendor.scripts, ['style-guide:vendor:js']);
-  gulp.watch(targets.styleGuide.vendor.fonts, ['style-guide:vendor:font']);
+  gulp.watch([
+    targets.theme.dest + '**/*',
+    'magento/layout/*.xml',
+    'magento/template/**/*.phtml',
+  ]).on('change', server.changed);
+});
 
-  gulp.watch(paths.src+'scss/**/*', ['style-guide:main:css']);
+gulp.task('watch:style-guide', ['style-guide'], function (cb) {
+  gulp.watch(paths.src+'less/**/*', ['style-guide:main:css']);
   gulp.watch(targets.styleGuide.main.scripts, ['style-guide:main:js']);
   gulp.watch(targets.styleGuide.main.images, ['style-guide:main:img']);
 
   // Create LiveReload server
   var server = require('gulp-livereload');
-
   server.listen();
 
   gulp.watch([
-    targets.theme.dest + '**/*',
+    targets.styleGuide.dest + '_site/**/*'
   ]).on('change', server.changed);
 
-  //gulp.watch([
-  //  targets.styleGuide.dest + '_site/**/*'
-  //]).on('change', server.changed);
-  //
-  //runJekyll(['serve', '-w', '--skip-initial-build'], cb);
+  runJekyll(['serve', '-w', '--skip-initial-build'], cb);
 });
 
 // Build the theme
