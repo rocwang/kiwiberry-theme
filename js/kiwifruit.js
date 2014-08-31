@@ -9,4 +9,9 @@ jQuery(function ($) {
   $('#select-language').change(function () {
     window.location.href = this.value;
   })
+
+  // Newsletter subscription
+  if (document.getElementById('newsletter-validate-detail')) {
+    var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+  }
 });

@@ -215,13 +215,14 @@ gulp.task('watch', ['theme'], function (cb) {
 
   // Create LiveReload server
   var server = require('gulp-livereload');
-  server.listen();
 
   gulp.watch([
     targets.theme.dest + '**/*',
     'magento/layout/*.xml',
     'magento/template/**/*.phtml',
   ]).on('change', server.changed);
+
+  server.listen();
 });
 
 gulp.task('watch:style-guide', ['style-guide'], function (cb) {
@@ -231,11 +232,12 @@ gulp.task('watch:style-guide', ['style-guide'], function (cb) {
 
   // Create LiveReload server
   var server = require('gulp-livereload');
-  server.listen();
 
   gulp.watch([
     targets.styleGuide.dest + '_site/**/*'
   ]).on('change', server.changed);
+
+  server.listen();
 
   runJekyll(['serve', '-w', '--skip-initial-build'], cb);
 });
