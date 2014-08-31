@@ -1,11 +1,9 @@
 #!/bin/bash
 set -x
 
-vendorName='VR'
-moduleName='Kiwiberry'
 designPackageName='kiwiberry'
-projectFolder="$(dirname $(readlink -e $0))"
-testFolder="$projectFolder/test"
+
+testFolder="$(dirname $(readlink -e $0))"
 magerun="$testFolder/magerun"
 localXml="$testFolder/app/etc/local.xml"
 
@@ -41,18 +39,7 @@ fi
 "$magerun" --root-dir="$testFolder" config:set 'design/package/name' "$designPackageName"
 
 # Allow Magento template symlinks
-"$magerun" --root-dir="$testFolder" config:set 'dev/template/allow_symlink'  1
+"$magerun" --root-dir="$testFolder" config:set 'dev/template/allow_symlink' 1
 
 # Disable Magento cache
 "$magerun" --root-dir="$testFolder" cache:disable
-
-codeFolder="$testFolder/app/code/community/$vendorName/$moduleName"
-designFolder="$testFolder/app/design/frontend/$designPackageName/default"
-moduleEtcFolder="$testFolder/app/etc/modules"
-
-mkdir -p "$codeFolder" "$designFolder" "$moduleEtcFolder"
-
-# Link project file to Magento folder
-ln -sft "$codeFolder" ../../../../../../magento/{Block,Helper,Model,etc}
-ln -sft "$designFolder" ../../../../../../magento/{layout,template}
-ln -sft "$moduleEtcFolder" ../../../../magento/VR_Kiwiberry.xml

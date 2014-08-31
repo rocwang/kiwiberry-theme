@@ -1,7 +1,7 @@
 // Base paths
 var paths = {
   vendor        : './bower_components/',
-  src           : './'
+  src           : './frontend/'
 };
 
 var targets = {
@@ -30,7 +30,7 @@ var targets = {
       ]
     },
 
-    dest: './test/skin/frontend/kiwiberry/default/'
+    dest: './skin/frontend/kiwiberry/default/'
   },
 
   styleGuide: {
@@ -106,14 +106,13 @@ function buildVendorCss(target) {
 
 function buildMainCss(target) {
   return gulp.src(target.main.styles)
-    //.pipe(sass({
-    //  style         : isProduction ? 'compressed' : 'expanded',
-    //  sourcemap     : !isProduction,
-    //  sourceComments: 'map',
-    //  errLogToConsole: true,
-    //}))
     //.pipe(sourcemaps.init())
-    .pipe(less())
+    .pipe(less({
+      paths: [
+        './bower_components/bootstrap/less/',
+        './bower_components/font-awesome/less/'
+      ]
+    }))
     //.pipe(sourcemaps.write())
     .on('error', notify.onError(function (error) {
       return 'CSS compiling Error: ' + error.message;
@@ -148,8 +147,11 @@ function buildMainJs(target) {
     .pipe(concat(path.basename(scripts[scripts.length - 1])))
     .pipe(isProduction ? uglify() : util.noop())
     .on('error', notify.onError(function (error) {
-      return 'Unglify Error: ' + error.message;
+      return 'Uglify: ' + error.message;
     }))
+    .on('error', function (error) {
+      new util.PluginError('Ulglify', error, {showStack: true});
+    })
     .pipe(gulp.dest(target.dest + 'js'))
     .pipe(notify({message: 'JS Compiled'}));
 }
@@ -166,6 +168,9 @@ function buildImg(target) {
     .on('error', notify.onError(function (error) {
       return 'Imagemin Error: ' + error.message;
     }))
+    .on('error', function (error) {
+      new util.PluginError('Imagemin', error, {showStack: true});
+    })
     .pipe(gulp.dest(target.dest + 'images'))
     .pipe(notify({message: 'Images optimized'}));
 }
@@ -175,12 +180,15 @@ function clean(target, cb) {
 }
 
 function runJekyll(options, cb) {
+  options.push('--config');
+  options.push('style_guide/_config.yml');
+
   var spawn = require('child_process').spawn,
       jekyll = spawn('jekyll', options);
 
   jekyll.stdout.on('data', function (data) { process.stdout.write(data); });
   jekyll.stderr.on('data', function (data) { process.stdout.write(data); });
-  jekyll.on('close', function() { cb(); })
+  jekyll.on('close', function() { cb(); });
 }
 
 gulp.task('theme:clean', function (cb) {
