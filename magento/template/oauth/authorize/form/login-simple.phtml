@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -39,7 +39,7 @@
             <?php echo $this->getMessagesBlock()->toHtml() ?>
             <?php if (!$this->getHasException()) : ?>
             <form method="post" action="<?php echo $this->getPostActionUrl() ?>" id="loginForm">
-                <fieldset class="fieldset">
+                <div class="fieldset" class="fieldset">
                     <h2 class="legend"><?php echo $this->getFormTitle() ?></h2>
                     <p class="description"><?php echo $this->__('Log in to use <strong>%s</strong>', $this->getConsumer()->getName()) ?></p>
                     <div class="login-form simple">
@@ -66,7 +66,7 @@
                                 <p class="required"><?php echo $this->__('* Required Fields') ?></p>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
                 </form>
             <?php endif; ?>
         </div>

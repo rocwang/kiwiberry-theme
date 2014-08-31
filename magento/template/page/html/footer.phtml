@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -27,7 +27,6 @@
 <div class="footer-container">
     <div class="footer">
         <?php echo $this->getChildHtml() ?>
-        <p class="bugs"><?php echo $this->__('Help Us to Keep Magento Healthy') ?> - <a href="http://www.magentocommerce.com/bug-tracking" onclick="this.target='_blank'"><strong><?php echo $this->__('Report All Bugs') ?></strong></a> <?php echo $this->__('(ver. %s)', Mage::getVersion()) ?></p>
-        <address><?php echo $this->getCopyright() ?></address>
+        <address class="copyright"><?php echo $this->getCopyright() ?></address>
     </div>
 </div>

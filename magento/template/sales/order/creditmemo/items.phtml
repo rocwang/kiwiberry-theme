@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -29,7 +29,7 @@
 <?php foreach ($_order->getCreditmemosCollection() as $_creditmemo): ?>
 <h2 class="sub-title"><?php echo $this->__('Refund #') ?><?php echo $_creditmemo->getIncrementId(); ?> <span class="separator">|</span> <a href="<?php echo $this->getPrintCreditmemoUrl($_creditmemo) ?>" onclick="this.target='_blank'" class="link-print"><?php echo $this->__('Print Refund') ?></a></h2>
 <h3 class="table-caption"><?php echo $this->__('Items Refunded') ?></h3>
-<table class="data-table" id="my-refund-table-<?php echo $_creditmemo->getId(); ?>">
+<table class="data-table linearize-table-large" id="my-refund-table-<?php echo $_creditmemo->getId(); ?>">
     <col />
     <col width="1" />
     <col width="1" />

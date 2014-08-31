@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -31,10 +31,19 @@
         <strong><span><?php echo $this->__('Recently Viewed Products') ?></span></strong>
     </div>
     <div class="block-content">
-        <ol id="recently-viewed-items">
+        <ol id="recently-viewed-items" class="mini-products-list">
         <?php foreach ($_products as $_item): ?>
             <li class="item">
-                <p class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></a></p>
+                <a href="<?php echo $this->getProductUrl($_item) ?>">
+                    <span class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50, 50)->setWatermarkSize('30x10'); ?>" width="50" height="50" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" /></span>
+                </a>
+                <div class="product-details">
+                    <p class="product-name">
+                        <a href="<?php echo $this->getProductUrl($_item) ?>">
+                            <?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?>
+                        </a>
+                    </p>
+                </div>
             </li>
         <?php endforeach; ?>
         </ol>

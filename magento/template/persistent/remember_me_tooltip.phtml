@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -31,8 +31,7 @@
  */
 /** @var $this Mage_Core_Block_Template */
 ?>
-<div id="window-overlay" class="window-overlay" style="display:none;"></div>
-<div id="remember-me-popup" class="remember-me-popup" style="display:none;">
+<div class="remember-me-popup">
     <div class="remember-me-popup-head">
         <h3>What's this?</h3>
         <a href="#" class="remember-me-popup-close" title="<?php echo $this->__('Close') ?>"><?php echo $this->__('Close') ?></a>
@@ -46,27 +45,18 @@
 </div>
 <script type="text/javascript">
 //<![CDATA[
-    function toggleRememberMepopup(event){
-        if($('remember-me-popup')){
-            var viewportHeight = document.viewport.getHeight(),
-                docHeight      = $$('body')[0].getHeight(),
-                height         = docHeight > viewportHeight ? docHeight : viewportHeight;
-            $('remember-me-popup').toggle();
-            $('window-overlay').setStyle({ height: height + 'px' }).toggle();
-        }
-        Event.stop(event);
+function toggleRememberMePopup() {
+    var formParent = jQuery(this).parents('form:first');
+    formParent.find('.remember-me-box a').toggleClass('hide');
+    formParent.find('.remember-me-popup').toggleClass('show');
+    return false;
+}
+var rememberMeToggleSetup = false;
+jQuery(document).ready(function(){
+    if (!rememberMeToggleSetup) {
+        jQuery('.remember-me-box a, .remember-me-popup a').on('click', toggleRememberMePopup);
+        rememberMeToggleSetup = true;
     }
-
-    document.observe("dom:loaded", function() {
-        new Insertion.Bottom($$('body')[0], $('window-overlay'));
-        new Insertion.Bottom($$('body')[0], $('remember-me-popup'));
-
-        $$('.remember-me-popup-close').each(function(element){
-            Event.observe(element, 'click', toggleRememberMepopup);
-        })
-        $$('#remember-me-box a').each(function(element) {
-            Event.observe(element, 'click', toggleRememberMepopup);
-        });
-    });
+});
 //]]>
 </script>

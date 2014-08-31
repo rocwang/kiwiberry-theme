@@ -19,13 +19,13 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
 <?php  $_order = $this->getOrder() ?>
-<table class="data-table" id="my-orders-table" summary="<?php echo $this->__('Items Ordered') ?>">
+<table class="data-table linearize-table-large" id="my-orders-table" summary="<?php echo $this->__('Items Ordered') ?>">
     <col />
     <col width="1" />
     <col width="1" />
@@ -33,7 +33,7 @@
     <col width="1" />
     <thead>
         <tr>
-            <th><?php echo $this->__('Product Name') ?></th>
+            <th><?php echo $this->__('Product') ?></th>
             <th><?php echo $this->__('SKU') ?></th>
             <th class="a-right"><?php echo $this->__('Price') ?></th>
             <th class="a-center"><?php echo $this->__('Qty') ?></th>

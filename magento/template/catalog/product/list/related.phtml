@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -27,7 +27,7 @@
 <?php if($this->getItems()->getSize()): ?>
 <div class="block block-related">
     <div class="block-title">
-        <strong><span><?php echo $this->__('Related Products') ?></span></strong>
+        <h2><?php echo $this->__('Related Products') ?></h2>
     </div>
     <div class="block-content">
         <p class="block-subtitle"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
@@ -40,7 +40,7 @@
                     <?php endif; ?>
                 <?php endif; ?>
                 <div class="product">
-                    <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50) ?>" width="50" height="50" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
+                    <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(75) ?>" width="75" height="75" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
                     <div class="product-details">
                         <p class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></p>
                         <?php echo $this->getPriceHtml($_item, true, '-related') ?>

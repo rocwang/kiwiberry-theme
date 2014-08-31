@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -29,7 +29,8 @@
 </div>
 <script type="text/javascript" src="<?php echo $this->getJsUrl('varien/accordion.js') ?>"></script>
 <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/opcheckout.js') ?>"></script>
-<ol class="opc" id="checkoutSteps">
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/opcheckout_rwd.js') ?>"></script>
+<ol class="opc opc-firststep-<?php echo $this->getActiveStep() ?>" id="checkoutSteps">
 <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo): ?>
 <?php if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()): continue; endif; $i++ ?>
     <li id="opc-<?php echo $_stepId ?>" class="section<?php echo !empty($_stepInfo['allow'])?' allow':'' ?><?php echo !empty($_stepInfo['complete'])?' saved':'' ?>">

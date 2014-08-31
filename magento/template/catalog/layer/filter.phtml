@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -36,11 +36,19 @@
 <?php foreach ($this->getItems() as $_item): ?>
     <li>
         <?php if ($_item->getCount() > 0): ?>
-        <a href="<?php echo $this->urlEscape($_item->getUrl()) ?>"><?php echo $_item->getLabel() ?></a>
-        <?php else: echo $_item->getLabel() ?>
-        <?php endif; ?>
-        <?php if ($this->shouldDisplayProductCount()): ?>
-        (<?php echo $_item->getCount() ?>)
+            <a href="<?php echo $this->urlEscape($_item->getUrl()) ?>">
+                <?php echo $_item->getLabel() ?>
+                <?php if ($this->shouldDisplayProductCount()): ?>
+                <span class="count">(<?php echo $_item->getCount() ?>)</span>
+                <?php endif; ?>
+            </a>
+        <?php else: ?>
+            <span>
+                <?php echo $_item->getLabel(); ?>
+                <?php if ($this->shouldDisplayProductCount()): ?>
+                    <span class="count">(<?php echo $_item->getCount() ?>)</span>
+                <?php endif; ?>
+            </span>
         <?php endif; ?>
     </li>
 <?php endforeach ?>

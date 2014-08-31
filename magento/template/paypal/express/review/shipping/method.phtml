@@ -19,13 +19,13 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 /** @var $this Mage_Paypal_Block_Express_Review */
 ?>
-<fieldset id="shipping-method-container">
+<div class="fieldset" id="shipping-method-container">
 <?php if ($this->getCanEditShippingMethod() || !$this->getCurrentShippingRate()):?>
         <?php if ($groups = $this->getShippingRateGroups()):?>
             <?php $currentRate = $this->getCurrentShippingRate(); ?>
@@ -49,5 +49,5 @@
 <?php else: ?>
     <p><strong><?php echo $this->renderShippingRateOption($this->getCurrentShippingRate())?></strong></p>
 <?php endif; ?>
-</fieldset>
+</div>
 <div style="display:none" id="shipping_method_update"><p><?php echo $this->__('Please update order data to get shipping methods and rates') ?></p></div>

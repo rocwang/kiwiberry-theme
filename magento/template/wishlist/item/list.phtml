@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -27,11 +27,13 @@
 <?php
     $columns = $this->getColumns();
 ?>
-<table class="data-table" id="wishlist-table">
+<table class="clean-table linearize-table" id="wishlist-table">
     <thead>
         <tr>
-            <?php foreach ($columns as $column): ?>
-                <th><?php echo $column->getTitle();?></th>
+            <?php foreach ($columns as $column):
+                $_blockName = str_replace('.','-',strtolower($column->getNameInLayout()));
+            ?>
+                <th class="<?php echo $_blockName; ?>"><?php echo $column->getTitle();?></th>
             <?php endforeach; ?>
         </tr>
     </thead>
@@ -39,8 +41,12 @@
         <?php if (count($this->getItems())): ?>
             <?php foreach ($this->getItems() as $item): ?>
                 <tr id="item_<?php echo $item->getId();?>">
-                    <?php foreach ($columns as $column): ?>
-                        <td><?php $column->setItem($item); echo $column->toHtml($item);?></td>
+                    <?php
+                        foreach ($columns as $key => $column):
+                            $_blockName = str_replace('.','-',strtolower($column->getNameInLayout()));
+                            $_rwdLabel = ($column->getTitle()) ? $column->getTitle() : false;
+                    ?>
+                        <td class="<?php echo 'wishlist-cell'.$key; ?> <?php echo $_blockName; ?>"<?php if($_rwdLabel): ?> data-rwd-label="<?php echo $_rwdLabel; ?>"<?php endif; ?>><?php $column->setItem($item); echo $column->toHtml($item);?></td>
                     <?php endforeach; ?>
                 </tr>
             <?php endforeach ?>

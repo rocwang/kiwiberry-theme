@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -31,7 +31,7 @@
  * @var $this Mage_Persistent_Block_Form_Remember
  */
 ?>
-<li id="remember-me-box" class="control">
+<li class="control remember-me-box">
     <?php $rememberMeId = 'remember_me' . Mage::helper('core')->getRandomString(10); ?>
     <div class="input-box">
         <input type="checkbox" name="persistent_remember_me" class="checkbox" id="<?php echo $rememberMeId; ?>"<?php if ($this->isRememberMeChecked()): ?> checked="checked"<?php endif; ?> title="<?php echo $this->__('Remember Me') ?>" />

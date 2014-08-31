@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -36,7 +36,7 @@
             <?php foreach ($_links as $_link): ?>
                 <?php $_last = ($_index++ >= $_count); ?>
                 <?php if ($this->isActive($_link)): ?>
-                    <li class="current<?php echo ($_last ? ' last' : '') ?>"><strong><?php echo $_link->getLabel() ?></strong></li>
+                    <li class="current<?php echo ($_last ? ' last' : '') ?>"><a href="<?php echo $_link->getUrl() ?>"><strong><?php echo $_link->getLabel() ?></strong></a></li>
                 <?php else: ?>
                     <li<?php echo ($_last ? ' class="last"' : '') ?>><a href="<?php echo $_link->getUrl() ?>"><?php echo $_link->getLabel() ?></a></li>
                 <?php endif; ?>

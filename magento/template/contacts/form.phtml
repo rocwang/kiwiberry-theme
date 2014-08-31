@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -28,9 +28,10 @@
 <div class="page-title">
     <h1><?php echo Mage::helper('contacts')->__('Contact Us') ?></h1>
 </div>
-<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post" class="scaffold-form">
     <div class="fieldset">
         <h2 class="legend"><?php echo Mage::helper('contacts')->__('Contact Information') ?></h2>
+        <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
         <ul class="form-list">
             <li class="fields">
                 <div class="field">
@@ -42,14 +43,14 @@
                 <div class="field">
                     <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
                     <div class="input-box">
-                        <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                        <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" />
                     </div>
                 </div>
             </li>
             <li>
                 <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
                 <div class="input-box">
-                    <input name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+                    <input name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="tel" />
                 </div>
             </li>
             <li class="wide">
@@ -61,7 +62,6 @@
         </ul>
     </div>
     <div class="buttons-set">
-        <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
         <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
         <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
     </div>

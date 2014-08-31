@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -32,17 +32,17 @@
  */
 ?>
 <?php if($this->canShowBlock()): ?>
-<div class="block block-layered-nav">
+<div class="block block-layered-nav<?php if (!$this->getLayer()->getState()->getFilters()): ?> block-layered-nav--no-filters<?php endif; ?>">
     <div class="block-title">
         <strong><span><?php echo $this->__('Shop By') ?></span></strong>
     </div>
-    <div class="block-content">
+    <div class="block-content toggle-content">
         <?php echo $this->getStateHtml() ?>
         <?php if ($this->getLayer()->getState()->getFilters()): ?>
             <div class="actions"><a href="<?php echo $this->getClearUrl() ?>"><?php echo $this->__('Clear All') ?></a></div>
         <?php endif; ?>
         <?php if($this->canShowOptions()): ?>
-            <p class="block-subtitle"><?php echo $this->__('Shopping Options') ?></p>
+            <p class="block-subtitle block-subtitle--filter"><?php echo $this->__('Filter') ?></p>
             <dl id="narrow-by-list">
                 <?php $_filters = $this->getFilters() ?>
                 <?php foreach ($_filters as $_filter): ?>

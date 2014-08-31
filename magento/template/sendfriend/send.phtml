@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -84,7 +84,7 @@
                     <div class="field">
                        <label for="sender_email" class="required"><em>*</em><?php echo $this->__('Email:') ?></label>
                        <div class="input-box">
-                           <input name="sender[email]" value="<?php echo $this->escapeHtml($this->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" id="sender_email" type="text" class="input-text required-entry validate-email" />
+                           <input name="sender[email]" value="<?php echo $this->escapeHtml($this->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" id="sender_email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" class="input-text required-entry validate-email" />
                        </div>
                     </div>
                 </li>
@@ -109,7 +109,7 @@
                     <div class="field">
                         <label for="recipients_email" class="required"><em>*</em><?php echo $this->__('Email Address:') ?></label>
                         <div class="input-box">
-                            <input name="recipients[email][]" value="" title="<?php echo $this->__('Email Address') ?>" id="recipients_email" type="text" class="input-text required-entry validate-email" />
+                            <input name="recipients[email][]" value="" title="<?php echo $this->__('Email Address') ?>" id="recipients_email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" class="input-text required-entry validate-email" />
                         </div>
                     </div>
                 </li>

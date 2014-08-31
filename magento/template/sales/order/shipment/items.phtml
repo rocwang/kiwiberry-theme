@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -35,7 +35,7 @@
 <h2 class="sub-title"><?php echo $this->__('Shipment #') ?><?php echo $_shipment->getIncrementId(); ?> <span class="separator">|</span> <a href="<?php echo $this->getPrintShipmentUrl($_shipment) ?>" onclick="this.target='_blank'" class="link-print"><?php echo $this->__('Print Shipment') ?></a></h2>
 <?php $tracks = $_shipment->getTracksCollection(); ?>
 <?php  if ($tracks->count()): ?>
-    <table class="data-table tracking-table" id="my-tracking-table-<?php echo $_shipment->getId(); ?>">
+    <table class="data-table tracking-table linearize-table" id="my-tracking-table-<?php echo $_shipment->getId(); ?>">
         <tbody>
             <tr>
                 <td colspan="2">

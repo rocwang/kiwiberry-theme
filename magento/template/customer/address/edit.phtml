@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -37,12 +37,13 @@
 </div>
 <?php endif; ?>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-<form action="<?php echo $this->getSaveUrl() ?>" method="post" id="form-validate">
+<form action="<?php echo $this->getSaveUrl() ?>" method="post" id="form-validate" class="scaffold-form" enctype="multipart/form-data">
     <div class="fieldset">
     <?php echo $this->getBlockHtml('formkey')?>
     <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
     <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
         <h2 class="legend"><?php echo $this->__('Contact Information') ?></h2>
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
         <ul class="form-list">
             <li class="fields">
                 <?php echo $this->getNameBlockHtml() ?>
@@ -57,13 +58,13 @@
                 <div class="field">
                     <label for="telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
                     <div class="input-box">
-                        <input type="text" name="telephone" value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text  <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="telephone" />
+                        <input type="tel" name="telephone" value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text  <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="telephone" />
                     </div>
                 </div>
                 <div class="field">
                     <label for="fax"><?php echo $this->__('Fax') ?></label>
                     <div class="input-box">
-                        <input type="text" name="fax" id="fax" title="<?php echo $this->__('Fax') ?>" value="<?php echo $this->escapeHtml($this->getAddress()->getFax()) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('fax') ?>" />
+                        <input type="tel" name="fax" id="fax" title="<?php echo $this->__('Fax') ?>" value="<?php echo $this->escapeHtml($this->getAddress()->getFax()) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('fax') ?>" />
                     </div>
                 </div>
             </li>
@@ -82,6 +83,7 @@
         <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
         <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
             <li class="wide">
+                <label for="billing:street<?php echo $_i ?>"><?php echo $this->__('Street Address %s', $_i) ?></label>
                 <div class="input-box">
                     <input type="text" name="street[]" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>" title="<?php echo $this->__('Street Address %s', $_i) ?>" id="street_<?php echo $_i ?>" class="input-text <?php echo $_streetValidationClass ?>" />
                 </div>
@@ -152,9 +154,8 @@
         </ul>
     </div>
     <div class="buttons-set">
-        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
         <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
-        <button data-action="save-customer-address" type="submit" title="<?php echo $this->__('Save Address') ?>" class="button"><span><span><?php echo $this->__('Save Address') ?></span></span></button>
+        <button type="submit" title="<?php echo $this->__('Save Address') ?>" class="button"><span><span><?php echo $this->__('Save Address') ?></span></span></button>
     </div>
 </form>
 <script type="text/javascript">

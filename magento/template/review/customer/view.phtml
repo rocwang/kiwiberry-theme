@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -30,7 +30,7 @@
         <h1><?php echo $this->__('Review Details') ?></h1>
     </div>
     <div class="product-img-box">
-        <a href="<?php echo $this->getProductData()->getProductUrl() ?>" title="<?php echo $this->escapeHtml($this->getProductData()->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($this->getProductData(), 'small_image')->resize(125, 125); ?>" width="125" height="125" alt="<?php echo $this->escapeHtml($this->getProductData()->getName()) ?>" /></a>
+        <a href="<?php echo $this->getProductData()->getProductUrl() ?>" title="<?php echo $this->escapeHtml($this->getProductData()->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($this->getProductData(), 'small_image')->resize(325,325); ?>" width="325" height="" alt="<?php echo $this->escapeHtml($this->getProductData()->getName()) ?>" /></a>
         <?php if( $this->getRating() && $this->getRating()->getSize()): ?>
             <p class="label"><?php echo $this->__('Average Customer Rating:') ?></p>
             <?php echo $this->getReviewsSummaryHtml($this->getProductData()) ?>
@@ -55,7 +55,7 @@
         <?php endforeach; ?>
         </table>
         <?php endif; ?>
-        <dl>
+        <dl class="ratings-description">
             <dt>
                 <?php if ($this->isReviewOwner()): ?>
                     <?php echo $this->__('Your Review (submitted on %s):', $this->dateFormat($this->getReviewData()->getCreatedAt())) ?>

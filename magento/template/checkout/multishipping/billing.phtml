@@ -19,7 +19,7 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
@@ -60,6 +60,7 @@
                             <div class="btn-close"><a href="#" id="payment-tool-tip-close" title="<?php echo $this->__('Close') ?>"><?php echo $this->__('Close') ?></a></div>
                             <div class="tool-tip-content"><img src="<?php echo $this->getSkinUrl('images/cvv.gif') ?>" alt="<?php echo $this->__('Card Verification Number Visual Reference') ?>" title="<?php echo $this->__('Card Verification Number Visual Reference') ?>" /></div>
                         </div>
+                        <?php echo $this->getChildHtml('payment_methods_before') ?>
                         <!-- Payment methods forms list -->
                         <dl class="sp-methods">
                         <?php
@@ -82,6 +83,7 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                         </dl>
+                        <?php echo $this->getChildHtml('payment_methods_after') ?>
                         <?php echo $this->getChildHtml('checkout_billing_items') ?>
                     </div>
                 </div>

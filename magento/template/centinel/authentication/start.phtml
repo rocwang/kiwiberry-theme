@@ -19,17 +19,17 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     rwd_default
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
 <form name="validation_form" id="validation_form" action="<?php echo $this->getAcsUrl();?>" method="post">
-    <fieldset>
+    <div class="fieldset">
         <input type="hidden" name="PaReq" value="<?php echo $this->getPaReq()?>" />
         <input type="hidden" name="TermUrl" value="<?php echo $this->getTermUrl()?>" />
         <input type="hidden" name="MD" value="<?php echo $this->getMd()?>" />
-    </fieldset>
+    </div>
 </form>
 <script type="text/javascript">
 //<![CDATA[
