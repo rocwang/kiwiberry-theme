@@ -2,7 +2,7 @@
 set -x
 
 designPackageName='kiwiberry'
-
+testDomain='kiwiberry.vivienchen.me'
 testFolder="$(dirname $(readlink -e $0))"
 magerun="$testFolder/magerun"
 localXml="$testFolder/app/etc/local.xml"
@@ -28,10 +28,10 @@ fi
     --installationFolder="$testFolder"\
     --dbHost='localhost'\
     --dbUser='root'\
-    --dbName='kiwiberry_test'\
+    --dbName="$testDomain"\
     --dbPort='3306'\
     --installSampleData='yes'\
-    --baseUrl='http://kiwiberry.vivienchen.dev'\
+    --baseUrl="http://$testDomain"\
     --replaceHtaccessFile='no'\
     --useDefaultConfigParams='yes'
 
