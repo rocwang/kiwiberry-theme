@@ -24,14 +24,14 @@
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
-                <!-- Add Kiwifruit CSS -->
+                <!-- Add Kiwiberry CSS -->
                 <action method="addItem"><type>skin_css</type><name>css/vendor.css</name></action>
-                <action method="addItem"><type>skin_css</type><name>css/kiwifruit.css</name></action>
+                <action method="addItem"><type>skin_css</type><name>css/kiwiberry.css</name></action>
 
-                <!-- Add Kiwifruit JS -->
+                <!-- Add Kiwiberry JS -->
                 <action method="addItem"><type>skin_js</type><name>js/modernizr.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/vendor.js</name></action>
-                <action method="addItem"><type>skin_js</type><name>js/kiwifruit.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/kiwiberry.js</name></action>
             </block>
 
             <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">

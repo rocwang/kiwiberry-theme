@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <VR_KiwiFruit>
+        <VR_Kiwiberry>
             <version>0.1.0</version>
-        </VR_KiwiFruit>
+        </VR_Kiwiberry>
     </modules>
     <global>
         <models>
-            <vr_kiwifruit>
-                <class>VR_KiwiFruit_Model</class>
-                <resourceModel>vr_kiwifruit_resource</resourceModel>
-            </vr_kiwifruit>
-            <vr_kiwifruit_resource>
-                <class>VR_KiwiFruit_Model_Resource</class>
-            </vr_kiwifruit_resource>
+            <vr_kiwiberry>
+                <class>VR_Kiwiberry_Model</class>
+                <resourceModel>vr_kiwiberry_resource</resourceModel>
+            </vr_kiwiberry>
+            <vr_kiwiberry_resource>
+                <class>VR_Kiwiberry_Model_Resource</class>
+            </vr_kiwiberry_resource>
         </models>
         <blocks>
-            <vr_kiwifruit>
-                <class>VR_KiwiFruit_Block</class>
-            </vr_kiwifruit>
+            <vr_kiwiberry>
+                <class>VR_Kiwiberry_Block</class>
+            </vr_kiwiberry>
         </blocks>
         <helpers>
-            <vr_kiwifruit>
-                <class>VR_KiwiFruit_Helper</class>
-            </vr_kiwifruit>
+            <vr_kiwiberry>
+                <class>VR_Kiwiberry_Helper</class>
+            </vr_kiwiberry>
         </helpers>
     </global>
 </config>

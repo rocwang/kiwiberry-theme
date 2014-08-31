@@ -1,11 +1,10 @@
 {
-  "name": "kiwifruit",
+  "name": "kiwiberry",
   "version": "0.1.0",
   "author": "Roc <me@rocwang.me>",
   "private": true,
   "devDependencies": {
     "animate.css": "~3",
-    "bootstrap-sass-official": "~3",
     "font-awesome": "~4",
     "jquery": "~2",
     "modernizr": "~2",

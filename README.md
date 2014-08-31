@@ -1,1 +1,1 @@
-# Kiwifruit, the ultimate theme for Magento
+# Kiwiberry, the ultimate theme for Magento

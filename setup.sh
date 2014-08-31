@@ -2,8 +2,8 @@
 set -x
 
 vendorName='VR'
-moduleName='KiwiFruit'
-designPackageName='kiwifruit'
+moduleName='Kiwiberry'
+designPackageName='kiwiberry'
 projectFolder="$(dirname $(readlink -e $0))"
 testFolder="$projectFolder/test"
 magerun="$testFolder/magerun"
@@ -30,10 +30,10 @@ fi
     --installationFolder="$testFolder"\
     --dbHost='localhost'\
     --dbUser='root'\
-    --dbName='kiwifruit_test'\
+    --dbName='kiwiberry_test'\
     --dbPort='3306'\
     --installSampleData='yes'\
-    --baseUrl='http://kiwifruit.vivienchen.dev'\
+    --baseUrl='http://kiwiberry.vivienchen.dev'\
     --replaceHtaccessFile='no'\
     --useDefaultConfigParams='yes'
 
@@ -55,4 +55,4 @@ mkdir -p "$codeFolder" "$designFolder" "$moduleEtcFolder"
 # Link project file to Magento folder
 ln -sft "$codeFolder" ../../../../../../magento/{Block,Helper,Model,etc}
 ln -sft "$designFolder" ../../../../../../magento/{layout,template}
-ln -sft "$moduleEtcFolder" ../../../../magento/VR_KiwiFruit.xml
+ln -sft "$moduleEtcFolder" ../../../../magento/VR_Kiwiberry.xml

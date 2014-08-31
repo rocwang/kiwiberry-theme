@@ -6,12 +6,12 @@ var paths = {
 
 var targets = {
   theme: {
-    // Assets of Kiwifruit
+    // Assets of Kiwiberry
     main: {
-      styles : paths.src + 'less/kiwifruit.less',
+      styles : paths.src + 'less/kiwiberry.less',
       scripts: [ // The last one will be the name of final concatenated file
         paths.src + 'js/_noconflict.js',
-        paths.src + 'js/kiwifruit.js'
+        paths.src + 'js/kiwiberry.js'
       ],
       images : paths.src + 'images/*'
     },
@@ -30,7 +30,7 @@ var targets = {
       ]
     },
 
-    dest: './test/skin/frontend/kiwifruit/default/'
+    dest: './test/skin/frontend/kiwiberry/default/'
   },
 
   styleGuide: {
