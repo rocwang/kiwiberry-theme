@@ -1,7 +1,7 @@
 #PHP CI Configuration
 test:
     php_code_sniffer:
-        standard: "Magento"
+        standard: "Zend"
         encoding: utf-8
         path: "app/"
 
