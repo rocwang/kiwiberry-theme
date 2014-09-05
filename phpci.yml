@@ -4,6 +4,6 @@ test:
         suffixes:
             - "php"
             - "phtml"
-        standard: "PSR2"
+        standard: "/home/roc/phpci.rocwang.me/vendor/magento-ecg/coding-standard/Ecg"
         encoding: utf-8
         path: "app/code/community/VR"
