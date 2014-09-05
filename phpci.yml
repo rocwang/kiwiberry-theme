@@ -3,7 +3,7 @@ test:
     php_code_sniffer:
         standard: "Magento"
         encoding: utf-8
-        path: "app/code/community/VR"
+        path: "app"
 
     php_mess_detector:
         rules:
@@ -12,11 +12,17 @@ test:
             - "design"
             - "naming"
             - "unusedcode"
-        path: "app/code/community/VR"
+        path: "app"
+
     php_docblock_checker:
-        path: "app/code/community/VR"
+        path: "app"
+
     php_cpd:
-        path: "app/code/community/VR"
+        path: "app"
+
     php_loc:
-        path: "app/code/community/VR"
-        path: "app/design/frontend/kiwiberry"
+        directory: "app"
+
+    lint:
+        directory: "app"
+
