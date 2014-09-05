@@ -9,7 +9,7 @@ test:
         rules:
             - "cleancode"
             - "codesize"
-            - "controversial"
             - "design"
+            - "naming"
             - "unusedcode"
         path: "app/code/community/VR"
