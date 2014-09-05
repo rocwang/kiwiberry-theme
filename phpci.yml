@@ -3,7 +3,7 @@ test:
     php_code_sniffer:
         standard: "Magento"
         encoding: utf-8
-        path: "app"
+        path: "app/"
 
     php_mess_detector:
         rules:
@@ -12,17 +12,17 @@ test:
             - "design"
             - "naming"
             - "unusedcode"
-        path: "app"
+        path: "app/"
 
     php_docblock_checker:
-        path: "app"
+        path: "app/"
 
     php_cpd:
-        path: "app"
+        path: "app/"
 
     php_loc:
-        directory: "app"
+        directory: "app/"
 
     lint:
-        directory: "app"
+        directory: "app/"
 
