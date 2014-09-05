@@ -15,3 +15,5 @@ test:
         path: "app/code/community/VR"
     php_docblock_checker:
         path: "app/code/community/VR"
+    php_cpd:
+        path: "app/code/community/VR"
