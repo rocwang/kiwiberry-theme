@@ -17,3 +17,6 @@ test:
         path: "app/code/community/VR"
     php_cpd:
         path: "app/code/community/VR"
+    php_loc:
+        path: "app/code/community/VR"
+        path: "app/design/frontend/kiwiberry"
