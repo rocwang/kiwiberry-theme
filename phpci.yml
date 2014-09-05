@@ -1,42 +1,11 @@
 #PHP CI Configuration
-#
-#build_settings:
-#    clone_depth: 1 # depth of 1 is a shallow clone, remove this line to clone entire repo
-#    ignore:
-#        - "vendor"
-#        - "tests"
-#    mysql:
-#        host: "localhost"
-#        user: "root"
-#        pass: ""
-#
-#setup:
-#    composer:
-#        action: "install"
-#    mysql:
-#        - "DROP DATABASE IF EXISTS test;"
-#        - "CREATE DATABASE test;"
-#        - "GRANT ALL PRIVILEGES ON test.* TO test@'localhost' IDENTIFIED BY 'test';"
-#
-#test:
-#    php_unit:
-#        config:
-#            - "PHPUnit-all.xml"
-#            - "PHPUnit-ubuntu-fix.xml"
-#        directory:
-#            - "tests/"
-#        run_from: "phpunit/"
-#        coverage: "tests/logs/coverage"
-#        args: "--stderr"
-#    php_mess_detector:
-#        allow_failures: true
-#    php_code_sniffer:
-#        standard: "PSR2"
-#    php_cpd:
-#        allow_failures: true
-#    grunt:
-#        task: "build"
-#
-#complete:
-#    mysql:
-#        - "DROP DATABASE IF EXISTS test;"
+test:
+    php_code_sniffer:
+        suffixes:
+            - "php"
+            - "phtml"
+        standard: "PSR2"
+        encoding: utf-8
+        path:
+            - "app/code/community/VR"
+            - "app/design/frontend/kiwiberry"
