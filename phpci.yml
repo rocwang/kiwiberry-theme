@@ -11,6 +11,5 @@ test:
             - "codesize"
             - "controversial"
             - "design"
-            - "naming"
             - "unusedcode"
         path: "app/code/community/VR"
