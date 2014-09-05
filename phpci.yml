@@ -1,9 +1,16 @@
 #PHP CI Configuration
 test:
     php_code_sniffer:
-        suffixes:
-            - "php"
-            - "phtml"
         standard: "Magento"
         encoding: utf-8
+        path: "app/code/community/VR"
+
+    php_mess_detector:
+        rules:
+            - "cleancode"
+            - "codesize"
+            - "controversial"
+            - "design"
+            - "naming"
+            - "unusedcode"
         path: "app/code/community/VR"
