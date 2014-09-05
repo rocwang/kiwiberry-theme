@@ -13,3 +13,5 @@ test:
             - "naming"
             - "unusedcode"
         path: "app/code/community/VR"
+    php_docblock_checker:
+        path: "app/code/community/VR"
