@@ -1,13 +1,15 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: roc
- * Date: 7/08/14
- * Time: 10:01 PM
+ * Helper class for kiwiberry theme package
  */
 class VR_Kiwiberry_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    /**
+     * Get CSS class name of font awesome icon from label
+     *
+     * @param $label
+     * @return string|bool the class name or false on failure
+     */
     public function getFaIconClass($label)
     {
         $map = array(
