@@ -58,10 +58,6 @@
 
             <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
 
-            <block type="core/text_list" name="left_first" as="left_first" translate="label">
-                <label>Left Column First (shows above main column on smaller screens)</label>
-            </block>
-
             <block type="core/text_list" name="left" as="left" translate="label">
                 <label>Left Column</label>
             </block>

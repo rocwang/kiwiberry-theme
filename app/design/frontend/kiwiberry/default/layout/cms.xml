@@ -24,7 +24,7 @@ Default layout, loads most of the pages
     </default>
 
     <cms_menu>
-        <reference name="left_first">
+        <reference name="left">
             <block type="cms/block" name="cms_menu" >
                 <action method="setBlockId"><block_id>cms_menu</block_id></action>
             </block>
