@@ -226,8 +226,8 @@ gulp.task('watch', ['theme'], function (cb) {
 
   gulp.watch([
     targets.theme.dest + '**/*',
-    'magento/layout/*.xml',
-    'magento/template/**/*.phtml',
+    'app/design/frontend/kiwiberry/**/*.phtml',
+    'app/design/frontend/kiwiberry/**/*.xml',
   ]).on('change', server.changed);
 
   server.listen();
