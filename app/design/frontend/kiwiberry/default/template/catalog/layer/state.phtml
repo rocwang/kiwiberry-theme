@@ -1,31 +1,5 @@
 <?php
 /**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License (AFL 3.0)
- * that is bundled with this package in the file LICENSE_AFL.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/afl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
- *
- * @category    design
- * @package     rwd_default
- * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
- * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- */
-?>
-<?php
-/**
  * Category layered navigation state
  *
  * @see Mage_Catalog_Block_Layer_State
@@ -35,39 +9,67 @@
 $_filters = $this->getActiveFilters();
 $_renderers = $this->getParentBlock()->getChild('state_renderers')->getSortedChildren();
 ?>
-<?php if(!empty($_filters)): ?>
-<div class="currently">
-    <p class="block-subtitle"><?php echo $this->__('Currently Shopping by:') ?></p>
-    <ol>
-    <?php foreach ($_filters as $_filter): ?>
+<?php if (!empty($_filters)): ?>
+  <div class="panel panel-default">
+
+    <div class="panel-heading"><?php echo $this->__('Currently Shopping by:') ?></div>
+
+    <div class="panel-body">
+      <a class="btn btn-default" href="<?php echo $this->getClearUrl() ?>"><?php echo $this->__('Clear All') ?></a>
+    </div>
+
+    <ul class="list-group">
+      <?php foreach ($_filters as $_filter): ?>
+
         <?php
         $_rendered = false;
         foreach ($_renderers as $_rendererName):
-            $_renderer = $this->getParentBlock()->getChild('state_renderers')->getChild($_rendererName);
-            if (method_exists($_renderer, 'shouldRender') && $_renderer->shouldRender($_filter)):
-                $_renderer->setFilter($_filter);
-                echo $_renderer->toHtml();
-                $_rendered = true;
-                break;
-            endif;
+          $_renderer = $this->getParentBlock()->getChild('state_renderers')->getChild($_rendererName);
+          if (method_exists($_renderer, 'shouldRender') && $_renderer->shouldRender($_filter)):
+            $_renderer->setFilter($_filter);
+            echo $_renderer->toHtml();
+            $_rendered = true;
+            break;
+          endif;
         endforeach;
 
         if (!$_rendered):
         ?>
-        <li>
+
+          <li class="list-group-item">
+            <strong><?php echo $this->__($_filter->getName()) ?>:</strong>
+            <span><?php echo $this->stripTags($_filter->getLabel()) ?></span>
+
             <?php
-                $clearLinkUrl = $_filter->getClearLinkUrl();
-                if ($clearLinkUrl):
+            $clearLinkUrl = $_filter->getClearLinkUrl();
+            if ($clearLinkUrl):
             ?>
-                <a  class="btn-previous" href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Previous') ?>"><?php echo $this->__('Previous') ?></a>
-                <a  class="btn-remove" title="<?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>" href="<?php echo $clearLinkUrl ?>"><?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></a>
+              <a class=""
+                 href="<?php echo $_filter->getRemoveUrl() ?>"
+                 title="<?php echo $this->__('Previous') ?>">
+                <?php echo $this->__('Previous') ?>
+              </a>
+
+              <a class=""
+                 title="<?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
+                 href="<?php echo $clearLinkUrl ?>">
+                <?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>
+              </a>
             <?php else: ?>
-                <a  class="btn-remove" href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>"><?php echo $this->__('Remove This Item') ?></a>
+              <a class="close"
+                 href="<?php echo $_filter->getRemoveUrl() ?>"
+                 title="<?php echo $this->__('Remove This Item') ?>">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only"><?php echo $this->__('Remove This Item') ?></span>
+              </a>
             <?php endif; ?>
-            <span class="label"><?php echo $this->__($_filter->getName()) ?>:</span> <span class="value"><?php echo $this->stripTags($_filter->getLabel()) ?></span>
-        </li>
+
+          </li>
+
         <?php endif; ?>
-    <?php endforeach; ?>
-    </ol>
-</div>
+
+      <?php endforeach; ?>
+    </ul>
+
+  </div>
 <?php endif; ?>
