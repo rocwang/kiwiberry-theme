@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Helper class for kiwiberry theme package
  */
@@ -10,7 +11,7 @@ class VR_Kiwiberry_Helper_Data extends Mage_Core_Helper_Abstract
      * @param $label
      * @return string|bool the class name or false on failure
      */
-    public function getFaIconClass($label)
+    public function getFaIconClassFromLabel($label)
     {
         $map = array(
             'My Account'  => 'fa-user',
@@ -19,8 +20,12 @@ class VR_Kiwiberry_Helper_Data extends Mage_Core_Helper_Abstract
             'Checkout'    => 'fa-credit-card',
             'Log In'      => 'fa-sign-in',
             'Log Out'     => 'fa-sign-out',
+            'Grid'        => 'fa-table',
+            'List'        => 'fa-list',
+            'Asc'         => 'fa-sort-amount-asc',
+            'Desc'        => 'fa-sort-amount-desc',
         );
 
-        return isset($map[$label]) ? $map[$label] : false;
+        return isset($map[ucwords($label)]) ? $map[$label] : false;
     }
 }

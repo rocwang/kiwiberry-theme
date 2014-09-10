@@ -6,9 +6,11 @@ jQuery(function ($) {
   }
 
   // Language select in navigation
-  $('#select-language').change(function () {
+  // "Sort By" in category page
+  // "REsults Per Page" in category page
+  $('#select_language, #sort_by, #results_per_page').change(function () {
     window.location.href = this.value;
-  })
+  });
 
   // Newsletter subscription
   if (document.getElementById('newsletter-validate-detail')) {

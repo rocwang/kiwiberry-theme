@@ -8,8 +8,8 @@
 <?php if(count($this->getStores())>1): ?>
 <form class="navbar-form navbar-left" role="language">
   <div class="form-group">
-    <label for="select-language"><i class="fa fa-language"></i></label>
-    <select id="select-language" class="form-control" title="<?php echo $this->__('Language') ?>">
+    <label for="select_language"><i class="fa fa-language"></i></label>
+    <select id="select_language" class="form-control" title="<?php echo $this->__('Language') ?>">
     <?php foreach ($this->getStores() as $_lang): ?>
         <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' selected="selected"' : '' ?>
         <option value="<?php echo $_lang->getCurrentUrl() ?>"<?php echo $_selected ?>><?php echo $this->escapeHtml($_lang->getName()) ?></option>

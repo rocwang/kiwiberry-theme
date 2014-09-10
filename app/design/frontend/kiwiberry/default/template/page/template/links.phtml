@@ -14,7 +14,7 @@
           <?php echo $_link->getBeforeText() ?>
           <a href="<?php echo $_link->getUrl() ?>" title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>>
             <?php
-            $iconClass = Mage::helper('vr_kiwiberry')->getFaIconClass($_link->getLabel());
+            $iconClass = Mage::helper('vr_kiwiberry')->getFaIconClassFromLabel($_link->getLabel());
             if ($iconClass):
             ?>
               <i class="fa <?php echo $iconClass ?>"></i>

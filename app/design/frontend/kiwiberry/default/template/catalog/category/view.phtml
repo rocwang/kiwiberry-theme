@@ -25,7 +25,9 @@ if ($_imgUrl = $_category->getImageUrl()) {
   <a href="<?php echo $this->getRssLink() ?>"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
 <?php endif; ?>
 
-<h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+<div class="page-header">
+  <h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+</div>
 
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
@@ -34,9 +36,7 @@ if ($_imgUrl = $_category->getImageUrl()) {
 <?php endif; ?>
 
 <?php if ($_description = $this->getCurrentCategory()->getDescription()): ?>
-  <div>
-    <?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>
-  </div>
+  <p><?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?></p>
 <?php endif; ?>
 
 <?php if ($this->isContentMode()): ?>
