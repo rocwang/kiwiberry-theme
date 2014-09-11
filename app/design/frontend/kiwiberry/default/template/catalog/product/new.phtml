@@ -9,59 +9,63 @@
 
       <div class="col-sm-<?php echo 12 / $_columnCount ?>">
 
-        <a href="<?php echo $_product->getProductUrl() ?>"
-           title="<?php echo $this->escapeHtml($_product->getName()) ?>"
-           class="img-thumbnail">
-          <img class="img-responsive"
-               src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300) ?>"
-               alt="<?php echo $this->escapeHtml($_product->getName()) ?>"
-            />
-        </a>
+        <div class="thumbnail">
 
-        <h5>
           <a href="<?php echo $_product->getProductUrl() ?>"
              title="<?php echo $this->escapeHtml($_product->getName()) ?>">
-            <?php echo $this->escapeHtml($_product->getName()) ?>
+            <img class="img-responsive"
+                 src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300) ?>"
+                 alt="<?php echo $this->escapeHtml($_product->getName()) ?>"
+              />
           </a>
-        </h5>
 
-        <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+          <div class="caption">
+            <h5>
+              <a href="<?php echo $_product->getProductUrl() ?>"
+                 title="<?php echo $this->escapeHtml($_product->getName()) ?>">
+                <?php echo $this->escapeHtml($_product->getName()) ?>
+              </a>
+            </h5>
 
-        <?php echo $this->getPriceHtml($_product, true, '-new') ?>
+            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
 
-        <div class="btn-group btn-group-justified">
+            <?php echo $this->getPriceHtml($_product, true, '-new') ?>
 
-          <?php if ($_product->isSaleable()): ?>
-            <a href="<?php echo $this->getAddToCartUrl($_product) ?>"
-               class="btn btn-default"
-               title="<?php echo $this->__('Add to Cart') ?>"
-              >
-              <i class="fa fa-shopping-cart"></i>
-              <span class="sr-only"><?php echo $this->__('Add to Cart') ?></span>
-            </a>
-          <?php else: ?>
-            <p><?php echo $this->__('Out of stock') ?></p>
-          <?php endif; ?>
+            <div class="btn-group btn-group-justified">
 
-          <?php if ($this->helper('wishlist')->isAllow()) : ?>
-            <a href="<?php echo $this->getAddToWishlistUrl($_product) ?>"
-               class="btn btn-default"
-               title="<?php echo $this->__('Add to Wishlist') ?>"
-             >
-              <i class="fa fa-heart"></i>
-              <span class="sr-only"><?php echo $this->__('Add to Wishlist') ?></span>
-            </a>
-          <?php endif; ?>
+              <?php if ($_product->isSaleable()): ?>
+                <a href="<?php echo $this->getAddToCartUrl($_product) ?>"
+                   class="btn btn-default"
+                   title="<?php echo $this->__('Add to Cart') ?>"
+                  >
+                  <i class="fa fa-shopping-cart"></i>
+                  <span class="sr-only"><?php echo $this->__('Add to Cart') ?></span>
+                </a>
+              <?php else: ?>
+                <p><?php echo $this->__('Out of stock') ?></p>
+              <?php endif; ?>
 
-          <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
-            <a href="<?php echo $_compareUrl ?>"
-               class="btn btn-default"
-               title="<?php echo $this->__('Add to Compare') ?>"
-            >
-              <i class="fa fa-columns"></i>
-              <span class="sr-only"><?php echo $this->__('Add to Compare') ?></span>
-            </a>
-          <?php endif; ?>
+              <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                <a href="<?php echo $this->getAddToWishlistUrl($_product) ?>"
+                   class="btn btn-default"
+                   title="<?php echo $this->__('Add to Wishlist') ?>"
+                  >
+                  <i class="fa fa-heart"></i>
+                  <span class="sr-only"><?php echo $this->__('Add to Wishlist') ?></span>
+                </a>
+              <?php endif; ?>
+
+              <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+                <a href="<?php echo $_compareUrl ?>"
+                   class="btn btn-default"
+                   title="<?php echo $this->__('Add to Compare') ?>"
+                  >
+                  <i class="fa fa-columns"></i>
+                  <span class="sr-only"><?php echo $this->__('Add to Compare') ?></span>
+                </a>
+              <?php endif; ?>
+            </div>
+          </div>
 
         </div>
 

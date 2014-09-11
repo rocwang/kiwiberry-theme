@@ -6,9 +6,39 @@
  */
 ?>
 <?php if ($this->getCollection()->getSize()): ?>
-
-  <form class="form-inline" role="form">
+  <form class="form-inline well" role="form">
     <?php if ($this->isExpanded()): ?>
+
+      <!-- Sort By -->
+      <div class="form-group">
+        <label for="sort_by"><?php echo $this->__('Sort By') ?></label>
+        <select id="sort_by" class="form-control js-change-location" title="<?php echo $this->__('Sort By') ?>">
+          <?php foreach ($this->getAvailableOrders() as $_key => $_order): ?>
+            <option
+              value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if ($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
+              <?php echo $this->__($_order) ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+
+        <?php if ($this->getCurrentDirection() == 'desc'): ?>
+          <a href="<?php echo $this->getOrderUrl(null, 'asc') ?>"
+             title="<?php echo $this->__('Set Ascending Direction') ?>"
+             class="btn btn-default"
+            >
+            <i class="fa <?php echo Mage::helper('vr_kiwiberry')->getFaIconClassFromLabel('Asc') ?>"></i>
+            <span class="sr-only"><?php echo $this->__('Set Ascending Direction') ?></span>
+          </a>
+        <?php else: ?>
+          <a href="<?php echo $this->getOrderUrl(null, 'desc') ?>"
+             title="<?php echo $this->__('Set Descending Direction') ?>"
+             class="btn btn-default"
+            >
+            <i class="fa <?php echo Mage::helper('vr_kiwiberry')->getFaIconClassFromLabel('Desc') ?>"></i>
+            <span class="sr-only"><?php echo $this->__('Set Descending Direction') ?></span>
+          </a>
+        <?php endif; ?>
+      </div>
 
       <!-- Mode Switcher -->
       <?php if ($this->isEnabledViewSwitcher()): ?>
@@ -21,12 +51,12 @@
             <div class="btn-group">
               <?php foreach ($this->getModes() as $_code => $_label): ?>
 
-                  <a href="<?php echo $this->getModeUrl($_code) ?>"
-                     title="<?php echo $_label ?>"
-                     class="btn btn-default<?php if ($this->isModeActive($_code)): echo ' active'; endif; ?>">
-                    <i class="fa <?php echo Mage::helper('vr_kiwiberry')->getFaIconClassFromLabel($_label) ?>"></i>
-                    <span class="sr-only"><?php echo $_label ?></span>
-                  </a>
+                <a href="<?php echo $this->getModeUrl($_code) ?>"
+                   title="<?php echo $_label ?>"
+                   class="btn btn-default<?php if ($this->isModeActive($_code)): echo ' active'; endif; ?>">
+                  <i class="fa <?php echo Mage::helper('vr_kiwiberry')->getFaIconClassFromLabel($_label) ?>"></i>
+                  <span class="sr-only"><?php echo $_label ?></span>
+                </a>
 
               <?php endforeach; ?>
             </div>
@@ -35,60 +65,33 @@
         </div>
       <?php endif; ?>
 
-      <!-- Sort By -->
-      <div class="form-group">
-        <label><?php echo $this->__('Sort By') ?></label>
-        <select id="sort_by" title="<?php echo $this->__('Sort By') ?>">
-          <?php foreach ($this->getAvailableOrders() as $_key => $_order): ?>
-            <option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if ($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
-              <?php echo $this->__($_order) ?>
-            </option>
-          <?php endforeach; ?>
-        </select>
+    <?php endif; ?>
 
-        <?php if ($this->getCurrentDirection() == 'desc'): ?>
-          <a href="<?php echo $this->getOrderUrl(null, 'asc') ?>"
-             title="<?php echo $this->__('Set Ascending Direction') ?>"
-             class="btn btn-default"
-          >
-            <i class="fa <?php echo Mage::helper('vr_kiwiberry')->getFaIconClassFromLabel('Asc') ?>"></i>
-            <span class="sr-only"><?php echo $this->__('Set Ascending Direction') ?></span>
-          </a>
+    <div class="pull-right">
+      <!-- Product Item Counter -->
+      <div class="form-group">
+        <?php if ($this->getLastPageNum() > 1): ?>
+          <?php echo $this->__('%s-%s of %s', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
         <?php else: ?>
-          <a href="<?php echo $this->getOrderUrl(null, 'desc') ?>"
-             title="<?php echo $this->__('Set Descending Direction') ?>"
-             class="btn btn-default"
-          >
-            <i class="fa <?php echo Mage::helper('vr_kiwiberry')->getFaIconClassFromLabel('Desc') ?>"></i>
-            <span class="sr-only"><?php echo $this->__('Set Descending Direction') ?></span>
-          </a>
+          <span class="label label-default">
+          <?php echo $this->__('%s Item%s', $this->getTotalNum(), $this->getTotalNum() > 1 ? 's' : '') ?>
+        </span>
         <?php endif; ?>
       </div>
 
-    <?php endif; ?>
-
-    <!-- Product Item Counter -->
-    <div class="form-group">
-      <?php if ($this->getLastPageNum() > 1): ?>
-        <?php echo $this->__('%s-%s of %s', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
-      <?php else: ?>
-        <span class="label label-default">
-          <?php echo $this->__('%s Item%s', $this->getTotalNum(), $this->getTotalNum() > 1 ? 's' : '') ?>
-        </span>
-      <?php endif; ?>
-    </div>
-
-    <!-- Results Per Page -->
-    <div class="form-group">
-      <label><?php echo $this->__('Show') ?></label>
-      <select id="results_per_page" title="<?php echo $this->__('Results Per Page'); ?>">
-        <?php foreach ($this->getAvailableLimit() as $_key => $_limit): ?>
-          <option value="<?php echo $this->getLimitUrl($_key) ?>"
-            <?php if ($this->isLimitCurrent($_key)): ?> selected="selected"<?php endif ?>>
-            <?php echo $_limit ?>
-          </option>
-        <?php endforeach; ?>
-      </select>
+      <!-- Results Per Page -->
+      <div class="form-group">
+        <label for="results_per_page"><?php echo $this->__('Show') ?></label>
+        <select id="results_per_page" class="form-control js-change-location"
+                title="<?php echo $this->__('Results Per Page'); ?>">
+          <?php foreach ($this->getAvailableLimit() as $_key => $_limit): ?>
+            <option value="<?php echo $this->getLimitUrl($_key) ?>"
+              <?php if ($this->isLimitCurrent($_key)): ?> selected="selected"<?php endif ?>>
+              <?php echo $_limit ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </div>
     </div>
 
   </form>

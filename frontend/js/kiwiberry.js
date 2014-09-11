@@ -5,15 +5,24 @@ jQuery(function ($) {
     searchForm.initAutocomplete($('#search').data('suggest-url'), 'search_autocomplete');
   }
 
-  // Language select in navigation
-  // "Sort By" in category page
-  // "REsults Per Page" in category page
-  $('#select_language, #sort_by, #results_per_page').change(function () {
+  // Go to the url when value changes, e.g.:
+  // * Language select in navigation
+  // * "Sort By" in category page
+  // * "Results Per Page" in category page
+  $('.js-change-location').change(function() {
     window.location.href = this.value;
   });
 
   // Newsletter subscription
   if (document.getElementById('newsletter-validate-detail')) {
-    var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+    new VarienForm('newsletter-validate-detail');
   }
+
+  // Request confirm before going to the link
+  // e.g. when removing product compare item
+  $('.js-confirm').click(function(e) {
+    if (!confirm($(this).data('confirmation'))) {
+      e.preventDefault();
+    }
+  });
 });

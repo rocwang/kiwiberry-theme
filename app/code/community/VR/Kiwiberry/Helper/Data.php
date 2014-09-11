@@ -20,7 +20,7 @@ class VR_Kiwiberry_Helper_Data extends Mage_Core_Helper_Abstract
             'Checkout'    => 'fa-credit-card',
             'Log In'      => 'fa-sign-in',
             'Log Out'     => 'fa-sign-out',
-            'Grid'        => 'fa-table',
+            'Grid'        => 'fa-th',
             'List'        => 'fa-list',
             'Asc'         => 'fa-sort-amount-asc',
             'Desc'        => 'fa-sort-amount-desc',
