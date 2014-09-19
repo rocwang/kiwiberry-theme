@@ -11,6 +11,8 @@ var targets = {
       styles : paths.src + 'less/kiwiberry.less',
       scripts: [ // The last one will be the name of final concatenated file
         paths.src + 'js/_noconflict.js',
+        paths.src + 'js/_date_option.js',
+        paths.src + 'js/_custom_options.js',
         paths.src + 'js/kiwiberry.js'
       ],
       images : paths.src + 'images/*'

@@ -1,3 +1,5 @@
+var kiwiberryRegistry = {};
+
 jQuery(function ($) {
   // Search bar in navigation
   if (jQuery('#search_mini_form, #search, #search_autocomplete').length === 3) {
@@ -9,7 +11,7 @@ jQuery(function ($) {
   // * Language select in navigation
   // * "Sort By" in category page
   // * "Results Per Page" in category page
-  $('.js-change-location').change(function() {
+  $('.js-change-location').change(function () {
     window.location.href = this.value;
   });
 
@@ -20,9 +22,86 @@ jQuery(function ($) {
 
   // Request confirm before going to the link
   // e.g. when removing product compare item
-  $('.js-confirm').click(function(e) {
+  $('.js-confirm').click(function (e) {
     if (!confirm($(this).data('confirmation'))) {
       e.preventDefault();
     }
+  });
+
+  // Product add to cart form in product view page
+  if (document.getElementById('product_addtocart_form')) {
+    var productAddToCartForm = new VarienForm('product_addtocart_form');
+    productAddToCartForm.submit = function (button, url) {
+      if (this.validator.validate()) {
+        var form = this.form;
+        var oldUrl = form.action;
+
+        if (url) {
+          form.action = url;
+        }
+        var e = null;
+        try {
+          this.form.submit();
+        } catch (e) {
+        }
+        this.form.action = oldUrl;
+        if (e) {
+          throw e;
+        }
+
+        if (button && button != 'undefined') {
+          button.disabled = true;
+        }
+      }
+    }.bind(productAddToCartForm);
+
+    productAddToCartForm.submitLight = function (button, url) {
+      if (this.validator) {
+        var nv = Validation.methods;
+        delete Validation.methods['required-entry'];
+        delete Validation.methods['validate-one-required'];
+        delete Validation.methods['validate-one-required-by-name'];
+        // Remove custom datetime validators
+        for (var methodName in Validation.methods) {
+          if (methodName.match(/^validate-datetime-.*/i)) {
+            delete Validation.methods[methodName];
+          }
+        }
+
+        if (this.validator.validate()) {
+          if (url) {
+            this.form.action = url;
+          }
+          this.form.submit();
+        }
+        Object.extend(Validation.methods, nv);
+      }
+    }.bind(productAddToCartForm);
+  }
+
+  // Configurable product options
+  if (kiwiberryRegistry.spConfig) {
+    window.spConfig  = new Product.Config(window.kiwiberryRegistry.spConfig);
+  }
+
+  // Product custom options
+  if (kiwiberryRegistry.opConfig) {
+    window.opConfig = new Product.Options(window.kiwiberryRegistry.opConfig);
+  }
+
+  // Option price
+  if (kiwiberryRegistry.optionPrice) {
+    window.optionsPrice = new Product.OptionsPrice(kiwiberryRegistry.optionPrice);
+  }
+
+  // "Add to Wishlist" in product page
+  $('#add_to_wishlist').click(function(e) {
+    e.preventDefault();
+    productAddToCartForm.submitLight(this, this.href);
+  });
+
+  // "Add to Cart" in product page
+  $('#add_to_cart').click(function() {
+    productAddToCartForm.submit(this);
   });
 });
