@@ -1,25 +1,25 @@
 <?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
   <h2><?php echo $this->__('New Products') ?></h2>
 
-  <?php $_columnCount = $this->getColumnCount(); ?>
-
   <div class="row">
-    <?php $i = 0;
-    foreach ($_products->getItems() as $_product): ?>
+    <?php foreach ($_products->getItems() as $_product): ?>
 
-      <div class="col-sm-<?php echo 12 / $_columnCount ?>">
+      <div class="col-sm-<?php echo 12 / $this->getColumnCount() ?>">
 
         <div class="thumbnail">
 
+          <!-- Product image -->
           <a href="<?php echo $_product->getProductUrl() ?>"
              title="<?php echo $this->escapeHtml($_product->getName()) ?>">
             <img class="img-responsive"
                  src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300) ?>"
-                 alt="<?php echo $this->escapeHtml($_product->getName()) ?>"
-              />
+                 alt="<?php echo $this->escapeHtml($_product->getName()) ?>">
           </a>
 
+          <!-- Product info -->
           <div class="caption">
+
+            <!-- Product name -->
             <h5>
               <a href="<?php echo $_product->getProductUrl() ?>"
                  title="<?php echo $this->escapeHtml($_product->getName()) ?>">
@@ -27,22 +27,39 @@
               </a>
             </h5>
 
-            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+            <?php
+            // Product Rating
+            echo $this->getReviewsSummaryHtml($_product, 'short');
+            ?>
 
+            <!-- Price -->
             <?php echo $this->getPriceHtml($_product, true, '-new') ?>
 
+            <!-- Action buttons -->
             <div class="btn-group btn-group-justified">
+              <?php if ($_product->isSaleable() && !$_product->canConfigure()): ?>
 
-              <?php if ($_product->isSaleable()): ?>
                 <a href="<?php echo $this->getAddToCartUrl($_product) ?>"
                    class="btn btn-default"
-                   title="<?php echo $this->__('Add to Cart') ?>"
-                  >
+                   title="<?php echo $this->__('Add to Cart') ?>">
                   <i class="fa fa-shopping-cart"></i>
                   <span class="sr-only"><?php echo $this->__('Add to Cart') ?></span>
                 </a>
-              <?php else: ?>
-                <p><?php echo $this->__('Out of stock') ?></p>
+
+              <?php elseif ($_product->isSaleable()): ?>
+
+                <a title="<?php echo $this->__('View Details') ?>"
+                   class="btn btn-default"
+                   href="<?php echo $_product->getProductUrl() ?>">
+                  <i class="fa fa-eye"></i>
+                  <span class="sr-only"><?php echo $this->__('View Details') ?></span>
+                </a>
+
+              <?php
+              else: ?>
+
+                <p class="text-info"><?php echo $this->__('Out of stock') ?></p>
+
               <?php endif; ?>
 
               <?php if ($this->helper('wishlist')->isAllow()) : ?>
@@ -65,6 +82,7 @@
                 </a>
               <?php endif; ?>
             </div>
+
           </div>
 
         </div>
