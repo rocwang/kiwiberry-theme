@@ -13,6 +13,8 @@ if ($payload && needPull($payload)) {
     writeLog('Do not pull');
 }
 
+// TODO: Clear Magento cache
+
 /**
  * Get and validate post hook payload
  *
