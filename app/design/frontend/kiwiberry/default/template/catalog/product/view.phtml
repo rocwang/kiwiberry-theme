@@ -92,18 +92,29 @@
 
 </div>
 
-<div class="product-collateral toggle-content tabs">
-  <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')): ?>
-    <dl id="collateral-tabs" class="collateral-tabs">
-      <?php foreach ($detailedInfoGroup as $alias => $html): ?>
-        <dt class="tab"><span><?php echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
-        <dd class="tab-container">
-          <div class="tab-content"><?php echo $html ?></div>
-        </dd>
-      <?php endforeach; ?>
-    </dl>
-  <?php endif; ?>
-</div>
+<!-- Tabs for detailed product info-->
+<?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')): ?>
+  <ul class="nav nav-tabs" role="tablist">
+    <?php $i = 0;
+    foreach ($detailedInfoGroup as $alias => $html): ?>
+      <li <?php if (++$i === 1) echo 'class="active"' ?>>
+        <a href="#<?php echo "tab-$alias" ?>" role="tab" data-toggle="tab">
+          <?php echo $this->escapeHtml($this->getChildData($alias, 'title')) ?>
+        </a>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+
+  <div class="tab-content">
+    <?php $i = 0;
+    foreach ($detailedInfoGroup as $alias => $html): ?>
+      <div id="<?php echo "tab-$alias" ?>"
+           class="tab-pane fade<?php if (++$i === 1) echo ' in active' ?>">
+        <?php echo $html ?>
+      </div>
+    <?php endforeach; ?>
+  </div>
+<?php endif; ?>
 
 <?php echo $this->getChildHtml('upsell_products') ?>
 <?php echo $this->getChildHtml('product_additional_data') ?>
