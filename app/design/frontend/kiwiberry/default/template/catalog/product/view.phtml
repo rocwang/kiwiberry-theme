@@ -59,7 +59,6 @@
       <!-- Hidden Stuff -->
       <?php echo $this->getBlockHtml('formkey') ?>
       <input type="hidden" name="product" value="<?php echo $_product->getId() ?>"/>
-      <input type="hidden" name="related_product" id="related-products-field" value=""/>
 
       <!-- Product Options and Buttons Container 1 -->
       <?php if ($_product->isSaleable() && $this->hasOptions()): // Saleable and has options ?>

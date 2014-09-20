@@ -81,7 +81,7 @@ jQuery(function ($) {
 
   // Configurable product options
   if (kiwiberryRegistry.spConfig) {
-    window.spConfig  = new Product.Config(window.kiwiberryRegistry.spConfig);
+    window.spConfig = new Product.Config(window.kiwiberryRegistry.spConfig);
   }
 
   // Product custom options
@@ -95,13 +95,44 @@ jQuery(function ($) {
   }
 
   // "Add to Wishlist" in product page
-  $('#add_to_wishlist').click(function(e) {
+  $('#add_to_wishlist').click(function (e) {
     e.preventDefault();
     productAddToCartForm.submitLight(this, this.href);
   });
 
   // "Add to Cart" in product page
-  $('#add_to_cart').click(function() {
+  $('#add_to_cart').click(function () {
     productAddToCartForm.submit(this);
+  });
+
+  // Checkboxes of related products in product page
+  var isAllRelatedSelected = false;
+  $('#select-all-related').click(function (e) {
+    e.preventDefault();
+
+    isAllRelatedSelected = !isAllRelatedSelected;
+    $('.js-related-checkbox').prop('checked', isAllRelatedSelected)
+      .change();
+
+  }).on('all-selected-changed', function () {
+    $(this).html(
+      (isAllRelatedSelected ? 'unselect' : 'select') + ' all'
+    );
+  });
+
+  $('.js-related-checkbox').change(function () {
+    var values = [];
+    $('.js-related-checkbox:checked').each(function () {
+      values.push(this.value);
+    });
+    $('#related-products-field').val(values.join(','));
+
+    if ($('.js-related-checkbox:checked').length === 0) {
+      isAllRelatedSelected = false;
+      $('#select-all-related').trigger('all-selected-changed');
+    } else if ($('.js-related-checkbox:checked').length === $('.js-related-checkbox').length) {
+      isAllRelatedSelected = true;
+      $('#select-all-related').trigger('all-selected-changed');
+    }
   });
 });
