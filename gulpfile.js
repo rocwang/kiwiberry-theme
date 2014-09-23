@@ -1,7 +1,7 @@
 // Base paths
 var paths = {
   vendor        : './bower_components/',
-  src           : './frontend/'
+  src           : './skin/frontend/default/'
 };
 
 var targets = {
@@ -32,7 +32,7 @@ var targets = {
       ]
     },
 
-    dest: './skin/frontend/kiwiberry/default/'
+    dest: './test/skin/frontend/kiwiberry/default/'
   },
 
   styleGuide: {
