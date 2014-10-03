@@ -135,4 +135,10 @@ jQuery(function ($) {
       $('#select-all-related').trigger('all-selected-changed');
     }
   });
+
+  // MSRP help link
+  $('.js-msrp-help-link').each(function() {
+    Catalog.Map.addHelpLink(this, $(this).attr('title'));
+  });
 });
+
