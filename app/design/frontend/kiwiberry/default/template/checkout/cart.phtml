@@ -11,13 +11,13 @@
   <h1><?php echo $this->__('Shopping Cart') ?></h1>
 
   <?php if (!$this->hasError()): ?>
-    <ul class="list-unstyled">
+    <div>
       <?php foreach ($this->getMethods('top_methods') as $method): ?>
         <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
-          <li><?php echo $methodHtml; ?></li>
+          <?php echo $methodHtml; ?>
         <?php endif; ?>
       <?php endforeach; ?>
-    </ul>
+    </div>
   <?php endif; ?>
 
   <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
@@ -82,39 +82,40 @@
         <td colspan="50">
 
           <!-- Make this button the first responder rather than empty cart -->
-<!--          <button type="submit"-->
-<!--                  style="visibility:hidden;"-->
-<!--                  name="update_cart_action"-->
-<!--                  value="update_qty"-->
-<!--                  title="--><?php //echo $this->__('Update Shopping Cart'); ?><!--"-->
-<!--                  class="btn btn-default">-->
-<!--            --><?php //echo $this->__('Update Shopping Cart'); ?>
-<!--          </button>-->
-          <button type="submit"
-                  name="update_cart_action"
-                  value="update_qty"
-                  title="<?php echo $this->__('Update Shopping Cart'); ?>"
-                  class="btn btn-primary pull-right">
-            <?php echo $this->__('Update Shopping Cart'); ?>
-          </button>
+          <!--          <button type="submit"-->
+          <!--                  style="visibility:hidden;"-->
+          <!--                  name="update_cart_action"-->
+          <!--                  value="update_qty"-->
+          <!--                  title="--><?php //echo $this->__('Update Shopping Cart'); ?><!--"-->
+          <!--                  class="btn btn-default">-->
+          <!--            --><?php //echo $this->__('Update Shopping Cart'); ?>
+          <!--          </button>-->
+          <div class="pull-right">
+            <button type="submit"
+                    name="update_cart_action"
+                    value="update_qty"
+                    title="<?php echo $this->__('Update Shopping Cart'); ?>"
+                    class="btn btn-primary">
+              <?php echo $this->__('Update Shopping Cart'); ?>
+            </button>
+
+            <?php if ($this->getContinueShoppingUrl()): ?>
+              <a title="<?php echo $this->__('Continue Shopping') ?>"
+                 class="btn btn-primary"
+                 href="<?php echo $this->getContinueShoppingUrl() ?>">
+                <?php echo $this->__('Continue Shopping') ?>
+              </a>
+            <?php endif; ?>
+          </div>
 
           <button type="submit"
                   name="update_cart_action"
                   value="empty_cart"
                   title="<?php echo $this->__('Empty Cart'); ?>"
                   class="btn btn-danger"
-                  id="empty_cart_button pull-left">
+                  id="empty_cart_button">
             <?php echo $this->__('Empty Cart'); ?>
           </button>
-
-          <?php if ($this->getContinueShoppingUrl()): ?>
-            <a
-              title="<?php echo $this->__('Continue Shopping') ?>"
-              class="btn btn-primary pull-right"
-              href="<?php echo $this->getContinueShoppingUrl() ?>">
-              <?php echo $this->__('Continue Shopping') ?>
-            </a
-          <?php endif; ?>
 
         </td>
       </tr>
@@ -144,13 +145,13 @@
     <?php echo $this->getChildHtml('totals'); ?>
 
     <?php if (!$this->hasError()): ?>
-      <ul class="list-unstyled">
+      <div>
         <?php foreach ($this->getMethods('methods') as $method): ?>
           <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
-            <li class="method-<?php echo preg_replace("/[^_a-zA-Z0-9-]/", '-', $method); ?>"><?php echo $methodHtml; ?></li>
+            <?php echo $methodHtml; ?>
           <?php endif; ?>
         <?php endforeach; ?>
-      </ul>
+      </div>
     <?php endif; ?>
 
   </div>
