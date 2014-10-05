@@ -200,5 +200,79 @@ jQuery(function ($) {
 
   }
 
+  // opcheckout_rwd.js
+  if (typeof Checkout !== 'undefined') {
+    Checkout.prototype.gotoSection = function (section, reloadProgressBlock) {
+      // Adds class so that the page can be styled to only show the "Checkout Method" step
+      if ((this.currentStep == 'login' || this.currentStep == 'billing') && section == 'billing') {
+        $('body').addClass('opc-has-progressed-from-login');
+      }
+
+      if (reloadProgressBlock) {
+        this.reloadProgressBlock(this.currentStep);
+      }
+      this.currentStep = section;
+      var sectionElement = $('#opc-' + section);
+      sectionElement.addClass('allow');
+      this.accordion.openSection('opc-' + section);
+
+      // Scroll viewport to top of checkout steps for smaller viewports
+      if (Modernizr.mq('(max-width: ' + bp.xsmall + 'px)')) {
+        $('html,body').animate({scrollTop: $('#checkoutSteps').offset().top}, 800);
+      }
+
+      if (!reloadProgressBlock) {
+        this.resetPreviousSteps();
+      }
+    }
+  }
+
+  // One Page Checkout
+  if (document.getElementById('checkoutSteps')) {
+
+    var accordion = new Accordion('checkoutSteps', '.step-title', true);
+
+    accordion.openSection($('#checkoutSteps').data('active-step'));
+
+    var checkout = new Checkout(accordion, {
+        progress  : $('#checkoutSteps').data('progress-url'),
+        review    : $('#checkoutSteps').data('review-url'),
+        saveMethod: $('#checkoutSteps').data('save-method-url'),
+        failure   : $('#checkoutSteps').data('failure-url')
+      }
+    );
+
+    // Login Section
+    $('#onepage-guest-register-button').click(function () {
+      checkout.setMethod();
+    });
+
+    var optionLogin = $('#login\\:register');
+    if (optionLogin.data('force-register')) {
+      optionLogin.prop('checked', true);
+      checkout.setMethod();
+    }
+
+    // Login For in Login Section
+    if (document.getElementById('login-form')) {
+      var loginForm = new VarienForm('login-form', true);
+
+      $('#login-email, #login-password').keypress(function (e) {
+        if (e.which == 13) { // Press Enter to submit the login form.
+          loginForm.submit();
+        }
+      });
+
+      $('#btn-one-page-login').click(function () {
+        if (loginForm.validator && loginForm.validator.validate()) {
+          this.disabled = true;
+          loginForm.submit();
+        }
+      });
+    }
+  }
+
+  // What's "Remember Me"
+  $('.what-is-remember-me').popover();
 });
 
