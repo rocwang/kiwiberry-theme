@@ -19,6 +19,11 @@
             <vr_kiwiberry>
                 <class>VR_Kiwiberry_Block</class>
             </vr_kiwiberry>
+            <checkout>
+                <rewrite>
+                    <onepage_billing>VR_Kiwiberry_Block_Checkout_Onepage_Billing</onepage_billing>
+                </rewrite>
+            </checkout>
         </blocks>
         <helpers>
             <vr_kiwiberry>
