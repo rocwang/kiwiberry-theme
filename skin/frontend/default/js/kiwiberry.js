@@ -234,7 +234,7 @@ jQuery(function ($) {
 
     accordion.openSection($('#checkoutSteps').data('active-step'));
 
-    var checkout = new Checkout(accordion, {
+    window.checkout = new Checkout(accordion, {
         progress  : $('#checkoutSteps').data('progress-url'),
         review    : $('#checkoutSteps').data('review-url'),
         saveMethod: $('#checkoutSteps').data('save-method-url'),
@@ -285,7 +285,7 @@ jQuery(function ($) {
 
   // Button "Save in address book" in checkout page
   $('#billing\\:save_in_address_book').change(function () {
-    if(window.shipping) shipping.setSameAsBilling(false);
+    if (window.shipping) shipping.setSameAsBilling(false);
   });
 
   // Button "Ship to this address" in checkout page
@@ -301,12 +301,12 @@ jQuery(function ($) {
   // Billing section in checkout page
   if (document.getElementById('co-billing-form')) {
 
-    var billing = new Billing(
+    window.billing = new Billing(
       'co-billing-form',
       $('#co-billing-form').data('address-url'),
       $('#co-billing-form').data('save-url')
     );
-    var billingForm = new VarienForm('co-billing-form');
+    window.billingForm = new VarienForm('co-billing-form');
 
     if (document.getElementById('billing-address-select')) {
       billing.newAddress(!$('#billing-address-select').val());
@@ -325,7 +325,7 @@ jQuery(function ($) {
 
       $('#onepage-guest-register-button').click(function () {
 
-        var billingRememberMe = $('#co-billing-form .remember-me-box');
+        window.billingRememberMe = $('#co-billing-form .remember-me-box');
         if (billingRememberMe.length > 0) {
 
           if ($('#login\\:guest').length > 0 && $('#login\\:guest').prop('checked')) {
@@ -344,6 +344,10 @@ jQuery(function ($) {
       });
 
     }
+
+    $('#billing-button').click(function () {
+      billing.save();
+    });
 
   }
 

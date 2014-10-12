@@ -216,7 +216,7 @@ echo $this->getLayout()->createBlock('customer/widget_name')
              name="billing[customer_password]"
              id="billing:customer_password"
              title="<?php echo $this->__('Password') ?>"
-             class=form-control required-entry validate-password"/>
+             class="form-control required-entry validate-password">
     </div>
 
     <div class="form-group">
@@ -228,7 +228,7 @@ echo $this->getLayout()->createBlock('customer/widget_name')
              name="billing[confirm_password]"
              title="<?php echo $this->__('Confirm Password') ?>"
              id="billing:confirm_password"
-             class="form-control required-entry validate-cpassword"/>
+             class="form-control required-entry validate-cpassword">
     </div>
 
   </div>
@@ -295,7 +295,10 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 <?php endif; ?>
 
 <div class="buttons-set" id="billing-buttons-container">
-  <button type="button" title="<?php echo $this->__('Continue') ?>" class="btn btn-primary" onclick="billing.save()">
+  <button id="billing-button"
+          type="button"
+          title="<?php echo $this->__('Continue') ?>"
+          class="btn btn-primary">
     <?php echo $this->__('Continue') ?>
   </button>
 
