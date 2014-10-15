@@ -4,9 +4,9 @@
  * Created by PhpStorm.
  * User: roc
  * Date: 12/10/14
- * Time: 8:04 PM
+ * Time: 10:22 PM
  */
-class VR_Kiwiberry_Block_Checkout_Onepage_Billing extends Mage_Checkout_Block_Onepage_Billing
+class VR_Kiwiberry_Block_Checkout_Onepage_Shipping extends Mage_Checkout_Block_Onepage_Shipping
 {
     public function getCountryHtmlSelect($type)
     {

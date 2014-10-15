@@ -19,7 +19,9 @@
   </div>
 <?php endif; ?>
 
-<div id="billing-new-address-form" <?php if ($this->customerHasAddresses()): ?> style="display:none;"<?php endif; ?>>
+<div id="billing-new-address-form"
+     <?php if ($this->customerHasAddresses()): ?>style="display:none;"<?php endif; ?>
+  >
 
 <input type="hidden"
        name="billing[address_id]"
@@ -32,7 +34,7 @@ echo $this->getLayout()->createBlock('customer/widget_name')
   ->setForceUseCustomerRequiredAttributes(!$this->isCustomerLoggedIn())
   ->setFieldIdFormat('billing:%s')
   ->setFieldNameFormat('billing[%s]')
-  ->toHtml()
+  ->toHtml();
 ?>
 
 <div class="form-group">
@@ -63,7 +65,10 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
 
 <div class="form-group">
-  <label for="billing:street1" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
+  <label for="billing:street1" class="required">
+    <em>*</em>
+    <?php echo $this->__('Address') ?>
+  </label>
   <input type="text"
          title="<?php echo $this->__('Street Address') ?>"
          name="billing[street][]"
@@ -76,7 +81,9 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 
 <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
   <div class="form-group">
-    <label for="billing:street<?php echo $_i ?>"><?php echo $this->__('Street Address %s', $_i) ?></label>
+    <label for="billing:street<?php echo $_i ?>">
+      <?php echo $this->__('Street Address %s', $_i) ?>
+    </label>
     <input type="text"
            title="<?php echo $this->__('Street Address %s', $_i) ?>"
            name="billing[street][]"
@@ -88,7 +95,9 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 
 <?php if ($this->helper('customer/address')->isVatAttributeVisible()) : ?>
   <div class="form-group">
-    <label for="billing:vat_id"><?php echo $this->__('VAT Number') ?></label>
+    <label for="billing:vat_id">
+      <?php echo $this->__('VAT Number') ?>
+    </label>
     <input type="text"
            id="billing:vat_id"
            name="billing[vat_id]"
@@ -171,7 +180,9 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 </div>
 
 <div class="form-group">
-  <label for="billing:fax"><?php echo $this->__('Fax') ?></label>
+  <label for="billing:fax">
+    <?php echo $this->__('Fax') ?>
+  </label>
   <input type="tel"
          name="billing[fax]"
          value="<?php echo $this->escapeHtml($this->getAddress()->getFax()) ?>"
@@ -255,7 +266,7 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 
 <?php else: ?>
 
-  <input type="hidden" name="billing[save_in_address_book]" value="1"/>
+  <input type="hidden" name="billing[save_in_address_book]" value="1">
 
 <?php endif; ?>
 
@@ -294,7 +305,7 @@ echo $this->getLayout()->createBlock('customer/widget_name')
   <input type="hidden" name="billing[use_for_shipping]" value="1"/>
 <?php endif; ?>
 
-<div class="buttons-set" id="billing-buttons-container">
+<div id="billing-buttons-container">
   <button id="billing-button"
           type="button"
           title="<?php echo $this->__('Continue') ?>"
@@ -303,6 +314,7 @@ echo $this->getLayout()->createBlock('customer/widget_name')
   </button>
 
   <span class="please-wait" id="billing-please-wait" style="display:none;">
+    <i class="fa fa-spinner fa-spin"></i>
     <?php echo $this->__('Loading next step...') ?>
   </span>
 </div>

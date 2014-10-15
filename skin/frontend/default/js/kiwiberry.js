@@ -224,6 +224,10 @@ jQuery(function ($) {
       if (!reloadProgressBlock) {
         this.resetPreviousSteps();
       }
+
+      if (section === 'shipping_method') {
+        resetShippingMethods();
+      }
     }
   }
 
@@ -312,7 +316,7 @@ jQuery(function ($) {
       billing.newAddress(!$('#billing-address-select').val());
     }
 
-    var billingRegionUpdater = new RegionUpdater(
+    window.billingRegionUpdater = new RegionUpdater(
       'billing:country_id',
       'billing:region',
       'billing:region_id',
@@ -350,6 +354,104 @@ jQuery(function ($) {
     });
 
   }
+
+  // Shipping address section in checkout page
+  if (document.getElementById('co-billing-form')) {
+    $('#shipping-new-address-form [class^="customer-name"] input')
+      .add('#shipping-new-address-form [class^="customer-name"] select')
+      .add('#shipping\\:company')
+      .add('[id^="shipping\\:street"]')
+      .add('#shipping\\:city')
+      .add('#shipping\\:postcode')
+      .add('#shipping\\:fax')
+      .add('#shipping\\:save_in_address_book')
+      .change(function () {
+        shipping.setSameAsBilling(false)
+      });
+
+    $('#shipping\\:same_as_billing').change(function () {
+      shipping.setSameAsBilling(this.checked);
+    });
+
+    $('#shipping_btn_continue').click(function () {
+      shipping.save();
+    });
+
+    window.shipping = new Shipping(
+      'co-shipping-form',
+      $('#co-shipping-form').data('address-url'),
+      $('#co-shipping-form').data('save-url'),
+      $('#co-shipping-form').data('methods-url')
+    );
+
+    window.shippingForm = new VarienForm('co-shipping-form');
+    shippingForm.extraChildParams = ' onchange="shipping.setSameAsBilling(false);"';
+
+    if (document.getElementById('shipping-address-select')) {
+      shipping.newAddress(!$('#shipping-address-select').val());
+    }
+
+    window.shippingRegionUpdater = new RegionUpdater(
+      'shipping:country_id',
+      'shipping:region',
+      'shipping:region_id',
+      $('#co-shipping-form').data('regions'),
+      undefined,
+      'shipping:postcode'
+    );
+  }
+
+  // Back button in checkout page
+  $('.js-opc-back').click(function () {
+    checkout.back();
+  });
+
+  // Shipping methods section in checkout page
+  if (document.getElementById('co-shipping-method-form')) {
+    window.shippingMethod = new ShippingMethod(
+      'co-shipping-method-form',
+      $('#co-shipping-method-form').data('save-url')
+    );
+
+    $('#shipping_method_btn_continue').click(function () {
+      shippingMethod.save();
+    });
+  }
+
+  // Shipping method prices
+  window.shippingCodePrice = {};
+
+  function resetShippingMethods() {
+    window.lastPrice = $('input[data-last-price]').data('last-price');
+
+    $('input[type="radio"][name="shipping_method"]').each(function () {
+      window.shippingCodePrice[$(this).val()] = $(this).data('price');
+    });
+  }
+
+  $('#checkout-shipping-method-load').on(
+    'click',
+    'input[type="radio"][name="shipping_method"]',
+    function () {
+      if (this.checked == true) {
+
+        if (typeof window.shippingCodePrice !== 'undefined') {
+          var newPrice = window.shippingCodePrice[$(this).val()];
+
+          if (!window.lastPrice) {
+            window.lastPrice = newPrice;
+            quoteBaseGrandTotal += newPrice;
+          }
+
+          if (newPrice != window.lastPrice) {
+            quoteBaseGrandTotal += (newPrice - window.lastPrice);
+            window.lastPrice = newPrice;
+          }
+        }
+
+        checkQuoteBaseGrandTotal = quoteBaseGrandTotal;
+      }
+    });
 
 });
 
