@@ -20,11 +20,15 @@ var targets = {
 
     // Vendor assets
     vendor: {
-      styles : paths.vendor + 'animate.css/animate.css',
+      styles : [
+        paths.vendor + 'animate.css/animate.css',
+        paths.vendor + 'card/lib/css/card.css'
+      ],
       scripts: [
         paths.vendor + 'jquery/dist/jquery.js',
         paths.vendor + 'underscore/underscore.js',
-        paths.vendor + 'bootstrap/dist/js/bootstrap.js'
+        paths.vendor + 'bootstrap/dist/js/bootstrap.js',
+        paths.vendor + 'card/lib/js/card.js'
       ],
       fonts  : [
         paths.vendor + 'bootstrap/dist/fonts/*',
