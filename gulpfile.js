@@ -22,13 +22,15 @@ var targets = {
     vendor: {
       styles : [
         paths.vendor + 'animate.css/animate.css',
-        paths.vendor + 'card/lib/css/card.css'
+        paths.vendor + 'card/lib/css/card.css',
+        paths.vendor + 'sweetalert/lib/sweet-alert.css'
       ],
       scripts: [
         paths.vendor + 'jquery/dist/jquery.js',
         paths.vendor + 'underscore/underscore.js',
         paths.vendor + 'bootstrap/dist/js/bootstrap.js',
-        paths.vendor + 'card/lib/js/card.js'
+        paths.vendor + 'card/lib/js/card.js',
+        paths.vendor + 'sweetalert/lib/sweet-alert.js'
       ],
       fonts  : [
         paths.vendor + 'bootstrap/dist/fonts/*',

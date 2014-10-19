@@ -228,6 +228,10 @@ jQuery(function ($) {
       if (section === 'shipping_method') {
         resetShippingMethods();
       }
+
+      if (section === 'review') {
+        $('#checkout-review-load').trigger('review-loaded');
+      }
     }
   }
 
@@ -593,5 +597,29 @@ jQuery(function ($) {
 
   window.payment.currentMethod = $('#co-payment-form').data('current-method');
 
+  // Order review section in checkout page
+  $('#checkout-review-load').on('review-loaded', function () {
+    truncateOptions();
+
+    window.review = new Review(
+      $('#checkout-review-table').data('save-url'),
+      $('#checkout-review-table').data('success-url'),
+      $('#checkout-agreements').get()
+    );
+  }).on('click', '#link-edit-cart', function (e) {
+    e.preventDefault();
+
+    swal({
+      title             : $(this).data('title'),
+      text              : $(this).data('text'),
+      type              : "warning",
+      allowOutsideClick : true,
+      showCancelButton  : true,
+      confirmButtonText : "Yes, go ahead.",
+      confirmButtonColor: "#DD6B55"
+    }, function () {
+      location = $(e.currentTarget).attr('href');
+    });
+  });
 });
 

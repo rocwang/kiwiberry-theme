@@ -13,6 +13,7 @@
     "livereload": "~2",
     "prism": "git@github.com:LeaVerou/prism.git#gh-pages",
     "js-beautify": "~1",
-    "bootstrap": "~3"
+    "bootstrap": "~3",
+    "sweetalert": "~0.2.0"
   }
 }
