@@ -233,6 +233,24 @@ jQuery(function ($) {
         $('#checkout-review-load').trigger('review-loaded');
       }
     }
+
+    Checkout.prototype.resetPreviousSteps = function () {
+      var stepIndex = this.steps.indexOf(this.currentStep);
+
+      //Clear other steps if already populated through javascript
+      for (var i = stepIndex; i < this.steps.length; i++) {
+        var progressDiv = $('#' + this.steps[i] + '-progress-opcheckout');
+
+        //Remove "complete" status
+        progressDiv.find('.js-complete').removeClass('es-complete');
+
+        //Remove the "Change" button
+        progressDiv.find('.js-btn-edit-opc').remove();
+
+        //Remove the content
+        progressDiv.find('.js-panel-body').remove();
+      }
+    }
   }
 
   // One Page Checkout
@@ -620,6 +638,11 @@ jQuery(function ($) {
     }, function () {
       location = $(e.currentTarget).attr('href');
     });
+  });
+
+  // Checkout progress
+  $('#checkout-progress-wrapper').on('click', '.js-btn-edit-opc', function () {
+    window.checkout.changeSection($(this).data('target'));
   });
 });
 
