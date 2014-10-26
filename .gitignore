@@ -1,11 +1,11 @@
 .idea/
+dist/
 bower_components/
 node_modules/
-misc/
+resource/
 style_guide/_site/
 style_guide/css/
 style_guide/fonts/
 style_guide/images/
 style_guide/js/
-sync_cms.sh
 test/

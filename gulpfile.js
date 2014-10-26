@@ -1,13 +1,13 @@
 // Base paths
 var paths = {
-  vendor        : './bower_components/',
-  src           : './skin/frontend/default/'
+  vendor: './bower_components/',
+  src   : './skin/frontend/kiwiberry/default/'
 };
 
 var targets = {
   theme: {
     // Assets of Kiwiberry
-    main: {
+    main  : {
       styles : paths.src + 'less/kiwiberry.less',
       scripts: [ // The last one will be the name of final concatenated file
         paths.src + 'js/_noconflict.js',
@@ -80,10 +80,10 @@ var gulp                = require('gulp'),
     path                = require('path'),
     rimraf              = require('rimraf'),
     sourcemaps          = require('gulp-sourcemaps'),
+    tar                 = require('gulp-tar'),
 
-
-// CSS plugins
-//    sass                = require('gulp-ruby-sass'),
+    // CSS plugins
+    //    sass                = require('gulp-ruby-sass'),
     sass                = require('gulp-sass'),
     autoprefixer        = require('gulp-autoprefixer'),
     combineMediaQueries = require('gulp-combine-media-queries'),
@@ -107,7 +107,7 @@ function buildVendorCss(target) {
   return gulp.src(target.vendor.styles)
     .pipe(concat('vendor.css'))
     .pipe(autoprefixer('last 2 version'))
-    .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
+    //.pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? cssmin() : util.noop())
     .pipe(gulp.dest(target.dest + 'css'));
 }
@@ -194,38 +194,68 @@ function runJekyll(options, cb) {
   var spawn = require('child_process').spawn,
       jekyll = spawn('jekyll', options);
 
-  jekyll.stdout.on('data', function (data) { process.stdout.write(data); });
-  jekyll.stderr.on('data', function (data) { process.stdout.write(data); });
-  jekyll.on('close', function() { cb(); });
+  jekyll.stdout.on('data', function (data) {
+    process.stdout.write(data);
+  });
+  jekyll.stderr.on('data', function (data) {
+    process.stdout.write(data);
+  });
+  jekyll.on('close', function () {
+    cb();
+  });
 }
 
 gulp.task('theme:clean', function (cb) {
   clean(targets.theme, cb);
 });
 
-gulp.task('theme:vendor:css',  function () { return buildVendorCss(targets.theme); });
-gulp.task('theme:vendor:js',   function () { return buildVendorJs(targets.theme); });
-gulp.task('theme:vendor:font', function () { return buildFont(targets.theme); });
+gulp.task('theme:vendor:css', function () {
+  return buildVendorCss(targets.theme);
+});
+gulp.task('theme:vendor:js', function () {
+  return buildVendorJs(targets.theme);
+});
+gulp.task('theme:vendor:font', function () {
+  return buildFont(targets.theme);
+});
 
-gulp.task('theme:main:css', function () { return buildMainCss(targets.theme); });
-gulp.task('theme:main:js',  function () { return buildMainJs(targets.theme); });
-gulp.task('theme:main:img', function () { return buildImg(targets.theme); });
+gulp.task('theme:main:css', function () {
+  return buildMainCss(targets.theme);
+});
+gulp.task('theme:main:js', function () {
+  return buildMainJs(targets.theme);
+});
+gulp.task('theme:main:img', function () {
+  return buildImg(targets.theme);
+});
 
 gulp.task('style-guide:clean', function (cb) {
   clean(targets.styleGuide, cb);
 });
 
-gulp.task('style-guide:vendor:css',  function () { return buildVendorCss(targets.styleGuide); });
-gulp.task('style-guide:vendor:js',   function () { return buildVendorJs(targets.styleGuide); });
-gulp.task('style-guide:vendor:font', function () { return buildFont(targets.styleGuide); });
+gulp.task('style-guide:vendor:css', function () {
+  return buildVendorCss(targets.styleGuide);
+});
+gulp.task('style-guide:vendor:js', function () {
+  return buildVendorJs(targets.styleGuide);
+});
+gulp.task('style-guide:vendor:font', function () {
+  return buildFont(targets.styleGuide);
+});
 
-gulp.task('style-guide:main:css', function () { return buildMainCss(targets.styleGuide); });
-gulp.task('style-guide:main:js',  function () { return buildMainJs(targets.styleGuide); });
-gulp.task('style-guide:main:img', function () { return buildImg(targets.styleGuide); });
+gulp.task('style-guide:main:css', function () {
+  return buildMainCss(targets.styleGuide);
+});
+gulp.task('style-guide:main:js', function () {
+  return buildMainJs(targets.styleGuide);
+});
+gulp.task('style-guide:main:img', function () {
+  return buildImg(targets.styleGuide);
+});
 
 // Watch task
-gulp.task('watch', ['theme'], function (cb) {
-  gulp.watch(paths.src+'less/**/*', ['theme:main:css']);
+gulp.task('watch', ['theme'], function () {
+  gulp.watch(paths.src + 'less/**/*', ['theme:main:css']);
   gulp.watch(targets.theme.main.scripts, ['theme:main:js']);
   gulp.watch(targets.theme.main.images, ['theme:main:img']);
 
@@ -242,7 +272,7 @@ gulp.task('watch', ['theme'], function (cb) {
 });
 
 gulp.task('watch:style-guide', ['style-guide'], function (cb) {
-  gulp.watch(paths.src+'less/**/*', ['style-guide:main:css']);
+  gulp.watch(paths.src + 'less/**/*', ['style-guide:main:css']);
   gulp.watch(targets.styleGuide.main.scripts, ['style-guide:main:js']);
   gulp.watch(targets.styleGuide.main.images, ['style-guide:main:img']);
 
@@ -284,6 +314,27 @@ gulp.task('style-guide', [
 
 // Default task
 gulp.task('default', [
-    'theme',
-    'style-guide'
+  'theme',
+  'style-guide'
 ]);
+
+gulp.task('dist', function () {
+  isProduction = true;
+  targets.theme.dest = './dist/skin/frontend/kiwiberry/default/';
+
+  buildVendorCss(targets.theme);
+  buildVendorJs(targets.theme);
+  buildFont(targets.theme);
+
+  buildMainCss(targets.theme);
+  buildMainJs(targets.theme);
+  buildImg(targets.theme);
+
+  gulp.src('app/**', {base: '.'})
+    .pipe(gulp.dest('dist'));
+
+  gulp.src('dist/**')
+    .pipe(tar('kiwiberry.tar'))
+    .pipe(gulp.dest('dist'));
+
+});
