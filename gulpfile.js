@@ -38,7 +38,9 @@ var targets = {
       ]
     },
 
-    dest: './test/skin/frontend/kiwiberry/default/'
+    basedirDev : './test/',
+    basedirDist: './dist/',
+    dest       : 'skin/frontend/kiwiberry/default/'
   },
 
   styleGuide: {
@@ -109,7 +111,9 @@ function buildVendorCss(target) {
     .pipe(autoprefixer('last 2 version'))
     //.pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? cssmin() : util.noop())
-    .pipe(gulp.dest(target.dest + 'css'));
+    .pipe(gulp.dest(target.dest + 'css', {
+      cwd: isProduction ? target.basedirDist : target.basedirDev
+    }));
 }
 
 function buildMainCss(target) {
@@ -131,7 +135,9 @@ function buildMainCss(target) {
     .pipe(autoprefixer('last 2 version'))
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? cssmin() : util.noop())
-    .pipe(gulp.dest(target.dest + 'css'))
+    .pipe(gulp.dest(target.dest + 'css', {
+      cwd: isProduction ? target.basedirDist : target.basedirDev
+    }))
     .pipe(notify('CSS compiled'));
 }
 
@@ -140,12 +146,16 @@ function buildVendorJs(target) {
   // Modernizr.js
   gulp.src(paths.vendor + 'modernizr/modernizr.js')
     .pipe(isProduction ? uglify() : util.noop())
-    .pipe(gulp.dest(target.dest + 'js'));
+    .pipe(gulp.dest(target.dest + 'js', {
+      cwd: isProduction ? target.basedirDist : target.basedirDev
+    }));
 
   return gulp.src(target.vendor.scripts)
     .pipe(concat('vendor.js'))
     .pipe(isProduction ? uglify() : util.noop())
-    .pipe(gulp.dest(target.dest + 'js'));
+    .pipe(gulp.dest(target.dest + 'js', {
+      cwd: isProduction ? target.basedirDist : target.basedirDev
+    }));
 }
 
 // Custom scripts
@@ -160,14 +170,18 @@ function buildMainJs(target) {
     .on('error', function (error) {
       new util.PluginError('Ulglify', error, {showStack: true});
     })
-    .pipe(gulp.dest(target.dest + 'js'))
+    .pipe(gulp.dest(target.dest + 'js', {
+      cwd: isProduction ? target.basedirDist : target.basedirDev
+    }))
     .pipe(notify({message: 'JS Compiled'}));
 }
 
 // Fonts
 function buildFont(target) {
   return gulp.src(target.vendor.fonts)
-    .pipe(gulp.dest(target.dest + 'fonts'));
+    .pipe(gulp.dest(target.dest + 'fonts', {
+      cwd: isProduction ? target.basedirDist : target.basedirDev
+    }));
 }
 
 function buildImg(target) {
@@ -179,7 +193,9 @@ function buildImg(target) {
     .on('error', function (error) {
       new util.PluginError('Imagemin', error, {showStack: true});
     })
-    .pipe(gulp.dest(target.dest + 'images'))
+    .pipe(gulp.dest(target.dest + 'images', {
+      cwd: isProduction ? target.basedirDist : target.basedirDev
+    }))
     .pipe(notify({message: 'Images optimized'}));
 }
 
@@ -297,7 +313,15 @@ gulp.task('theme', [
   'theme:main:css',
   'theme:main:js',
   'theme:main:img'
-]);
+], function () {
+  if (isProduction) {
+    var sh = require('execSync');
+    sh.run('tar -cf kiwiberry.tar -C . app -C ./dist skin');
+    sh.run('magento-tar-to-connect.phar');
+    sh.run('rm -rf ./dist ./var');
+    // FIXME Gulp can't quit.
+  }
+});
 
 // Build the style guide
 gulp.task('style-guide', [
@@ -317,24 +341,3 @@ gulp.task('default', [
   'theme',
   'style-guide'
 ]);
-
-gulp.task('dist', function () {
-  isProduction = true;
-  targets.theme.dest = './dist/skin/frontend/kiwiberry/default/';
-
-  buildVendorCss(targets.theme);
-  buildVendorJs(targets.theme);
-  buildFont(targets.theme);
-
-  buildMainCss(targets.theme);
-  buildMainJs(targets.theme);
-  buildImg(targets.theme);
-
-  gulp.src('app/**', {base: '.'})
-    .pipe(gulp.dest('dist'));
-
-  gulp.src('dist/**')
-    .pipe(tar('kiwiberry.tar'))
-    .pipe(gulp.dest('dist'));
-
-});
