@@ -16,7 +16,7 @@ gulp theme --dist
 
 # Install
 cd /var/www/kiwiberry.nz
-mv -f "${BUILD_PATH}/${PACKAGE_FILENAME}" .
+mv -vf "${BUILD_PATH}/${PACKAGE_FILENAME}" .
 ./mage list-installed | grep -q  ${PACKAGE_NAME} && ./mage uninstall community ${PACKAGE_NAME}
 ./mage install-file "./${PACKAGE_FILENAME}"
-rm -f "./${PACKAGE_FILENAME}"
+rm -vf "./${PACKAGE_FILENAME}"
