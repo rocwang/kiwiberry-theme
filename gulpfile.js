@@ -294,7 +294,7 @@ gulp.task('theme', [
   if (isProduction) {
     require('child_process').execFile('./packaging.sh', function (error, stdout, stderr) {
       console.log("packaging.sh stdout:\n" + stdout);
-      //console.log("packaging.sh stderr:\n" + stderr);
+      console.log("packaging.sh stderr:\n" + stderr);
       if (error !== null) {
         console.log('execFile error: ' + error);
       }
