@@ -82,7 +82,6 @@ var gulp                = require('gulp'),
     path                = require('path'),
     rimraf              = require('rimraf'),
     sourcemaps          = require('gulp-sourcemaps'),
-    tar                 = require('gulp-tar'),
 
     // CSS plugins
     //    sass                = require('gulp-ruby-sass'),
@@ -313,13 +312,16 @@ gulp.task('theme', [
   'theme:main:css',
   'theme:main:js',
   'theme:main:img'
-], function () {
+], function (cb) {
   if (isProduction) {
-    var sh = require('execSync');
-    sh.run('tar -cf kiwiberry.tar -C . app -C ./dist skin');
-    sh.run('magento-tar-to-connect.phar');
-    sh.run('rm -rf ./dist ./var');
-    // FIXME Gulp can't quit.
+    require('child_process').execFile('./packaging.sh', function (error, stdout, stderr) {
+      console.log("packaging.sh stdout:\n" + stdout);
+      console.log("packaging.sh stderr:\n" + stderr);
+      if (error !== null) {
+        console.log('execFile error: ' + error);
+      }
+      cb();
+    });
   }
 });
 
