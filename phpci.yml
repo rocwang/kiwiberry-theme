@@ -27,9 +27,9 @@ test:
         directory: "app/"
 success:
     shell:
-        - "npm install"
-        - "bower install"
-        - "gulp theme --dist"
+        - "cd %BUILD_PATH% && npm install"
+        - "cd %BUILD_PATH% && bower install"
+        - "cd %BUILD_PATH% && gulp theme --dist"
         - "mv %BUILD_PATH%/Interface_Frontend_Kiwiberry-0.1.0.tgz /var/www/kiwiberry.nz"
         - "cd /var/www/kiwiberry.nz && ./mage uninstall community Interface_Frontend_Kiwiberry"
         - "cd /var/www/kiwiberry.nz && ./mage install-file ./Interface_Frontend_Kiwiberry-0.1.0.tgz"
