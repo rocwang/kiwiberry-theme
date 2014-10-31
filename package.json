@@ -14,7 +14,6 @@
         "gulp-jshint"               : ">=1.7.1",
         "gulp-less"                 : ">=1",
         "gulp-livereload"           : ">=2.1.0",
-        "gulp-notify"               : ">=1.4.0",
         "gulp-ruby-sass"            : ">=0.7.1",
         "gulp-sass"                 : ">=0.7.3",
         "gulp-sourcemaps"           : "^1.1.3",

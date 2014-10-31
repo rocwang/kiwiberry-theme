@@ -78,7 +78,6 @@ var targets = {
 var gulp                = require('gulp'),
     util                = require('gulp-util'),
     concat              = require('gulp-concat'),
-    notify              = require('gulp-notify'),
     path                = require('path'),
     rimraf              = require('rimraf'),
     sourcemaps          = require('gulp-sourcemaps'),
@@ -125,19 +124,12 @@ function buildMainCss(target) {
       ]
     }))
     //.pipe(sourcemaps.write())
-    .on('error', notify.onError(function (error) {
-      return 'CSS compiling Error: ' + error.message;
-    }))
-    .on('error', function (error) {
-      new util.PluginError('CSS', error, {showStack: true});
-    })
     .pipe(autoprefixer('last 2 version'))
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? cssmin() : util.noop())
     .pipe(gulp.dest(target.dest + 'css', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
-    }))
-    .pipe(notify('CSS compiled'));
+    }));
 }
 
 // Vender scripts
@@ -163,16 +155,9 @@ function buildMainJs(target) {
   return gulp.src(scripts)
     .pipe(concat(path.basename(scripts[scripts.length - 1])))
     .pipe(isProduction ? uglify() : util.noop())
-    .on('error', notify.onError(function (error) {
-      return 'Uglify: ' + error.message;
-    }))
-    .on('error', function (error) {
-      new util.PluginError('Ulglify', error, {showStack: true});
-    })
     .pipe(gulp.dest(target.dest + 'js', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
-    }))
-    .pipe(notify({message: 'JS Compiled'}));
+    }));
 }
 
 // Fonts
@@ -186,16 +171,9 @@ function buildFont(target) {
 function buildImg(target) {
   return gulp.src(target.main.images)
     .pipe(imagemin())
-    .on('error', notify.onError(function (error) {
-      return 'Imagemin Error: ' + error.message;
-    }))
-    .on('error', function (error) {
-      new util.PluginError('Imagemin', error, {showStack: true});
-    })
     .pipe(gulp.dest(target.dest + 'images', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
-    }))
-    .pipe(notify({message: 'Images optimized'}));
+    }));
 }
 
 function clean(target, cb) {
@@ -316,7 +294,7 @@ gulp.task('theme', [
   if (isProduction) {
     require('child_process').execFile('./packaging.sh', function (error, stdout, stderr) {
       console.log("packaging.sh stdout:\n" + stdout);
-      console.log("packaging.sh stderr:\n" + stderr);
+      //console.log("packaging.sh stderr:\n" + stderr);
       if (error !== null) {
         console.log('execFile error: ' + error);
       }
