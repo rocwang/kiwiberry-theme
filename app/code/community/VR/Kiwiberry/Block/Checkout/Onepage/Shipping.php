@@ -1,13 +1,16 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: roc
- * Date: 12/10/14
- * Time: 10:22 PM
+ * Class VR_Kiwiberry_Block_Checkout_Onepage_Shipping
  */
 class VR_Kiwiberry_Block_Checkout_Onepage_Shipping extends Mage_Checkout_Block_Onepage_Shipping
 {
+    /**
+     * Get the HTML of country selection
+     *
+     * @param string $type Billing or Shipping
+     * @return mixed The HTML of country selection
+     */
     public function getCountryHtmlSelect($type)
     {
         $countryId = $this->getAddress()->getCountryId();
