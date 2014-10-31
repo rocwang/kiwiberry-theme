@@ -83,8 +83,6 @@ var gulp                = require('gulp'),
     sourcemaps          = require('gulp-sourcemaps'),
 
     // CSS plugins
-    //    sass                = require('gulp-ruby-sass'),
-    sass                = require('gulp-sass'),
     autoprefixer        = require('gulp-autoprefixer'),
     combineMediaQueries = require('gulp-combine-media-queries'),
     cssmin              = require('gulp-cssmin'),
