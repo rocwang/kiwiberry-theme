@@ -38,10 +38,13 @@ success:
                 && ./mage list-installed | grep -q  Interface_Frontend_Kiwiberry
                 && ./mage uninstall community Interface_Frontend_Kiwiberry
                 && ./mage install-file %BUILD_PATH%/Interface_Frontend_Kiwiberry-0.1.0.tgz
-complete:
     email:
-        committer: true
+        committer: false
         addresses:
             - "rocinwinter@gmail.com"
-        default_mailto_address: "rocinwinter@gmail.com"
+fail:
+    email:
+        committer: false
+        addresses:
+            - "rocinwinter@gmail.com"
 
