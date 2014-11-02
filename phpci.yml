@@ -1,4 +1,7 @@
 #PHP CI Configuration
+setup:
+    shell:
+        - "cd %BUILD_PATH% && npm install && bower install"
 test:
     php_code_sniffer:
         standard: "Ecg"
@@ -25,6 +28,9 @@ test:
 
     lint:
         directory: "app/"
+    shell:
+        - "cd %BUILD_PATH% && gulp theme --dist"
 success:
     shell:
-        - "%BUILD_PATH%/ci_deployment.sh %BUILD_PATH%"
+        - "cd /var/www/kiwiberry.nz && ./mage list-installed | grep -q  Interface_Frontend_Kiwiberry && ./mage uninstall community Interface_Frontend_Kiwiberry"
+        - "cd /var/www/kiwiberry.nz && ./mage install-file "%BUILD_PATH%/Interface_Frontend_Kiwiberry-0.1.0.tgz""
