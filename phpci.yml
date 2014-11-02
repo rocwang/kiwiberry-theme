@@ -33,4 +33,4 @@ test:
 success:
     shell:
         - "cd /var/www/kiwiberry.nz && ./mage list-installed | grep -q  Interface_Frontend_Kiwiberry && ./mage uninstall community Interface_Frontend_Kiwiberry"
-        - "cd /var/www/kiwiberry.nz && ./mage install-file "%BUILD_PATH%/Interface_Frontend_Kiwiberry-0.1.0.tgz"
+        - "cd /var/www/kiwiberry.nz && ./mage install-file %BUILD_PATH%/Interface_Frontend_Kiwiberry-0.1.0.tgz"
