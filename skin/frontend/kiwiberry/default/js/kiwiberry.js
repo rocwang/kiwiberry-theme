@@ -622,7 +622,7 @@ jQuery(function ($) {
     window.review = new Review(
       $('#checkout-review-table').data('save-url'),
       $('#checkout-review-table').data('success-url'),
-      $('#checkout-agreements').get()
+      $('#checkout-agreements').get(0)
     );
   }).on('click', '#link-edit-cart', function (e) {
     e.preventDefault();
@@ -638,6 +638,8 @@ jQuery(function ($) {
     }, function () {
       location = $(e.currentTarget).attr('href');
     });
+  }).on('click', '#btn-place-order', function () {
+    window.review.save();
   });
 
   // Checkout progress

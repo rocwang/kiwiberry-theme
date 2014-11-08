@@ -298,6 +298,8 @@ gulp.task('theme', [
       }
       cb();
     });
+  } else {
+    cb();
   }
 });
 
