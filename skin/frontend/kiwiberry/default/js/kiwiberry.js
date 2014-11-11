@@ -609,11 +609,13 @@ jQuery(function ($) {
     });
   });
 
-  window.quoteBaseGrandTotal = $('#co-payment-form').data('quote-base-grand-total');
-  window.checkQuoteBaseGrandTotal = window.quoteBaseGrandTotal;
-  window.payment = new Payment('co-payment-form', $('#co-payment-form').data('save-url'));
+  if (window.Payment) {
+    window.quoteBaseGrandTotal = $('#co-payment-form').data('quote-base-grand-total');
+    window.checkQuoteBaseGrandTotal = window.quoteBaseGrandTotal;
+    window.payment = new Payment('co-payment-form', $('#co-payment-form').data('save-url'));
+    window.payment.currentMethod = $('#co-payment-form').data('current-method');
+  }
 
-  window.payment.currentMethod = $('#co-payment-form').data('current-method');
 
   // Order review section in checkout page
   $('#checkout-review-load').on('review-loaded', function () {
