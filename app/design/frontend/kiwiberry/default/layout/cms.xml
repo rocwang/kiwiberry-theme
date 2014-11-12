@@ -75,6 +75,17 @@ Default layout, loads most of the pages
 
     <cms_index_noroute translate="label">
         <label>CMS No-Route Page</label>
+        <reference name="content">
+            <block type="catalog/product_new" name="home.catalog.product.new" template="catalog/product/new.phtml" after="cms_page">
+                <action method="setProductsCount"><count>6</count></action>
+                <action method="addPriceBlockType">
+                    <type>bundle</type>
+                    <block>bundle/catalog_product_price</block>
+                    <template>bundle/catalog/product/price.phtml</template>
+                </action>
+                <action method="setColumnCount"><count>6</count></action>
+            </block>
+        </reference>
     </cms_index_noroute>
 
     <cms_index_defaultnoroute>
