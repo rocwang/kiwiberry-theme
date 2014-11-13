@@ -653,5 +653,10 @@ jQuery(function ($) {
   if (document.getElementById('contactForm')) {
     var contactForm = new VarienForm('contactForm', true);
   }
+
+  // Login page
+  if (document.getElementById('login-form')) {
+    var dataForm = new VarienForm('login-form', true);
+  }
 });
 
