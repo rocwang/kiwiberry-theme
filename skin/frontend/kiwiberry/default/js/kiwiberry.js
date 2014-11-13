@@ -680,5 +680,10 @@ jQuery(function ($) {
   if (document.getElementById('form-validate-forgot-password')) {
     var dataForm = new VarienForm('form-validate-forgot-password', true);
   }
+
+  // Reset password page
+  if (document.getElementById('form-validate-reset-password')) {
+    var dataForm = new VarienForm('form-validate-reset-password', true);
+  }
 });
 
