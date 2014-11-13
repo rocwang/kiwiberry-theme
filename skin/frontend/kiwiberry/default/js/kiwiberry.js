@@ -648,5 +648,10 @@ jQuery(function ($) {
   $('#checkout-progress-wrapper').on('click', '.js-btn-edit-opc', function () {
     window.checkout.changeSection($(this).data('target'));
   });
+
+  // Contact us page
+  if (document.getElementById('contactForm')) {
+    var contactForm = new VarienForm('contactForm', true);
+  }
 });
 
