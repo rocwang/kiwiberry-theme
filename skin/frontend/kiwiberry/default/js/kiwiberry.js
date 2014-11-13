@@ -675,5 +675,10 @@ jQuery(function ($) {
       new RegionUpdater('country', 'region', 'region_id', $(registrationForm).data('region-json'), undefined, 'zip');
     }
   }
+
+  // Forgot password page
+  if (document.getElementById('form-validate-forgot-password')) {
+    var dataForm = new VarienForm('form-validate-forgot-password', true);
+  }
 });
 
