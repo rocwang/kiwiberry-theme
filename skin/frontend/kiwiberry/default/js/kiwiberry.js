@@ -659,9 +659,21 @@ jQuery(function ($) {
     var dataForm = new VarienForm('login-form', true);
   }
 
+  // Logout successfully page
   var logoutRedirection = $('[data-logout-redirection]').data('logout-redirection');
   if (logoutRedirection) {
-    setTimeout(function () { location.href = logoutRedirection; }, 5000);
+    setTimeout(function () {
+      location.href = logoutRedirection;
+    }, 5000);
+  }
+
+  // Registration page
+  var registrationForm = document.getElementById('form-validate');
+  if (registrationForm) {
+    var dataForm = new VarienForm('form-validate', true);
+    if ($(registrationForm).data('show-address-fields')) {
+      new RegionUpdater('country', 'region', 'region_id', $(registrationForm).data('region-json'), undefined, 'zip');
+    }
   }
 });
 
