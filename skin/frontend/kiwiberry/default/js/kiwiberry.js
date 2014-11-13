@@ -658,5 +658,10 @@ jQuery(function ($) {
   if (document.getElementById('login-form')) {
     var dataForm = new VarienForm('login-form', true);
   }
+
+  var logoutRedirection = $('[data-logout-redirection]').data('logout-redirection');
+  if (logoutRedirection) {
+    setTimeout(function () { location.href = logoutRedirection; }, 5000);
+  }
 });
 
