@@ -724,5 +724,19 @@ jQuery(function ($) {
       .prop('advaiceContainer', 'cart-sidebar-reorder-advice-container');
   }
 
+  if (document.getElementById('oar_widget_orders_and_returns_form')) {
+    var dataForm = new VarienForm('oar_widget_orders_and_returns_form', true);
+
+    $('#quick_search_type_id').change(function() {
+      if ($(this).val() === 'zip') {
+        $('#oar-zip').show();
+        $('#oar-email').hide();
+      } else {
+        $('#oar-zip').hide();
+        $('#oar-email').show();
+      }
+    });
+  }
+
 });
 
