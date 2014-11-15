@@ -716,5 +716,13 @@ jQuery(function ($) {
     var dataForm = new VarienForm('form-validate-advanced-search', true);
   }
 
+  // Reorder sidebar
+  if (document.getElementById('reorder-validate-detail')) {
+    var reorderFormDetail = new VarienForm('reorder-validate-detail');
+
+    $('.js-reorder-sidebar-checkbox', '#reorder-validate-detail')
+      .prop('advaiceContainer', 'cart-sidebar-reorder-advice-container');
+  }
+
 });
 
