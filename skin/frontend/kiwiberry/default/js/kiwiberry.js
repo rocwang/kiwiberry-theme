@@ -724,6 +724,7 @@ jQuery(function ($) {
       .prop('advaiceContainer', 'cart-sidebar-reorder-advice-container');
   }
 
+  // Orders and Returns page for guest
   if (document.getElementById('oar_widget_orders_and_returns_form')) {
     var dataForm = new VarienForm('oar_widget_orders_and_returns_form', true);
 
