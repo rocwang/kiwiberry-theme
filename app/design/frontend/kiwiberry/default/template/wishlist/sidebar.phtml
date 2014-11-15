@@ -20,10 +20,10 @@
             <div class="media">
               <a href="<?php echo $this->getProductUrl($_item) ?>"
                  title="<?php echo $this->escapeHtml($product->getName()) ?>"
-                 class="pull-left">
+                 class="media-left">
                 <img
                   src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail')->resize(50); ?>"
-                  class="media-object img-responsive"
+                  class="img-responsive"
                   alt="<?php echo $this->escapeHtml($product->getName()) ?>">
               </a>
 

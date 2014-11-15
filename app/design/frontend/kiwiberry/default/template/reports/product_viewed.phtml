@@ -10,12 +10,12 @@
 
         <li class="list-group-item">
           <div class="media">
-            <a class="pull-left"
+            <a class="media-left media-middle"
                href="<?php echo $this->getProductUrl($_item) ?>"
                title="<?php echo $this->escapeHtml($_item->getName()) ?>">
               <img
                 src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50, 50)->setWatermarkSize('30x10'); ?>"
-                class="media-object img-responsive"
+                class="img-responsive"
                 alt="<?php echo $this->escapeHtml($_item->getName()) ?>">
             </a>
 
