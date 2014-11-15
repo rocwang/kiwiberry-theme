@@ -711,5 +711,10 @@ jQuery(function ($) {
     });
   });
 
+  // Advanced search page
+  if (document.getElementById('form-validate-advanced-search')) {
+    var dataForm = new VarienForm('form-validate-advanced-search', true);
+  }
+
 });
 

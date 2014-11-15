@@ -88,7 +88,7 @@
             <action method="setTitle" translate="title" module="catalogsearch"><title>Advanced Search</title></action>
         </reference>
         <reference name="content">
-            <block type="catalogsearch/advanced_form" name="catalogsearch_advanced_form" template="catalogsearch/advanced/form.phtml"/>
+            <block type="vr_kiwiberry/catalogsearch_advanced_form" name="catalogsearch_advanced_form" template="catalogsearch/advanced/form.phtml"/>
         </reference>
     </catalogsearch_advanced_index>
 
