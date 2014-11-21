@@ -8,14 +8,14 @@ test:
         encoding: utf-8
         path: "app/"
 
-    php_mess_detector:
-        rules:
-            - "cleancode"
-            - "codesize"
-            - "design"
-            - "naming"
-            - "unusedcode"
-        path: "app/"
+#    php_mess_detector:
+#        rules:
+#            - "cleancode"
+#            - "codesize"
+#            - "design"
+#            - "naming"
+#            - "unusedcode"
+#        path: "app/"
 
     php_docblock_checker:
         path: "app/"
