@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title><?php echo $this->pageTitle ?></title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="robots" content="*">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <base href="<?php echo $this->getBaseUrl() . 'skin/frontend/kiwiberry/default/' ?>">
+
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="css/vendor.css" type="text/css">
+  <link rel="stylesheet" href="css/kiwiberry.css" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <?php require_once $contentTemplate ?>
+  </div>
+</body>
+</html>
