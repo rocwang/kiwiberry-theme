@@ -12,7 +12,7 @@ class VR_Kiwiberry_Block_Customer_Form_Register extends Mage_Customer_Block_Form
      * @param string $name name
      * @param string $id ID
      * @param string $title Title
-     * @return mixed
+     * @return string The HTML of country selection
      */
     public function getCountryHtmlSelect($defValue=null, $name='country_id', $id='country', $title='Country')
     {

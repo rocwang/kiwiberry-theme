@@ -9,7 +9,7 @@ class VR_Kiwiberry_Block_Checkout_Onepage_Shipping extends Mage_Checkout_Block_O
      * Get the HTML of country selection
      *
      * @param string $type Billing or Shipping
-     * @return mixed The HTML of country selection
+     * @return string The HTML of country selection
      */
     public function getCountryHtmlSelect($type)
     {
