@@ -638,7 +638,7 @@ jQuery(function ($) {
       confirmButtonText : "Yes, go ahead.",
       confirmButtonColor: "#DD6B55"
     }, function () {
-      location = $(e.currentTarget).attr('href');
+      window.location = $(e.currentTarget).attr('href');
     });
   }).on('click', '#btn-place-order', function () {
     window.review.save();
@@ -707,7 +707,7 @@ jQuery(function ($) {
       data      : {isAjax: 1}
     }).done(function () {
       $('#compare-list-please-wait').hide();
-      $('col, td', '#product_comparison').remove(':nth-child('+column+')');
+      $('col, td', '#product_comparison').remove(':nth-child(' + column + ')');
     });
   });
 
@@ -728,7 +728,7 @@ jQuery(function ($) {
   if (document.getElementById('oar_widget_orders_and_returns_form')) {
     var dataForm = new VarienForm('oar_widget_orders_and_returns_form', true);
 
-    $('#quick_search_type_id').change(function() {
+    $('#quick_search_type_id').change(function () {
       if ($(this).val() === 'zip') {
         $('#oar-zip').show();
         $('#oar-email').hide();
@@ -737,6 +737,57 @@ jQuery(function ($) {
         $('#oar-email').show();
       }
     });
+  }
+
+  // My account information page
+  if (document.getElementById('form-validate-account-info')) {
+    var dataForm = new VarienForm('form-validate-account-info', true);
+
+    $('#change_password').change(function () {
+      if (this.checked) {
+        $('#form-field-change-password').show();
+        $('#current_password')
+          .add('#password')
+          .add('#confirmation')
+          .addClass('required-entry');
+      } else {
+        $('#form-field-change-password').hide();
+        $('#current_password')
+          .add('#password')
+          .add('#confirmation')
+          .removeClass('required-entry');
+      }
+    });
+  }
+
+  // Address book page
+  $('.js-delete-address').click(function (e) {
+    e.preventDefault();
+
+    swal({
+      title             : 'Remove Address',
+      text              : 'Are you sure you want to delete this address?',
+      type              : "warning",
+      allowOutsideClick : true,
+      showCancelButton  : true,
+      confirmButtonText : "Yes, delete it!.",
+      confirmButtonColor: "#DD6B55"
+    }, function () {
+      window.location = $(e.currentTarget).attr('href');
+    });
+  });
+
+  // New address page
+  if (document.getElementById('form-validate-address-edit')) {
+    var dataForm = new VarienForm('form-validate-address-edit', true);
+    new RegionUpdater(
+      'country',
+      'region',
+      'region_id',
+      $('#form-validate-address-edit').data('regions'),
+      undefined,
+      'zip'
+    );
   }
 
 });
