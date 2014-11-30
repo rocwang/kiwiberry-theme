@@ -156,9 +156,6 @@
         <!-- Mage_Page -->
         <block type="page/html" name="root" output="toHtml" template="page/print.phtml">
 
-            <!-- This block allows the print.phtml template to get the logo -->
-            <block type="page/html_header" name="header" as="header"/>
-
             <block type="page/html_head" name="head" as="head">
                 <action method="addJs">
                     <script>prototype/prototype.js</script>
@@ -175,12 +172,30 @@
                 <action method="addJs">
                     <script>varien/js.js</script>
                 </action>
+
+                <!-- Add Kiwiberry CSS -->
+                <action method="addItem">
+                    <type>skin_css</type>
+                    <name>css/vendor.css</name>
+                </action>
+                <action method="addItem">
+                    <type>skin_css</type>
+                    <name>css/kiwiberry.css</name>
+                </action>
+
+                <!-- Add Kiwiberry JS -->
+                <action method="addItem">
+                    <type>skin_js</type>
+                    <name>js/modernizr.js</name>
+                </action>
             </block>
 
             <block type="core/text_list" name="content" as="content" translate="label">
                 <label>Main Content Area</label>
             </block>
 
+            <!-- Include JS of Kiwiberry -->
+            <block type="core/template" name="kiwiberry_js" template="page/js/kiwiberry.phtml" after="-"/>
         </block>
     </print>
 

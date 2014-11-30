@@ -790,5 +790,31 @@ jQuery(function ($) {
     );
   }
 
+  // View order page
+  $('.js-gift-message-link').click(function (e) {
+    e.preventDefault();
+
+    var giftMessageIdentifier = $(this).data('item-id');
+    var link = $('#order-item-gift-message-link-' + giftMessageIdentifier);
+    var container = $('#order-item-gift-message-' + giftMessageIdentifier);
+
+    if (link.hasClass('js-expanded')) {
+      link.removeClass('js-expanded');
+      container.hide();
+    } else {
+      link.addClass('js-expanded');
+      container.show();
+    }
+  });
+
+  $('.js-btn-close-gift-msg').click(function (e) {
+    e.preventDefault();
+    giftMessageToogle($(this).data('item-id'));
+  });
+
+  // Print page
+  if ($('body').hasClass('js-page-print') ) {
+    //window.print();
+  }
 });
 
