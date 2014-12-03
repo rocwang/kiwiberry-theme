@@ -816,5 +816,20 @@ jQuery(function ($) {
   if ($('body').hasClass('js-page-print') ) {
     //window.print();
   }
+
+  // Billing Agreement
+  $('#btn-billing-agreement-cancel').click(function(e) {
+    swal({
+      title             : $(this).data('title'),
+      text              : $(this).data('text'),
+      type              : "warning",
+      allowOutsideClick : true,
+      showCancelButton  : true,
+      confirmButtonText : "Yes, cancel it!.",
+      confirmButtonColor: "#DD6B55"
+    }, function () {
+      window.location = $(e.currentTarget).data('url');
+    });
+  });
 });
 
