@@ -15,19 +15,7 @@
           <?php if ($_review->getSum()): ?>
             <div class="ratings">
               <strong><?php echo $this->__('Rating:') ?></strong>
-              <?php
-              $rating = $_review->getSum() / $_review->getCount() / 20;
-              $i = 0;
-              for ($i = 0; $i < 5; $i++) {
-                if ($i + 1 <= $rating) {
-                  echo '<i class="fa fa-star"></i>';
-                } elseif ($i + 0.5 <= $rating) {
-                  echo '<i class="fa fa-star-half-o"></i>';
-                } else {
-                  echo '<i class="fa fa-star-o"></i>';
-                }
-              }
-              ?>
+              <?php echo $this->getChild('rating')->setPercent($_review->getSum() / $_review->getCount())->toHtml() ?>
             </div>
           <?php endif; ?>
         </a>

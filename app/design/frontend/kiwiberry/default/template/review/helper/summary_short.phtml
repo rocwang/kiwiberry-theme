@@ -1,19 +1,15 @@
 <?php if ($this->getReviewsCount()): ?>
 
   <div class="ratings">
-    <?php if ($this->getRatingSummary()): ?>
-      <?php $ratingSummary = $this->getRatingSummary() ?>
-      <div class="progress">
-        <div class="progress-bar"
-             role="progressbar"
-             aria-valuenow="<?php echo $ratingSummary ?>"
-             aria-valuemin="0"
-             aria-valuemax="100"
-             style="width: <?php echo $ratingSummary ?>%;">
-          <span class="sr-only"><?php echo $ratingSummary ?>% Complete</span>
-        </div>
-      </div>
-    <?php endif; ?>
+    <?php
+    if ($this->getRatingSummary()):
+      echo $this->getLayout()
+        ->createBlock('core/template')
+        ->setTemplate('review/helper/rating.phtml')
+        ->setPercent($this->getRatingSummary())
+        ->toHtml();
+    endif;
+    ?>
 
     <a class="label label-info" href="<?php echo $this->getReviewsUrl() ?>">
       <?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>

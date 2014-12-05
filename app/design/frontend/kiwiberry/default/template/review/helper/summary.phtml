@@ -1,30 +1,32 @@
 <?php if ($this->getReviewsCount()): ?>
 
   <div class="ratings">
-    <?php if ($this->getRatingSummary()): ?>
-      <?php $ratingSummary = $this->getRatingSummary() ?>
-      <div class="progress">
-        <div class="progress-bar"
-             role="progressbar"
-             aria-valuenow="<?php echo $ratingSummary ?>"
-             aria-valuemin="0"
-             aria-valuemax="100"
-             style="width: <?php echo $ratingSummary ?>%;">
-          <span class="sr-only"><?php echo $ratingSummary ?>% Complete</span>
-        </div>
-      </div>
-    <?php endif; ?>
+    <?php
+    if ($this->getRatingSummary()):
+      echo $this->getLayout()
+        ->createBlock('core/template')
+        ->setTemplate('review/helper/rating.phtml')
+        ->setPercent($this->getRatingSummary())
+        ->toHtml();
+    endif;
+    ?>
 
     <div class="btn-group">
-      <a class="btn btn-default" href="<?php echo $this->getReviewsUrl() ?>"><?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?></a>
-      <a class="btn btn-default" href="<?php echo $this->getReviewsUrl() ?>#review-form"><?php echo $this->__('Add Your Review') ?></a>
+      <a class="btn btn-default" href="<?php echo $this->getReviewsUrl() ?>">
+        <?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>
+      </a>
+      <a class="btn btn-default" href="<?php echo $this->getReviewsUrl() ?>#review-form">
+        <?php echo $this->__('Add Your Review') ?>
+      </a>
     </div>
   </div>
 
 <?php elseif ($this->getDisplayIfEmpty()): ?>
 
   <p class="text-info">
-    <a href="<?php echo $this->getReviewsUrl() ?>#review-form"><?php echo $this->__('Be the first to review this product') ?></a>
+    <a href="<?php echo $this->getReviewsUrl() ?>#review-form">
+      <?php echo $this->__('Be the first to review this product') ?>
+    </a>
   </p>
 
 <?php endif; ?>
