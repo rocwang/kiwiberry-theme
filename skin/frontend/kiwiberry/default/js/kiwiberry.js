@@ -813,12 +813,12 @@ jQuery(function ($) {
   });
 
   // Print page
-  if ($('body').hasClass('js-page-print') ) {
+  if ($('body').hasClass('js-page-print')) {
     //window.print();
   }
 
   // Billing Agreement
-  $('#btn-billing-agreement-cancel').click(function(e) {
+  $('#btn-billing-agreement-cancel').click(function (e) {
     swal({
       title             : $(this).data('title'),
       text              : $(this).data('text'),
@@ -831,5 +831,82 @@ jQuery(function ($) {
       window.location = $(e.currentTarget).data('url');
     });
   });
+
+  // My Wishlist Page
+  var wishlistForm = new Validation($('#wishlist-view-form').get(0));
+  var wishlistAllCartForm = new Validation($('#wishlist-allcart-form').get(0));
+
+  $('#btn-add-all-witems-to-cart').click(function () {
+    // Calculate quantity
+    var itemQtys = [];
+    $('#wishlist-view-form .js-qty').each(function () {
+        itemQtys[$(this).data('item-id')] = this.value;
+      }
+    );
+    $('#qty').val(JSON.stringify(itemQtys));
+
+    // Submit the form
+    wishlistAllCartForm.form.submit();
+  });
+
+  // Show configurable products options in wishlist
+  $('.js-wishlist-view-details').popover();
+
+  $('.js-add-witem-to-cart').click(function () {
+    var itemId = $(this).data('item-id');
+    var url = $(this).data('url-add-to-cart');
+
+    var qty = $('#wishlist-view-form .js-qty').filter('[data-item-id="'+itemId+'"]').get(0);
+    if (qty) {
+      var separator = (url.indexOf('?') >= 0) ? '&' : '?';
+      url += separator + qty.name + '=' + encodeURIComponent(qty.value);
+    }
+
+    window.location = url;
+  });
+
+  $('.js-remove-witem').click(function(e) {
+
+    e.preventDefault();
+
+    swal({
+      title             : $(this).attr('title'),
+      text              : $(this).data('text'),
+      type              : "warning",
+      allowOutsideClick : true,
+      showCancelButton  : true,
+      confirmButtonText : "Yes, remove it!.",
+      confirmButtonColor: "#DD6B55"
+    }, function () {
+      window.location = $(e.currentTarget).attr('href');
+    });
+  });
+
+  // Share wishlist page
+  Validation.addAllThese([[
+    'validate-emails',
+    'Please enter a valid email addresses, separated by commas. For example johndoe@domain.com, johnsmith@domain.com.',
+    function (v) {
+      if (Validation.get('IsEmpty').test(v)) {
+        return true;
+      }
+
+      var valid_regexp = /^[a-z0-9\._-]{1,30}@([a-z0-9_-]{1,30}\.){1,5}[a-z]{2,4}$/i;
+      var emails = v.split(',');
+
+      for (var i = 0; i < emails.length; i++) {
+        if (!valid_regexp.test(emails[i].strip())) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+  ]]);
+
+  if (document.getElementById('form-validate-share-wishlist')) {
+    var dataForm = new VarienForm('form-validate-share-wishlist', true);
+  }
+
 });
 
