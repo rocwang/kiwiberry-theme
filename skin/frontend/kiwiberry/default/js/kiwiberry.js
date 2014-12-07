@@ -908,5 +908,23 @@ jQuery(function ($) {
     var dataForm = new VarienForm('form-validate-share-wishlist', true);
   }
 
+  // My Applications
+  $('.js-need-confirmation').click(function(e) {
+
+    e.preventDefault();
+
+    swal({
+      title             : $(this).attr('title'),
+      text              : $(this).data('confirmation'),
+      type              : "warning",
+      allowOutsideClick : true,
+      showCancelButton  : true,
+      confirmButtonText : "Yes",
+      confirmButtonColor: "#DD6B55"
+    }, function () {
+      window.location = $(e.currentTarget).attr('href');
+    });
+  });
+
 });
 
