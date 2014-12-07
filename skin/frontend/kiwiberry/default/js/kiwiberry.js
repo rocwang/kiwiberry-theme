@@ -926,5 +926,10 @@ jQuery(function ($) {
     });
   });
 
+  // My Newsletters
+  if (document.getElementById('form-validate-newsletter')) {
+    var dataForm = new VarienForm('form-validate-newsletter', true);
+  }
+
 });
 
