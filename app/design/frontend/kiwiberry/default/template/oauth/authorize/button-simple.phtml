@@ -40,7 +40,7 @@ $logo = $this->getSkinUrl('images/logo-large.gif', array('_area' => 'adminhtml',
         <div class="form-box">
             <div>
                 <div id="messages">
-                    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+                    <?php echo $this->getMessagesBlock()->toHtml() ?>
                 </div>
                 <?php if (!$this->getHasException()) : ?>
                     <h2><?php echo $this->__('<strong>%s</strong> requests access to your account', $this->escapeHtml($this->getConsumer()->getName())); ?></h2>

@@ -25,7 +25,7 @@ if ($_imgUrl = $_category->getImageUrl()) {
   <a href="<?php echo $this->getRssLink() ?>"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
 <?php endif; ?>
 
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
 
 
 <div class="jumbotron">

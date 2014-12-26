@@ -16,30 +16,29 @@ $_helper = $this->helper('catalog/output');
     <?php for ($i = 0; $i < count($this->getGalleryImages()); $i++) : ?>
       <li data-target="#product-gallery"
           data-slide-to="<?php echo $i ?>"
-          <?php if ($i === 0) echo 'class="active"'; ?>>
+        <?php if ($i === 0) echo 'class="active"'; ?>>
       </li>
     <?php endfor ?>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
+    <div class="item active">
+      <img id="image-main"
+           src="<?php echo $this->helper('catalog/image')->init($_product, 'image') ?>"
+           alt="<?php echo $this->escapeHtml($this->getImageLabel()) ?>">
+    </div>
+
     <?php $i = 0;
-    foreach ($this->getGalleryImages() as $_image):
-
-      $_imageUrl = $this->helper('catalog/image')
-        ->init($_product, 'image', $_image->getFile())
-        ->keepFrame(false)
-        ->constrainOnly(true)
-        ->resize(1200);
-      ?>
-
-      <div class="item<?php if ($i === 0) echo ' active'; ?>">
-        <img class="gallery-image"
-             src="<?php echo $_imageUrl; ?>"
-             alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>">
-      </div>
-
-    <?php $i++; endforeach; ?>
+    foreach ($this->getGalleryImages() as $_image): ?>
+      <?php if ($this->isGalleryImageVisible($_image)): ?>
+        <div class="item<?php if ($i === 0) echo ' active'; ?>">
+          <img class="gallery-image"
+               src="<?php echo $this->getGalleryImageUrl($_image); ?>"
+               alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>">
+        </div>
+      <?php endif; ?>
+      <?php $i++; endforeach; ?>
   </div>
 
   <!-- Controls -->
@@ -55,28 +54,23 @@ $_helper = $this->helper('catalog/output');
   <h5><?php echo $this->__('More Views') ?></h5>
 
   <div class="row">
-      <?php
-      $i = 0;
-      foreach ($this->getGalleryImages() as $_image):
+    <?php
+    $i = 0;
+    foreach ($this->getGalleryImages() as $_image): ?>
+      <?php if ($this->isGalleryImageVisible($_image)): ?>
 
-        // Dynamically filter the images
-        if ( ($filterClass  = $this->getGalleryFilterHelper())
-          && ($filterMethod = $this->getGalleryFilterMethod())
-          && !Mage::helper($filterClass)->$filterMethod($_product, $_image)
-        ) continue;
-      ?>
+        <div class="col-sm-3">
+          <a href="#product-gallery"
+             title="<?php echo $this->escapeHtml($_image->getLabel()) ?>"
+             data-slide-to="<?php echo $i; ?>">
+            <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(150); ?>"
+                 class="img-responsive"
+                 alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>">
+          </a>
+        </div>
 
-      <div class="col-sm-3">
-        <a href="#product-gallery"
-           title="<?php echo $this->escapeHtml($_image->getLabel()) ?>"
-           data-slide-to="<?php echo $i; ?>">
-          <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(150); ?>"
-               class="img-responsive"
-               alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>">
-        </a>
-      </div>
-
-      <?php $i++; endforeach; ?>
+      <?php endif; ?>
+    <?php $i++; endforeach; ?>
   </div>
 <?php endif; ?>
 

@@ -76,9 +76,9 @@ foreach ($children as $child) {
 
   if (!empty($_hasChildren)) {
     $html .= '<ul class="dropdown-menu level' . $childLevel . '" role="menu">';
-    $html .= '<li class="level' . $nextChildLevel . '">';
+    $html .= '<li class="level' . $nextChildLevel . ' view-all">';
     $html .= '<a class="level' . $nextChildLevel . '" href="' . $child->getUrl() . '">';
-    $html .= $this->__('View All ') . $this->escapeHtml($this->__($child->getName()));
+    $html .= $this->__('View All') . ' ' . $this->escapeHtml($this->__($child->getName()));
     $html .= '</a>';
     $html .= '</li>';
     $html .= $this->render($child, $childrenWrapClass);

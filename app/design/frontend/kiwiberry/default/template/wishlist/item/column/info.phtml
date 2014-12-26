@@ -11,7 +11,7 @@ $product = $item->getProduct();
 </h3>
 
 <div class="wishlist-sku">
-  <span>SKU <?php echo $this->escapeHtml($product->getSku()) ?></span>
+  <span><?php echo $this->__('SKU'); ?> <?php echo $this->escapeHtml($product->getSku()) ?></span>
 </div>
 
 <div>

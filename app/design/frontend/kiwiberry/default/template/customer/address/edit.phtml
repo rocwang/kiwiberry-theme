@@ -12,7 +12,7 @@
   </div>
 <?php endif; ?>
 
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
 
 <form action="<?php echo $this->getSaveUrl() ?>"
       method="post"

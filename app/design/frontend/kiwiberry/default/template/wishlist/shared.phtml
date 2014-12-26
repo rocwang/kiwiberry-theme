@@ -29,7 +29,7 @@
     <div class="page-title">
         <h1><?php echo $this->escapeHtml($this->getHeader()) ?></h1>
     </div>
-    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getMessagesBlock()->toHtml() ?>
     <?php if ($this->hasWishlistItems()): ?>
     <form action="<?php echo $this->getUrl('*/*/update') ?>" method="post">
         <div class="fieldset">

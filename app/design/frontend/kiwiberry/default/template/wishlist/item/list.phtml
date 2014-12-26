@@ -1,8 +1,13 @@
-<?php $columns = $this->getColumns(); ?>
+<?php
+/* @var $this Mage_Wishlist_Block_Customer_Wishlist_Items */
+$columns = $this->getColumns();
+?>
 <table class="table table-bordered" id="wishlist-table">
   <thead>
   <tr>
-    <?php foreach ($columns as $column):
+    <?php
+    /* @var $column Mage_Wishlist_Block_Customer_Wishlist_Item_Column */
+    foreach ($columns as $column):
       $_blockName = str_replace('.', '-', strtolower($column->getNameInLayout()));
       ?>
       <th class="<?php echo $_blockName; ?>"><?php echo $column->getTitle(); ?></th>
@@ -19,7 +24,13 @@
         <?php
         foreach ($columns as $key => $column):
           $_blockName = str_replace('.', '-', strtolower($column->getNameInLayout()));
-          $_rwdLabel = ($column->getTitle()) ? $column->getTitle() : false;
+
+          /* Override default column title in layout, useful for certain cases like select all box */
+          if ($column->getRwdTitle()) {
+            $_rwdLabel = $column->getRwdTitle();
+          } else {
+            $_rwdLabel = ($column->getTitle()) ? $column->getTitle() : false;
+          }
           ?>
           <td class="<?php echo 'wishlist-cell' . $key; ?> <?php echo $_blockName; ?>"
             <?php if ($_rwdLabel): ?> data-rwd-label="<?php echo $_rwdLabel; ?>"<?php endif; ?>

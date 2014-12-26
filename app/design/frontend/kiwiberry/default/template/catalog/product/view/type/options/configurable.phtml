@@ -10,8 +10,8 @@ $_renderers = $this->getChild('attr_renderers')->getSortedChildren();
     $_rendered = false;
     foreach ($_renderers as $_rendererName):
       $_renderer = $this->getChild('attr_renderers')->getChild($_rendererName);
-      if (method_exists($_renderer, 'shouldRender') && $_renderer->shouldRender($_product, $_attribute, $_jsonConfig)):
-        $_renderer->setProduct($_product);
+      if (method_exists($_renderer, 'shouldRender') && $_renderer->shouldRender($_attribute, $_jsonConfig)):
+      $_renderer->setProduct($_product);
         $_renderer->setAttributeObj($_attribute);
         echo $_renderer->toHtml();
         $_rendered = true;

@@ -1,7 +1,7 @@
 <?php /** @var $this Mage_Sales_Block_Order_Info */ ?>
 <?php $_order = $this->getOrder() ?>
 
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
 
 <div class="page-header">
   <h1><?php echo $this->__('Order #%s - %s', $_order->getRealOrderId(), $_order->getStatusLabel()) ?></h1>

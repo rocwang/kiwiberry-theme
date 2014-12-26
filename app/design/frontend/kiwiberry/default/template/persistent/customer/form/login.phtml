@@ -14,7 +14,7 @@
     ?>
   </h1>
 
-  <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+  <?php echo $this->getMessagesBlock()->toHtml() ?>
 
   <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form" role="form">
 

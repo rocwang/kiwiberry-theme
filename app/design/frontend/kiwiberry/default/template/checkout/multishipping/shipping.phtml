@@ -36,7 +36,7 @@
     <div class="page-title">
         <h1><?php echo $this->__('Select Shipping Method') ?></h1>
     </div>
-    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getMessagesBlock()->toHtml() ?>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="shipping_method_form">
         <?php foreach ($this->getAddresses() as $_index => $_address): ?>
         <div class="col2-set">

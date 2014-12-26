@@ -2,7 +2,7 @@
   <h1><?php echo $this->__('Edit Account Information') ?></h1>
 </div>
 
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
 
 <form action="<?php echo $this->getUrl('customer/account/editPost') ?>"
       method="post"
