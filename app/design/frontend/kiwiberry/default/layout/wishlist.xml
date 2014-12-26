@@ -85,7 +85,7 @@ Wishlist pages
                     </block>
                     <block type="wishlist/customer_wishlist_item_column_cart" name="customer.wishlist.item.quantity" template="wishlist/item/column/quantity.phtml">
                         <action method="setTitle" translate="title">
-                            <title>Quantity</title>
+                            <title>Qty</title>
                         </action>
                         <block type="wishlist/customer_wishlist_item_options" name="customer.wishlist.item.options" />
                     </block>

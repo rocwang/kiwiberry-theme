@@ -273,6 +273,7 @@ Email layouts section
         <block type="sales/order_email_items" name="items" template="email/order/items.phtml">
             <action method="addItemRender"><type>default</type><block>sales/order_email_items_order_default</block><template>email/order/items/order/default.phtml</template></action>
             <action method="addItemRender"><type>grouped</type><block>sales/order_email_items_order_grouped</block><template>email/order/items/order/default.phtml</template></action>
+            <block type="core/template" name="order_totals_wrapper" as="order_totals" template="email/order/totals/wrapper.phtml">
             <block type="sales/order_totals" name="order_totals" template="sales/order/totals.phtml">
                 <action method="setLabelProperties"><value>colspan="3" align="right" style="padding:3px 9px"</value></action>
                 <action method="setValueProperties"><value>align="right" style="padding:3px 9px"</value></action>
@@ -281,6 +282,7 @@ Email layouts section
                 </block>
             </block>
         </block>
+        </block>
         <block type="core/text_list" name="additional.product.info" />
     </sales_email_order_items>
 
@@ -288,6 +290,7 @@ Email layouts section
         <block type="sales/order_email_invoice_items" name="items" template="email/order/invoice/items.phtml">
             <action method="addItemRender"><type>default</type><block>sales/order_email_items_default</block><template>email/order/items/invoice/default.phtml</template></action>
             <action method="addItemRender"><type>grouped</type><block>sales/order_email_items_order_grouped</block><template>email/order/items/invoice/default.phtml</template></action>
+            <block type="core/template" name="invoice_totals_wrapper" as="invoice_totals" template="email/order/totals/wrapper.phtml">
             <block type="sales/order_invoice_totals" name="invoice_totals" template="sales/order/totals.phtml">
                 <action method="setLabelProperties"><value>colspan="3" align="right" style="padding:3px 9px"</value></action>
                 <action method="setValueProperties"><value>align="right" style="padding:3px 9px"</value></action>
@@ -295,6 +298,7 @@ Email layouts section
                     <action method="setIsPlaneMode"><value>1</value></action>
                 </block>
             </block>
+        </block>
         </block>
         <block type="core/text_list" name="additional.product.info" />
     </sales_email_order_invoice_items>
@@ -310,6 +314,7 @@ Email layouts section
         <block type="sales/order_email_creditmemo_items" name="items" template="email/order/creditmemo/items.phtml">
             <action method="addItemRender"><type>default</type><block>sales/order_email_items_default</block><template>email/order/items/creditmemo/default.phtml</template></action>
             <action method="addItemRender"><type>grouped</type><block>sales/order_email_items_order_grouped</block><template>email/order/items/creditmemo/default.phtml</template></action>
+            <block type="core/template" name="creditmemo_totals_wrapper" as="creditmemo_totals" template="email/order/totals/wrapper.phtml">
             <block type="sales/order_creditmemo_totals" name="creditmemo_totals" template="sales/order/totals.phtml">
                 <action method="setLabelProperties"><value>colspan="3" align="right" style="padding:3px 9px"</value></action>
                 <action method="setValueProperties"><value>align="right" style="padding:3px 9px"</value></action>
@@ -317,6 +322,7 @@ Email layouts section
                     <action method="setIsPlaneMode"><value>1</value></action>
                 </block>
             </block>
+        </block>
         </block>
         <block type="core/text_list" name="additional.product.info" />
     </sales_email_order_creditmemo_items>
