@@ -174,7 +174,7 @@ Supported layout update handles (special):
             </action>
         </reference>
         <reference name="content">
-            <block type="vr_kiwiberry/customer_form_register" name="customer_form_register" template="customer/form/register.phtml">
+            <block type="customer/form_register" name="customer_form_register" template="customer/form/register.phtml">
                 <block type="page/html_wrapper" name="customer.form.register.fields.before" as="form_fields_before"
                        translate="label">
                     <label>Form Fields Before</label>
@@ -385,7 +385,7 @@ Supported layout update handles (special):
         <!-- Mage_Customer -->
         <update handle="customer_account"/>
         <reference name="my.account.wrapper">
-            <block type="vr_kiwiberry/customer_address_edit" name="customer_address_edit" template="customer/address/edit.phtml"/>
+            <block type="customer/address_edit" name="customer_address_edit" template="customer/address/edit.phtml"/>
         </reference>
     </customer_address_form>
 </layout>
