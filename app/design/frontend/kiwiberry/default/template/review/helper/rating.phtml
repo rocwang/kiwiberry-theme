@@ -1,14 +1,12 @@
-<div>
-  <?php
-  $rating = $this->getPercent() / 20;
-  for ($i = 0; $i < 5; $i++) {
-    if ($i + 1 <= $rating) {
-      echo '<i class="fa fa-star"></i>';
-    } elseif ($i + 0.5 <= $rating) {
-      echo '<i class="fa fa-star-half-o"></i>';
-    } else {
-      echo '<i class="fa fa-star-o"></i>';
-    }
+<?php
+$rating = $this->getPercent() / 20;
+for ($i = 0; $i < 5; $i++) {
+  if ($i + 1 <= $rating) {
+    echo '<i class="fa fa-star"></i>';
+  } elseif ($i + 0.5 <= $rating) {
+    echo '<i class="fa fa-star-half-o"></i>';
+  } else {
+    echo '<i class="fa fa-star-o"></i>';
   }
-  ?>
-</div>
+}
+?>

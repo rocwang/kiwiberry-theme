@@ -947,19 +947,35 @@ jQuery(function ($) {
   });
 
   // Captcha
-  $('.js-captcha-img').each(function() {
+  $('.js-captcha-img').each(function () {
     $(this).data(
       'captcha',
       new Captcha($(this).data('refresh-url'), this.id)
-      );
+    );
   });
 
-  $('.js-captcha-refresh').click(function(e) {
+  $('.js-captcha-refresh').click(function (e) {
     e.preventDefault();
 
     var captchaId = $(this).attr('href');
     $(captchaId).data('captcha').refresh(this);
   });
+
+  // Product review form validation
+  if (document.getElementById('review-form')) {
+
+    var dataForm = new VarienForm('review-form');
+
+    Validation.addAllThese(
+      [[
+        'validate-rating',
+        $('#review-form').data('rating-validation-msg'),
+        function () {
+          return $('#review-form input[type="radio"]:checked').length === 3;
+        }
+      ]]
+    );
+  }
 
 });
 
