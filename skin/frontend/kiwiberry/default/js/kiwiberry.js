@@ -931,5 +931,12 @@ jQuery(function ($) {
     var dataForm = new VarienForm('form-validate-newsletter', true);
   }
 
+  // Add tag form in product view page
+  var addTagFormJs = new VarienForm('addTagForm');
+  $('#add-tag').click(function() {
+    if (addTagFormJs.validator.validate()) {
+      addTagFormJs.form.submit();
+    }
+  });
 });
 
