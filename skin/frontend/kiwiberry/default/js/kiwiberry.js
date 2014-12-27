@@ -856,7 +856,7 @@ jQuery(function ($) {
     var itemId = $(this).data('item-id');
     var url = $(this).data('url-add-to-cart');
 
-    var qty = $('#wishlist-view-form .js-qty').filter('[data-item-id="'+itemId+'"]').get(0);
+    var qty = $('#wishlist-view-form .js-qty').filter('[data-item-id="' + itemId + '"]').get(0);
     if (qty) {
       var separator = (url.indexOf('?') >= 0) ? '&' : '?';
       url += separator + qty.name + '=' + encodeURIComponent(qty.value);
@@ -865,7 +865,7 @@ jQuery(function ($) {
     window.location = url;
   });
 
-  $('.js-remove-witem').click(function(e) {
+  $('.js-remove-witem').click(function (e) {
 
     e.preventDefault();
 
@@ -909,7 +909,7 @@ jQuery(function ($) {
   }
 
   // My Applications
-  $('.js-need-confirmation').click(function(e) {
+  $('.js-need-confirmation').click(function (e) {
 
     e.preventDefault();
 
@@ -933,10 +933,18 @@ jQuery(function ($) {
 
   // Add tag form in product view page
   var addTagFormJs = new VarienForm('addTagForm');
-  $('#add-tag').click(function() {
+  $('#add-tag').click(function () {
     if (addTagFormJs.validator.validate()) {
       addTagFormJs.form.submit();
     }
   });
+
+  // Poll
+  $('#pollForm').submit(function (e) {
+    if (!$(this).find('input[type="radio"]:checked').length) {
+      e.preventDefault();
+    }
+  });
 });
+
 
