@@ -945,6 +945,22 @@ jQuery(function ($) {
       e.preventDefault();
     }
   });
+
+  // Captcha
+  $('.js-captcha-img').each(function() {
+    $(this).data(
+      'captcha',
+      new Captcha($(this).data('refresh-url'), this.id)
+      );
+  });
+
+  $('.js-captcha-refresh').click(function(e) {
+    e.preventDefault();
+
+    var captchaId = $(this).attr('href');
+    $(captchaId).data('captcha').refresh(this);
+  });
+
 });
 
 
