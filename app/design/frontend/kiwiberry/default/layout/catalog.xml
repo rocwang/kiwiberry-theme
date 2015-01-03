@@ -258,9 +258,6 @@ Supported layout update handles (special):
             <action method="addJs">
                 <script>varien/configurable.js</script>
             </action>
-            <block type="catalog/product_view" name="options_price" template="page/js/options-price.phtml"/>
-            <block type="catalog/product_view_options" name="product_options_js"
-                   template="page/js/options.phtml"/>
         </reference>
         <reference name="content">
             <block type="catalog/product_view" name="product.info" template="catalog/product/view.phtml">
@@ -462,11 +459,6 @@ Supported layout update handles (special):
                 <block type="core/text_list" name="product.info.options.configurable.renderers" as="attr_renderers"/>
                 <block type="core/text_list" name="product.info.options.configurable.after" as="after"/>
             </block>
-        </reference>
-        <reference name="head">
-            <block type="catalog/product_view_type_configurable" name="product.info.options.configurable.js"
-                   as="options_configurable_js"
-                   template="page/js/configurable.phtml"/>
         </reference>
     </PRODUCT_TYPE_configurable>
     <PRODUCT_TYPE_grouped translate="label" module="catalog">

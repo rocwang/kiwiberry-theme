@@ -12,7 +12,7 @@ var optionFileUpload = {
 
     this.formAction = this.productForm.action;
 
-    var baseUrl = window.kiwiberryRegistry.fileUploadUrl;
+    var baseUrl = $('#product_options').data('file-upload-url');
     var urlExt = 'option_id/' + element.readAttribute('id').sub('option_', '');
 
     this.productForm.action = parseSidUrl(baseUrl, urlExt);

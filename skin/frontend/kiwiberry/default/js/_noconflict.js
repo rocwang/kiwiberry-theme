@@ -1,4 +1,4 @@
-jQuery.noConflict();
+var $j = jQuery.noConflict();
 ;(function($) {
     'use strict';
 
@@ -74,7 +74,7 @@ jQuery.noConflict();
 
 })(jQuery);
 
-// Fix the tricky confict between Prototype and jQuery,
+// Fix the tricky conflict between Prototype and jQuery,
 // which cause bugs when hiding various Bootstrap components.
 // See: http://stackoverflow.com/a/20748540/2336096
 (function() {

@@ -1,5 +1,3 @@
-var kiwiberryRegistry = {};
-
 jQuery(function ($) {
   // Search bar in navigation
   if (jQuery('#search_mini_form, #search, #search_autocomplete').length === 3) {
@@ -80,18 +78,18 @@ jQuery(function ($) {
   }
 
   // Configurable product options
-  if (kiwiberryRegistry.spConfig) {
-    window.spConfig = new Product.Config(window.kiwiberryRegistry.spConfig);
-  }
-
-  // Product custom options
-  if (kiwiberryRegistry.opConfig) {
-    window.opConfig = new Product.Options(window.kiwiberryRegistry.opConfig);
+  if (document.getElementById('sp_config')) {
+    window.spConfig = new Product.Config($('#sp_config').data('sp-config'));
   }
 
   // Option price
-  if (kiwiberryRegistry.optionPrice) {
-    window.optionsPrice = new Product.OptionsPrice(kiwiberryRegistry.optionPrice);
+  if (document.getElementById('product_addtocart_form')) {
+    window.optionsPrice = new Product.OptionsPrice($('#product_addtocart_form').data('options-price'));
+  }
+
+  // Product custom options
+  if (document.getElementById('product_options')) {
+    window.opConfig = new Product.Options($('#product_options').data('option-config'));
   }
 
   // "Add to Wishlist" in product page
@@ -975,6 +973,29 @@ jQuery(function ($) {
         }
       ]]
     );
+  }
+
+  // Configurable Swatches
+  $j(document).on('product-media-loaded', function () {
+    ConfigurableMediaImages.init(configurableSwatches.imageType);
+
+    for (productId in configurableSwatches.imageFallback) {
+      ConfigurableMediaImages.setImageFallback(
+        productId,
+        configurableSwatches.imageFallback[productId]
+      );
+    }
+
+    ConfigurableSwatchesList.init();
+  });
+
+  // Todo: start configurable swatches properly
+  if (window.configurableSwatches) {
+    $j(document).trigger('product-media-loaded');
+  }
+
+  if (window.configurableSwatches && window.spConfig) {
+    var swatchesConfig = new Product.ConfigurableSwatches(window.spConfig);
   }
 
 });

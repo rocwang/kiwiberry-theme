@@ -1,6 +1,6 @@
 <?php $_product = $this->getProduct(); ?>
 <?php if ($this->displayProductStockStatus()): ?>
-<p>
+<p class="availability">
   <?php echo $this->helper('catalog')->__('Availability:') ?>
 
   <?php if ($_product->isAvailable()): ?>

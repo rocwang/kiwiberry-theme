@@ -36,7 +36,8 @@ $_helper = $this->helper('catalog/output');
                title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
                class="pull-left"
               >
-              <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->keepFrame(false)->resize(150); ?>"
+              <img id="product-collection-image-<?php echo $_product->getId(); ?>"
+                   src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->keepFrame(false)->resize(150); ?>"
                    alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
                    class="img-responsive media-object"
                 >
@@ -159,7 +160,8 @@ $_helper = $this->helper('catalog/output');
               <!-- Product image -->
               <a href="<?php echo $_product->getProductUrl() ?>"
                  title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>">
-                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300); ?>"
+                <img id="product-collection-image-<?php echo $_product->getId(); ?>"
+                     src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300); ?>"
                      alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
                      class="img-responsive">
               </a>

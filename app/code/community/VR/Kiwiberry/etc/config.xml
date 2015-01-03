@@ -19,6 +19,11 @@
             <vr_kiwiberry>
                 <class>VR_Kiwiberry_Block</class>
             </vr_kiwiberry>
+            <configurableswatches>
+                <rewrite>
+                    <catalog_layer_state_swatch>VR_Kiwiberry_Block_ConfigurableSwatches_Catalog_Layer_State_Swatch</catalog_layer_state_swatch>
+                </rewrite>
+            </configurableswatches>
         </blocks>
         <helpers>
             <vr_kiwiberry>

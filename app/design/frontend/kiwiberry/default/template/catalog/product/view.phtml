@@ -54,6 +54,7 @@
           id="product_addtocart_form"
           role="form"
           class="form-horizontal"
+          data-options-price="<?php echo $this->escapeHtml($this->getJsonConfig()) ?>"
       <?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 
       <!-- Hidden Stuff -->

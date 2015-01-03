@@ -26,10 +26,19 @@ input[type="checkbox"].cb-related-product {
 
 // Order view table
 .totals-label {
-    text-align: right;
+  text-align: right;
 }
 
 // Set "select" default style
 select:not(.form-control) {
   .form-control();
+}
+
+// Configurable swatches
+.configurable-swatch-list .selected img {
+  border: 1px solid @brand-primary;
+}
+
+.not-available {
+  .opacity(0.2);
 }

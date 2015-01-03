@@ -1,9 +1,0 @@
-<?php
-$_product = $this->getProduct();
-$_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
-?>
-<?php if ($_product->isSaleable() && count($_attributes)): ?>
-  <script>
-    kiwiberryRegistry.spConfig = <?php echo $this->getJsonConfig() ?>;
-  </script>
-<?php endif; ?>

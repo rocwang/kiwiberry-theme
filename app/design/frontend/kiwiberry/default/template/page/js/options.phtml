@@ -1,9 +1,0 @@
-<?php
-$_options = Mage::helper('core')->decorateArray($this->getOptions());
-if (count($_options)):
-?>
-  <script>
-    kiwiberryRegistry.fileUploadUrl = '<?php echo $this->getUrl('*/product/upload') ?>';
-    kiwiberryRegistry.opConfig = <?php echo $this->getJsonConfig() ?>;
-  </script>
-<?php endif; ?>

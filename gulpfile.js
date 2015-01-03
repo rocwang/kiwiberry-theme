@@ -10,9 +10,14 @@ var targets = {
     main  : {
       styles : paths.src + 'less/kiwiberry.less',
       scripts: [ // The last one will be the name of final concatenated file
+        paths.src + 'js/_pointer_manager.js',
+        paths.src + 'js/_product_media_manager.js',
         paths.src + 'js/_noconflict.js',
         paths.src + 'js/_date_option.js',
         paths.src + 'js/_custom_options.js',
+        paths.src + 'js/configurable_swatches/_product-media.js',
+        paths.src + 'js/configurable_swatches/_swatches-list.js',
+        paths.src + 'js/configurable_swatches/_swatches-product.js',
         paths.src + 'js/kiwiberry.js'
       ],
       images : paths.src + 'images/*'
@@ -29,8 +34,9 @@ var targets = {
         paths.vendor + 'jquery/dist/jquery.js',
         paths.vendor + 'underscore/underscore.js',
         paths.vendor + 'bootstrap/dist/js/bootstrap.js',
+        paths.vendor + 'imagesloaded/imagesloaded.pkgd.js',
         paths.vendor + 'card/lib/js/card.js',
-        paths.vendor + 'sweetalert/lib/sweet-alert.js'
+        paths.vendor + 'sweetalert/lib/sweet-alert.js',
       ],
       fonts  : [
         paths.vendor + 'bootstrap/dist/fonts/*',

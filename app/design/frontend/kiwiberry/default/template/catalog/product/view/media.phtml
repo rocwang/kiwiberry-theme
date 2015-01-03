@@ -10,47 +10,50 @@ $_product = $this->getProduct();
 $_helper = $this->helper('catalog/output');
 ?>
 
-<div id="product-gallery" class="carousel slide">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <?php for ($i = 0; $i < count($this->getGalleryImages()); $i++) : ?>
-      <li data-target="#product-gallery"
-          data-slide-to="<?php echo $i ?>"
-        <?php if ($i === 0) echo 'class="active"'; ?>>
-      </li>
-    <?php endfor ?>
-  </ol>
+<?php if (!$this->getGalleryImages()) : ?>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img id="image-main"
-           src="<?php echo $this->helper('catalog/image')->init($_product, 'image') ?>"
-           alt="<?php echo $this->escapeHtml($this->getImageLabel()) ?>">
-    </div>
-
-    <?php $i = 0;
-    foreach ($this->getGalleryImages() as $_image): ?>
-      <?php if ($this->isGalleryImageVisible($_image)): ?>
-        <div class="item<?php if ($i === 0) echo ' active'; ?>">
-          <img class="gallery-image"
-               src="<?php echo $this->getGalleryImageUrl($_image); ?>"
-               alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>">
-        </div>
-      <?php endif; ?>
-      <?php $i++; endforeach; ?>
+  <div class="item active">
+    <img id="image-main"
+         src="<?php echo $this->helper('catalog/image')->init($_product, 'image') ?>"
+         alt="<?php echo $this->escapeHtml($this->getImageLabel()) ?>">
   </div>
 
-  <!-- Controls -->
-  <a class="left carousel-control" href="#product-gallery" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#product-gallery" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div>
+<?php else: ?>
 
-<?php if (count($this->getGalleryImages()) > 0): ?>
+  <div id="product-gallery" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <?php for ($i = 0; $i < count($this->getGalleryImages()); $i++) : ?>
+        <li data-target="#product-gallery"
+            data-slide-to="<?php echo $i ?>"
+          <?php if ($i === 0) echo 'class="active"'; ?>>
+        </li>
+      <?php endfor ?>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div id="product-gallery-images" class="carousel-inner">
+      <?php $i = 0;
+      foreach ($this->getGalleryImages() as $_image): ?>
+        <?php if ($this->isGalleryImageVisible($_image)): ?>
+          <div class="item<?php if ($i === 0) echo ' active'; ?>">
+            <img class="gallery-image"
+                 src="<?php echo $this->getGalleryImageUrl($_image); ?>"
+                 alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>">
+          </div>
+        <?php endif; ?>
+        <?php $i++; endforeach; ?>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#product-gallery" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#product-gallery" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+
   <h5><?php echo $this->__('More Views') ?></h5>
 
   <div class="row">
@@ -70,7 +73,7 @@ $_helper = $this->helper('catalog/output');
         </div>
 
       <?php endif; ?>
-    <?php $i++; endforeach; ?>
+      <?php $i++; endforeach; ?>
   </div>
 <?php endif; ?>
 

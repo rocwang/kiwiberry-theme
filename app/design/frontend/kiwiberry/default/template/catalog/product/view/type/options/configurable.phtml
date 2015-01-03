@@ -5,39 +5,41 @@ $_jsonConfig = $this->getJsonConfig();
 $_renderers = $this->getChild('attr_renderers')->getSortedChildren();
 ?>
 <?php if ($_product->isSaleable() && count($_attributes)): ?>
-  <?php foreach ($_attributes as $_attribute): ?>
-    <?php
-    $_rendered = false;
-    foreach ($_renderers as $_rendererName):
-      $_renderer = $this->getChild('attr_renderers')->getChild($_rendererName);
-      if (method_exists($_renderer, 'shouldRender') && $_renderer->shouldRender($_attribute, $_jsonConfig)):
-      $_renderer->setProduct($_product);
-        $_renderer->setAttributeObj($_attribute);
-        echo $_renderer->toHtml();
-        $_rendered = true;
-        break;
-      endif;
-    endforeach;
+  <div id="sp_config" data-sp-config="<?php echo $this->escapeHtml($_jsonConfig) ?>">
+    <?php foreach ($_attributes as $_attribute): ?>
+      <?php
+      $_rendered = false;
+      foreach ($_renderers as $_rendererName):
+        $_renderer = $this->getChild('attr_renderers')->getChild($_rendererName);
+        if (method_exists($_renderer, 'shouldRender') && $_renderer->shouldRender($_attribute, $_jsonConfig)):
+          $_renderer->setProduct($_product);
+          $_renderer->setAttributeObj($_attribute);
+          echo $_renderer->toHtml();
+          $_rendered = true;
+          break;
+        endif;
+      endforeach;
 
-    if (!$_rendered):
-      ?>
+      if (!$_rendered):
+        ?>
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="attribute<?php echo $_attribute->getAttributeId() ?>">
-          <em>*</em><?php echo $_attribute->getLabel() ?>
-        </label>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="attribute<?php echo $_attribute->getAttributeId() ?>">
+            <em>*</em><?php echo $_attribute->getLabel() ?>
+          </label>
 
-        <div class="col-sm-10">
-          <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]"
-                  id="attribute<?php echo $_attribute->getAttributeId() ?>"
-                  class="required-entry super-attribute-select form-control">
-            <option><?php echo $this->__('Choose an Option...') ?></option>
-          </select>
+          <div class="col-sm-10">
+            <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]"
+                    id="attribute<?php echo $_attribute->getAttributeId() ?>"
+                    class="required-entry super-attribute-select form-control">
+              <option><?php echo $this->__('Choose an Option...') ?></option>
+            </select>
+          </div>
         </div>
-      </div>
 
-    <?php endif; ?>
-  <?php endforeach; ?>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  </div>
 
   <?php echo $this->getChildHtml('after') ?>
 

@@ -5,7 +5,7 @@ $_hasAssociatedProducts = count($_associatedProducts) > 0;
 ?>
 
 <?php if ($this->displayProductStockStatus()): ?>
-  <p>
+  <p class="availability">
     <?php echo $this->helper('catalog')->__('Availability:') ?>
 
     <?php if ($_product->isAvailable() && $_hasAssociatedProducts): ?>
