@@ -6,16 +6,7 @@
 <li<?php if($this->getIsFirst()||$this->getIsLast()): ?> class="<?php if($this->getIsFirst()): ?>first<?php endif; ?><?php if($this->getIsLast()): ?> last<?php endif; ?>"<?php endif; ?> <?php echo $this->getLiParams() ?>>
   <?php echo $this->getBeforeText() ?>
   <a href="<?php echo $this->getLinkUrl() ?>" title="<?php echo $this->getTitle() ?>" <?php echo $this->getAParams() ?>>
-
-    <?php
-    $iconClass = Mage::helper('vr_kiwiberry')->getFaIconClassFromLabel($this->getLabel());
-    if ($iconClass):
-    ?>
-      <i class="fa <?php echo $iconClass ?>"></i>
-    <?php endif ?>
-
     <?php echo $this->getLabel() ?>
-
   </a>
   <?php echo $this->getAfterText() ?>
 </li>
