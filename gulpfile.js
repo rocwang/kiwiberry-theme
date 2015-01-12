@@ -10,14 +10,15 @@ var targets = {
     main  : {
       styles : paths.src + 'less/kiwiberry.less',
       scripts: [ // The last one will be the name of final concatenated file
+        paths.src + 'js/_noconflict.js',
         paths.src + 'js/_pointer_manager.js',
         paths.src + 'js/_product_media_manager.js',
-        paths.src + 'js/_noconflict.js',
         paths.src + 'js/_date_option.js',
         paths.src + 'js/_custom_options.js',
         paths.src + 'js/configurable_swatches/_product-media.js',
         paths.src + 'js/configurable_swatches/_swatches-list.js',
         paths.src + 'js/configurable_swatches/_swatches-product.js',
+        paths.src + 'js/_form_validation.js',
         paths.src + 'js/kiwiberry.js'
       ],
       images : paths.src + 'images/*'

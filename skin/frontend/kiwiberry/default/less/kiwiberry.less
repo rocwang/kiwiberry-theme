@@ -70,3 +70,17 @@ select:not(.form-control) {
     .alert-danger();
   }
 }
+
+// Form validation
+.validation-advice {
+  .help-block();
+
+  .has-success & {
+    color: @state-success-text;
+  }
+
+  .has-error & {
+    color: @state-danger-text;
+  }
+
+}
