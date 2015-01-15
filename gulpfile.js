@@ -6,44 +6,16 @@ var paths = {
 
 var targets = {
   theme: {
-    // Assets of Kiwiberry
-    main  : {
-      styles : paths.src + 'less/kiwiberry.less',
-      scripts: [ // The last one will be the name of final concatenated file
-        paths.src + 'js/_noconflict.js',
-        paths.src + 'js/_pointer_manager.js',
-        paths.src + 'js/_product_media_manager.js',
-        paths.src + 'js/_date_option.js',
-        paths.src + 'js/_custom_options.js',
-        paths.src + 'js/configurable_swatches/_product-media.js',
-        paths.src + 'js/configurable_swatches/_swatches-list.js',
-        paths.src + 'js/configurable_swatches/_swatches-product.js',
-        paths.src + 'js/_form_validation.js',
-        paths.src + 'js/kiwiberry.js'
-      ],
-      images : paths.src + 'images/*'
-    },
-
-    // Vendor assets
-    vendor: {
-      styles : [
-        paths.vendor + 'animate.css/animate.css',
-        paths.vendor + 'card/lib/css/card.css',
-        paths.vendor + 'sweetalert/lib/sweet-alert.css'
-      ],
-      scripts: [
-        paths.vendor + 'jquery/dist/jquery.js',
-        paths.vendor + 'underscore/underscore.js',
-        paths.vendor + 'bootstrap/dist/js/bootstrap.js',
-        paths.vendor + 'imagesloaded/imagesloaded.pkgd.js',
-        paths.vendor + 'card/lib/js/card.js',
-        paths.vendor + 'sweetalert/lib/sweet-alert.js',
-      ],
-      fonts  : [
-        paths.vendor + 'bootstrap/dist/fonts/*',
-        paths.vendor + 'font-awesome/fonts/*'
-      ]
-    },
+    styles : [
+      paths.src + 'less/vendor.less',
+      paths.src + 'less/kiwiberry.less'
+    ],
+    scripts: require(paths.src + 'js/kiwiberry.json'),
+    images : paths.src + 'images/*',
+    fonts  : [
+      paths.vendor + 'bootstrap/dist/fonts/*',
+      paths.vendor + 'font-awesome/fonts/*'
+    ],
 
     basedirDev : './test/',
     basedirDist: './dist/',
@@ -51,31 +23,16 @@ var targets = {
   },
 
   styleGuide: {
-    main: {
-      styles : paths.src + 'less/style_guide.less',
-      scripts: [ // The last one will be the name of final concatenated file
-        paths.src + 'js/style_guide.js'
-      ],
-      images : paths.src + 'images/*'
-    },
-
-    vendor: {
-      styles : [
-        paths.vendor + 'animate.css/animate.css',
-        paths.vendor + 'prism/themes/prism.css'
-      ],
-      scripts: [
-        paths.vendor + 'jquery/dist/jquery.js',
-        paths.vendor + 'bootstrap/dist/js/bootstrap.js',
-        paths.vendor + 'underscore/underscore.js',
-        paths.vendor + 'prism/prism.js',
-        paths.vendor + 'js-beautify/js/lib/beautify-html.js'
-      ],
-      fonts  : [
-        paths.vendor + 'bootstrap/dist/fonts/*',
-        paths.vendor + 'font-awesome/fonts/*'
-      ]
-    },
+    styles : [
+      paths.src + 'less/style_guide_vendor.less',
+      paths.src + 'less/style_guide.less'
+    ],
+    scripts: require(paths.src + 'js/style_guide.json'),
+    images : paths.src + 'images/*',
+    fonts  : [
+      paths.vendor + 'bootstrap/dist/fonts/*',
+      paths.vendor + 'font-awesome/fonts/*'
+    ],
 
     dest: './style_guide/'
   }
@@ -88,6 +45,8 @@ var gulp                = require('gulp'),
     path                = require('path'),
     rimraf              = require('rimraf'),
     sourcemaps          = require('gulp-sourcemaps'),
+    merge               = require('merge-stream'),
+
 
     // CSS plugins
     autoprefixer        = require('gulp-autoprefixer'),
@@ -108,73 +67,59 @@ if (util.env.dist) {
   isProduction = true;
 }
 
-function buildVendorCss(target) {
-  return gulp.src(target.vendor.styles)
-    .pipe(concat('vendor.css'))
-    .pipe(autoprefixer('last 2 version'))
-    //.pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
-    .pipe(isProduction ? cssmin() : util.noop())
-    .pipe(gulp.dest(target.dest + 'css', {
-      cwd: isProduction ? target.basedirDist : target.basedirDev
-    }));
-}
-
-function buildMainCss(target) {
-  return gulp.src(target.main.styles)
-    //.pipe(sourcemaps.init())
+function buildCss(target) {
+  return gulp.src(target.styles)
+    .pipe(sourcemaps.init())
     .pipe(less({
       paths: [
-        './bower_components/bootstrap/less/',
-        './bower_components/font-awesome/less/'
+        paths.vendor
       ]
     }))
-    //.pipe(sourcemaps.write())
+    .on('error', console.error.bind(console))
     .pipe(autoprefixer('last 2 version'))
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? cssmin() : util.noop())
+    .pipe(isProduction ? util.noop() : sourcemaps.write('./'))
     .pipe(gulp.dest(target.dest + 'css', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
     }));
 }
 
-// Vender scripts
-function buildVendorJs(target) {
+function buildJs(target) {
   // Modernizr.js
-  gulp.src(paths.vendor + 'modernizr/modernizr.js')
+  var modernizr = gulp.src(paths.vendor + 'modernizr/modernizr.js')
     .pipe(isProduction ? uglify() : util.noop())
     .pipe(gulp.dest(target.dest + 'js', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
     }));
 
-  return gulp.src(target.vendor.scripts)
-    .pipe(concat('vendor.js'))
-    .pipe(isProduction ? uglify() : util.noop())
-    .pipe(gulp.dest(target.dest + 'js', {
-      cwd: isProduction ? target.basedirDist : target.basedirDev
-    }));
-}
+  var mergedStream = merge(modernizr);
 
-// Custom scripts
-function buildMainJs(target) {
-  var scripts = target.main.scripts;
-  return gulp.src(scripts)
-    .pipe(concat(path.basename(scripts[scripts.length - 1])))
-    .pipe(isProduction ? uglify() : util.noop())
-    .pipe(gulp.dest(target.dest + 'js', {
-      cwd: isProduction ? target.basedirDist : target.basedirDev
-    }));
+  for (var filename in target.scripts) {
+    var stream = gulp.src(target.scripts[filename])
+      .pipe(sourcemaps.init())
+      .pipe(concat(filename))
+      .pipe(isProduction ? uglify() : util.noop())
+      .pipe(isProduction ? util.noop() : sourcemaps.write('./'))
+      .pipe(gulp.dest(target.dest + 'js', {
+        cwd: isProduction ? target.basedirDist : target.basedirDev
+      }));
+    mergedStream.add(stream);
+  }
+
+  return mergedStream;
 }
 
 // Fonts
 function buildFont(target) {
-  return gulp.src(target.vendor.fonts)
+  return gulp.src(target.fonts)
     .pipe(gulp.dest(target.dest + 'fonts', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
     }));
 }
 
 function buildImg(target) {
-  return gulp.src(target.main.images)
+  return gulp.src(target.images)
     .pipe(imagemin())
     .pipe(gulp.dest(target.dest + 'images', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
@@ -203,59 +148,45 @@ function runJekyll(options, cb) {
   });
 }
 
+
 gulp.task('theme:clean', function (cb) {
   clean(targets.theme, cb);
 });
-
-gulp.task('theme:vendor:css', function () {
-  return buildVendorCss(targets.theme);
+gulp.task('theme:css', function () {
+  return buildCss(targets.theme);
 });
-gulp.task('theme:vendor:js', function () {
-  return buildVendorJs(targets.theme);
+gulp.task('theme:js', function () {
+  return buildJs(targets.theme);
 });
-gulp.task('theme:vendor:font', function () {
+gulp.task('theme:font', function () {
   return buildFont(targets.theme);
 });
-
-gulp.task('theme:main:css', function () {
-  return buildMainCss(targets.theme);
-});
-gulp.task('theme:main:js', function () {
-  return buildMainJs(targets.theme);
-});
-gulp.task('theme:main:img', function () {
+gulp.task('theme:img', function () {
   return buildImg(targets.theme);
 });
+
 
 gulp.task('style-guide:clean', function (cb) {
   clean(targets.styleGuide, cb);
 });
-
-gulp.task('style-guide:vendor:css', function () {
-  return buildVendorCss(targets.styleGuide);
+gulp.task('style-guide:css', function () {
+  return buildCss(targets.styleGuide);
 });
-gulp.task('style-guide:vendor:js', function () {
-  return buildVendorJs(targets.styleGuide);
+gulp.task('style-guide:js', function () {
+  return buildJs(targets.styleGuide);
 });
-gulp.task('style-guide:vendor:font', function () {
+gulp.task('style-guide:font', function () {
   return buildFont(targets.styleGuide);
 });
-
-gulp.task('style-guide:main:css', function () {
-  return buildMainCss(targets.styleGuide);
-});
-gulp.task('style-guide:main:js', function () {
-  return buildMainJs(targets.styleGuide);
-});
-gulp.task('style-guide:main:img', function () {
+gulp.task('style-guide:img', function () {
   return buildImg(targets.styleGuide);
 });
 
 // Watch task
 gulp.task('watch', ['theme'], function () {
-  gulp.watch(paths.src + 'less/**/*', ['theme:main:css']);
-  gulp.watch(targets.theme.main.scripts, ['theme:main:js']);
-  gulp.watch(targets.theme.main.images, ['theme:main:img']);
+  gulp.watch(paths.src + 'less/**/*', ['theme:css']);
+  gulp.watch(targets.theme.scripts.kiwiberry, ['theme:js']);
+  gulp.watch(targets.theme.images, ['theme:img']);
 
   // Create LiveReload server
   var server = require('gulp-livereload');
@@ -270,9 +201,9 @@ gulp.task('watch', ['theme'], function () {
 });
 
 gulp.task('watch:style-guide', ['style-guide'], function (cb) {
-  gulp.watch(paths.src + 'less/**/*', ['style-guide:main:css']);
-  gulp.watch(targets.styleGuide.main.scripts, ['style-guide:main:js']);
-  gulp.watch(targets.styleGuide.main.images, ['style-guide:main:img']);
+  gulp.watch(paths.src + 'less/**/*', ['style-guide:css']);
+  gulp.watch(targets.styleGuide.scripts.vendor, ['style-guide:js']);
+  gulp.watch(targets.styleGuide.images, ['style-guide:img']);
 
   // Create LiveReload server
   var server = require('gulp-livereload');
@@ -288,13 +219,10 @@ gulp.task('watch:style-guide', ['style-guide'], function (cb) {
 
 // Build the theme
 gulp.task('theme', [
-  'theme:vendor:css',
-  'theme:vendor:js',
-  'theme:vendor:font',
-
-  'theme:main:css',
-  'theme:main:js',
-  'theme:main:img'
+  'theme:css',
+  'theme:js',
+  'theme:font',
+  'theme:img'
 ], function (cb) {
   if (isProduction) {
     require('child_process').execFile('./packaging.sh', function (error, stdout, stderr) {
@@ -312,13 +240,10 @@ gulp.task('theme', [
 
 // Build the style guide
 gulp.task('style-guide', [
-  'style-guide:vendor:css',
-  'style-guide:vendor:js',
-  'style-guide:vendor:font',
-
-  'style-guide:main:css',
-  'style-guide:main:js',
-  'style-guide:main:img'
+  'style-guide:css',
+  'style-guide:js',
+  'style-guide:font',
+  'style-guide:img'
 ], function (cb) {
   runJekyll(['build'], cb);
 });

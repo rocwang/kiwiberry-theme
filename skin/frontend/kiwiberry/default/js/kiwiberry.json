@@ -1,0 +1,22 @@
+{
+    "vendor.js": [
+        "bower_components/jquery/dist/jquery.js",
+        "bower_components/underscore/underscore.js",
+        "bower_components/bootstrap/dist/js/bootstrap.js",
+        "bower_components/imagesloaded/imagesloaded.pkgd.js",
+        "bower_components/card/lib/js/card.js",
+        "bower_components/sweetalert/lib/sweet-alert.js"
+    ],
+    "kiwiberry.js": [
+        "skin/frontend/kiwiberry/default/js/_noconflict.js",
+        "skin/frontend/kiwiberry/default/js/_pointer_manager.js",
+        "skin/frontend/kiwiberry/default/js/_product_media_manager.js",
+        "skin/frontend/kiwiberry/default/js/_date_option.js",
+        "skin/frontend/kiwiberry/default/js/_custom_options.js",
+        "skin/frontend/kiwiberry/default/js/configurable_swatches/_product-media.js",
+        "skin/frontend/kiwiberry/default/js/configurable_swatches/_swatches-list.js",
+        "skin/frontend/kiwiberry/default/js/configurable_swatches/_swatches-product.js",
+        "skin/frontend/kiwiberry/default/js/_form_validation.js",
+        "skin/frontend/kiwiberry/default/js/app.js"
+    ]
+}

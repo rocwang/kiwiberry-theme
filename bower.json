@@ -1,20 +1,20 @@
 {
-  "name": "kiwiberry",
-  "version": "0.1.0",
-  "author": "Roc <me@rocwang.me>",
-  "private": true,
-  "devDependencies": {
-    "card": "^0.1",
-    "animate.css": "^3",
-    "font-awesome": "^4",
-    "jquery": "^2",
-    "modernizr": "^2",
-    "underscore": "^1",
-    "livereload": "^2",
-    "prism": "git@github.com:LeaVerou/prism.git#gh-pages",
-    "js-beautify": "^1",
-    "bootstrap": "^3",
-    "sweetalert": "^0.2",
-    "imagesloaded": "^3.1.8"
-  }
+    "name"           : "kiwiberry",
+    "version"        : "0.1.0",
+    "author"         : "Roc <me@rocwang.me>",
+    "private"        : true,
+    "devDependencies": {
+        "card"        : "0.x",
+        "animate.css" : "3.x",
+        "font-awesome": "4.x",
+        "jquery"      : "2.x",
+        "modernizr"   : "2.x",
+        "underscore"  : "1.x",
+        "livereload"  : "2.x",
+        "prism"       : "git@github.com:LeaVerou/prism.git#gh-pages",
+        "js-beautify" : "1.x",
+        "bootstrap"   : "3.x",
+        "sweetalert"  : "0.x",
+        "imagesloaded": "3.x"
+    }
 }

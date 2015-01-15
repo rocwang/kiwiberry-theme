@@ -1,86 +1,23 @@
-@import "font-awesome.less";
-@import "include/bootstrap.less";
-@import "include/header.less";
-@import "include/homepage.less";
+// Scaffolding
+@import "./variables.less";
+@import "bootstrap/bootstrap.less";
 
-.related-product {
-  margin-left: 25px;
-}
+// Element
+@import "element/form.less";
+@import "element/typegraphy.less";
 
-input[type="checkbox"].cb-related-product {
-  margin-top: 30px;
-}
+// Component
+@import "component/alert.less";
+@import "component/footer.less";
+@import "component/header.less";
+@import "component/popover.less";
+@import "component/swatch.less";
 
-.nowrap {
-  white-space: nowrap;
-}
+// Module
+@import "module/cart.less";
+@import "module/related_product.less";
+@import "module/sales.less";
 
-.input-group-qty {
-  width: 110px;
-}
+// Page
+@import "page/cms_index_index.less";
 
-// For "CVV What is this?"
-.popover {
-  max-width: 500px;
-}
-
-// Order view table
-.totals-label {
-  text-align: right;
-}
-
-// Set "select" default style
-select:not(.form-control) {
-  .form-control();
-}
-
-// Configurable swatches
-.configurable-swatch-list .selected img {
-  border: 1px solid @brand-primary;
-}
-
-.not-available {
-  .opacity(0.2);
-}
-
-// Messages
-.messages {
-  .list-unstyled();
-
-  ul {
-    .list-unstyled();
-    li {
-      .alert();
-    }
-  }
-
-  .success-msg li {
-    .alert-success();
-  }
-
-  .notice-msg li {
-    .alert-info();
-  }
-
-  .warning-msg li {
-    .alert-warning();
-  }
-
-  .error-msg li {
-    .alert-danger();
-  }
-}
-
-// Form validation
-.validation-advice {
-  .help-block();
-
-  .has-success & {
-    color: @state-success-text;
-  }
-
-  .has-error & {
-    color: @state-danger-text;
-  }
-
-}

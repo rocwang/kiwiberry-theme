@@ -1,0 +1,18 @@
+// Set "select" default style
+select:not(.form-control) {
+  .form-control();
+}
+
+// Form validation
+.validation-advice {
+  .help-block();
+
+  .has-success & {
+    color: @state-success-text;
+  }
+
+  .has-error & {
+    color: @state-danger-text;
+  }
+
+}
