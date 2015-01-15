@@ -46,6 +46,7 @@ var gulp                = require('gulp'),
     rimraf              = require('rimraf'),
     sourcemaps          = require('gulp-sourcemaps'),
     merge               = require('merge-stream'),
+    livereload          = require('gulp-livereload'),
 
 
     // CSS plugins
@@ -184,25 +185,24 @@ gulp.task('style-guide:img', function () {
 
 // Watch task
 gulp.task('watch', ['theme'], function () {
+
+  livereload.listen({host: null});
+
   gulp.watch(paths.src + 'less/**/*', ['theme:css']);
-  gulp.watch(targets.theme.scripts.kiwiberry, ['theme:js']);
+  gulp.watch(targets.theme.scripts['kiwiberry.js'], ['theme:js']);
   gulp.watch(targets.theme.images, ['theme:img']);
-
-  // Create LiveReload server
-  var server = require('gulp-livereload');
-
   gulp.watch([
-    targets.theme.dest + '**/*',
+    targets.theme.basedirDev + targets.theme.dest + '**/*.{css,js,jpg,png,gif}',
     'app/design/frontend/kiwiberry/**/*.phtml',
-    'app/design/frontend/kiwiberry/**/*.xml',
-  ]).on('change', server.changed);
+    'app/design/frontend/kiwiberry/**/*.xml'
+  ]).on('change', livereload.changed);
 
-  server.listen();
 });
 
 gulp.task('watch:style-guide', ['style-guide'], function (cb) {
+
   gulp.watch(paths.src + 'less/**/*', ['style-guide:css']);
-  gulp.watch(targets.styleGuide.scripts.vendor, ['style-guide:js']);
+  gulp.watch(targets.styleGuide.scripts['vendor.js'], ['style-guide:js']);
   gulp.watch(targets.styleGuide.images, ['style-guide:img']);
 
   // Create LiveReload server
@@ -215,15 +215,12 @@ gulp.task('watch:style-guide', ['style-guide'], function (cb) {
   server.listen();
 
   runJekyll(['serve', '-w', '--skip-initial-build'], cb);
+
 });
 
 // Build the theme
-gulp.task('theme', [
-  'theme:css',
-  'theme:js',
-  'theme:font',
-  'theme:img'
-], function (cb) {
+gulp.task('theme', ['theme:css', 'theme:js', 'theme:font', 'theme:img'], function (cb) {
+
   if (isProduction) {
     require('child_process').execFile('./packaging.sh', function (error, stdout, stderr) {
       console.log("packaging.sh stdout:\n" + stdout);
@@ -236,20 +233,15 @@ gulp.task('theme', [
   } else {
     cb();
   }
+
 });
 
 // Build the style guide
-gulp.task('style-guide', [
-  'style-guide:css',
-  'style-guide:js',
-  'style-guide:font',
-  'style-guide:img'
-], function (cb) {
+gulp.task('style-guide', ['style-guide:css', 'style-guide:js', 'style-guide:font', 'style-guide:img'], function (cb) {
+
   runJekyll(['build'], cb);
+
 });
 
 // Default task
-gulp.task('default', [
-  'theme',
-  'style-guide'
-]);
+gulp.task('default', ['theme', 'style-guide']);
