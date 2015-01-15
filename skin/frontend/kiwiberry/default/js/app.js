@@ -13,11 +13,6 @@ jQuery(function ($) {
     window.location.href = this.value;
   });
 
-  // Newsletter subscription
-  if (document.getElementById('newsletter-validate-detail')) {
-    new VarienForm('newsletter-validate-detail');
-  }
-
   // Request confirm before going to the link
   // e.g. when removing product compare item
   $('.js-confirm').click(function (e) {

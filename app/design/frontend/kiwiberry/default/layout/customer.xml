@@ -68,13 +68,6 @@ Supported layout update handles (special):
                 <a/>
             </action>
         </reference>
-        <reference name="footer_links2">
-            <action method="addLink" translate="label title" module="catalog">
-                <label>My Account</label>
-                <url helper="customer/getAccountUrl"/>
-                <title>My Account</title>
-            </action>
-        </reference>
     </default>
 
     <!--

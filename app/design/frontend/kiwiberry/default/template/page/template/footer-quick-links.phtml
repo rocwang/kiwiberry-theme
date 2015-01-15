@@ -10,7 +10,7 @@
     <h5><?php echo $this->__($this->getTitle()); ?></h5>
   <?php endif; ?>
 
-  <ul class="list-unstyled"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
+  <ul class="footer-quick-links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
     <?php foreach($_links as $_link): ?>
       <?php if ($_link instanceof Mage_Core_Block_Abstract):?>
         <?php echo $_link->toHtml() ?>

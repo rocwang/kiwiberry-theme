@@ -1,22 +1,33 @@
 <footer>
 
-  <div class="row">
-    <div class="col-sm-2">
+  <div class="footer-row">
+    <div class="footer-col-cms-links">
       <?php echo $this->getChildHtml('cms_footer_links') ?>
     </div>
-    <div class="col-sm-2">
+    <div class="footer-col-quick-links">
       <?php echo $this->getChildHtml('footer_links') ?>
     </div>
-    <div class="col-sm-2">
-      <?php echo $this->getChildHtml('footer_links2') ?>
-    </div>
-    <div class="col-sm-2">
+
+    <div class="footer-col-sns">
       <?php echo $this->getChildHtml('cms_footer_links_sm') ?>
     </div>
-    <div class="col-sm-4">
+
+    <div class="footer-col-newsletter">
       <?php echo $this->getChildHtml('newsletter') ?>
     </div>
   </div>
 
-  <address><?php echo $this->getCopyright() ?></address>
+  <div class="footer-row">
+    <!-- Payment Support Icons -->
+    <div class="footer-col-payment">
+      <?php echo $this->getChildHtml('cms_footer_links_payment') ?>
+    </div>
+
+    <div class="footer-col-copyright">
+      <address><?php echo $this->getCopyright() ?></address>
+    </div>
+  </div>
+
+  <!-- Store Switch -->
+
 </footer>
