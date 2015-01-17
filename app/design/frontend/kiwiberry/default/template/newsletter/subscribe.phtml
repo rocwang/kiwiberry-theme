@@ -1,11 +1,12 @@
 <form id="newsletter-validate-detail" action="<?php echo $this->getFormActionUrl() ?>" method="post" role="form">
   <div class="form-group">
-    <label for="newsletter"><?php echo $this->__('Sign Up for Our Newsletter:') ?></label>
+    <label class="label-subscription" for="newsletter"><?php echo $this->__('Sign Up for Our Newsletter:') ?></label>
 
     <div class="input-group">
       <input type="email"
              autocapitalize="off"
              autocorrect="off"
+             autocomplete="email"
              spellcheck="false"
              name="email"
              id="newsletter"

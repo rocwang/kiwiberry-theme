@@ -1008,5 +1008,8 @@ jQuery(function ($) {
       window.location.reload();
     }
   });
+
+  // Tooltips
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
