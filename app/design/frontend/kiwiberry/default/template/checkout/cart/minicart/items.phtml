@@ -11,7 +11,7 @@ if (empty($_cartQty)) {
 }
 ?>
 
-<div class="panel panel-default">
+<div class="panel panel-default panel-minicart js-minicart-wrapper">
 
   <?php $_items = $this->getRecentItems() ?>
   <?php if (count($_items)): ?>
@@ -23,39 +23,33 @@ if (empty($_cartQty)) {
     <div id="minicart-error-message" class="minicart-message"></div>
     <div id="minicart-success-message" class="minicart-message"></div>
 
-    <table id="cart-sidebar" class="table minicart-table">
+    <ul id="cart-sidebar" class="list-group" data-formkey="<?php echo $this->getFormKey(); ?>">
       <?php foreach ($_items as $_item): ?>
         <?php echo $this->getItemHtml($_item) ?>
       <?php endforeach; ?>
 
-      <tr class="info minicart-subtotal">
+      <li class="list-group-item minicart-subtotal">
         <?php if ($this->canApplyMsrp()): ?>
 
-          <td colspan="2">
-            <?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?>
-          </td>
+          <?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?>
 
         <?php else: ?>
 
-          <th>
-            <?php echo $this->__('Cart Subtotal') ?>
-          </th>
+          <?php echo $this->__('Cart Subtotal:') ?>
 
-          <td>
-            <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+          <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
 
-            <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
-              <br/>
-              (
-              <?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?>
-              <?php echo Mage::helper('tax')->getIncExcText(true) ?>
-              )
-            <?php endif; ?>
-          </td>
+          <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+            <br/>
+            (
+            <?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?>
+            <?php echo Mage::helper('tax')->getIncExcText(true) ?>
+            )
+          <?php endif; ?>
 
         <?php endif; ?>
-      </tr>
-    </table>
+      </li>
+    </ul>
 
     <?php echo $this->getChildHtml('cart_promotion') ?>
 

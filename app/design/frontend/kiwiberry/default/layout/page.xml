@@ -45,6 +45,10 @@
                 <action method="addJs">
                     <script>mage/cookies.js</script>
                 </action>
+                <action method="addItem">
+                    <type>skin_js</type>
+                    <name>js/minicart.js</name>
+                </action>
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
@@ -78,9 +82,11 @@
             <block type="core/messages" name="messages" as="messages"/>
 
             <block type="page/html_header" name="header" as="header">
-                <block type="page/template_links" name="top.links" as="topLinks"/>
-                <block type="page/switch" name="store_language" as="store_language"
-                       template="page/switch/languages.phtml"/>
+                <block type="page/template_links" name="top.links" as="topLinks"
+                       template="page/template/header-top-links.phtml">
+                    <block type="page/html_welcome" name="welcome" as="welcome"/>
+                </block>
+
                 <block type="core/text_list" name="top.menu" as="topMenu" translate="label">
                     <label>Navigation Bar</label>
                     <block type="page/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml">
@@ -88,13 +94,13 @@
                                template="page/html/topmenu/renderer.phtml"/>
                     </block>
                 </block>
+
                 <block type="page/html_wrapper" name="top.container" as="topContainer" translate="label">
                     <label>Page Header</label>
                     <action method="setElementClass">
                         <value>top-container</value>
                     </action>
                 </block>
-                <block type="page/html_welcome" name="welcome" as="welcome"/>
             </block>
 
             <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
@@ -127,12 +133,8 @@
                 </block>
                 <block type="page/switch" name="store_switcher" as="store_switcher" after="*"
                        template="page/switch/stores.phtml"/>
-                <block type="page/template_links" name="footer_links" as="footer_links"
-                       template="page/template/footer-quick-links.phtml">
-                    <action method="setTitle">
-                        <title>Quick Links</title>
-                    </action>
-                </block>
+                <block type="page/switch" name="store_language" as="store_language"
+                       template="page/switch/languages.phtml"/>
             </block>
 
             <block type="core/text_list" name="before_body_end" as="before_body_end" translate="label">

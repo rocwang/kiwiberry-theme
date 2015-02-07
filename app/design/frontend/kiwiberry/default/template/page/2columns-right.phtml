@@ -10,27 +10,35 @@
 <!--[if IE 9 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js"> <!--<![endif]-->
 <head>
-<?php echo $this->getChildHtml('head') ?>
+  <?php echo $this->getChildHtml('head') ?>
 </head>
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
-<?php echo $this->getChildHtml('after_body_start') ?>
-<div class="container">
-  <?php echo $this->getChildHtml('global_cookie_notice') ?>
-  <?php echo $this->getChildHtml('global_notices') ?>
-  <?php echo $this->getChildHtml('global_messages') ?>
+
+  <?php echo $this->getChildHtml('after_body_start') ?>
+
+  <div class="container container-notice">
+    <?php echo $this->getChildHtml('global_cookie_notice') ?>
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <?php echo $this->getChildHtml('global_messages') ?>
+  </div>
+
   <?php echo $this->getChildHtml('header') ?>
-  <?php echo $this->getChildHtml('breadcrumbs') ?>
-  <div class="row">
-    <div class="col-sm-9">
-      <?php echo $this->getChildHtml('content') ?>
-    </div>
-    <div class="col-sm-3">
-      <?php echo $this->getChildHtml('right') ?>
+
+  <div class="container container-body">
+    <?php echo $this->getChildHtml('breadcrumbs') ?>
+    <div class="row">
+      <div class="col-sm-9">
+        <?php echo $this->getChildHtml('content') ?>
+      </div>
+      <div class="col-sm-3">
+        <?php echo $this->getChildHtml('right') ?>
+      </div>
     </div>
   </div>
+
   <?php echo $this->getChildHtml('footer') ?>
-</div>
-<?php echo $this->getChildHtml('before_body_end') ?>
-<?php echo $this->getAbsoluteFooter() ?>
+  <?php echo $this->getChildHtml('before_body_end') ?>
+  <?php echo $this->getAbsoluteFooter() ?>
+
 </body>
 </html>

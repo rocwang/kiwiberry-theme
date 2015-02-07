@@ -1,0 +1,21 @@
+.navbar-search {
+  margin-top    : 0;
+  margin-bottom : 0;
+  border-bottom : none;
+
+  @media (min-width : @grid-float-breakpoint) {
+    position      : absolute;
+    top           : -45px;
+    right    : @grid-gutter-width / 2 - 1px;
+    padding-left  : 0;
+    padding-right : 0;
+
+    .input-group > .form-control {
+      width : 200px;
+    }
+  }
+}
+
+.btn-search-title {
+  .hidden-xs();
+}

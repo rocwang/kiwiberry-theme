@@ -16,6 +16,7 @@ var targets = {
       paths.vendor + 'bootstrap/dist/fonts/*',
       paths.vendor + 'font-awesome/fonts/*'
     ],
+    icons  : paths.src + 'icons/*.svg',
 
     basedirDev : './test/',
     basedirDist: './dist/',
@@ -47,6 +48,7 @@ var gulp                = require('gulp'),
     sourcemaps          = require('gulp-sourcemaps'),
     merge               = require('merge-stream'),
     livereload          = require('gulp-livereload'),
+    plumber             = require('gulp-plumber'),
 
 
     // CSS plugins
@@ -61,6 +63,7 @@ var gulp                = require('gulp'),
 
     // Image plugins
     imagemin            = require('gulp-imagemin');
+svgSprite = require('gulp-svg-sprite');
 
 // Allows gulp --dist to be run for production compilation
 var isProduction = false;
@@ -68,8 +71,17 @@ if (util.env.dist) {
   isProduction = true;
 }
 
+var onError = function (err) {
+  util.beep();
+  console.log(err);
+  this.emit('end');
+};
+
 function buildCss(target) {
   return gulp.src(target.styles)
+    .pipe(plumber({
+      errorHandler: onError
+    }))
     .pipe(sourcemaps.init())
     .pipe(less({
       paths: [
@@ -89,6 +101,9 @@ function buildCss(target) {
 function buildJs(target) {
   // Modernizr.js
   var modernizr = gulp.src(paths.vendor + 'modernizr/modernizr.js')
+    .pipe(plumber({
+      errorHandler: onError
+    }))
     .pipe(isProduction ? uglify() : util.noop())
     .pipe(gulp.dest(target.dest + 'js', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
@@ -98,6 +113,9 @@ function buildJs(target) {
 
   for (var filename in target.scripts) {
     var stream = gulp.src(target.scripts[filename])
+      .pipe(plumber({
+        errorHandler: onError
+      }))
       .pipe(sourcemaps.init())
       .pipe(concat(filename))
       .pipe(isProduction ? uglify() : util.noop())
@@ -114,6 +132,9 @@ function buildJs(target) {
 // Fonts
 function buildFont(target) {
   return gulp.src(target.fonts)
+    .pipe(plumber({
+      errorHandler: onError
+    }))
     .pipe(gulp.dest(target.dest + 'fonts', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
     }));
@@ -121,11 +142,34 @@ function buildFont(target) {
 
 function buildImg(target) {
   return gulp.src(target.images)
+    .pipe(plumber({
+      errorHandler: onError
+    }))
     .pipe(imagemin())
     .pipe(gulp.dest(target.dest + 'images', {
       cwd: isProduction ? target.basedirDist : target.basedirDev
     }));
 }
+
+function buildIcon(target) {
+  return gulp.src(target.icons)
+    .pipe(plumber({
+      errorHandler: onError
+    }))
+    .pipe(svgSprite({
+      mode: {
+        symbol: {
+          dest   : '.',
+          sprite : 'icons.svg',
+          example: true
+        }
+      }
+    }))
+    .pipe(gulp.dest(target.dest + 'images', {
+      cwd: isProduction ? target.basedirDist : target.basedirDev
+    }));
+}
+
 
 function clean(target, cb) {
   rimraf(target.dest, cb);
@@ -165,6 +209,9 @@ gulp.task('theme:font', function () {
 gulp.task('theme:img', function () {
   return buildImg(targets.theme);
 });
+gulp.task('theme:icon', function () {
+  return buildIcon(targets.theme);
+});
 
 
 gulp.task('style-guide:clean', function (cb) {
@@ -191,6 +238,7 @@ gulp.task('watch', ['theme'], function () {
   gulp.watch(paths.src + 'less/**/*', ['theme:css']);
   gulp.watch(targets.theme.scripts['kiwiberry.js'], ['theme:js']);
   gulp.watch(targets.theme.images, ['theme:img']);
+  gulp.watch(targets.theme.icons, ['theme:icon']);
   gulp.watch([
     targets.theme.basedirDev + targets.theme.dest + '**/*.{css,js,jpg,png,gif}',
     'app/design/frontend/kiwiberry/**/*.phtml',
@@ -219,7 +267,7 @@ gulp.task('watch:style-guide', ['style-guide'], function (cb) {
 });
 
 // Build the theme
-gulp.task('theme', ['theme:css', 'theme:js', 'theme:font', 'theme:img'], function (cb) {
+gulp.task('theme', ['theme:css', 'theme:js', 'theme:font', 'theme:img', 'theme:icon'], function (cb) {
 
   if (isProduction) {
     require('child_process').execFile('./packaging.sh', function (error, stdout, stderr) {

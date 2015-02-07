@@ -5,16 +5,24 @@
  * @see Mage_Page_Block_Switch
  */
 ?>
-<?php if(count($this->getStores())>1): ?>
-<form class="navbar-form navbar-left" role="language">
-  <div class="form-group">
-    <label for="select_language"><i class="fa fa-language"></i></label>
-    <select id="select_language" class="form-control js-change-location" title="<?php echo $this->__('Language') ?>">
-    <?php foreach ($this->getStores() as $_lang): ?>
-        <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' selected="selected"' : '' ?>
-        <option value="<?php echo $_lang->getCurrentUrl() ?>"<?php echo $_selected ?>><?php echo $this->escapeHtml($_lang->getName()) ?></option>
-    <?php endforeach; ?>
-    </select>
+<?php if (count($this->getStores()) > 1): ?>
+  <div class="language-switcher btn-group btn-group-sm dropup">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('language') ?>
+      <span class="title"><?php echo $this->__('Language') ?></span>
+      <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu" role="menu">
+      <?php foreach ($this->getStores() as $_lang): ?>
+
+        <li <?php if ($_lang->getId() == $this->getCurrentStoreId()): ?>class="active"<?php endif ?>>
+          <a href="<?php echo $_lang->getCurrentUrl() ?>">
+            <?php echo $this->escapeHtml($_lang->getName()) ?>
+          </a>
+        </li>
+
+      <?php endforeach; ?>
+    </ul>
   </div>
-</form>
 <?php endif; ?>

@@ -3,42 +3,81 @@
  * @var Mage_Page_Block_Html_Header $this
  */
 ?>
+<header>
+  <div class="container clearfix">
+
+    <?php ob_start() ?>
+    <a class="logo-link" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
+      <strong class="sr-only"><?php echo $this->getLogoAlt() ?></strong>
+      <img class="logo" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>">
+    </a>
+    <?php $logoHtml = ob_get_clean() ?>
+
+    <?php if ($this->getIsHomePage()) : ?>
+      <h1 class="logo-container"><?php echo $logoHtml ?></h1>
+    <?php else: ?>
+      <div class="logo-container"><?php echo $logoHtml ?></div>
+    <?php endif ?>
+
+    <?php echo $this->getAdditionalHtml() ?>
+
+  </div>
+</header>
+
 <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-        <span class="sr-only">Toggle Account</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
 
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-2">
-        <span class="sr-only">Toggle Category</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+      <div class="btn-group btn-group-menu" role="group">
+        <div class="btn-group btn-group-catalog" role="group">
+          <button type="button"
+                  class="btn btn-primary btn-catalog"
+                  data-toggle="collapse"
+                  data-target="#nav-catalog"
+                  aria-controls="nav-catalog"
+                  aria-expanded="false"
+            >
+            <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('store') ?>
+            <span class="btn-title"><?php echo $this->__('Category') ?></span>
+            <span class="caret"></span>
+          </button>
+        </div>
 
-      <a class="navbar-brand" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
-        <strong class="sr-only"><?php echo $this->getLogoAlt() ?></strong>
-        <img class="logo" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" />
-      </a>
-      <p class="navbar-text"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></p>
+        <div class="btn-group" role="group">
+          <button type="button"
+                  class="btn btn-primary btn-account dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-expanded="false"
+            >
+            <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('user') ?>
+            <span class="btn-title"><?php echo $this->__('My Account') ?></span>
+            <span class="caret"></span>
+          </button>
+
+          <?php echo $this->getChildHtml('topLinks') ?>
+        </div>
+
+        <?php echo $this->getChildHtml('minicart_head') ?>
+
+        <div class="btn-group" role="group">
+          <a href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl() ?>"
+             class="btn btn-primary btn-header-checkout"
+            >
+            <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('cashier') ?>
+            <span class="btn-title"><?php echo $this->__('Checkout') ?></span>
+          </a>
+        </div>
+      </div>
+
     </div>
 
-    <div class="collapse navbar-collapse" id="navbar-collapse-2">
-      <?php echo $this->getChildHtml('topLinks') ?>
-      <?php echo $this->getChildHtml('store_language') ?>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-category" id="navbar-collapse">
+    <div class="collapse navbar-collapse" id="nav-catalog">
       <?php echo $this->getChildHtml('topMenu') ?>
-      <?php echo $this->getChildHtml('topSearch') ?>
     </div>
+
+    <?php echo $this->getChildHtml('topSearch') ?>
+
   </div>
 </nav>
-
 <?php echo $this->getChildHtml('topContainer'); ?>

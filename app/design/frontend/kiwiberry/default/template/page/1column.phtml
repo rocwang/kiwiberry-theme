@@ -16,17 +16,22 @@
 
   <?php echo $this->getChildHtml('after_body_start') ?>
 
-  <div class="container">
+  <div class="container container-notice">
     <?php echo $this->getChildHtml('global_cookie_notice') ?>
     <?php echo $this->getChildHtml('global_notices') ?>
     <?php echo $this->getChildHtml('global_messages') ?>
-    <?php echo $this->getChildHtml('header') ?>
-    <?php echo $this->getChildHtml('breadcrumbs') ?>
-    <?php echo $this->getChildHtml('content') ?>
-    <?php echo $this->getChildHtml('footer') ?>
   </div>
 
+  <?php echo $this->getChildHtml('header') ?>
+
+  <div class="container container-body">
+    <?php echo $this->getChildHtml('breadcrumbs') ?>
+    <?php echo $this->getChildHtml('content') ?>
+  </div>
+
+  <?php echo $this->getChildHtml('footer') ?>
   <?php echo $this->getChildHtml('before_body_end') ?>
   <?php echo $this->getAbsoluteFooter() ?>
+
 </body>
 </html>

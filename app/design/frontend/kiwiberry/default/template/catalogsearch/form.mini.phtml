@@ -1,12 +1,18 @@
 <?php
 /* @var $this Mage_Core_Block_Template */
 /* @var $catalogSearchHelper Mage_Catalogsearch_Helper_Data */
-$catalogSearchHelper =  $this->helper('catalogsearch');
+$catalogSearchHelper = $this->helper('catalogsearch');
 ?>
-<form id="search_mini_form" class="navbar-form navbar-right" role="search" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+<form id="search_mini_form"
+      class="navbar-search navbar-form"
+      role="search"
+      action="<?php echo $catalogSearchHelper->getResultUrl() ?>"
+      method="get">
   <div class="form-group">
     <div class="input-group">
+
       <label for="search" class="sr-only"><?php echo $this->__('Search:') ?></label>
+
       <input
         id="search"
         class="form-control"
@@ -14,14 +20,27 @@ $catalogSearchHelper =  $this->helper('catalogsearch');
         type="text"
         name="<?php echo $catalogSearchHelper->getQueryParamName() ?>"
         value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>"
-        maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>"
+        maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength(); ?>"
         data-suggest-url="<?php echo $catalogSearchHelper->getSuggestUrl() ?>"
+        required
         >
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit" title="<?php echo $this->__('Search') ?>">
-          <i class="fa fa-search"></i>
+
+      <div class="input-group-btn">
+        <button class="btn btn-primary" type="submit" title="<?php echo $this->__('Search') ?>">
+          <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('search') ?>
+          <span class="btn-search-title"><?php echo $this->__('Search') ?></span>
         </button>
-      </span>
+
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+          <li><a href="<?php echo Mage::helper('catalogsearch')->getSearchTermUrl() ?>">Popular Search Terms</a></li>
+          <li><a href="<?php echo Mage::helper('catalogsearch')->getAdvancedSearchUrl() ?>">Advanced Search</a></li>
+        </ul>
+      </div>
+
     </div>
   </div>
   <div id="search_autocomplete" class="search-autocomplete"></div>

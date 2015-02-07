@@ -1,9 +1,23 @@
 <ul class="footer-payment-icons">
-  <li><i class="fa fa-lg fa-cc-amex"></i></li>
-  <li><i class="fa fa-lg fa-cc-discover"></i></li>
-  <li><i class="fa fa-lg fa-cc-mastercard"></i></li>
-  <li><i class="fa fa-lg fa-cc-paypal"></i></li>
-  <li><i class="fa fa-lg fa-cc-stripe"></i></li>
-  <li><i class="fa fa-lg fa-cc-visa"></i></li>
-  <li><i class="fa fa-lg fa-google-wallet"></i></li>
+  <li data-toggle="tooltip" data-placement="top" title="American Express">
+    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('cc-amex') ?>
+  </li>
+  <li data-toggle="tooltip" data-placement="top" title="Discover">
+    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('cc-discover') ?>
+  </li>
+  <li data-toggle="tooltip" data-placement="top" title="Master Card">
+    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('cc-mastercard') ?>
+  </li>
+  <li data-toggle="tooltip" data-placement="top" title="Stripe">
+    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('cc-stripe') ?>
+  </li>
+  <li data-toggle="tooltip" data-placement="top" title="Visa">
+    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('cc-visa') ?>
+  </li>
+  <li data-toggle="tooltip" data-placement="top" title="Paypal">
+    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('paypal') ?>
+  </li>
+  <li data-toggle="tooltip" data-placement="top" title="Google Wallet">
+    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('google-wallet') ?>
+  </li>
 </ul>

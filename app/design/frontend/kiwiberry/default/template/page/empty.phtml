@@ -14,12 +14,16 @@
   <?php echo $this->getChildHtml('head') ?>
 </head>
 <body class="page-empty <?php echo $this->getBodyClass() ? $this->getBodyClass() : '' ?>">
-<div class="container">
+
   <?php echo $this->getChildHtml('after_body_start') ?>
-  <?php echo $this->getChildHtml('global_messages') ?>
-  <?php echo $this->getChildHtml('content') ?>
+
+  <div class="container container-body">
+    <?php echo $this->getChildHtml('global_messages') ?>
+    <?php echo $this->getChildHtml('content') ?>
+  </div>
+
   <?php echo $this->getChildHtml('before_body_end') ?>
-</div>
-<?php echo $this->getAbsoluteFooter() ?>
+  <?php echo $this->getAbsoluteFooter() ?>
+
 </body>
 </html>
