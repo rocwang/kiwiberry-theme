@@ -59,7 +59,6 @@ Default layout, loads most of the pages
                     <block>bundle/catalog_product_price</block>
                     <template>bundle/catalog/product/price.phtml</template>
                 </action>
-                <action method="setColumnCount"><count>6</count></action>
             </block>
         </reference>
     </cms_index_index>

@@ -1,7 +1,47 @@
 .related-product {
-  margin-left: 25px;
+  margin-left : 25px;
 }
 
 input[type="checkbox"].cb-related-product {
-  margin-top: 30px;
+  margin-top : 30px;
+}
+
+.home-banner {
+  display       : block;
+  margin-bottom : @line-height-computed;
+
+  img {
+    width : 100%;
+  }
+}
+
+.new-products {
+  .product-name {
+    white-space   : nowrap;
+    text-overflow : ellipsis;
+    overflow      : hidden;
+    text-align    : center;
+  }
+
+  .ratings {
+    text-align : center;
+    color      : @brand-primary;
+    margin: @line-height-computed / 2 0;
+    .label {
+      display : none;
+    }
+  }
+
+  .price-box {
+    text-align : center;
+    margin: @line-height-computed / 2 0;
+  }
+
+  .product-name + .price-box {
+    padding-top: @line-height-computed * 1.5;
+  }
+
+  .secondary-actions {
+    margin-bottom: @line-height-computed / 2;
+  }
 }
