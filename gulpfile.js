@@ -84,11 +84,13 @@ function buildCss(target) {
     }))
     .pipe(sourcemaps.init())
     .pipe(less({
-      paths: [
+      paths  : [
         paths.vendor
       ]
     }))
     .on('error', console.error.bind(console))
+    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.init({loadMaps:true}))
     .pipe(autoprefixer('last 2 version'))
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? cssmin() : util.noop())
@@ -161,7 +163,7 @@ function buildIcon(target) {
         symbol: {
           dest   : '.',
           sprite : 'icons.svg',
-          example: true
+          example: false
         }
       }
     }))
@@ -209,7 +211,7 @@ gulp.task('theme:font', function () {
 gulp.task('theme:img', function () {
   return buildImg(targets.theme);
 });
-gulp.task('theme:icon', function () {
+gulp.task('theme:icon', ['theme:css'], function () {
   return buildIcon(targets.theme);
 });
 

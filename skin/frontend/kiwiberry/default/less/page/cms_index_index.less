@@ -1,11 +1,3 @@
-.related-product {
-  margin-left : 25px;
-}
-
-input[type="checkbox"].cb-related-product {
-  margin-top : 30px;
-}
-
 .home-banner {
   display       : block;
   margin-bottom : @line-height-computed;
@@ -16,32 +8,39 @@ input[type="checkbox"].cb-related-product {
 }
 
 .new-products {
+
+  .img-n-rating {
+    position : relative;
+    .product-img-link {
+      display : block;
+    }
+
+    .ratings {
+      position : absolute;
+      bottom   : 5px;
+      right    : 5px;
+    }
+  }
+
   .product-name {
     white-space   : nowrap;
     text-overflow : ellipsis;
     overflow      : hidden;
-    text-align    : center;
+    margin-top    : 0;
   }
 
-  .ratings {
-    text-align : center;
-    color      : @brand-primary;
-    margin: @line-height-computed / 2 0;
-    .label {
-      display : none;
+  .price-n-actions {
+    .make-row(0);
+    margin-bottom : @line-height-computed / 2;
+
+    .price-box {
+      .make-xs-column(9, 0);
     }
-  }
 
-  .price-box {
-    text-align : center;
-    margin: @line-height-computed / 2 0;
-  }
-
-  .product-name + .price-box {
-    padding-top: @line-height-computed * 1.5;
-  }
-
-  .secondary-actions {
-    margin-bottom: @line-height-computed / 2;
+    .extra-actions {
+      .make-xs-column(3, 0);
+      text-align : right;
+      font-size  : @font-size-large;
+    }
   }
 }

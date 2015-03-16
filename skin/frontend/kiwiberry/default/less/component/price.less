@@ -1,0 +1,70 @@
+.price-box {
+
+  .price-label {
+    display   : block;
+    font-size : @font-size-small;
+  }
+
+  .price {
+    display     : block;
+    font-weight : bold;
+  }
+
+  .old-price {
+    margin-bottom : 0;
+
+    > .price-label {
+      display : none;
+    }
+
+    .price {
+      text-decoration : line-through;
+    }
+  }
+
+  .special-price {
+    margin-bottom : 0;
+
+    > .price-label {
+      display : none;
+    }
+
+    .price {
+      font-size : @font-size-large;
+      .text-primary();
+    }
+  }
+
+  .price-excluding-tax {
+    display : block;
+
+    .price-label {
+      display : none;
+    }
+
+    .price::after {
+      content   : 'Excl';
+      font-size : @font-size-small;
+    }
+  }
+
+  .price-including-tax {
+    display : block;
+
+    .price-label {
+      display : none;
+    }
+
+    .price::after {
+      content   : 'Incl';
+      font-size : @font-size-small;
+    }
+  }
+
+  /* Unstyled Prices */
+  .minimal-price-link,
+  .regular-price,
+  .weee {
+    display : block;
+  }
+}

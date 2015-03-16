@@ -11,19 +11,18 @@
     endif;
     ?>
 
-    <div class="btn-group">
-      <a class="btn btn-default" href="<?php echo $this->getReviewsUrl() ?>">
-        <?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>
-      </a>
-      <a class="btn btn-default" href="<?php echo $this->getReviewsUrl() ?>#review-form">
-        <?php echo $this->__('Add Your Review') ?>
-      </a>
-    </div>
+    <a class="label label-primary" href="<?php echo $this->getReviewsUrl() ?>">
+      <?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>
+    </a>
+
+    <a class="" href="<?php echo $this->getReviewsUrl() ?>#review-form">
+      <?php echo $this->__('Add Your Review') ?>
+    </a>
   </div>
 
 <?php elseif ($this->getDisplayIfEmpty()): ?>
 
-  <p class="text-info">
+  <p class="rating text-info">
     <a href="<?php echo $this->getReviewsUrl() ?>#review-form">
       <?php echo $this->__('Be the first to review this product') ?>
     </a>

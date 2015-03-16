@@ -49,9 +49,6 @@ Default layout, loads most of the pages
     <cms_index_index translate="label">
         <label>CMS Home Page</label>
         <reference name="content">
-            <!--<block type="core/template" name="slider" template="homepage/slider.phtml" />-->
-            <!--<block type="core/template" name="banner" template="homepage/banner.phtml" />-->
-
             <block type="catalog/product_new" name="home.catalog.product.new" template="catalog/product/new.phtml" after="cms_page">
                 <action method="setProductsCount"><count>6</count></action>
                 <action method="addPriceBlockType">
