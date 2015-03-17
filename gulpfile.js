@@ -25,17 +25,17 @@ var targets = {
 
   styleGuide: {
     styles : [
-      paths.src + 'less/style_guide_vendor.less',
-      paths.src + 'less/style_guide.less'
+      paths.src + 'less/style-guide-vendor.less',
+      paths.src + 'less/style-guide.less'
     ],
-    scripts: require(paths.src + 'js/style_guide.json'),
+    scripts: require(paths.src + 'js/style-guide.json'),
     images : paths.src + 'images/*',
     fonts  : [
       paths.vendor + 'bootstrap/dist/fonts/*',
       paths.vendor + 'font-awesome/fonts/*'
     ],
 
-    dest: './style_guide/'
+    dest: './style-guide/'
   }
 };
 
@@ -179,7 +179,7 @@ function clean(target, cb) {
 
 function runJekyll(options, cb) {
   options.push('--config');
-  options.push('style_guide/_config.yml');
+  options.push('style-guide/_config.yml');
 
   var spawn = require('child_process').spawn,
       jekyll = spawn('jekyll', options);

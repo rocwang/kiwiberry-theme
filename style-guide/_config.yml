@@ -8,8 +8,8 @@ highlighter:      rouge
 permalink:        pretty
 
 # Server
-source:           style_guide
-destination:      style_guide/_site
+source:           style-guide
+destination:      style-guide/_site
 host:             0.0.0.0
 port:             9001
 baseurl:          /

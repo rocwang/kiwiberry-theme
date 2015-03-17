@@ -3,9 +3,9 @@ dist/
 bower_components/
 node_modules/
 resource/
-style_guide/_site/
-style_guide/css/
-style_guide/fonts/
-style_guide/images/
-style_guide/js/
+style-guide/_site/
+style-guide/css/
+style-guide/fonts/
+style-guide/images/
+style-guide/js/
 test/

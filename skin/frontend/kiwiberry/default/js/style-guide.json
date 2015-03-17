@@ -6,7 +6,7 @@
         "bower_components/prism/prism.js",
         "bower_components/js-beautify/js/lib/beautify-html.js"
     ],
-    "style_guide.js": [
-        "skin/frontend/kiwiberry/default/js/style_guide.js"
+    "style-guide.js": [
+        "skin/frontend/kiwiberry/default/js/style-guide.js"
     ]
 }
