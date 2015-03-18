@@ -12,7 +12,7 @@
 <head>
   <?php echo $this->getChildHtml('head') ?>
 </head>
-<body<?php echo $this->getBodyClass() ? ' class="' . $this->getBodyClass() . '"' : '' ?>>
+<body class="page-1-col <?php echo $this->getBodyClass() ? $this->getBodyClass() : '' ?>">
 
   <?php echo $this->getChildHtml('after_body_start') ?>
 

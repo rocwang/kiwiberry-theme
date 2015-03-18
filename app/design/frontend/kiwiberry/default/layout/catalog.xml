@@ -55,8 +55,13 @@ Supported layout update handles (special):
         <reference name="content">
             <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
                 <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
-                    <block type="core/text_list" name="product_list.name.after" as="name.after"/>
+
+                    <block type="catalog/product_list" name="product-collection-category" template="catalog/product/collection.phtml">
+                        <block type="core/text_list" name="product_list.name.after" as="name.after"/>
+                    </block>
+
                     <block type="core/text_list" name="product_list.after" as="after"/>
+
                     <block type="catalog/product_list_toolbar" name="product_list_toolbar"
                            template="catalog/product/list/toolbar.phtml">
                         <block type="page/html_pager" name="product_list_toolbar_pager"/>
@@ -95,9 +100,7 @@ Supported layout update handles (special):
                         <name>product_list_toolbar</name>
                     </action>
                     <!-- Since the addColumnCountLayoutDepend does not work, we are manually setting the max columns -->
-                    <action method="setColumnCount">
-                        <count>3</count>
-                    </action>
+                    <!--<action method="setColumnCount"><count>3</count></action>-->
                 </block>
             </block>
         </reference>
@@ -118,7 +121,11 @@ Supported layout update handles (special):
         <reference name="content">
             <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
                 <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
-                    <block type="core/text_list" name="product_list.name.after" as="name.after"/>
+
+                    <block type="catalog/product_list" name="product-collection-category" template="catalog/product/collection.phtml">
+                        <block type="core/text_list" name="product_list.name.after" as="name.after"/>
+                    </block>
+
                     <block type="core/text_list" name="product_list.after" as="after"/>
                     <!-- <action method="addReviewSummaryTemplate"><type>default</type><template>review/helper/su.phtml</template></action> -->
                     <block type="catalog/product_list_toolbar" name="product_list_toolbar"
