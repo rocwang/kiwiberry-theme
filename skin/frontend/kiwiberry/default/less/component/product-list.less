@@ -1,59 +1,88 @@
-.row-product-collection {
-  .make-row();
+.showcase-collection {
+  display         : flex;
+  flex-flow       : row wrap;
+  justify-content : flex-start;
+  margin          : 0 @grid-gutter-width / -2 -@line-height-computed;
 
-  &.grid {
-    .col-product-collection {
-      .make-xs-column(12);
-      .make-sm-column(4);
-      .make-md-column(4);
-      .make-lg-column(2);
+  .showcase {
+    flex-grow   : 0;
+    flex-shrink : 0;
+    padding     : 0 @grid-gutter-width / 2 @line-height-computed * 2;
+  }
+
+  .col-width(@width) {
+    flex-basis : percentage(@width/@grid-columns);
+    max-width  : percentage(@width/@grid-columns);
+  }
+
+  &.grid .showcase {
+    .page-1-col & {
+      .col-width(6);
+
+      @media (min-width : @screen-sm) {
+        .col-width(6);
+      }
+
+      @media (min-width : @screen-md) {
+        .col-width(4);
+      }
+
+      @media (min-width : @screen-lg) {
+        .col-width(3);
+      }
     }
   }
 
-  &.list {
-    .col-product-collection {
-      .make-xs-column(12);
-    }
+  &.list .showcase {
+    .col-width(12);
   }
+}
 
-  .img-n-rating {
+.showcase {
+  display   : flex;
+  flex-flow : column nowrap;
+
+  .showcase-media {
     position : relative;
+
     .product-img-link {
       display : block;
+
+      .product-img {
+        .img-responsive();
+        .center-block();
+      }
     }
 
-    .ratings {
-      position : absolute;
-      bottom   : 5px;
-      right    : 5px;
+    .configurable-swatch-list {
+      margin-bottom : 0;
+      position      : absolute;
+      bottom        : 1%;
+      right         : 1%;
     }
   }
 
-  .configurable-swatch-list {
-    position : absolute;
-    bottom   : 5px;
-    left     : 5px;
-  }
+  .showcase-detail {
+    display     : flex;
+    flex-flow   : column nowrap;
+    flex-grow   : 1;
+    align-items : center;
 
-  .product-name {
-    white-space   : nowrap;
-    text-overflow : ellipsis;
-    overflow      : hidden;
-    margin-top    : 0;
-  }
-
-  .price-n-actions {
-    .make-row(0);
-    margin-bottom : @line-height-computed / 2;
+    .product-name {
+      .text-overflow();
+      margin-top : @line-height-computed / 2;
+      max-width  : 100%;
+      text-align : center;
+    }
 
     .price-box {
-      .make-xs-column(9, 0);
+      margin-bottom       : @line-height-computed / 2;
+      backface-visibility : hidden;
+      flex-grow           : 1;
     }
 
-    .extra-actions {
-      .make-xs-column(3, 0);
-      text-align : right;
-      font-size  : @font-size-large;
+    .rating {
+      flex-grow : 1;
     }
   }
 }

@@ -7,127 +7,128 @@ $_productCollection = $this->getProductCollection();
 
   <?php $_helper = $this->helper('catalog/output'); ?>
 
-  <div class="row-product-collection <?php echo $this->getMode() ?: 'grid' ?>">
+  <div class="showcase-collection <?= $this->getMode() ?: 'grid' ?>">
     <?php foreach ($_productCollection as $_product): ?>
 
-      <div class="col-product-collection">
+      <div class="showcase">
 
-        <div class="thumbnail">
+        <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
 
-          <div class="img-n-rating">
-            <!-- Product image -->
-            <a href="<?php echo $_product->getProductUrl() ?>"
-               title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
-               class="product-img-link"
+        <div class="showcase-media">
+          <!-- Product image -->
+          <a href="<?= $_product->getProductUrl() ?>"
+             title="<?= $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
+             class="product-img-link"
+            >
+            <!-- FIXME: This breaks the js logic for color swatch -->
+            <img id="image-<?= $_product->getId() . '-' . $this->getNameInLayout() ?>"
+                 class="product-img"
+                 src="<?= $this->helper('vr_kiwiberry/image')->init($_product, 'small_image')->adaptiveResize(300, 400); ?>"
+                 alt="<?= $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
               >
-              <!-- FIXME: This breaks the js logic for color swatch -->
-              <img id="image-<?php echo $_product->getId() . '-' . $this->getNameInLayout() ?>"
-                   class="product-img"
-                   src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300); ?>"
-                   alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
-                >
-            </a>
+          </a>
 
+          <?php
+          // This provides extra blocks on which to hang some features for products in the list, e.g. configurable swatch
+          // Features providing UI elements targeting this block will display directly here
+          if ($this->getChild('name.after')) {
+            $_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
+            foreach ($_nameAfterChildren as $_nameAfterChildName) {
+              $_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);
+              $_nameAfterChild->setProduct($_product);
+              echo $_nameAfterChild->toHtml();
+            }
+          }
+          ?>
+        </div>
+
+        <!-- Product info -->
+        <div class="showcase-detail">
+
+          <!-- Product name -->
+          <h3 class="product-name">
+            <a href="<?= $_product->getProductUrl() ?>"
+               title="<?= $_productNameStripped ?>">
+              <?= $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+            </a>
+          </h3>
+
+          <!-- Product short description -->
+          <?php if ($this->getMode() === 'list') : ?>
             <?php
             // TODO: Make review template type configurable by parent block
             // Product Rating
             echo $this->getReviewsSummaryHtml($_product, 'short');
             ?>
 
-            <?php
-            // This provides extra blocks on which to hang some features for products in the list, e.g. configurable swatch
-            // Features providing UI elements targeting this block will display directly here
-            if ($this->getChild('name.after')) {
-              $_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
-              foreach ($_nameAfterChildren as $_nameAfterChildName) {
-                $_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);
-                $_nameAfterChild->setProduct($_product);
-                echo $_nameAfterChild->toHtml();
-              }
-            }
-            ?>
-          </div>
+            <p class="product-short-description">
+              <?= $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
 
-          <!-- Product info -->
-          <div class="caption">
-
-            <!-- Product name -->
-            <h5 class="product-name">
-              <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
-              <a href="<?php echo $_product->getProductUrl() ?>"
-                 title="<?php echo $_productNameStripped ?>">
-                <?php $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+              <a href="<?= $_product->getProductUrl() ?>"
+                 title="<?= $_productNameStripped ?>"
+                >
+                <?= $this->__('Learn More') ?>
               </a>
-            </h5>
+            </p>
+          <?php endif ?>
 
-            <!-- Product short description -->
-            <?php if ($this->getMode() === 'list') : ?>
-              <p class="product-short-description">
-                <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+          <!-- Price -->
+          <?= $this->getPriceHtml($_product, true, '-' . $this->getNameInLayout()) ?>
 
-                <a href="<?php echo $_product->getProductUrl() ?>"
-                   title="<?php echo $_productNameStripped ?>"
-                  >
-                  <?php echo $this->__('Learn More') ?>
-                </a>
-              </p>
-            <?php endif ?>
+          <div class="btn-group" role="group" aria-label="...">
 
-            <div class="price-n-actions">
-              <!-- Price -->
-              <?php echo $this->getPriceHtml($_product, true, '-' . $this->getNameInLayout()) ?>
-
-              <!-- "Add to Compare" and "Add to Wishlist" -->
-              <span class="extra-actions">
-                <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
-                  <a href="<?php echo $_compareUrl ?>"
-                     title="<?php echo $this->__('Add to Compare') ?>"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                    >
-                    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('columns') ?>
-                    <span class="sr-only"><?php echo $this->__('Add to Compare') ?></span>
-                  </a>
-                <?php endif; ?>
-
-                <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                  <a href="<?php echo $this->getAddToWishlistUrl($_product) ?>"
-                     title="<?php echo $this->__('Add to Wishlist') ?>"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                    >
-                    <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('heart') ?>
-                    <span class="sr-only"><?php echo $this->__('Add to Wishlist') ?></span>
-                  </a>
-                <?php endif; ?>
-              </span>
-            </div>
+            <!-- "Add to Compare" -->
+            <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+              <a href="<?= $_compareUrl ?>"
+                 title="<?= $this->__('Add to Compare') ?>"
+                 class="btn btn-primary"
+                >
+                <?= Mage::helper('vr_kiwiberry')->getSvgIcon('columns') ?>
+                <span class="sr-only"><?= $this->__('Add to Compare') ?></span>
+              </a>
+            <?php endif; ?>
 
             <!-- "Add to Cart" or "View Details" or "Out of Stock"-->
-            <?php if ($_product->isSaleable() && !$_product->canConfigure()): ?>
+            <?php if ($_product->isSaleable()): ?>
 
-              <a href="<?php echo $this->getAddToCartUrl($_product) ?>"
-                 class="btn btn-primary btn-block"
-                 title="<?php echo $this->__('Add to Cart') ?>">
-                <span><?php echo $this->__('Add to Cart') ?></span>
-              </a>
+              <?php
+              if ($_product->canConfigure()):
+                $href = $_product->getProductUrl();
+                $title = 'View Details';
+              else:
+                $href = $this->getAddToCartUrl($_product);
+                $title = 'Add to Cart';
+              endif
+              ?>
 
-            <?php elseif ($_product->isSaleable()): ?>
-
-              <a title="<?php echo $this->__('View Details') ?>"
-                 class="btn btn-primary btn-block"
-                 href="<?php echo $_product->getProductUrl() ?>">
-                <span><?php echo $this->__('View Details') ?></span>
+              <a href="<?= $href ?>"
+                 class="btn btn-primary"
+                 title="<?= $this->__('Add to Cart') ?>"
+                 role="button"
+                >
+                <span><?= $this->__('Add to Cart') ?></span>
               </a>
 
             <?php else: ?>
 
-              <p class="text-info"><?php echo $this->__('Out of Stock') ?></p>
+              <button type="button" class="btn btn-primary" disabled="disabled">
+                <?= $this->__('Out of Stock') ?>
+              </button>
 
             <?php endif; ?>
 
-          </div>
+            <!-- "Add to Wishlist" -->
+            <?php if ($this->helper('wishlist')->isAllow()) : ?>
+              <a href="<?= $this->getAddToWishlistUrl($_product) ?>"
+                 title="<?= $this->__('Add to Wishlist') ?>"
+                 class="btn btn-primary"
+                >
+                <?= Mage::helper('vr_kiwiberry')->getSvgIcon('heart') ?>
+                <span class="sr-only"><?= $this->__('Add to Wishlist') ?></span>
+              </a>
+            <?php endif; ?>
 
+          </div>
         </div>
 
       </div>

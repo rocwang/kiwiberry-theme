@@ -1,18 +1,37 @@
 .price-box {
+  display         : flex;
+  flex-flow       : row wrap;
+  justify-content : space-between;
+  align-items     : center;
 
+  p {
+    margin-bottom : 0;
+  }
+
+  > :first-child {
+    margin-right : @grid-gutter-width / 2;
+  }
+
+  .emphasize-price() {
+    font-size : @font-size-large;
+    .text-primary();
+  }
+
+  // General Price Style
   .price-label {
-    display   : block;
-    font-size : @font-size-small;
+    font-size      : @font-size-small;
+    vertical-align : middle;
+    line-height    : 1;
   }
 
   .price {
-    display     : block;
-    font-weight : bold;
+    font-weight    : bold;
+    vertical-align : middle;
+    line-height    : 1;
   }
 
+  // Old Price
   .old-price {
-    margin-bottom : 0;
-
     > .price-label {
       display : none;
     }
@@ -22,49 +41,80 @@
     }
   }
 
+  // Special Price
   .special-price {
-    margin-bottom : 0;
-
     > .price-label {
       display : none;
     }
 
     .price {
-      font-size : @font-size-large;
-      .text-primary();
+      .emphasize-price();
     }
   }
 
+  // The container that contains price excl. and incl. tax
+  .price-couple {
+    display    : block;
+    text-align : right;
+  }
+
+  // Price Excluding Tax
   .price-excluding-tax {
     display : block;
 
-    .price-label {
-      display : none;
-    }
+    //    .price-label {
+    //      display : none;
+    //    }
 
-    .price::after {
-      content   : 'Excl';
-      font-size : @font-size-small;
-    }
+    //    .price::after {
+    //      content   : 'Excl';
+    //      font-size : @font-size-small;
+    //    }
   }
 
+  // Price Including Tax
   .price-including-tax {
     display : block;
 
+    //    .price-label {
+    //      display : none;
+    //    }
+    //
+    //    .price::after {
+    //      content   : 'Incl';
+    //      font-size : @font-size-small;
+    //    }
+  }
+
+  // "Start at" or "As low as" price
+  .minimal-price {
+    display : block;
+
     .price-label {
-      display : none;
+      margin-right : @grid-gutter-width / 2;
     }
 
-    .price::after {
-      content   : 'Incl';
-      font-size : @font-size-small;
+    .price-couple {
+      display        : inline-block;
+      vertical-align : middle;
+    }
+
+    .price {
+      .emphasize-price();
+    }
+  }
+
+  // "As low as" price
+  .minimal-price-link {
+    display : block;
+
+    .price {
+      .emphasize-price();
     }
   }
 
   /* Unstyled Prices */
-  .minimal-price-link,
   .regular-price,
   .weee {
-    display : block;
   }
 }

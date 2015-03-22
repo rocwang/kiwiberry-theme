@@ -6,81 +6,85 @@
  */
 ?>
 <?php if ($this->getCollection()->getSize()): ?>
-  <form class="form-inline well" role="form">
-    <?php if ($this->isExpanded()): ?>
+  <div class="toolbar">
 
-      <!-- Sort By -->
-      <div class="form-group">
-        <label for="sort_by"><?php echo $this->__('Sort By') ?></label>
-        <select id="sort_by" class="form-control js-change-location" title="<?php echo $this->__('Sort By') ?>">
-          <?php foreach ($this->getAvailableOrders() as $_key => $_order): ?>
-            <option
-              value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if ($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
-              <?php echo $this->__($_order) ?>
-            </option>
-          <?php endforeach; ?>
-        </select>
+    <div class="toolbar-left">
+      <?php if ($this->isExpanded()): ?>
 
-        <?php if ($this->getCurrentDirection() == 'desc'): ?>
-          <a href="<?php echo $this->getOrderUrl(null, 'asc') ?>"
-             title="<?php echo $this->__('Set Ascending Direction') ?>"
-             class="btn btn-default"
-            >
-            <i class="fa fa-sort-amount-asc"></i>
-            <span class="sr-only"><?php echo $this->__('Set Ascending Direction') ?></span>
-          </a>
-        <?php else: ?>
-          <a href="<?php echo $this->getOrderUrl(null, 'desc') ?>"
-             title="<?php echo $this->__('Set Descending Direction') ?>"
-             class="btn btn-default"
-            >
-            <i class="fa fa-sort-amount-desc"></i>
-            <span class="sr-only"><?php echo $this->__('Set Descending Direction') ?></span>
-          </a>
-        <?php endif; ?>
-      </div>
+        <!-- Sort By -->
+        <div class="sort-by">
+          <label for="sort_by"><?php echo $this->__('Sort By') ?></label>
+          <select id="sort_by" class="form-control js-change-location" title="<?php echo $this->__('Sort By') ?>">
+            <?php foreach ($this->getAvailableOrders() as $_key => $_order): ?>
+              <option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"
+                <?php if ($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>
+                >
+                <?php echo $this->__($_order) ?>
+              </option>
+            <?php endforeach; ?>
+          </select>
 
-      <!-- Mode Switcher -->
-      <?php if ($this->isEnabledViewSwitcher()): ?>
-        <div class="form-group">
-          <?php $_modes = $this->getModes(); ?>
-          <?php if ($_modes && count($_modes) > 1): ?>
-
-            <label><?php echo $this->__('View as') ?></label>
-
-            <div class="btn-group">
-              <?php foreach ($this->getModes() as $_code => $_label): ?>
-
-                <a href="<?php echo $this->getModeUrl($_code) ?>"
-                   title="<?php echo $_label ?>"
-                   class="btn btn-default<?php if ($this->isModeActive($_code)): echo ' active'; endif; ?>">
-                  <i class="fa <?php echo $_label === 'Grid' ? 'fa-th' : 'fa-list' ?>"></i>
-                  <span class="sr-only"><?php echo $_label ?></span>
-                </a>
-
-              <?php endforeach; ?>
-            </div>
-
+          <?php if ($this->getCurrentDirection() == 'desc'): ?>
+            <a href="<?php echo $this->getOrderUrl(null, 'asc') ?>"
+               title="<?php echo $this->__('Set Ascending Direction') ?>"
+               class="btn btn-default"
+              >
+              <?= Mage::helper('vr_kiwiberry')->getSvgIcon('sort-amount-asc') ?>
+              <span class="sr-only"><?php echo $this->__('Set Ascending Direction') ?></span>
+            </a>
+          <?php else: ?>
+            <a href="<?php echo $this->getOrderUrl(null, 'desc') ?>"
+               title="<?php echo $this->__('Set Descending Direction') ?>"
+               class="btn btn-default"
+              >
+              <?= Mage::helper('vr_kiwiberry')->getSvgIcon('sort-amount-desc') ?>
+              <span class="sr-only"><?php echo $this->__('Set Descending Direction') ?></span>
+            </a>
           <?php endif; ?>
         </div>
-      <?php endif; ?>
 
-    <?php endif; ?>
+        <!-- Mode Switcher -->
+        <?php if ($this->isEnabledViewSwitcher()): ?>
+          <div class="view-mode">
+            <?php $_modes = $this->getModes(); ?>
+            <?php if ($_modes && count($_modes) > 1): ?>
 
-    <div class="pull-right">
-      <!-- Product Item Counter -->
-      <div class="form-group">
-        <?php if ($this->getLastPageNum() > 1): ?>
-          <?php echo $this->__('%s-%s of %s', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
-        <?php else: ?>
-          <span class="label label-default">
-          <?php echo $this->__('%s Item%s', $this->getTotalNum(), $this->getTotalNum() > 1 ? 's' : '') ?>
-        </span>
+              <label><?php echo $this->__('View as') ?></label>
+
+              <div class="btn-group">
+                <?php foreach ($this->getModes() as $_code => $_label): ?>
+
+                  <a href="<?php echo $this->getModeUrl($_code) ?>"
+                     title="<?php echo $_label ?>"
+                     class="btn btn-default<?php if ($this->isModeActive($_code)): echo ' active'; endif; ?>">
+                    <?= Mage::helper('vr_kiwiberry')->getSvgIcon($_code === 'grid' ? 'th' : 'list') ?>
+                    <span class="sr-only"><?php echo $_label ?></span>
+                  </a>
+
+                <?php endforeach; ?>
+              </div>
+
+            <?php endif; ?>
+          </div>
         <?php endif; ?>
-      </div>
 
-      <!-- Results Per Page -->
-      <div class="form-group">
+      <?php endif; ?>
+    </div>
+
+    <div class="toolbar-right">
+      <div class="page-limiter">
+        <!-- Product Item Counter -->
+        <span class="item-count">
+          <?php
+          if ($this->getLastPageNum() > 1):
+            echo $this->__('%s-%s of %s', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum());
+          else:
+            echo $this->__('%s Item%s', $this->getTotalNum(), $this->getTotalNum() > 1 ? 's' : '');
+          endif
+          ?>
+        </span>
+
+        <!-- Results Per Page -->
         <label for="results_per_page"><?php echo $this->__('Show') ?></label>
         <select id="results_per_page" class="form-control js-change-location"
                 title="<?php echo $this->__('Results Per Page'); ?>">
@@ -92,9 +96,9 @@
           <?php endforeach; ?>
         </select>
       </div>
+
+      <!-- Pager -->
+      <?php echo $this->getPagerHtml() ?>
     </div>
-
-  </form>
-
-  <?php echo $this->getPagerHtml() ?>
+  </div>
 <?php endif ?>

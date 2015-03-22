@@ -1,20 +1,36 @@
 .icon {
-  width          : @font-size-base;
-  height         : @font-size-base;
+  .square(@icon-default-size);
+
   vertical-align : middle;
   fill           : @text-color;
 
-  .btn & {
+  .btn-default & {
+    fill : @btn-default-color;
+  }
+
+  .btn-primary & {
     fill : @btn-primary-color;
   }
 
-  a & {
+  .btn-info & {
+    fill : @btn-info-color;
+  }
+
+  .btn-warning & {
+    fill : @btn-warning-color;
+  }
+
+  .btn-danger & {
+    fill : @btn-danger-color;
+  }
+
+  a:not(.btn) & {
     fill : @link-color;
   }
 
-  a:hover &,
-  a:focus &{
-    fill: @link-hover-color;
+  a:not(.btn):hover &,
+  a:not(.btn):focus & {
+    fill : @link-hover-color;
   }
 
 }

@@ -4,7 +4,6 @@
      class="ratings"
      data-toggle="tooltip"
      data-placement="top"
-     title="<?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>"
     >
     <?php
     if ($this->getRatingSummary()):
@@ -14,6 +13,9 @@
         ->setPercent($this->getRatingSummary())
         ->toHtml();
     endif;
+
+
+    echo $this->getReviewsCount();
     ?>
   </a>
 
