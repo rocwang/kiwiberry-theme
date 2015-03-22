@@ -5,15 +5,15 @@
 ?>
 <?php if (Mage::helper('core/cookie')->isUserNotAllowSaveCookie()): ?>
   <div class="alert alert-warning clearfix" role="alert" id="notice-cookie-block">
-    <?php echo $this->getCookieRestrictionBlockContent(); ?>
+    <?= $this->getCookieRestrictionBlockContent(); ?>
     <a id="allow-save-cookie"
        class="btn btn-default pull-right"
-       data-cookie-name="<?php echo $this->escapeHtml(Mage_Core_Helper_Cookie::IS_USER_ALLOWED_SAVE_COOKIE) ?>"
-       data-cookie-value="<?php echo $this->escapeHtml(Mage::helper('core/cookie')->getAcceptedSaveCookiesWebsiteIds()) ?>"
-       data-cookie-expires="<?php echo $this->escapeHtml(Mage::helper('core/cookie')->getCookieRestrictionLifetime()) ?>"
-       href="<?php echo Mage::getUrl('cms/index/noCookies') ?>"
+       data-cookie-name="<?= $this->escapeHtml(Mage_Core_Helper_Cookie::IS_USER_ALLOWED_SAVE_COOKIE) ?>"
+       data-cookie-value="<?= $this->escapeHtml(Mage::helper('core/cookie')->getAcceptedSaveCookiesWebsiteIds()) ?>"
+       data-cookie-expires="<?= $this->escapeHtml(Mage::helper('core/cookie')->getCookieRestrictionLifetime()) ?>"
+       href="<?= Mage::getUrl('cms/index/noCookies') ?>"
       >
-      <?php echo $this->__('Allow'); ?>
+      <?= $this->__('Allow'); ?>
     </a>
   </div>
 <?php endif; ?>

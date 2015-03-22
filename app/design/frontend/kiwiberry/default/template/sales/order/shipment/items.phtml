@@ -4,18 +4,18 @@
 
   <?php if ($_order->getTracksCollection()->count()) : ?>
 
-    <a href="<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order) ?>"
-       title="<?php echo $this->__('Track all shipment(s)') ?>"
+    <a href="<?= $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order) ?>"
+       title="<?= $this->__('Track all shipment(s)') ?>"
        class="btn btn-default">
-      <?php echo $this->__('Track all shipments') ?>
+      <?= $this->__('Track all shipments') ?>
     </a>
 
   <?php endif; ?>
 
-  <a href="<?php echo $this->getPrintAllShipmentsUrl($_order) ?>"
+  <a href="<?= $this->getPrintAllShipmentsUrl($_order) ?>"
      target="_blank"
      class="btn btn-default">
-    <?php echo $this->__('Print All Shipments') ?>
+    <?= $this->__('Print All Shipments') ?>
   </a>
 
 </p>
@@ -23,39 +23,39 @@
 <?php foreach ($_order->getShipmentsCollection() as $_shipment): ?>
 
   <h2>
-    <?php echo $this->__('Shipment #') . $_shipment->getIncrementId(); ?>
+    <?= $this->__('Shipment #') . $_shipment->getIncrementId(); ?>
     <small>
-      <a href="<?php echo $this->getPrintShipmentUrl($_shipment) ?>"
+      <a href="<?= $this->getPrintShipmentUrl($_shipment) ?>"
          target="_blank">
-        <?php echo $this->__('Print Shipment') ?></a>
+        <?= $this->__('Print Shipment') ?></a>
     </small>
   </h2>
 
   <?php $tracks = $_shipment->getTracksCollection(); ?>
   <?php if ($tracks->count()): ?>
-    <table class="table table-bordered" id="my-tracking-table-<?php echo $_shipment->getId(); ?>">
+    <table class="table table-bordered" id="my-tracking-table-<?= $_shipment->getId(); ?>">
       <tbody>
       <tr>
         <td colspan="2">
-          <a href="<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_shipment) ?>"
+          <a href="<?= $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_shipment) ?>"
              target="_blank"
-             title="<?php echo $this->__('Track this shipment') ?>">
-            <?php echo $this->__('Track this shipment') ?>
+             title="<?= $this->__('Track this shipment') ?>">
+            <?= $this->__('Track this shipment') ?>
           </a>
         </td>
       </tr>
       <tr>
-        <th class="label"><?php echo $this->__('Tracking Number(s):') ?></th>
+        <th class="label"><?= $this->__('Tracking Number(s):') ?></th>
         <td>&nbsp;
           <?php
           $i = 1;
           $_size = $tracks->count();
           foreach ($tracks as $track): ?>
             <?php if ($track->isCustom()): ?>
-              <?php echo $this->escapeHtml($track->getNumber()) ?>
+              <?= $this->escapeHtml($track->getNumber()) ?>
             <?php else: ?>
-              <a href="<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($track) ?>">
-                <?php echo $this->escapeHtml($track->getNumber()) ?>
+              <a href="<?= $this->helper('shipping')->getTrackingPopupUrlBySalesModel($track) ?>">
+                <?= $this->escapeHtml($track->getNumber()) ?>
               </a>
             <?php endif; ?>
             <?php if ($i != $_size): ?>, <?php endif; ?>
@@ -67,27 +67,27 @@
     </table>
   <?php endif; ?>
 
-  <h3><?php echo $this->__('Items Shipped') ?></h3>
+  <h3><?= $this->__('Items Shipped') ?></h3>
 
-  <table class="table table-bordered" id="my-shipment-table-<?php echo $_shipment->getId(); ?>">
+  <table class="table table-bordered" id="my-shipment-table-<?= $_shipment->getId(); ?>">
 
     <thead>
     <tr>
-      <th><?php echo $this->__('Product Name') ?></th>
-      <th><?php echo $this->__('SKU') ?></th>
-      <th><span class="nobr"><?php echo $this->__('Qty Shipped') ?></span></th>
+      <th><?= $this->__('Product Name') ?></th>
+      <th><?= $this->__('SKU') ?></th>
+      <th><span class="nobr"><?= $this->__('Qty Shipped') ?></span></th>
     </tr>
     </thead>
 
     <tbody>
     <?php foreach ($_shipment->getAllItems() as $_item): ?>
       <?php if ($_item->getOrderItem()->getParentItem()) continue; ?>
-      <?php echo $this->getItemHtml($_item) ?>
+      <?= $this->getItemHtml($_item) ?>
     <?php endforeach; ?>
     </tbody>
 
   </table>
 
-  <?php echo $this->getCommentsHtml($_shipment) ?>
+  <?= $this->getCommentsHtml($_shipment) ?>
 
 <?php endforeach; ?>

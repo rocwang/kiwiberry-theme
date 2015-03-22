@@ -8,12 +8,12 @@
   <?php ob_start() ?>
   <dl>
     <?php foreach ($options as $option): ?>
-      <dt><?php echo $this->escapeHtml($option['label']) ?></dt>
+      <dt><?= $this->escapeHtml($option['label']) ?></dt>
       <dd>
         <?php if (is_array($option['value'])): ?>
-          <?php echo nl2br(implode("\n", $option['value'])) ?>
+          <?= nl2br(implode("\n", $option['value'])) ?>
         <?php else: ?>
-          <?php echo $option['value'] ?>
+          <?= $option['value'] ?>
         <?php endif; ?>
       </dd>
     <?php endforeach; ?>
@@ -22,14 +22,14 @@
 
   <a href="#"
      class="js-wishlist-view-details"
-     title="<?php echo $this->__('Options Details'); ?>"
+     title="<?= $this->__('Options Details'); ?>"
      tabindex="0"
      role="button"
      data-toggle="popover"
      data-trigger="hover"
      data-html="true"
      data-placement="bottom"
-     data-content="<?php echo $this->escapeHtml($optionDetails) ?>">
-    <?php echo $this->__('View Details') ?>
+     data-content="<?= $this->escapeHtml($optionDetails) ?>">
+    <?= $this->__('View Details') ?>
   </a>
 <?php endif ?>

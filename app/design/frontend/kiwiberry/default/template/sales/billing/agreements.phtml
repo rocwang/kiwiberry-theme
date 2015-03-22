@@ -1,9 +1,9 @@
 <?php /* @var $this Mage_Sales_Block_Billing_Agreements */ ?>
 
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <div class="page-header">
-  <h1><?php echo $this->__('Billing Agreements') ?></h1>
+  <h1><?= $this->__('Billing Agreements') ?></h1>
 </div>
 
 <div class="billing-agreements">
@@ -12,17 +12,17 @@
 
   <?php if (count($billingAgreements) > 0): ?>
 
-    <?php echo $this->getChildHtml('pager'); ?>
+    <?= $this->getChildHtml('pager'); ?>
 
     <table id="billing-agreements" class="table table-bordered table-hover">
 
       <thead>
       <tr>
-        <th><span class="nobr"><?php echo $this->__('Reference ID'); ?></span></th>
-        <th><?php echo $this->__('Status'); ?></th>
-        <th><span class="nobr"><?php echo $this->__('Created At'); ?></span></th>
-        <th><span class="nobr"><?php echo $this->__('Updated At'); ?></span></th>
-        <th><span class="nobr"><?php echo $this->__('Payment Method'); ?></span></th>
+        <th><span class="nobr"><?= $this->__('Reference ID'); ?></span></th>
+        <th><?= $this->__('Status'); ?></th>
+        <th><span class="nobr"><?= $this->__('Created At'); ?></span></th>
+        <th><span class="nobr"><?= $this->__('Updated At'); ?></span></th>
+        <th><span class="nobr"><?= $this->__('Payment Method'); ?></span></th>
         <th>&nbsp;</th>
       </tr>
       </thead>
@@ -30,12 +30,12 @@
       <tbody>
       <?php foreach ($billingAgreements as $item): ?>
         <tr>
-          <td><span class="nobr"><?php echo $this->getItemValue($item, 'reference_id') ?></span></td>
-          <td><?php echo $this->getItemValue($item, 'status') ?></td>
-          <td><span class="nobr"><?php echo $this->getItemValue($item, 'created_at') ?></span></td>
-          <td><span class="nobr"><?php echo $this->getItemValue($item, 'updated_at') ?></span></td>
-          <td><?php echo $this->getItemValue($item, 'payment_method_label') ?></td>
-          <td><a href="<?php echo $this->getItemValue($item, 'edit_url') ?>"><?php echo $this->__('View') ?></a></td>
+          <td><span class="nobr"><?= $this->getItemValue($item, 'reference_id') ?></span></td>
+          <td><?= $this->getItemValue($item, 'status') ?></td>
+          <td><span class="nobr"><?= $this->getItemValue($item, 'created_at') ?></span></td>
+          <td><span class="nobr"><?= $this->getItemValue($item, 'updated_at') ?></span></td>
+          <td><?= $this->getItemValue($item, 'payment_method_label') ?></td>
+          <td><a href="<?= $this->getItemValue($item, 'edit_url') ?>"><?= $this->__('View') ?></a></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
@@ -44,35 +44,35 @@
 
   <?php else: ?>
 
-    <p class="text-info"><?php echo $this->__('There are no billing agreements yet.') ?></p>
+    <p class="text-info"><?= $this->__('There are no billing agreements yet.') ?></p>
 
   <?php endif; ?>
 
   <?php $paymentMethods = $this->getWizardPaymentMethodOptions() ?>
   <?php if ($paymentMethods): ?>
-    <h2 class="box-title"><?php echo $this->__('New Billing Agreement') ?></h2>
-    <p class="text-info"><?php echo $this->__('You will be redirected to the payment system website.') ?></p>
+    <h2 class="box-title"><?= $this->__('New Billing Agreement') ?></h2>
+    <p class="text-info"><?= $this->__('You will be redirected to the payment system website.') ?></p>
 
-    <form action="<?php echo $this->getCreateUrl() ?>" method="post" class="form-inline" role="form">
+    <form action="<?= $this->getCreateUrl() ?>" method="post" class="form-inline" role="form">
 
       <div class="form-group">
         <div class="input-group">
           <label class="sr-only" for="payment_method">Payment Method</label>
           <select id="payment_method" name="payment_method" class="form-control">
-            <option value=""><?php echo $this->__('-- Please Select --') ?></option>
+            <option value=""><?= $this->__('-- Please Select --') ?></option>
             <?php foreach ($paymentMethods as $code => $title): ?>
-              <option value="<?php echo $code ?>"><?php echo $title ?></option>
+              <option value="<?= $code ?>"><?= $title ?></option>
             <?php endforeach; ?>
           </select>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-default"><?php echo $this->__('Create...') ?></button>
+      <button type="submit" class="btn btn-default"><?= $this->__('Create...') ?></button>
     </form>
   <?php endif; ?>
 
-  <a href="<?php echo $this->escapeHtml($this->getBackUrl()) ?>" class="btn btn-default">
+  <a href="<?= $this->escapeHtml($this->getBackUrl()) ?>" class="btn btn-default">
     <i class="fa fa-angle-double-left"></i>
-    <?php echo $this->__('Back') ?>
+    <?= $this->__('Back') ?>
   </a>
 </div>

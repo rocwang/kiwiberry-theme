@@ -4,35 +4,35 @@
     <div class="footer-row">
 
       <div class="footer-col-sns">
-        <?php echo $this->getChildHtml('cms_footer_links_sm') ?>
+        <?= $this->getChildHtml('cms_footer_links_sm') ?>
       </div>
 
       <div class="footer-col-newsletter">
-        <?php echo $this->getChildHtml('newsletter') ?>
+        <?= $this->getChildHtml('newsletter') ?>
       </div>
 
       <div class="footer-col-cms-links">
-        <?php echo $this->getChildHtml('cms_footer_links') ?>
+        <?= $this->getChildHtml('cms_footer_links') ?>
       </div>
 
       <div class="footer-col-language-currency">
         <h5 class="footer-label">Language and Currency</h5>
         <div class="btn-group language-currency" role="group" aria-label="Language and Currency">
-          <?php echo $this->getChildHtml('store_language') ?>
-          <?php echo $this->getChildHtml('footer_currency') ?>
+          <?= $this->getChildHtml('store_language') ?>
+          <?= $this->getChildHtml('footer_currency') ?>
         </div>
       </div>
 
       <!-- Payment Support Icons -->
       <div class="footer-col-payment">
-        <?php echo $this->getChildHtml('cms_footer_links_payment') ?>
+        <?= $this->getChildHtml('cms_footer_links_payment') ?>
       </div>
 
       <div class="footer-col-copyright">
-        <?php echo $this->getCopyright() ?>
+        <?= $this->getCopyright() ?>
 
         <?php if (Mage::getStoreConfigFlag('catalog/seo/site_map')) : ?>
-          <a href="<?php echo Mage::helper('catalog/map')->getCategoryUrl() ?>">Site Map</a>
+          <a href="<?= Mage::helper('catalog/map')->getCategoryUrl() ?>">Site Map</a>
         <?php endif ?>
       </div>
     </div>

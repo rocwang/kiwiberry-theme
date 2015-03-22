@@ -4,13 +4,13 @@
  *
  * Simple:
  *
- * <?php echo $this->getLayout()->createBlock('customer/widget_dob')
+ * <?= $this->getLayout()->createBlock('customer/widget_dob')
  * ->setDate($this->getCustomer()->getDob())
  * ->toHtml() ?>
  *
  * For checkout/onepage/billing.phtml:
  *
- * <?php echo $this->getLayout()->createBlock('customer/widget_dob')
+ * <?= $this->getLayout()->createBlock('customer/widget_dob')
  * ->setDate($this->getCustomer()->getDob())
  * ->setFieldIdFormat('billing:%s')
  * ->setFieldNameFormat('billing[%s]')
@@ -26,25 +26,25 @@
 ?>
 <div id="customer-dob"
      class="form-group"
-     data-is_required="<?php echo $this->isRequired() ? 'true' : 'false' ?>"
-     data-date-format="<?php echo $this->getDateFormat() ?>">
+     data-is_required="<?= $this->isRequired() ? 'true' : 'false' ?>"
+     data-date-format="<?= $this->getDateFormat() ?>">
 
-  <label for="<?php echo $this->getFieldId('month') ?>"
+  <label for="<?= $this->getFieldId('month') ?>"
     <?php if ($this->isRequired()) echo ' class="required"' ?>>
     <?php if ($this->isRequired()) echo '<em>*</em>' ?>
-    <?php echo $this->__('Date of Birth') ?>
+    <?= $this->__('Date of Birth') ?>
   </label>
 
   <?php ob_start() ?>
   <div class="form-group dob-day">
     <label for="<?php $this->getFieldId('day') ?>">
-      <?php echo $this->__('DD') ?>
+      <?= $this->__('DD') ?>
     </label>
     <input type="text"
-           id="<?php echo $this->getFieldId('day') ?>"
-           name="<?php echo $this->getFieldName('day') ?>"
-           value="<?php echo $this->getDay() ?>"
-           title="<?php echo $this->__('Day') ?>"
+           id="<?= $this->getFieldId('day') ?>"
+           name="<?= $this->getFieldName('day') ?>"
+           value="<?= $this->getDay() ?>"
+           title="<?= $this->__('Day') ?>"
            class="form-control validate-custom"
       <?php $this->getFieldParams() ?>>
   </div>
@@ -53,13 +53,13 @@
   <?php ob_start() ?>
   <div class="form-group dob-month">
     <label for="<?php $this->getFieldId('month') ?>">
-      <?php echo $this->__('MM') ?>
+      <?= $this->__('MM') ?>
     </label>
     <input type="text"
-           id="<?php echo $this->getFieldId('month') ?>"
-           name="<?php echo $this->getFieldName('month') ?>"
-           value="<?php echo $this->getMonth() ?>"
-           title="<?php echo $this->__('Month') ?>"
+           id="<?= $this->getFieldId('month') ?>"
+           name="<?= $this->getFieldName('month') ?>"
+           value="<?= $this->getMonth() ?>"
+           title="<?= $this->__('Month') ?>"
            class="form-control validate-custom"
       <?php $this->getFieldParams() ?>>
   </div>
@@ -68,13 +68,13 @@
   <?php ob_start() ?>
   <div class="form-group dob-year">
     <label for="<?php $this->getFieldId('year') ?>">
-      <?php echo $this->__('YYYY') ?>
+      <?= $this->__('YYYY') ?>
     </label>
     <input type="text"
-           id="<?php echo $this->getFieldId('year') ?>"
-           name="<?php echo $this->getFieldName('year') ?>"
-           value="<?php echo $this->getYear() ?>"
-           title="<?php echo $this->__('Year') ?>"
+           id="<?= $this->getFieldId('year') ?>"
+           name="<?= $this->getFieldName('year') ?>"
+           value="<?= $this->getYear() ?>"
+           title="<?= $this->__('Year') ?>"
            class="form-control validate-custom"
       <?php $this->getFieldParams() ?>>
   </div>
@@ -88,7 +88,7 @@
   ?>
 
   <div class="dob-full" style="display:none;">
-    <input type="hidden" id="<?php echo $this->getFieldId('dob') ?>" name="<?php echo $this->getFieldName('dob') ?>"/>
+    <input type="hidden" id="<?= $this->getFieldId('dob') ?>" name="<?= $this->getFieldName('dob') ?>"/>
   </div>
 
   <div class="validation-advice" style="display:none;"></div>

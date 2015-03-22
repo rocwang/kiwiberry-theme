@@ -1,9 +1,9 @@
 <div id="product-options-wrapper">
 
-  <?php echo $this->getChildHtml('', true, true); ?>
+  <?= $this->getChildHtml('', true, true); ?>
 
   <?php if ($this->hasRequiredOptions()): ?>
-    <p class="text-info"><?php echo $this->__('* Required Fields') ?></p>
+    <p class="text-info"><?= $this->__('* Required Fields') ?></p>
   <?php endif; ?>
 
 </div>

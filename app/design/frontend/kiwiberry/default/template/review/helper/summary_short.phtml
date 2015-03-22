@@ -1,6 +1,6 @@
 <?php if ($this->getReviewsCount()): ?>
 
-  <a href="<?php echo $this->getReviewsUrl() ?>"
+  <a href="<?= $this->getReviewsUrl() ?>"
      class="ratings"
      data-toggle="tooltip"
      data-placement="top"
@@ -21,8 +21,8 @@
 
 <?php elseif ($this->getDisplayIfEmpty()): ?>
 
-  <a class="ratings text-info" href="<?php echo $this->getReviewsUrl() ?>#review-form">
-    <?php echo $this->__('Be the first to review this product') ?>
+  <a class="ratings text-info" href="<?= $this->getReviewsUrl() ?>#review-form">
+    <?= $this->__('Be the first to review this product') ?>
   </a>
 
 <?php endif; ?>

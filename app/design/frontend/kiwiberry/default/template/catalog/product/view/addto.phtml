@@ -2,17 +2,17 @@
 <?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
 
 <?php if ($this->helper('wishlist')->isAllow()) : ?>
-  <a href="<?php echo $_wishlistSubmitUrl ?>"
+  <a href="<?= $_wishlistSubmitUrl ?>"
      id="add_to_wishlist"
      class="btn btn-default">
-    <?php echo $this->__('Add to Wishlist') ?>
+    <?= $this->__('Add to Wishlist') ?>
   </a>
 <?php endif; ?>
 
 <?php $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product); ?>
 <?php if ($_compareUrl) : ?>
-  <a href="<?php echo $_compareUrl ?>" class="btn btn-default">
-    <?php echo $this->__('Add to Compare') ?>
+  <a href="<?= $_compareUrl ?>" class="btn btn-default">
+    <?= $this->__('Add to Compare') ?>
   </a>
 <?php endif; ?>
 

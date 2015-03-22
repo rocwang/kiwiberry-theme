@@ -10,28 +10,28 @@ $_swatchUrl = $this->getSwatchUrl();
 
 <li class="list-group-item">
 
-  <strong><?php echo $this->__($_filter->getName()) ?>:</strong>
-  <img src="<?php echo $_swatchUrl; ?>"
-       alt="<?php echo $_label; ?>"
-       title="<?php echo $_label ?>"
-       width="<?php echo $_swatchInnerWidth ?>"
-       height="<?php echo $_swatchInnerHeight ?>"/>
+  <strong><?= $this->__($_filter->getName()) ?>:</strong>
+  <img src="<?= $_swatchUrl; ?>"
+       alt="<?= $_label; ?>"
+       title="<?= $_label ?>"
+       width="<?= $_swatchInnerWidth ?>"
+       height="<?= $_swatchInnerHeight ?>"/>
 
   <?php
   $clearLinkUrl = $_filter->getClearLinkUrl();
   if ($clearLinkUrl):
     ?>
-    <a href="<?php echo $_filter->getRemoveUrl() ?>"
-       title="<?php echo $this->__('Previous') ?>"><?php echo $this->__('Previous') ?></a>
+    <a href="<?= $_filter->getRemoveUrl() ?>"
+       title="<?= $this->__('Previous') ?>"><?= $this->__('Previous') ?></a>
 
-    <a title="<?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
-       href="<?php echo $clearLinkUrl ?>"><?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></a>
+    <a title="<?= $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
+       href="<?= $clearLinkUrl ?>"><?= $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></a>
   <?php else: ?>
     <a class="close"
-       href="<?php echo $_filter->getRemoveUrl() ?>"
-       title="<?php echo $this->__('Remove This Item') ?>">
+       href="<?= $_filter->getRemoveUrl() ?>"
+       title="<?= $this->__('Remove This Item') ?>">
       <span aria-hidden="true">&times;</span>
-      <span class="sr-only"><?php echo $this->__('Remove This Item') ?></span>
+      <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
     </a>
   <?php endif; ?>
 

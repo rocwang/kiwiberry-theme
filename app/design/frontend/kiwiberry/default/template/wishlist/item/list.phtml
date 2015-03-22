@@ -10,7 +10,7 @@ $columns = $this->getColumns();
     foreach ($columns as $column):
       $_blockName = str_replace('.', '-', strtolower($column->getNameInLayout()));
       ?>
-      <th class="<?php echo $_blockName; ?>"><?php echo $column->getTitle(); ?></th>
+      <th class="<?= $_blockName; ?>"><?= $column->getTitle(); ?></th>
     <?php endforeach; ?>
   </tr>
   </thead>
@@ -20,7 +20,7 @@ $columns = $this->getColumns();
 
     <?php foreach ($this->getItems() as $item): ?>
 
-      <tr id="item_<?php echo $item->getId(); ?>">
+      <tr id="item_<?= $item->getId(); ?>">
         <?php
         foreach ($columns as $key => $column):
           $_blockName = str_replace('.', '-', strtolower($column->getNameInLayout()));
@@ -32,8 +32,8 @@ $columns = $this->getColumns();
             $_rwdLabel = ($column->getTitle()) ? $column->getTitle() : false;
           }
           ?>
-          <td class="<?php echo 'wishlist-cell' . $key; ?> <?php echo $_blockName; ?>"
-            <?php if ($_rwdLabel): ?> data-rwd-label="<?php echo $_rwdLabel; ?>"<?php endif; ?>
+          <td class="<?= 'wishlist-cell' . $key; ?> <?= $_blockName; ?>"
+            <?php if ($_rwdLabel): ?> data-rwd-label="<?= $_rwdLabel; ?>"<?php endif; ?>
             >
             <?php
             $column->setItem($item);
@@ -47,8 +47,8 @@ $columns = $this->getColumns();
 
   <?php else: ?>
 
-    <td colspan="<?php echo count($columns); ?>" class="text-info">
-      <?php echo $this->__('This Wishlist has no Items'); ?>
+    <td colspan="<?= count($columns); ?>" class="text-info">
+      <?= $this->__('This Wishlist has no Items'); ?>
     </td>
 
   <?php endif; ?>
@@ -57,11 +57,11 @@ $columns = $this->getColumns();
 </table>
 
 <?php foreach ($columns as $column): ?>
-  <?php echo $column->getAdditionalHtml(); ?>
+  <?= $column->getAdditionalHtml(); ?>
 <?php endforeach; ?>
 
 <script>
   <?php foreach ($columns as $column): ?>
-  <?php echo $column->getJs();?>
+  <?= $column->getJs();?>
   <?php endforeach; ?>
 </script>

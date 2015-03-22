@@ -6,12 +6,12 @@ $_hasAssociatedProducts = count($_associatedProducts) > 0;
 
 <?php if ($this->displayProductStockStatus()): ?>
   <p class="availability">
-    <?php echo $this->helper('catalog')->__('Availability:') ?>
+    <?= $this->helper('catalog')->__('Availability:') ?>
 
     <?php if ($_product->isAvailable() && $_hasAssociatedProducts): ?>
-      <?php echo $this->helper('catalog')->__('In stock') ?>
+      <?= $this->helper('catalog')->__('In stock') ?>
     <?php else: ?>
-      <?php echo $this->helper('catalog')->__('Out of stock') ?>
+      <?= $this->helper('catalog')->__('Out of stock') ?>
     <?php endif; ?>
   </p>
 <?php endif; ?>

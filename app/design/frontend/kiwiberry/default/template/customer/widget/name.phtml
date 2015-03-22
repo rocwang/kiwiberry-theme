@@ -4,13 +4,13 @@
  *
  * Simple:
  *
- * <?php echo $this->getLayout()->createBlock('customer/widget_name')
+ * <?= $this->getLayout()->createBlock('customer/widget_name')
  * ->setObject($this->getAddress())
  * ->toHtml() ?>
  *
  * For checkout/onepage/shipping.phtml:
  *
- * <?php echo $this->getLayout()->createBlock('customer/widget_name')
+ * <?= $this->getLayout()->createBlock('customer/widget_name')
  * ->setObject($this->getAddress())
  * ->setFieldIdFormat('shipping:%s')
  * ->setFieldNameFormat('shipping[%s]')
@@ -20,38 +20,38 @@
 /* @var $this Mage_Customer_Block_Widget_Name */
 ?>
 
-<div class="<?php echo $this->getContainerClassName() ?>">
+<div class="<?= $this->getContainerClassName() ?>">
 
   <?php if ($this->showPrefix()): ?>
     <div class="form-group">
-      <label for="<?php echo $this->getFieldId('prefix') ?>"
+      <label for="<?= $this->getFieldId('prefix') ?>"
         <?php if ($this->isPrefixRequired()) echo ' class="required"' ?>>
         <?php if ($this->isPrefixRequired()) echo '<em>*</em>' ?>
-        <?php echo $this->getStoreLabel('prefix') ?>
+        <?= $this->getStoreLabel('prefix') ?>
       </label>
 
       <?php if ($this->getPrefixOptions() === false): ?>
 
         <input type="text"
-               id="<?php echo $this->getFieldId('prefix') ?>"
-               name="<?php echo $this->getFieldName('prefix') ?>"
-               value="<?php echo $this->escapeHtml($this->getObject()->getPrefix()) ?>"
-               title="<?php echo $this->getStoreLabel('prefix') ?>"
-               class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('prefix') ?>"
-          <?php echo $this->getFieldParams() ?>>
+               id="<?= $this->getFieldId('prefix') ?>"
+               name="<?= $this->getFieldName('prefix') ?>"
+               value="<?= $this->escapeHtml($this->getObject()->getPrefix()) ?>"
+               title="<?= $this->getStoreLabel('prefix') ?>"
+               class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('prefix') ?>"
+          <?= $this->getFieldParams() ?>>
 
       <?php else: ?>
 
-        <select id="<?php echo $this->getFieldId('prefix') ?>"
-                name="<?php echo $this->getFieldName('prefix') ?>"
-                title="<?php echo $this->getStoreLabel('prefix') ?>"
-                class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('prefix') ?>"
-          <?php echo $this->getFieldParams() ?>>
+        <select id="<?= $this->getFieldId('prefix') ?>"
+                name="<?= $this->getFieldName('prefix') ?>"
+                title="<?= $this->getStoreLabel('prefix') ?>"
+                class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('prefix') ?>"
+          <?= $this->getFieldParams() ?>>
 
           <?php foreach ($this->getPrefixOptions() as $_option): ?>
-            <option value="<?php echo $_option ?>"
+            <option value="<?= $_option ?>"
               <?php if ($this->getObject()->getPrefix() == $_option): ?> selected="selected"<?php endif; ?>>
-              <?php echo $this->__($_option) ?>
+              <?= $this->__($_option) ?>
             </option>
           <?php endforeach; ?>
 
@@ -63,85 +63,85 @@
   <?php endif; ?>
 
   <div class="form-group">
-    <label for="<?php echo $this->getFieldId('firstname') ?>"
+    <label for="<?= $this->getFieldId('firstname') ?>"
            class="required">
       <em>*</em>
-      <?php echo $this->getStoreLabel('firstname') ?>
+      <?= $this->getStoreLabel('firstname') ?>
     </label>
     <input type="text"
-           id="<?php echo $this->getFieldId('firstname') ?>"
-           name="<?php echo $this->getFieldName('firstname') ?>"
-           value="<?php echo $this->escapeHtml($this->getObject()->getFirstname()) ?>"
-           title="<?php echo $this->getStoreLabel('firstname') ?>"
+           id="<?= $this->getFieldId('firstname') ?>"
+           name="<?= $this->getFieldName('firstname') ?>"
+           value="<?= $this->escapeHtml($this->getObject()->getFirstname()) ?>"
+           title="<?= $this->getStoreLabel('firstname') ?>"
            maxlength="255"
-           class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('firstname') ?>"
-      <?php echo $this->getFieldParams() ?>>
+           class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('firstname') ?>"
+      <?= $this->getFieldParams() ?>>
   </div>
 
   <?php if ($this->showMiddlename()): ?>
     <?php $isMiddlenameRequired = $this->isMiddlenameRequired(); ?>
     <div class="form-group">
-      <label for="<?php echo $this->getFieldId('middlename') ?>"
-        <?php echo $isMiddlenameRequired ? ' class="required"' : '' ?>>
-        <?php echo $isMiddlenameRequired ? '<em>*</em>' : '' ?>
-        <?php echo $this->getStoreLabel('middlename') ?>
+      <label for="<?= $this->getFieldId('middlename') ?>"
+        <?= $isMiddlenameRequired ? ' class="required"' : '' ?>>
+        <?= $isMiddlenameRequired ? '<em>*</em>' : '' ?>
+        <?= $this->getStoreLabel('middlename') ?>
       </label>
       <input type="text"
-             id="<?php echo $this->getFieldId('middlename') ?>"
-             name="<?php echo $this->getFieldName('middlename') ?>"
-             value="<?php echo $this->escapeHtml($this->getObject()->getMiddlename()) ?>"
-             title="<?php echo $this->getStoreLabel('middlename') ?>"
-             class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('middlename') ?>"
-        <?php echo $this->getFieldParams() ?>/>
+             id="<?= $this->getFieldId('middlename') ?>"
+             name="<?= $this->getFieldName('middlename') ?>"
+             value="<?= $this->escapeHtml($this->getObject()->getMiddlename()) ?>"
+             title="<?= $this->getStoreLabel('middlename') ?>"
+             class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('middlename') ?>"
+        <?= $this->getFieldParams() ?>/>
     </div>
   <?php endif; ?>
 
   <div class="form-group">
-    <label for="<?php echo $this->getFieldId('lastname') ?>"
+    <label for="<?= $this->getFieldId('lastname') ?>"
            class="required">
       <em>*</em>
-      <?php echo $this->getStoreLabel('lastname') ?>
+      <?= $this->getStoreLabel('lastname') ?>
     </label>
     <input type="text"
-           id="<?php echo $this->getFieldId('lastname') ?>"
-           name="<?php echo $this->getFieldName('lastname') ?>"
-           value="<?php echo $this->escapeHtml($this->getObject()->getLastname()) ?>"
-           title="<?php echo $this->getStoreLabel('lastname') ?>"
+           id="<?= $this->getFieldId('lastname') ?>"
+           name="<?= $this->getFieldName('lastname') ?>"
+           value="<?= $this->escapeHtml($this->getObject()->getLastname()) ?>"
+           title="<?= $this->getStoreLabel('lastname') ?>"
            maxlength="255"
-           class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('lastname') ?>"
-      <?php echo $this->getFieldParams() ?>>
+           class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('lastname') ?>"
+      <?= $this->getFieldParams() ?>>
   </div>
 
   <?php if ($this->showSuffix()): ?>
     <div class="form-group">
-      <label for="<?php echo $this->getFieldId('suffix') ?>"
+      <label for="<?= $this->getFieldId('suffix') ?>"
         <?php if ($this->isSuffixRequired()) echo ' class="required"' ?>>
         <?php if ($this->isSuffixRequired()) echo '<em>*</em>' ?>
-        <?php echo $this->getStoreLabel('suffix') ?>
+        <?= $this->getStoreLabel('suffix') ?>
       </label>
 
       <?php if ($this->getSuffixOptions() === false): ?>
 
         <input type="text"
-               id="<?php echo $this->getFieldId('suffix') ?>"
-               name="<?php echo $this->getFieldName('suffix') ?>"
-               value="<?php echo $this->escapeHtml($this->getObject()->getSuffix()) ?>"
-               title="<?php echo $this->getStoreLabel('suffix') ?>"
-               class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('suffix') ?>"
-          <?php echo $this->getFieldParams() ?>>
+               id="<?= $this->getFieldId('suffix') ?>"
+               name="<?= $this->getFieldName('suffix') ?>"
+               value="<?= $this->escapeHtml($this->getObject()->getSuffix()) ?>"
+               title="<?= $this->getStoreLabel('suffix') ?>"
+               class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('suffix') ?>"
+          <?= $this->getFieldParams() ?>>
 
       <?php else: ?>
 
-        <select id="<?php echo $this->getFieldId('suffix') ?>"
-                name="<?php echo $this->getFieldName('suffix') ?>"
-                title="<?php echo $this->getStoreLabel('suffix') ?>"
-                class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('suffix') ?>"
-          <?php echo $this->getFieldParams() ?>>
+        <select id="<?= $this->getFieldId('suffix') ?>"
+                name="<?= $this->getFieldName('suffix') ?>"
+                title="<?= $this->getStoreLabel('suffix') ?>"
+                class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('suffix') ?>"
+          <?= $this->getFieldParams() ?>>
           <?php foreach ($this->getSuffixOptions() as $_option): ?>
 
-            <option value="<?php echo $_option ?>"
+            <option value="<?= $_option ?>"
               <?php if ($this->getObject()->getSuffix() == $_option): ?>selected="selected"<?php endif; ?>>
-              <?php echo $this->__($_option) ?>
+              <?= $this->__($_option) ?>
             </option>
 
           <?php endforeach; ?>

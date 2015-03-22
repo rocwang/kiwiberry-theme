@@ -1,20 +1,20 @@
 <?php /** @var $this Mage_Oauth_Block_Customer_Token_List */ ?>
 
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <div class="page-title">
-  <h1><?php echo $this->__('My Applications') ?></h1>
+  <h1><?= $this->__('My Applications') ?></h1>
 </div>
 
 <?php if ($this->getCollection() && $this->count()): ?>
 
-  <?php echo $this->getToolbarHtml() ?>
+  <?= $this->getToolbarHtml() ?>
 
   <table class="table table-bordered table-hover" id="my-apps-table">
     <thead>
     <tr>
-      <th><?php echo $this->__('App Name') ?></th>
-      <th><?php echo $this->__('Status') ?></th>
+      <th><?= $this->__('App Name') ?></th>
+      <th><?= $this->__('Status') ?></th>
       <th>&nbsp;</th>
     </tr>
     </thead>
@@ -24,18 +24,18 @@
     <?php foreach ($this->getCollection() as $item) : ?>
 
       <tr>
-        <td><?php echo $this->escapeHtml($item->getName()); ?></td>
-        <td><em><?php echo $this->getStatusLabel($item->getRevoked()) ?></em></td>
+        <td><?= $this->escapeHtml($item->getName()); ?></td>
+        <td><em><?= $this->getStatusLabel($item->getRevoked()) ?></em></td>
         <td>
-          <a href="<?php echo $this->getUpdateRevokeLink($item) ?>" class="btn btn-warning js-need-confirmation"
-             title="<?php echo $this->getChangeStatusLabel($item->getRevoked()) ?>"
-             data-confirmation="<?php echo $this->getChangeStatusConfirmMessage($item->getRevoked()) ?>">
-            <?php echo $this->getChangeStatusLabel($item->getRevoked()) ?>
+          <a href="<?= $this->getUpdateRevokeLink($item) ?>" class="btn btn-warning js-need-confirmation"
+             title="<?= $this->getChangeStatusLabel($item->getRevoked()) ?>"
+             data-confirmation="<?= $this->getChangeStatusConfirmMessage($item->getRevoked()) ?>">
+            <?= $this->getChangeStatusLabel($item->getRevoked()) ?>
           </a>
-          <a href="<?php echo $this->getDeleteLink($item) ?>" class="btn btn-danger js-need-confirmation"
-             title="<?php echo $this->__('Delete') ?>"
-             data-confirmation="<?php echo $this->__('Are you sure you want to delete this application?') ?>">
-            <?php echo $this->__('Delete') ?>
+          <a href="<?= $this->getDeleteLink($item) ?>" class="btn btn-danger js-need-confirmation"
+             title="<?= $this->__('Delete') ?>"
+             data-confirmation="<?= $this->__('Are you sure you want to delete this application?') ?>">
+            <?= $this->__('Delete') ?>
           </a>
         </td>
       </tr>
@@ -44,10 +44,10 @@
     </tbody>
   </table>
 
-  <?php echo $this->getToolbarHtml() ?>
+  <?= $this->getToolbarHtml() ?>
 
 <?php else: ?>
 
-  <p class="text-info"><?php echo $this->__('You have no applications.'); ?></p>
+  <p class="text-info"><?= $this->__('You have no applications.'); ?></p>
 
 <?php endif; ?>

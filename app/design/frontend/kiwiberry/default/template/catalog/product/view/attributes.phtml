@@ -12,8 +12,8 @@ $_product = $this->getProduct()
 <?php if ($_additional = $this->getAdditionalData()): ?>
   <dl class="dl-horizontal">
     <?php foreach ($_additional as $_data): ?>
-      <dt><?php echo $this->escapeHtml($this->__($_data['label'])) ?></dt>
-      <dd><?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></dd>
+      <dt><?= $this->escapeHtml($this->__($_data['label'])) ?></dt>
+      <dd><?= $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></dd>
     <?php endforeach; ?>
   </dl>
 <?php endif; ?>

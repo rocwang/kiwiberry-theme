@@ -1,16 +1,16 @@
-<h1><?php echo Mage::helper('sales')->__('Orders and Returns') ?></h1>
+<h1><?= Mage::helper('sales')->__('Orders and Returns') ?></h1>
 
-<h2 class="legend"><?php echo Mage::helper('sales')->__('Order Information') ?></h2>
+<h2 class="legend"><?= Mage::helper('sales')->__('Order Information') ?></h2>
 
 <form id="oar_widget_orders_and_returns_form"
-      action="<?php echo $this->getActionUrl() ?>"
+      action="<?= $this->getActionUrl() ?>"
       method="post"
       role="form"
       name="guest_post">
 
   <div class="form-group">
     <label for="oar_order_id" class="required">
-      <?php echo Mage::helper('sales')->__('Order ID') ?>
+      <?= Mage::helper('sales')->__('Order ID') ?>
       <em>*</em>
     </label>
     <input type="text"
@@ -20,14 +20,14 @@
   </div>
 
   <span id="oar_help_block" class="help-block">
-    <?php echo Mage::helper('sales')
+    <?= Mage::helper('sales')
       ->__('Enter the billing last name and email/ZIP as in the order billing address.') ?>
   </span>
 
   <div class="form-group">
     <label for="oar_billing_lastname"
            class="required">
-      <?php echo Mage::helper('sales')->__('Billing Last Name') ?>
+      <?= Mage::helper('sales')->__('Billing Last Name') ?>
       <em>*</em>
     </label>
     <input type="text"
@@ -38,11 +38,11 @@
   </div>
 
   <div class="form-group">
-    <label class="required"><?php echo Mage::helper('sales')->__('Find Order By:') ?></label>
+    <label class="required"><?= Mage::helper('sales')->__('Find Order By:') ?></label>
     <select name="oar_type"
             id="quick_search_type_id"
             class="form-control"
-            title="<?php echo Mage::helper('sales')->__('Find Order By:') ?>"
+            title="<?= Mage::helper('sales')->__('Find Order By:') ?>"
             aria-describedby="oar_help_block"
             value="email">
       <option value="email">Email Address</option>
@@ -52,7 +52,7 @@
 
   <div class="form-group" id="oar-email">
     <label for="oar_email" class="required">
-      <?php echo Mage::helper('sales')->__('Email Address') ?>
+      <?= Mage::helper('sales')->__('Email Address') ?>
       <em>*</em>
     </label>
     <input type="text"
@@ -64,7 +64,7 @@
 
   <div class="form-group" id="oar-zip" style="display:none;">
     <label for="oar_zip" class="required">
-      <?php echo Mage::helper('sales')->__('Billing ZIP Code') ?>
+      <?= Mage::helper('sales')->__('Billing ZIP Code') ?>
       <em>*</em>
     </label>
     <input type="text"
@@ -74,9 +74,9 @@
            aria-describedby="oar_help_block">
   </div>
 
-  <p class="text-danger"><?php echo Mage::helper('sales')->__('* Required Fields') ?></p>
+  <p class="text-danger"><?= Mage::helper('sales')->__('* Required Fields') ?></p>
 
-  <button type="submit" title="<?php echo Mage::helper('sales')->__('Continue') ?>" class="btn btn-default">
-    <?php echo Mage::helper('sales')->__('Continue') ?>
+  <button type="submit" title="<?= Mage::helper('sales')->__('Continue') ?>" class="btn btn-default">
+    <?= Mage::helper('sales')->__('Continue') ?>
   </button>
 </form>

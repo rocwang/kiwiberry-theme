@@ -1,8 +1,8 @@
 <?php if ($this->getWishlist()->getItemsCount() && $this->getWishlist()->isSalable()): ?>
   <button type="button"
-          title="<?php echo $this->__('Add All to Cart') ?>"
+          title="<?= $this->__('Add All to Cart') ?>"
           id="btn-add-all-witems-to-cart"
           class="btn btn-default btn-dd">
-    <?php echo $this->__('Add All to Cart') ?>
+    <?= $this->__('Add All to Cart') ?>
   </button>
 <?php endif; ?>

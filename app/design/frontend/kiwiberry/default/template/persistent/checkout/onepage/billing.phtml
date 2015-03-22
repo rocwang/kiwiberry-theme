@@ -3,19 +3,19 @@
 ?>
 <form id="co-billing-form"
       action=""
-      data-address-url="<?php echo $this->getUrl('checkout/onepage/getAddress') ?>address/"
-      data-save-url="<?php echo $this->getUrl('checkout/onepage/saveBilling') ?>"
-      data-regions="<?php echo $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()) ?>"
+      data-address-url="<?= $this->getUrl('checkout/onepage/getAddress') ?>address/"
+      data-save-url="<?= $this->getUrl('checkout/onepage/saveBilling') ?>"
+      data-regions="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()) ?>"
   >
 
-<p class="text-danger"><?php echo $this->__('* Required Fields') ?></p>
+<p class="text-danger"><?= $this->__('* Required Fields') ?></p>
 
 <?php if ($this->customerHasAddresses()): ?>
   <div class="form-group">
     <label for="billing-address-select">
-      <?php echo $this->__('Select a billing address from your address book or enter a new address.') ?>
+      <?= $this->__('Select a billing address from your address book or enter a new address.') ?>
     </label>
-    <?php echo $this->getAddressesHtmlSelect('billing') ?>
+    <?= $this->getAddressesHtmlSelect('billing') ?>
   </div>
 <?php endif; ?>
 
@@ -25,7 +25,7 @@
 
 <input type="hidden"
        name="billing[address_id]"
-       value="<?php echo $this->getAddress()->getId() ?>"
+       value="<?= $this->getAddress()->getId() ?>"
        id="billing:address_id">
 
 <?php
@@ -38,26 +38,26 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 ?>
 
 <div class="form-group">
-  <label for="billing:company"><?php echo $this->__('Company') ?></label>
+  <label for="billing:company"><?= $this->__('Company') ?></label>
   <input type="text"
          id="billing:company"
          name="billing[company]"
-         value="<?php echo $this->escapeHtml($this->getAddress()->getCompany()) ?>"
-         title="<?php echo $this->__('Company') ?>"
-         class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('company') ?>">
+         value="<?= $this->escapeHtml($this->getAddress()->getCompany()) ?>"
+         title="<?= $this->__('Company') ?>"
+         class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('company') ?>">
 </div>
 
 <?php if (!$this->isCustomerLoggedIn()): ?>
   <div class="form-group">
-    <label for="billing:email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+    <label for="billing:email" class="required"><em>*</em><?= $this->__('Email Address') ?></label>
     <input type="email"
            autocapitalize="off"
            autocorrect="off"
            spellcheck="false"
            name="billing[email]"
            id="billing:email"
-           value="<?php echo $this->escapeHtml($this->getAddress()->getEmail()) ?>"
-           title="<?php echo $this->__('Email Address') ?>"
+           value="<?= $this->escapeHtml($this->getAddress()->getEmail()) ?>"
+           title="<?= $this->__('Email Address') ?>"
            class="form-control validate-email required-entry">
   </div>
 <?php endif; ?>
@@ -67,80 +67,80 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 <div class="form-group">
   <label for="billing:street1" class="required">
     <em>*</em>
-    <?php echo $this->__('Address') ?>
+    <?= $this->__('Address') ?>
   </label>
   <input type="text"
-         title="<?php echo $this->__('Street Address') ?>"
+         title="<?= $this->__('Street Address') ?>"
          name="billing[street][]"
          id="billing:street1"
-         value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(1)) ?>"
-         class="form-control <?php echo $_streetValidationClass ?>">
+         value="<?= $this->escapeHtml($this->getAddress()->getStreet(1)) ?>"
+         class="form-control <?= $_streetValidationClass ?>">
 </div>
 
 <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
 
 <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
   <div class="form-group">
-    <label for="billing:street<?php echo $_i ?>">
-      <?php echo $this->__('Street Address %s', $_i) ?>
+    <label for="billing:street<?= $_i ?>">
+      <?= $this->__('Street Address %s', $_i) ?>
     </label>
     <input type="text"
-           title="<?php echo $this->__('Street Address %s', $_i) ?>"
+           title="<?= $this->__('Street Address %s', $_i) ?>"
            name="billing[street][]"
-           id="billing:street<?php echo $_i ?>"
-           value="<?php echo $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>"
-           class="form-control <?php echo $_streetValidationClass ?>">
+           id="billing:street<?= $_i ?>"
+           value="<?= $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>"
+           class="form-control <?= $_streetValidationClass ?>">
   </div>
 <?php endfor; ?>
 
 <?php if ($this->helper('customer/address')->isVatAttributeVisible()) : ?>
   <div class="form-group">
     <label for="billing:vat_id">
-      <?php echo $this->__('VAT Number') ?>
+      <?= $this->__('VAT Number') ?>
     </label>
     <input type="text"
            id="billing:vat_id"
            name="billing[vat_id]"
-           value="<?php echo $this->escapeHtml($this->getAddress()->getVatId()) ?>"
-           title="<?php echo $this->__('VAT Number') ?>"
-           class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('vat_id') ?>">
+           value="<?= $this->escapeHtml($this->getAddress()->getVatId()) ?>"
+           title="<?= $this->__('VAT Number') ?>"
+           class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('vat_id') ?>">
   </div>
 <?php endif; ?>
 
 <div class="form-group">
   <label for="billing:city" class="required">
     <em>*</em>
-    <?php echo $this->__('City') ?>
+    <?= $this->__('City') ?>
   </label>
   <input type="text"
-         title="<?php echo $this->__('City') ?>"
+         title="<?= $this->__('City') ?>"
          name="billing[city]"
-         value="<?php echo $this->escapeHtml($this->getAddress()->getCity()) ?>"
-         class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('city') ?>"
+         value="<?= $this->escapeHtml($this->getAddress()->getCity()) ?>"
+         class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('city') ?>"
          id="billing:city">
 </div>
 
 <div class="form-group">
   <label for="billing:region_id" class="required">
     <em>*</em>
-    <?php echo $this->__('State/Province') ?>
+    <?= $this->__('State/Province') ?>
   </label>
 
   <select id="billing:region_id"
           name="billing[region_id]"
-          title="<?php echo $this->__('State/Province') ?>"
+          title="<?= $this->__('State/Province') ?>"
           class="form-control validate-select"
-          defaultValue="<?php echo $this->getAddress()->getRegionId() ?>"
+          defaultValue="<?= $this->getAddress()->getRegionId() ?>"
           style="display:none;">
-    <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+    <option value=""><?= $this->__('Please select region, state or province') ?></option>
   </select>
 
   <input type="text"
          id="billing:region"
          name="billing[region]"
-         value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"
-         title="<?php echo $this->__('State/Province') ?>"
-         class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>"
+         value="<?= $this->escapeHtml($this->getAddress()->getRegion()) ?>"
+         title="<?= $this->__('State/Province') ?>"
+         class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('region') ?>"
          style="display:none;">
 </div>
 
@@ -148,46 +148,46 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 <div class="form-group">
   <label for="billing:postcode" class="required">
     <em>*</em>
-    <?php echo $this->__('Zip/Postal Code') ?>
+    <?= $this->__('Zip/Postal Code') ?>
   </label>
   <input type="text"
-         title="<?php echo $this->__('Zip/Postal Code') ?>"
+         title="<?= $this->__('Zip/Postal Code') ?>"
          name="billing[postcode]"
          id="billing:postcode"
-         value="<?php echo $this->escapeHtml($this->getAddress()->getPostcode()) ?>"
-         class="form-control validate-zip-international <?php echo $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>">
+         value="<?= $this->escapeHtml($this->getAddress()->getPostcode()) ?>"
+         class="form-control validate-zip-international <?= $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>">
 </div>
 
 <div class="form-group">
   <label for="billing:country_id" class="required">
     <em>*</em>
-    <?php echo $this->__('Country') ?>
+    <?= $this->__('Country') ?>
   </label>
-  <?php echo $this->getCountryHtmlSelect('billing') ?>
+  <?= $this->getCountryHtmlSelect('billing') ?>
 </div>
 
 <div class="form-group">
   <label for="billing:telephone" class="required">
     <em>*</em>
-    <?php echo $this->__('Telephone') ?>
+    <?= $this->__('Telephone') ?>
   </label>
   <input type="tel"
          name="billing[telephone]"
-         value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>"
-         title="<?php echo $this->__('Telephone') ?>"
-         class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>"
+         value="<?= $this->escapeHtml($this->getAddress()->getTelephone()) ?>"
+         title="<?= $this->__('Telephone') ?>"
+         class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>"
          id="billing:telephone">
 </div>
 
 <div class="form-group">
   <label for="billing:fax">
-    <?php echo $this->__('Fax') ?>
+    <?= $this->__('Fax') ?>
   </label>
   <input type="tel"
          name="billing[fax]"
-         value="<?php echo $this->escapeHtml($this->getAddress()->getFax()) ?>"
-         title="<?php echo $this->__('Fax') ?>"
-         class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('fax') ?>"
+         value="<?= $this->escapeHtml($this->getAddress()->getFax()) ?>"
+         title="<?= $this->__('Fax') ?>"
+         class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('fax') ?>"
          id="billing:fax">
 </div>
 
@@ -198,14 +198,14 @@ echo $this->getLayout()->createBlock('customer/widget_name')
   <?php if ($_dob->isEnabled() || $_gender->isEnabled()): ?>
 
     <?php if ($_dob->isEnabled()): ?>
-      <?php echo $_dob->setDate($this->getQuote()->getCustomerDob())
+      <?= $_dob->setDate($this->getQuote()->getCustomerDob())
         ->setFieldIdFormat('billing:%s')
         ->setFieldNameFormat('billing[%s]')
         ->toHtml() ?>
     <?php endif; ?>
 
     <?php if ($_gender->isEnabled()): ?>
-      <?php echo $_gender->setGender($this->getQuote()->getCustomerGender())
+      <?= $_gender->setGender($this->getQuote()->getCustomerGender())
         ->setFieldIdFormat('billing:%s')
         ->setFieldNameFormat('billing[%s]')->toHtml() ?>
     <?php endif ?>
@@ -213,7 +213,7 @@ echo $this->getLayout()->createBlock('customer/widget_name')
   <?php endif ?>
 
   <?php if ($this->isTaxvatEnabled()): ?>
-    <?php echo $this->getTaxvatHtml() ?>
+    <?= $this->getTaxvatHtml() ?>
   <?php endif; ?>
 
   <div id="register-customer-password">
@@ -221,30 +221,30 @@ echo $this->getLayout()->createBlock('customer/widget_name')
     <div class="form-group">
       <label for="billing:customer_password" class="required">
         <em>*</em>
-        <?php echo $this->__('Password') ?>
+        <?= $this->__('Password') ?>
       </label>
       <input type="password"
              name="billing[customer_password]"
              id="billing:customer_password"
-             title="<?php echo $this->__('Password') ?>"
+             title="<?= $this->__('Password') ?>"
              class="form-control required-entry validate-password">
     </div>
 
     <div class="form-group">
       <label for="billing:confirm_password" class="required">
         <em>*</em>
-        <?php echo $this->__('Confirm Password') ?>
+        <?= $this->__('Confirm Password') ?>
       </label>
       <input type="password"
              name="billing[confirm_password]"
-             title="<?php echo $this->__('Confirm Password') ?>"
+             title="<?= $this->__('Confirm Password') ?>"
              id="billing:confirm_password"
              class="form-control required-entry validate-cpassword">
     </div>
 
   </div>
 
-  <?php echo $this->getChildHtml('persistent.remember.me'); ?>
+  <?= $this->getChildHtml('persistent.remember.me'); ?>
 
 <?php endif; ?>
 
@@ -256,11 +256,11 @@ echo $this->getLayout()->createBlock('customer/widget_name')
       <input type="checkbox"
              name="billing[save_in_address_book]"
              value="1"
-             title="<?php echo $this->__('Save in address book') ?>"
+             title="<?= $this->__('Save in address book') ?>"
              id="billing:save_in_address_book"
         <?php if ($this->getAddress()->getSaveInAddressBook()): ?> checked="checked"<?php endif; ?>
         >
-      <?php echo $this->__('Save in address book') ?>
+      <?= $this->__('Save in address book') ?>
     </label>
   </div>
 
@@ -270,7 +270,7 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 
 <?php endif; ?>
 
-<?php echo $this->getChildHtml('form.additional.info'); ?>
+<?= $this->getChildHtml('form.additional.info'); ?>
 
 </div>
 
@@ -282,9 +282,9 @@ echo $this->getLayout()->createBlock('customer/widget_name')
              id="billing:use_for_shipping_yes"
              value="1"
              <?php if ($this->isUseBillingAddressForShipping()) { ?>checked="checked"<?php } ?>
-             title="<?php echo $this->__('Ship to this address') ?>"
+             title="<?= $this->__('Ship to this address') ?>"
         >
-      <?php echo $this->__('Ship to this address') ?>
+      <?= $this->__('Ship to this address') ?>
     </label>
   </div>
 
@@ -294,9 +294,9 @@ echo $this->getLayout()->createBlock('customer/widget_name')
              name="billing[use_for_shipping]"
              id="billing:use_for_shipping_no"
              value="0"<?php if (!$this->isUseBillingAddressForShipping()) { ?> checked="checked"<?php } ?>
-             title="<?php echo $this->__('Ship to different address') ?>"
+             title="<?= $this->__('Ship to different address') ?>"
         >
-      <?php echo $this->__('Ship to different address') ?>
+      <?= $this->__('Ship to different address') ?>
     </label>
   </div>
 <?php endif; ?>
@@ -308,14 +308,14 @@ echo $this->getLayout()->createBlock('customer/widget_name')
 <div id="billing-buttons-container">
   <button id="billing-button"
           type="button"
-          title="<?php echo $this->__('Continue') ?>"
+          title="<?= $this->__('Continue') ?>"
           class="btn btn-primary">
-    <?php echo $this->__('Continue') ?>
+    <?= $this->__('Continue') ?>
   </button>
 
   <span class="please-wait" id="billing-please-wait" style="display:none;">
     <i class="fa fa-spinner fa-spin"></i>
-    <?php echo $this->__('Loading next step...') ?>
+    <?= $this->__('Loading next step...') ?>
   </span>
 </div>
 

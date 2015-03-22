@@ -4,32 +4,32 @@ $item = $this->getItem();
 $product = $item->getProduct();
 ?>
 <h3 class="product-name">
-  <a href="<?php echo $this->getProductUrl($item) ?>"
-     title="<?php echo $this->escapeHtml($product->getName()) ?>">
-    <?php echo $this->escapeHtml($product->getName()) ?>
+  <a href="<?= $this->getProductUrl($item) ?>"
+     title="<?= $this->escapeHtml($product->getName()) ?>">
+    <?= $this->escapeHtml($product->getName()) ?>
   </a>
 </h3>
 
 <div class="wishlist-sku">
-  <span><?php echo $this->__('SKU'); ?> <?php echo $this->escapeHtml($product->getSku()) ?></span>
+  <span><?= $this->__('SKU'); ?> <?= $this->escapeHtml($product->getSku()) ?></span>
 </div>
 
 <div>
-  <?php echo $this->escapeHtml($this->stripTags($product->getShortDescription())); ?>
+  <?= $this->escapeHtml($this->stripTags($product->getShortDescription())); ?>
 </div>
 
-<textarea name="description[<?php echo $item->getWishlistItemId() ?>]"
+<textarea name="description[<?= $item->getWishlistItemId() ?>]"
           rows="3"
-          title="<?php echo $this->__('Comment') ?>"
+          title="<?= $this->__('Comment') ?>"
           class="form-control"
-          placeholder="<?php echo $this->helper('wishlist')->defaultCommentString(); ?>"><?php
+          placeholder="<?= $this->helper('wishlist')->defaultCommentString(); ?>"><?php
   echo($this->escapeHtml($item->getDescription() ? $item->getDescription() : ''))
   ?></textarea>
 
 <?php if ($this->getSortedChildren()): ?>
   <div class="item-manage">
     <?php foreach ($this->getSortedChildren() as $childName): ?>
-      <?php echo $this->getChildHtml($childName, false); ?>
+      <?= $this->getChildHtml($childName, false); ?>
     <?php endforeach; ?>
   </div>
 <?php endif; ?>

@@ -1,14 +1,14 @@
 <div class="opc-block-progress<?php if (!$this->isCustomerLoggedIn()): ?> opc-block-progress-step-login<?php endif; ?>">
 
-  <h4><?php echo $this->__('Your Checkout Progress') ?></h4>
+  <h4><?= $this->__('Your Checkout Progress') ?></h4>
 
   <?php $steps = array('billing', 'shipping', 'shipping_method', 'payment') ?>
   <?php foreach ($steps as $stepName) : ?>
 
     <?php if ($this->getCheckout()->getStepData($stepName, 'is_show')): ?>
-      <div id="<?php echo $stepName ?>-progress-opcheckout"
+      <div id="<?= $stepName ?>-progress-opcheckout"
            class="panel panel-primary">
-        <?php echo $this->getChildHtml($stepName . '.progress') ?>
+        <?= $this->getChildHtml($stepName . '.progress') ?>
       </div>
     <?php endif; ?>
 

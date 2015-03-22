@@ -17,20 +17,20 @@ $_swatchInnerHeight = $_dimHelper->getInnerHeight(Mage_ConfigurableSwatches_Help
     $_swatchUrl = Mage::helper('configurableswatches/productimg')->getGlobalSwatchUrl($_item, $_label, $_swatchInnerWidth, $_swatchInnerHeight);
     ?>
     <a class="list-group-item<?php if ($_item->getCount() <= 0): echo ' disabled'; endif ?>"
-       href="<?php echo $this->urlEscape($_item->getUrl()) ?>">
+       href="<?= $this->urlEscape($_item->getUrl()) ?>">
 
       <?php if (!empty($_swatchUrl)): ?>
-        <img src="<?php echo $_swatchUrl; ?>"
-             alt="<?php echo $_label; ?>"
-             title="<?php echo $_label ?>"
-             width="<?php echo $_swatchInnerWidth ?>"
-             height="<?php echo $_swatchInnerHeight ?>"/>
+        <img src="<?= $_swatchUrl; ?>"
+             alt="<?= $_label; ?>"
+             title="<?= $_label ?>"
+             width="<?= $_swatchInnerWidth ?>"
+             height="<?= $_swatchInnerHeight ?>"/>
       <?php else: ?>
-        <?php echo $_label; ?>
+        <?= $_label; ?>
       <?php endif; ?>
 
       <?php if ($this->shouldDisplayProductCount()): ?>
-        <span class="badge"><?php echo $_item->getCount() ?></span>
+        <span class="badge"><?= $_item->getCount() ?></span>
       <?php endif; ?>
 
     </a>

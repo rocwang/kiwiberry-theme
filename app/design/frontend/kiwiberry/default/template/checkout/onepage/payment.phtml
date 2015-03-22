@@ -1,29 +1,29 @@
 <form action=""
       id="co-payment-form"
-      data-quote-base-grand-total="<?php echo (float)$this->getQuoteBaseGrandTotal() ?>"
-      data-save-url="<?php echo $this->escapeHtml($this->getUrl('checkout/onepage/savePayment')) ?>"
-      data-current-method="<?php echo $this->getChild('methods')->getSelectedMethodCode() ?>"
+      data-quote-base-grand-total="<?= (float)$this->getQuoteBaseGrandTotal() ?>"
+      data-save-url="<?= $this->escapeHtml($this->getUrl('checkout/onepage/savePayment')) ?>"
+      data-current-method="<?= $this->getChild('methods')->getSelectedMethodCode() ?>"
   >
-  <?php echo $this->getChildChildHtml('methods_additional', '', true, true) ?>
-  <?php echo $this->getChildHtml('methods') ?>
+  <?= $this->getChildChildHtml('methods_additional', '', true, true) ?>
+  <?= $this->getChildHtml('methods') ?>
 </form>
 
-<?php echo $this->getChildChildHtml('additional') ?>
+<?= $this->getChildChildHtml('additional') ?>
 
 <div id="payment-buttons-container">
   <button type="button"
           class="btn btn-primary btn-sm js-opc-back"
-          title="<?php echo $this->__('Back') ?>">
+          title="<?= $this->__('Back') ?>">
     <i class="fa fa-angle-double-left"></i>
-    <?php echo $this->__('Back') ?>
+    <?= $this->__('Back') ?>
   </button>
 
   <button id="btn_save_payment" type="button" class="btn btn-primary">
-    <?php echo $this->__('Continue') ?>
+    <?= $this->__('Continue') ?>
   </button>
 
   <span class="please-wait" id="payment-please-wait" style="display:none;">
     <i class="fa fa-spinner fa-spin"></i>
-    <?php echo $this->__('Loading next step...') ?>
+    <?= $this->__('Loading next step...') ?>
   </span>
 </div>

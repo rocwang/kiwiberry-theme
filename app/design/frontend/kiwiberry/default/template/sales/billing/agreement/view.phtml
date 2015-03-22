@@ -1,70 +1,70 @@
 <?php /* @var $this Mage_Sales_Block_Billing_Agreement_View */ ?>
 
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <div class="page-header">
-  <h1><?php echo $this->__('Billing Agreement # %s', $this->escapeHtml($this->getReferenceId())) ?></h1>
+  <h1><?= $this->__('Billing Agreement # %s', $this->escapeHtml($this->getReferenceId())) ?></h1>
 
   <?php if ($this->getCanCancel()): ?>
     <button type="button"
-            title="<?php echo $this->__('Cancel') ?>"
+            title="<?= $this->__('Cancel') ?>"
             id="btn-billing-agreement-cancel"
             class="btn btn-default"
-            data-title="<?php echo $this->__('Cancel Billing Agreement') ?>"
-            data-text="<?php echo $this->__('Are you sure you want to do this?') ?>"
-            data-url="<?php echo $this->getCancelUrl() ?>">
-      <?php echo $this->__('Cancel') ?>
+            data-title="<?= $this->__('Cancel Billing Agreement') ?>"
+            data-text="<?= $this->__('Are you sure you want to do this?') ?>"
+            data-url="<?= $this->getCancelUrl() ?>">
+      <?= $this->__('Cancel') ?>
     </button>
   <?php endif; ?>
 </div>
 
-<h2><?php echo $this->__('Agreement Information') ?></h2>
+<h2><?= $this->__('Agreement Information') ?></h2>
 
 <dl class="dl-horizontal">
-  <dt><?php echo $this->__('Reference ID:') ?></dt>
-  <dd><?php echo $this->escapeHtml($this->getReferenceId()); ?></dd>
-  <dt><?php echo $this->__('Status:') ?></dt>
-  <dd><?php echo $this->getAgreementStatus() ?></dd>
-  <dt><?php echo $this->__('Created:') ?></dt>
-  <dd><?php echo $this->escapeHtml($this->getAgreementCreatedAt()) ?></dd>
+  <dt><?= $this->__('Reference ID:') ?></dt>
+  <dd><?= $this->escapeHtml($this->getReferenceId()); ?></dd>
+  <dt><?= $this->__('Status:') ?></dt>
+  <dd><?= $this->getAgreementStatus() ?></dd>
+  <dt><?= $this->__('Created:') ?></dt>
+  <dd><?= $this->escapeHtml($this->getAgreementCreatedAt()) ?></dd>
   <?php if ($this->getAgreementUpdatedAt()): ?>
-    <dt><?php echo $this->__('Updated:') ?></dt>
-    <dd><?php echo $this->escapeHtml($this->getAgreementUpdatedAt()); ?></dd>
+    <dt><?= $this->__('Updated:') ?></dt>
+    <dd><?= $this->escapeHtml($this->getAgreementUpdatedAt()); ?></dd>
   <?php endif; ?>
-  <dt><?php echo $this->__('Payment Medtod:') ?></dt>
-  <dd><?php echo $this->getPaymentMedtodTitle() ?></dd>
+  <dt><?= $this->__('Payment Medtod:') ?></dt>
+  <dd><?= $this->getPaymentMedtodTitle() ?></dd>
 </dl>
 
 <?php $relatedOrders = $this->getRelatedOrders() ?>
 <?php if (count($relatedOrders) > 0): ?>
 
-  <?php echo $this->getChildHtml('pager'); ?>
+  <?= $this->getChildHtml('pager'); ?>
 
-  <h2><?php echo $this->__('Related Orders') ?></h2>
+  <h2><?= $this->__('Related Orders') ?></h2>
 
   <table class="table table-hover table-bordered" id="related-orders-table">
     <thead>
     <tr>
-      <th><span class="nobr"><?php echo $this->__('Order #') ?></span></th>
-      <th><?php echo $this->__('Date') ?></th>
-      <th><?php echo $this->__('Ship To') ?></th>
-      <th><span class="nobr"><?php echo $this->__('Order Total') ?></span></th>
-      <th><span class="nobr"><?php echo $this->__('Order Status') ?></span></th>
+      <th><span class="nobr"><?= $this->__('Order #') ?></span></th>
+      <th><?= $this->__('Date') ?></th>
+      <th><?= $this->__('Ship To') ?></th>
+      <th><span class="nobr"><?= $this->__('Order Total') ?></span></th>
+      <th><span class="nobr"><?= $this->__('Order Status') ?></span></th>
       <th>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
     <?php foreach ($relatedOrders as $order): ?>
       <tr>
-        <td><?php echo $this->getOrderItemValue($order, 'order_increment_id') ?></td>
-        <td><span class="nobr"><?php echo $this->getOrderItemValue($order, 'created_at') ?></span></td>
-        <td><?php echo $this->getOrderItemValue($order, 'shipping_address') ?></td>
-        <td><?php echo $this->getOrderItemValue($order, 'order_total') ?></td>
-        <td><em><?php echo $this->getOrderItemValue($order, 'status_label') ?></em></td>
+        <td><?= $this->getOrderItemValue($order, 'order_increment_id') ?></td>
+        <td><span class="nobr"><?= $this->getOrderItemValue($order, 'created_at') ?></span></td>
+        <td><?= $this->getOrderItemValue($order, 'shipping_address') ?></td>
+        <td><?= $this->getOrderItemValue($order, 'order_total') ?></td>
+        <td><em><?= $this->getOrderItemValue($order, 'status_label') ?></em></td>
         <td>
           <span class="nobr">
-            <a href="<?php echo $this->getOrderItemValue($order, 'view_url') ?>">
-              <?php echo $this->__('View Order') ?>
+            <a href="<?= $this->getOrderItemValue($order, 'view_url') ?>">
+              <?= $this->__('View Order') ?>
             </a>
           </span>
         </td>
@@ -74,7 +74,7 @@
   </table>
 <?php endif; ?>
 
-<a href="<?php echo $this->getBackUrl() ?>" class="btn btn-default">
+<a href="<?= $this->getBackUrl() ?>" class="btn btn-default">
   <i class="fa fa-angle-double-left"></i>
-  <?php echo $this->__('Back to Billing Agreements') ?>
+  <?= $this->__('Back to Billing Agreements') ?>
 </a>

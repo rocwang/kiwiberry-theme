@@ -11,20 +11,20 @@
     endif;
     ?>
 
-    <a class="label label-primary" href="<?php echo $this->getReviewsUrl() ?>">
-      <?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>
+    <a class="label label-primary" href="<?= $this->getReviewsUrl() ?>">
+      <?= $this->__('%d Review(s)', $this->getReviewsCount()) ?>
     </a>
 
-    <a class="" href="<?php echo $this->getReviewsUrl() ?>#review-form">
-      <?php echo $this->__('Add Your Review') ?>
+    <a class="" href="<?= $this->getReviewsUrl() ?>#review-form">
+      <?= $this->__('Add Your Review') ?>
     </a>
   </div>
 
 <?php elseif ($this->getDisplayIfEmpty()): ?>
 
   <p class="rating text-info">
-    <a href="<?php echo $this->getReviewsUrl() ?>#review-form">
-      <?php echo $this->__('Be the first to review this product') ?>
+    <a href="<?= $this->getReviewsUrl() ?>#review-form">
+      <?= $this->__('Be the first to review this product') ?>
     </a>
   </p>
 

@@ -1,51 +1,51 @@
 <?php $_order = $this->getOrder() ?>
 
 <p>
-  <a href="<?php echo $this->getPrintAllInvoicesUrl($_order) ?>"
+  <a href="<?= $this->getPrintAllInvoicesUrl($_order) ?>"
      target="_blank"
      class="btn btn-default">
-    <?php echo $this->__('Print All Invoices') ?>
+    <?= $this->__('Print All Invoices') ?>
   </a>
 </p>
 
 <?php foreach ($_order->getInvoiceCollection() as $_invoice): ?>
 
   <h2>
-    <?php echo $this->__('Invoice #') . $_invoice->getIncrementId(); ?>
+    <?= $this->__('Invoice #') . $_invoice->getIncrementId(); ?>
 
     <small>
-      <a href="<?php echo $this->getPrintInvoiceUrl($_invoice) ?>"
+      <a href="<?= $this->getPrintInvoiceUrl($_invoice) ?>"
          target="_blank">
-        <?php echo $this->__('Print Invoice') ?>
+        <?= $this->__('Print Invoice') ?>
       </a>
     </small>
   </h2>
 
-  <h3><?php echo $this->__('Items Invoiced') ?></h3>
+  <h3><?= $this->__('Items Invoiced') ?></h3>
 
-  <table class="table table-bordered table-invoice" id="my-invoice-table-<?php echo $_invoice->getId(); ?>">
+  <table class="table table-bordered table-invoice" id="my-invoice-table-<?= $_invoice->getId(); ?>">
 
     <thead>
     <tr>
-      <th><?php echo $this->__('Product Name') ?></th>
-      <th><?php echo $this->__('SKU') ?></th>
-      <th><?php echo $this->__('Price') ?></th>
-      <th><span class="nobr"><?php echo $this->__('Qty Invoiced') ?></span></th>
-      <th><?php echo $this->__('Subtotal') ?></th>
+      <th><?= $this->__('Product Name') ?></th>
+      <th><?= $this->__('SKU') ?></th>
+      <th><?= $this->__('Price') ?></th>
+      <th><span class="nobr"><?= $this->__('Qty Invoiced') ?></span></th>
+      <th><?= $this->__('Subtotal') ?></th>
     </tr>
     </thead>
 
-    <tfoot><?php echo $this->getInvoiceTotalsHtml($_invoice) ?></tfoot>
+    <tfoot><?= $this->getInvoiceTotalsHtml($_invoice) ?></tfoot>
 
     <tbody>
     <?php foreach ($_invoice->getAllItems() as $_item): ?>
       <?php if ($_item->getOrderItem()->getParentItem()) continue; ?>
-      <?php echo $this->getItemHtml($_item) ?>
+      <?= $this->getItemHtml($_item) ?>
     <?php endforeach; ?>
     </tbody>
 
   </table>
 
-  <?php echo $this->getInvoiceCommentsHtml($_invoice) ?>
+  <?= $this->getInvoiceCommentsHtml($_invoice) ?>
 
 <?php endforeach; ?>

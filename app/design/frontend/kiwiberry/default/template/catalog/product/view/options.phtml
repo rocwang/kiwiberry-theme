@@ -3,11 +3,11 @@ $_options = Mage::helper('core')->decorateArray($this->getOptions());
 if (count($_options)):
   ?>
   <dl id="product_options"
-      data-file-upload-url="<?php echo $this->escapeHtml($this->getUrl('*/product/upload')) ?>"
-      data-option-config="<?php echo $this->escapeHtml($this->getJsonConfig()) ?>"
+      data-file-upload-url="<?= $this->escapeHtml($this->getUrl('*/product/upload')) ?>"
+      data-option-config="<?= $this->escapeHtml($this->getJsonConfig()) ?>"
     >
     <?php foreach ($_options as $_option): ?>
-      <?php echo $this->getOptionHtml($_option) ?>
+      <?= $this->getOptionHtml($_option) ?>
     <?php endforeach; ?>
   </dl>
 <?php endif; ?>

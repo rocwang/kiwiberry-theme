@@ -1,19 +1,19 @@
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <div class="page-header">
-  <h1><?php echo $this->__('Share Your Wishlist') ?></h1>
+  <h1><?= $this->__('Share Your Wishlist') ?></h1>
 </div>
 
-<form action="<?php echo $this->getSendUrl() ?>" id="form-validate-share-wishlist" method="post">
+<form action="<?= $this->getSendUrl() ?>" id="form-validate-share-wishlist" method="post">
 
-  <?php echo $this->getBlockHtml('formkey') ?>
+  <?= $this->getBlockHtml('formkey') ?>
 
-  <h2><?php echo $this->__('Sharing Information') ?></h2>
+  <h2><?= $this->__('Sharing Information') ?></h2>
 
   <div class="form-group">
     <label for="email_address" class="required">
       <em>*</em>
-      <?php echo $this->__('Email addresses, separated by commas') ?>
+      <?= $this->__('Email addresses, separated by commas') ?>
     </label>
     <textarea name="emails"
               rows="5"
@@ -24,12 +24,12 @@
   </div>
 
   <div class="form-group">
-    <label for="message"><?php echo $this->__('Message') ?></label>
+    <label for="message"><?= $this->__('Message') ?></label>
     <textarea id="message"
               name="message"
               class="form-control"
               rows="5"
-      ><?php echo $this->getEnteredData('message') ?></textarea>
+      ><?= $this->getEnteredData('message') ?></textarea>
   </div>
 
   <?php if ($this->helper('wishlist')->isRssAllow()): ?>
@@ -42,22 +42,22 @@
                title="<?php
                echo $this->__('Check this checkbox if you want to add a link to an rss feed to your wishlist.') ?>"
           >
-        <?php echo $this->__('Check this checkbox if you want to add a link to an rss feed to your wishlist.') ?>
+        <?= $this->__('Check this checkbox if you want to add a link to an rss feed to your wishlist.') ?>
       </label>
     </div>
   <?php endif; ?>
 
-  <p class="text-danger"><?php echo $this->__('* Required Fields') ?></p>
+  <p class="text-danger"><?= $this->__('* Required Fields') ?></p>
 
   <div>
-    <a href="<?php echo $this->getBackUrl(); ?>" class="btn btn-default">
+    <a href="<?= $this->getBackUrl(); ?>" class="btn btn-default">
       <i class="fa fa-angle-double-left"></i>
-      <?php echo $this->__('Back') ?>
+      <?= $this->__('Back') ?>
     </a>
 
-    <button type="submit" title="<?php echo $this->__('Share Wishlist') ?>" class="btn btn-default">
+    <button type="submit" title="<?= $this->__('Share Wishlist') ?>" class="btn btn-default">
       <i class="fa fa-share-alt"></i>
-      <?php echo $this->__('Share Wishlist') ?>
+      <?= $this->__('Share Wishlist') ?>
     </button>
   </div>
 </form>

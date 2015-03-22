@@ -7,19 +7,19 @@
   <div class="container clearfix">
 
     <?php ob_start() ?>
-    <a class="logo-link" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
-      <strong class="sr-only"><?php echo $this->getLogoAlt() ?></strong>
-      <img class="logo" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>">
+    <a class="logo-link" href="<?= $this->getUrl('') ?>" title="<?= $this->getLogoAlt() ?>">
+      <strong class="sr-only"><?= $this->getLogoAlt() ?></strong>
+      <img class="logo" src="<?= $this->getLogoSrc() ?>" alt="<?= $this->getLogoAlt() ?>">
     </a>
     <?php $logoHtml = ob_get_clean() ?>
 
     <?php if ($this->getIsHomePage()) : ?>
-      <h1 class="logo-container"><?php echo $logoHtml ?></h1>
+      <h1 class="logo-container"><?= $logoHtml ?></h1>
     <?php else: ?>
-      <div class="logo-container"><?php echo $logoHtml ?></div>
+      <div class="logo-container"><?= $logoHtml ?></div>
     <?php endif ?>
 
-    <?php echo $this->getAdditionalHtml() ?>
+    <?= $this->getAdditionalHtml() ?>
 
   </div>
 </header>
@@ -38,8 +38,8 @@
                   aria-controls="nav-catalog"
                   aria-expanded="false"
             >
-            <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('store') ?>
-            <span class="btn-title"><?php echo $this->__('Category') ?></span>
+            <?= Mage::helper('vr_kiwiberry')->getSvgIcon('store') ?>
+            <span class="btn-title"><?= $this->__('Category') ?></span>
             <span class="caret"></span>
           </button>
         </div>
@@ -50,22 +50,22 @@
                   data-toggle="dropdown"
                   aria-expanded="false"
             >
-            <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('user') ?>
-            <span class="btn-title"><?php echo $this->__('My Account') ?></span>
+            <?= Mage::helper('vr_kiwiberry')->getSvgIcon('user') ?>
+            <span class="btn-title"><?= $this->__('My Account') ?></span>
             <span class="caret"></span>
           </button>
 
-          <?php echo $this->getChildHtml('topLinks') ?>
+          <?= $this->getChildHtml('topLinks') ?>
         </div>
 
-        <?php echo $this->getChildHtml('minicart_head') ?>
+        <?= $this->getChildHtml('minicart_head') ?>
 
         <div class="btn-group" role="group">
-          <a href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl() ?>"
+          <a href="<?= Mage::helper('checkout/url')->getCheckoutUrl() ?>"
              class="btn btn-primary btn-header-checkout"
             >
-            <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('cashier') ?>
-            <span class="btn-title"><?php echo $this->__('Checkout') ?></span>
+            <?= Mage::helper('vr_kiwiberry')->getSvgIcon('cashier') ?>
+            <span class="btn-title"><?= $this->__('Checkout') ?></span>
           </a>
         </div>
       </div>
@@ -73,11 +73,11 @@
     </div>
 
     <div class="collapse navbar-collapse" id="nav-catalog">
-      <?php echo $this->getChildHtml('topMenu') ?>
+      <?= $this->getChildHtml('topMenu') ?>
     </div>
 
-    <?php echo $this->getChildHtml('topSearch') ?>
+    <?= $this->getChildHtml('topSearch') ?>
 
   </div>
 </nav>
-<?php echo $this->getChildHtml('topContainer'); ?>
+<?= $this->getChildHtml('topContainer'); ?>

@@ -1,24 +1,24 @@
 <?php if ($this->getCheckout()->getStepData('billing', 'complete')): ?>
 
   <div class="panel-heading js-complete">
-    <?php echo $this->__('Billing Address') ?>
+    <?= $this->__('Billing Address') ?>
 
     <button type="button"
             class="btn btn-default js-btn-edit-opc"
             data-target="billing">
       <i class="fa fa-pencil-square"></i>
-      <?php echo $this->__('Change') ?>
+      <?= $this->__('Change') ?>
     </button>
   </div>
 
   <div class="panel-body js-panel-body js-complete">
-    <address><?php echo $this->getBilling()->format('html') ?></address>
+    <address><?= $this->getBilling()->format('html') ?></address>
   </div>
 
 <?php else: ?>
 
   <div class="panel-heading">
-    <?php echo $this->__('Billing Address') ?>
+    <?= $this->__('Billing Address') ?>
   </div>
 
 <?php endif; ?>

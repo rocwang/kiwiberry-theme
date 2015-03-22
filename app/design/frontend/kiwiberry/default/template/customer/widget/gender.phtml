@@ -1,22 +1,22 @@
 <div class="form-group">
-  <label for="<?php echo $this->getFieldId('gender') ?>"
+  <label for="<?= $this->getFieldId('gender') ?>"
     <?php if ($this->isRequired()) echo ' class="required"' ?>>
     <?php if ($this->isRequired()) echo '<em>*</em>' ?>
-    <?php echo $this->__('Gender') ?>
+    <?= $this->__('Gender') ?>
   </label>
-  <select id="<?php echo $this->getFieldId('gender') ?>"
-          name="<?php echo $this->getFieldName('gender') ?>"
-          title="<?php echo $this->__('Gender') ?>"
+  <select id="<?= $this->getFieldId('gender') ?>"
+          name="<?= $this->getFieldName('gender') ?>"
+          title="<?= $this->__('Gender') ?>"
           class="form-control<?php if ($this->isRequired()): ?> validate-select<?php endif; ?>"
-    <?php echo $this->getFieldParams() ?>>
+    <?= $this->getFieldParams() ?>>
 
     <?php $options = Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getAllOptions(); ?>
     <?php $value = $this->getGender(); ?>
     <?php foreach ($options as $option): ?>
 
-      <option value="<?php echo $option['value'] ?>"
+      <option value="<?= $option['value'] ?>"
         <?php if ($option['value'] == $value) echo ' selected="selected"' ?>>
-        <?php echo $option['label'] ?>
+        <?= $option['label'] ?>
       </option>
 
     <?php endforeach; ?>

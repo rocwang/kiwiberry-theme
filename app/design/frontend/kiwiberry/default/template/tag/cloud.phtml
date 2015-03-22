@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><?php echo $this->__('All Tags') ?></h1>
+  <h1><?= $this->__('All Tags') ?></h1>
 </div>
 
 <?php if (sizeof($this->getTags()) > 0): ?>
@@ -7,9 +7,9 @@
   <ul class="list-inline">
     <?php foreach ($this->getTags() as $_tag): ?>
       <li>
-        <a href="<?php echo $_tag->getTaggedProductsUrl() ?>"
-           style="font-size:<?php echo $_tag->getRatio() * 70 + 75 ?>%;">
-          <?php echo $this->escapeHtml($_tag->getName()) ?>
+        <a href="<?= $_tag->getTaggedProductsUrl() ?>"
+           style="font-size:<?= $_tag->getRatio() * 70 + 75 ?>%;">
+          <?= $this->escapeHtml($_tag->getName()) ?>
         </a>
       </li>
     <?php endforeach; ?>
@@ -17,6 +17,6 @@
 
 <?php else: ?>
 
-  <p class="text-info"><?php echo $this->__('There are no tags available.') ?></p>
+  <p class="text-info"><?= $this->__('There are no tags available.') ?></p>
 
 <?php endif; ?>

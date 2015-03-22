@@ -9,10 +9,10 @@
 <div class="list-group">
   <?php foreach ($this->getItems() as $_item): ?>
 
-      <a class="list-group-item<?php if ($_item->getCount() <= 0): echo ' disabled'; endif ?>" href="<?php echo $this->urlEscape($_item->getUrl()) ?>">
-        <?php echo $_item->getLabel() ?>
+      <a class="list-group-item<?php if ($_item->getCount() <= 0): echo ' disabled'; endif ?>" href="<?= $this->urlEscape($_item->getUrl()) ?>">
+        <?= $_item->getLabel() ?>
         <?php if ($this->shouldDisplayProductCount()): ?>
-          <span class="badge"><?php echo $_item->getCount() ?></span>
+          <span class="badge"><?= $_item->getCount() ?></span>
         <?php endif; ?>
       </a>
 

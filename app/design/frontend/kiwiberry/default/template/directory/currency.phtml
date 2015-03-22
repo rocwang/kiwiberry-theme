@@ -8,8 +8,8 @@
 <?php if ($this->getCurrencyCount() > 1): ?>
   <div class="currency-switcher btn-group btn-group-sm dropup">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-      <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('currency') ?>
-      <span class="title"><?php echo $this->__('Currency') ?></span>
+      <?= Mage::helper('vr_kiwiberry')->getSvgIcon('currency') ?>
+      <span class="title"><?= $this->__('Currency') ?></span>
       <span class="caret"></span>
     </button>
 
@@ -17,8 +17,8 @@
       <?php foreach ($this->getCurrencies() as $_code => $_name): ?>
 
         <li <?php if ($_code == $this->getCurrentCurrencyCode()): ?>class="active"<?php endif ?>>
-          <a href="<?php echo $this->getSwitchCurrencyUrl($_code) ?>">
-            <?php echo $_name ?> - <?php echo $_code ?>
+          <a href="<?= $this->getSwitchCurrencyUrl($_code) ?>">
+            <?= $_name ?> - <?= $_code ?>
           </a>
         </li>
 

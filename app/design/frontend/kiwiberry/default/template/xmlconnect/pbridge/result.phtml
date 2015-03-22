@@ -34,7 +34,7 @@
          * because of security restrictions of the mobile device's browser.
          * Therefore we perform redirect with given params that we will use for checkout.
          */
-        window.parent.location.href = '<?php echo $this->getPbridgeParamsAsUrl(); ?>';
+        window.parent.location.href = '<?= $this->getPbridgeParamsAsUrl(); ?>';
     }
     window.onload = setPaymentMethod();
 //]]>

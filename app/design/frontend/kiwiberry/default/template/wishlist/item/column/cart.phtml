@@ -11,11 +11,11 @@ $options = $this->getChild('customer.wishlist.item.options')
 <?php if ($product->isSaleable()): ?>
 
   <button type="button"
-          title="<?php echo $this->__('Add to Cart') ?>"
-          data-item-id="<?php echo $item->getId() ?>"
-          data-url-add-to-cart="<?php echo $this->getItemAddToCartUrl($item->getId()) ?>"
+          title="<?= $this->__('Add to Cart') ?>"
+          data-item-id="<?= $item->getId() ?>"
+          data-url-add-to-cart="<?= $this->getItemAddToCartUrl($item->getId()) ?>"
           class="btn btn-default btn-cart js-add-witem-to-cart">
-    <?php echo $this->__('Add to Cart') ?>
+    <?= $this->__('Add to Cart') ?>
   </button>
 
 <?php else: ?>
@@ -23,15 +23,15 @@ $options = $this->getChild('customer.wishlist.item.options')
   <?php if ($product->getIsSalable()): ?>
 
     <p class="availability in-stock">
-      <span class="label"><?php echo $this->helper('catalog')->__('Availability:') ?></span>
-      <span class="value"><?php echo $this->helper('catalog')->__('In stock') ?></span>
+      <span class="label"><?= $this->helper('catalog')->__('Availability:') ?></span>
+      <span class="value"><?= $this->helper('catalog')->__('In stock') ?></span>
     </p>
 
   <?php else: ?>
 
     <p class="availability out-of-stock">
-      <span class="label"><?php echo $this->helper('catalog')->__('Availability:') ?></span>
-      <span class="value"><?php echo $this->helper('catalog')->__('Out of stock') ?></span>
+      <span class="label"><?= $this->helper('catalog')->__('Availability:') ?></span>
+      <span class="value"><?= $this->helper('catalog')->__('Out of stock') ?></span>
     </p>
 
   <?php endif; ?>
@@ -40,10 +40,10 @@ $options = $this->getChild('customer.wishlist.item.options')
 
 <?php if ($product->isVisibleInSiteVisibility()): ?>
   <a class="btn btn-default"
-     href="<?php echo $this->getItemConfigureUrl($item) ?>"><?php echo $this->__('Edit') ?>
+     href="<?= $this->getItemConfigureUrl($item) ?>"><?= $this->__('Edit') ?>
   </a>
 <?php endif ?>
 
 <?php foreach ($this->getSortedChildren() as $childName): ?>
-  <?php echo $this->getChildHtml($childName, false); ?>
+  <?= $this->getChildHtml($childName, false); ?>
 <?php endforeach; ?>

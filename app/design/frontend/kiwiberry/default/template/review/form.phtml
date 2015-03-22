@@ -1,44 +1,44 @@
 <div>
 
-  <h2><?php echo $this->__('Write Your Own Review') ?></h2>
+  <h2><?= $this->__('Write Your Own Review') ?></h2>
 
   <?php if ($this->getAllowWriteReviewFlag()): ?>
 
-    <form action="<?php echo $this->getAction() ?>"
+    <form action="<?= $this->getAction() ?>"
           method="post"
           id="review-form"
           role="form"
-          data-rating-validation-msg="<?php echo $this->__('Please select one of each of the ratings above') ?>">
+          data-rating-validation-msg="<?= $this->__('Please select one of each of the ratings above') ?>">
 
-      <?php echo $this->getBlockHtml('formkey'); ?>
+      <?= $this->getBlockHtml('formkey'); ?>
 
-      <?php echo $this->getChildHtml('form_fields_before') ?>
+      <?= $this->getChildHtml('form_fields_before') ?>
 
       <h3>
-        <?php echo $this->__("You're reviewing:") . ' ' . $this->escapeHtml($this->getProductInfo()->getName()) ?>
+        <?= $this->__("You're reviewing:") . ' ' . $this->escapeHtml($this->getProductInfo()->getName()) ?>
       </h3>
 
       <?php if ($this->getRatings() && $this->getRatings()->getSize()): ?>
 
-        <h4><?php echo $this->__('How do you rate this product?') ?> <em class="required">*</em></h4>
+        <h4><?= $this->__('How do you rate this product?') ?> <em class="required">*</em></h4>
 
         <?php foreach ($this->getRatings() as $_rating): ?>
           <div class="form-group">
             <label>
-              <?php echo $this->escapeHtml($_rating->getRatingCode()) ?>
+              <?= $this->escapeHtml($_rating->getRatingCode()) ?>
             </label>
 
             <?php foreach (array_reverse($_rating->getOptions()) as $_option): ?>
 
-              <label for="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>"
+              <label for="<?= $this->escapeHtml($_rating->getRatingCode()) ?>_<?= $_option->getValue() ?>"
                      class="radio-inline">
                 <input
                   type="radio"
-                  name="ratings[<?php echo $_rating->getId() ?>]"
-                  id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>"
-                  value="<?php echo $_option->getId() ?>">
+                  name="ratings[<?= $_rating->getId() ?>]"
+                  id="<?= $this->escapeHtml($_rating->getRatingCode()) ?>_<?= $_option->getValue() ?>"
+                  value="<?= $_option->getId() ?>">
 
-                <?php echo $_option->getValue() . ' stars' ?>
+                <?= $_option->getValue() . ' stars' ?>
               </label>
 
             <?php endforeach; ?>
@@ -52,48 +52,48 @@
 
       <div class="form-group">
         <label for="review_field">
-          <em>*</em><?php echo $this->__('Let us know your thoughts') ?>
+          <em>*</em><?= $this->__('Let us know your thoughts') ?>
         </label>
 
         <textarea name="detail"
                   id="review_field"
                   rows="3"
-                  class="form-control required-entry"><?php echo $this->escapeHtml($data->getDetail()) ?></textarea>
+                  class="form-control required-entry"><?= $this->escapeHtml($data->getDetail()) ?></textarea>
       </div>
 
       <div class="form-group">
         <label for="summary_field">
-          <em>*</em><?php echo $this->__('Summary of Your Review') ?>
+          <em>*</em><?= $this->__('Summary of Your Review') ?>
         </label>
 
         <input type="text"
                name="title"
                id="summary_field"
                class="form-control required-entry"
-               value="<?php echo $this->escapeHtml($data->getTitle()) ?>">
+               value="<?= $this->escapeHtml($data->getTitle()) ?>">
       </div>
 
       <div class="form-group">
         <label for="nickname_field" class="required">
-          <em>*</em><?php echo $this->__("What's your nickname?") ?>
+          <em>*</em><?= $this->__("What's your nickname?") ?>
         </label>
 
         <input type="text"
                name="nickname"
                id="nickname_field"
                class="form-control required-entry"
-               value="<?php echo $this->escapeHtml($data->getNickname()) ?>">
+               value="<?= $this->escapeHtml($data->getNickname()) ?>">
       </div>
 
-      <button type="submit" title="<?php echo $this->__('Submit Review') ?>" class="btn btn-default">
-        <?php echo $this->__('Submit Review') ?>
+      <button type="submit" title="<?= $this->__('Submit Review') ?>" class="btn btn-default">
+        <?= $this->__('Submit Review') ?>
       </button>
     </form>
 
   <?php else: ?>
 
     <p class="text-info" id="review-form">
-      <?php echo $this->__(
+      <?= $this->__(
         'Only registered users can write reviews. Please, <a href="%s">log in</a> or <a href="%s">register</a>',
         $this->getLoginLink(),
         Mage::helper('customer')->getRegisterUrl()

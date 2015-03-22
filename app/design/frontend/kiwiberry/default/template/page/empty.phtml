@@ -4,28 +4,28 @@
  */
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie9"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="<?= $this->getLang(); ?>" id="top" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<?= $this->getLang(); ?>" id="top" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<?= $this->getLang(); ?>" id="top" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<?= $this->getLang(); ?>" id="top" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js"> <!--<![endif]-->
+<html lang="<?= $this->getLang(); ?>" id="top" class="no-js"> <!--<![endif]-->
 <head>
-  <?php echo $this->getChildHtml('head') ?>
+  <?= $this->getChildHtml('head') ?>
 </head>
-<body class="page-empty <?php echo $this->getBodyClass() ? $this->getBodyClass() : '' ?>">
+<body class="page-empty <?= $this->getBodyClass() ? $this->getBodyClass() : '' ?>">
 
-  <?php echo $this->getChildHtml('after_body_start') ?>
+  <?= $this->getChildHtml('after_body_start') ?>
 
   <div class="container container-body">
-    <?php echo $this->getChildHtml('global_messages') ?>
-    <?php echo $this->getMessagesBlock()->toHtml() ?>
+    <?= $this->getChildHtml('global_messages') ?>
+    <?= $this->getMessagesBlock()->toHtml() ?>
 
-    <?php echo $this->getChildHtml('content') ?>
+    <?= $this->getChildHtml('content') ?>
   </div>
 
-  <?php echo $this->getChildHtml('before_body_end') ?>
-  <?php echo $this->getAbsoluteFooter() ?>
+  <?= $this->getChildHtml('before_body_end') ?>
+  <?= $this->getAbsoluteFooter() ?>
 
 </body>
 </html>

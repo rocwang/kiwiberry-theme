@@ -2,12 +2,12 @@
   <div class="panel panel-default">
 
     <div class="panel-heading">
-      <?php echo $this->__('Community Poll') ?>
+      <?= $this->__('Community Poll') ?>
     </div>
 
     <div class="panel-body">
 
-      <p><?php echo $this->escapeHtml($poll->getPollTitle()); ?></p>
+      <p><?= $this->escapeHtml($poll->getPollTitle()); ?></p>
 
       <?php if ($poll_answers): ?>
         <?php foreach ($poll_answers as $answer): ?>
@@ -15,11 +15,11 @@
           <div class="progress">
             <div class="progress-bar"
                  role="progressbar"
-                 aria-valuenow="<?php echo $answer->getPercent() ?>"
+                 aria-valuenow="<?= $answer->getPercent() ?>"
                  aria-valuemin="0"
                  aria-valuemax="100"
-                 style="width: <?php echo $answer->getPercent() ?>%;">
-              <?php echo $this->escapeHtml($answer->getAnswerTitle()) ?> (<?php echo $answer->getVotesCount() ?>)
+                 style="width: <?= $answer->getPercent() ?>%;">
+              <?= $this->escapeHtml($answer->getAnswerTitle()) ?> (<?= $answer->getVotesCount() ?>)
             </div>
           </div>
 

@@ -6,14 +6,14 @@
 <?php if ($this->displayNoscriptNotice()): ?>
   <noscript>
     <div class="alert alert-warning" role="alert">
-      <strong><?php echo $this->__('JavaScript seems to be disabled in your browser.'); ?></strong>
-      <?php echo $this->__('You must have JavaScript enabled in your browser to utilize the functionality of this website.'); ?>
+      <strong><?= $this->__('JavaScript seems to be disabled in your browser.'); ?></strong>
+      <?= $this->__('You must have JavaScript enabled in your browser to utilize the functionality of this website.'); ?>
     </div>
   </noscript>
 <?php endif; ?>
 
 <?php if ($this->displayDemoNotice()): ?>
   <div class="alert alert-warning" role="alert">
-    <?php echo $this->__('This is a demo store. Any orders placed through this store will not be honored or fulfilled.') ?>
+    <?= $this->__('This is a demo store. Any orders placed through this store will not be honored or fulfilled.') ?>
   </div>
 <?php endif; ?>

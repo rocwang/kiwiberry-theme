@@ -1,9 +1,9 @@
 <?php $_order = $this->getOrder() ?>
 
-<h1><?php echo $this->__('Order #%s', $_order->getRealOrderId()) ?></h1>
+<h1><?= $this->__('Order #%s', $_order->getRealOrderId()) ?></h1>
 
 <p>
-  <?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?>
+  <?= $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?>
 </p>
 
 <?php
@@ -12,50 +12,50 @@ $_invoices = $_invoice ? array($_invoice) : $_order->getInvoiceCollection();
 ?>
 
 <?php foreach ($_invoices as $_invoice): ?>
-  <h2><?php echo $this->__('Invoice #%s', $_invoice->getIncrementId()) ?></h2>
+  <h2><?= $this->__('Invoice #%s', $_invoice->getIncrementId()) ?></h2>
 
   <?php if (!$_order->getIsVirtual()): ?>
     <div class="row">
       <div class="col-xs-6">
-        <h3><?php echo $this->__('Shipping Address') ?></h3>
+        <h3><?= $this->__('Shipping Address') ?></h3>
         <?php $_shipping = $_invoice->getShippingAddress() ?>
-        <address><?php echo $_shipping->format('html') ?></address>
+        <address><?= $_shipping->format('html') ?></address>
       </div>
 
       <div class="col-xs-6">
-        <h3><?php echo $this->__('Shipping Method') ?></h3>
-        <?php echo $this->escapeHtml($_order->getShippingDescription()) ?>
+        <h3><?= $this->__('Shipping Method') ?></h3>
+        <?= $this->escapeHtml($_order->getShippingDescription()) ?>
       </div>
     </div>
   <?php endif; ?>
 
   <div class="row">
     <div class="col-xs-6">
-      <h3><?php echo $this->__('Billing Address') ?></h3>
+      <h3><?= $this->__('Billing Address') ?></h3>
       <?php $_billing = $_invoice->getbillingAddress() ?>
-      <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+      <address><?= $_order->getBillingAddress()->format('html') ?></address>
     </div>
 
     <div class="col-xs-6">
-      <h3><?php echo $this->__('Payment Method') ?></h3>
-      <?php echo $this->getPaymentInfoHtml() ?>
+      <h3><?= $this->__('Payment Method') ?></h3>
+      <?= $this->getPaymentInfoHtml() ?>
     </div>
   </div>
 
-  <h3><?php echo $this->__('Items Invoiced') ?></h3>
+  <h3><?= $this->__('Items Invoiced') ?></h3>
 
-  <table class="table table-bordered" id="my-invoice-table-<?php echo $_invoice->getId(); ?>">
+  <table class="table table-bordered" id="my-invoice-table-<?= $_invoice->getId(); ?>">
     <thead>
     <tr>
-      <th><?php echo $this->__('Product Name') ?></th>
-      <th><?php echo $this->__('SKU') ?></th>
-      <th><?php echo $this->__('Price') ?></th>
-      <th><span class="nobr"><?php echo $this->__('Qty Invoiced') ?></span></th>
-      <th><?php echo $this->__('Subtotal') ?></th>
+      <th><?= $this->__('Product Name') ?></th>
+      <th><?= $this->__('SKU') ?></th>
+      <th><?= $this->__('Price') ?></th>
+      <th><span class="nobr"><?= $this->__('Qty Invoiced') ?></span></th>
+      <th><?= $this->__('Subtotal') ?></th>
     </tr>
     </thead>
 
-    <tfoot><?php echo $this->getInvoiceTotalsHtml($_invoice) ?></tfoot>
+    <tfoot><?= $this->getInvoiceTotalsHtml($_invoice) ?></tfoot>
 
     <tbody>
     <?php

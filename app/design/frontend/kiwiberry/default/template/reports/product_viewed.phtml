@@ -2,7 +2,7 @@
 <?php if ($_products = $this->getRecentlyViewedProducts()): ?>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <?php echo $this->__('Recently Viewed Products') ?>
+      <?= $this->__('Recently Viewed Products') ?>
     </div>
 
     <ul class="list-group">
@@ -11,18 +11,18 @@
         <li class="list-group-item">
           <div class="media">
             <a class="media-left media-middle"
-               href="<?php echo $this->getProductUrl($_item) ?>"
-               title="<?php echo $this->escapeHtml($_item->getName()) ?>">
+               href="<?= $this->getProductUrl($_item) ?>"
+               title="<?= $this->escapeHtml($_item->getName()) ?>">
               <img
-                src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50, 50)->setWatermarkSize('30x10'); ?>"
+                src="<?= $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50, 50)->setWatermarkSize('30x10'); ?>"
                 class="img-responsive"
-                alt="<?php echo $this->escapeHtml($_item->getName()) ?>">
+                alt="<?= $this->escapeHtml($_item->getName()) ?>">
             </a>
 
             <div class="media-body">
               <h5 class="media-heading">
-                <a href="<?php echo $this->getProductUrl($_item) ?>">
-                  <?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
+                <a href="<?= $this->getProductUrl($_item) ?>">
+                  <?= $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
                 </a>
               </h5>
             </div>

@@ -12,7 +12,7 @@ $options = $this->getChild('customer.wishlist.item.options')
          min="1"
          pattern="\d*"
          class="form-control js-qty validate-not-negative-number"
-         data-item-id="<?php echo $item->getId() ?>"
-         name="qty[<?php echo $item->getId() ?>]"
-         value="<?php echo $this->getAddToCartQty($item) * 1 ?>">
+         data-item-id="<?= $item->getId() ?>"
+         name="qty[<?= $item->getId() ?>]"
+         value="<?= $this->getAddToCartQty($item) * 1 ?>">
 <?php endif; ?>

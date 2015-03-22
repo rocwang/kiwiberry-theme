@@ -1,33 +1,33 @@
-<h1><?php echo $this->__('Your order has been received.') ?></h1>
+<h1><?= $this->__('Your order has been received.') ?></h1>
 
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
-<h2><?php echo $this->__('Thank you for your purchase!') ?></h2>
+<h2><?= $this->__('Thank you for your purchase!') ?></h2>
 
 <?php if ($this->getOrderId()): ?>
 
   <?php if ($this->getCanViewOrder()) : ?>
     <p>
-      <?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>',
+      <?= $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>',
         $this->escapeHtml($this->getViewOrderUrl()),
         $this->escapeHtml($this->getOrderId()))) ?>
     </p>
   <?php else : ?>
-    <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
+    <p><?= $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
   <?php endif; ?>
 
   <p>
-    <?php echo $this->__(
+    <?= $this->__(
       'You will receive an order confirmation email with details of your order and a link to track its progress.'
     ) ?>
   </p>
 
   <?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) : ?>
     <p>
-      <?php echo $this->__(
+      <?= $this->__(
         'Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.',
         $this->getPrintUrl()) ?>
-      <?php echo $this->getChildHtml() ?>
+      <?= $this->getChildHtml() ?>
     </p>
   <?php endif; ?>
 
@@ -35,7 +35,7 @@
 
 <?php if ($this->getAgreementRefId()): ?>
   <p>
-    <?php echo $this->__(
+    <?= $this->__(
       'Your billing agreement # is: %s.',
       sprintf(
         '<a href="%s">%s</a>',
@@ -45,7 +45,7 @@
 <?php endif; ?>
 
 <?php if ($profiles = $this->getRecurringProfiles()): ?>
-  <p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+  <p><?= $this->__('Your recurring payment profiles:'); ?></p>
   <ul>
     <?php foreach ($profiles as $profile): ?>
       <?php
@@ -59,7 +59,7 @@
         $this->escapeHtml($this->getObjectData($profile, 'reference_id')));
       ?>
       <li>
-        <?php echo $this->__(
+        <?= $this->__(
           'Payment profile # %s: "%s".',
           $profileIdHtml,
           $this->escapeHtml($this->getObjectData($profile, 'schedule_description'))
@@ -70,7 +70,7 @@
 <?php endif; ?>
 
 <a class="btn btn-default"
-   title="<?php echo $this->__('Continue Shopping') ?>"
-   href="<?php echo $this->getUrl() ?>">
-  <?php echo $this->__('Continue Shopping') ?>
+   title="<?= $this->__('Continue Shopping') ?>"
+   href="<?= $this->getUrl() ?>">
+  <?= $this->__('Continue Shopping') ?>
 </a>

@@ -7,13 +7,13 @@
 ?>
 <?php $rememberMeId = 'remember_me' . Mage::helper('core')->getRandomString(10); ?>
 <div class="checkbox">
-  <label for="<?php echo $rememberMeId; ?>">
+  <label for="<?= $rememberMeId; ?>">
     <input type="checkbox"
            name="persistent_remember_me"
-           id="<?php echo $rememberMeId; ?>"<?php if ($this->isRememberMeChecked()): ?>
+           id="<?= $rememberMeId; ?>"<?php if ($this->isRememberMeChecked()): ?>
       checked="checked"<?php endif; ?>
-           title="<?php echo $this->__('Remember Me') ?>">
-    <?php echo $this->__('Remember Me') ?>
+           title="<?= $this->__('Remember Me') ?>">
+    <?= $this->__('Remember Me') ?>
   </label>
 
   <button type="button"
@@ -22,7 +22,7 @@
           data-placement="top"
           data-trigger="focus"
           data-content="Checking &quot;Remember Me&quot; will let you access your shopping cart on this computer when you are logged out">
-    <?php echo $this->__('What\'s this?') ?>
+    <?= $this->__('What\'s this?') ?>
   </button>
 </div>
 

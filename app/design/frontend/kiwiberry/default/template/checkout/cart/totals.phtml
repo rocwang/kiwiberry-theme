@@ -8,7 +8,7 @@
 ?>
 <?php if ($this->canApplyMsrp()): ?>
 
-    <div class="cart-msrp-totals"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></div>
+    <div class="cart-msrp-totals"><?= $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></div>
 
 <?php else: ?>
 
@@ -16,10 +16,10 @@
         <col />
         <col width="1" />
         <tfoot>
-            <?php echo $this->renderTotals('footer'); ?>
+            <?= $this->renderTotals('footer'); ?>
         </tfoot>
         <tbody>
-            <?php echo $this->renderTotals(); ?>
+            <?= $this->renderTotals(); ?>
         </tbody>
     </table>
 

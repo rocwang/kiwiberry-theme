@@ -1,15 +1,15 @@
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <?php if ($this->getResultCount()): ?>
 
   <div class="page-header">
     <?php if ($this->helper('rss/catalog')->getTagFeedUrl()): ?>
-      <a href="<?php echo $this->helper('rss/catalog')->getTagFeedUrl() ?>" class="nobr">
-        <?php echo $this->__('Subscribe to Feed') ?>
+      <a href="<?= $this->helper('rss/catalog')->getTagFeedUrl() ?>" class="nobr">
+        <?= $this->__('Subscribe to Feed') ?>
       </a>
     <?php endif; ?>
     <h1>
-      <?php echo ($this->getHeaderText() || $this->getHeaderText() === false) ?
+      <?= ($this->getHeaderText() || $this->getHeaderText() === false) ?
         $this->getHeaderText()
         :
         $this->__("Search results for '%s'", $this->helper('catalogsearch')->getEscapedQueryText()) ?>
@@ -20,7 +20,7 @@
 
   <div class="page-header">
     <h1>
-      <?php echo ($this->getHeaderText() || $this->getHeaderText() === false) ?
+      <?= ($this->getHeaderText() || $this->getHeaderText() === false) ?
         $this->getHeaderText()
         :
         $this->__("Search results for '%s'", $this->helper('catalogsearch')->getEscapedQueryText()) ?>
@@ -28,7 +28,7 @@
   </div>
 
   <p class="text-danger">
-    <?php echo ($this->getNoResultText()) ? $this->getNoResultText() : $this->__('Your search returns no results.') ?>
+    <?= ($this->getNoResultText()) ? $this->getNoResultText() : $this->__('Your search returns no results.') ?>
   </p>
 
 <?php endif; ?>
@@ -36,17 +36,17 @@
 <?php if ($messages = $this->getNoteMessages()): ?>
   <p>
     <?php foreach ($messages as $message): ?>
-      <?php echo $message ?><br>
+      <?= $message ?><br>
     <?php endforeach; ?>
   </p>
 <?php endif; ?>
 
 <?php if ($this->getResultCount()): ?>
 
-  <?php echo $this->getProductListHtml() ?>
+  <?= $this->getProductListHtml() ?>
 
 <?php else: ?>
 
-  <?php echo $this->getAdditionalHtml() ?>
+  <?= $this->getAdditionalHtml() ?>
 
 <?php endif; ?>

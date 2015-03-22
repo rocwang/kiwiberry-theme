@@ -8,9 +8,9 @@
 <?php if ($this->canShowBlock()): ?>
   <div class="<?php if (!$this->getLayer()->getState()->getFilters()): ?> no-filters<?php endif; ?>">
 
-    <h4><?php echo $this->__('Shop By') ?></h4>
+    <h4><?= $this->__('Shop By') ?></h4>
 
-    <?php echo $this->getStateHtml() ?>
+    <?= $this->getStateHtml() ?>
 
     <?php if ($this->canShowOptions()): ?>
 
@@ -23,9 +23,9 @@
 
             <div class="panel panel-default">
               <div class="panel-heading">
-                <?php echo $this->__($_filter->getName()) ?>
+                <?= $this->__($_filter->getName()) ?>
               </div>
-              <?php echo $_filter->getHtml() ?>
+              <?= $_filter->getHtml() ?>
             </div>
 
           <?php endif; ?>

@@ -6,29 +6,29 @@ $catalogSearchHelper = $this->helper('catalogsearch');
 <form id="search_mini_form"
       class="navbar-search navbar-form"
       role="search"
-      action="<?php echo $catalogSearchHelper->getResultUrl() ?>"
+      action="<?= $catalogSearchHelper->getResultUrl() ?>"
       method="get">
   <div class="form-group">
     <div class="input-group">
 
-      <label for="search" class="sr-only"><?php echo $this->__('Search:') ?></label>
+      <label for="search" class="sr-only"><?= $this->__('Search:') ?></label>
 
       <input
         id="search"
         class="form-control"
-        placeholder="<?php echo $this->__('Search entire store here...') ?>"
+        placeholder="<?= $this->__('Search entire store here...') ?>"
         type="text"
-        name="<?php echo $catalogSearchHelper->getQueryParamName() ?>"
-        value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>"
-        maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength(); ?>"
-        data-suggest-url="<?php echo $catalogSearchHelper->getSuggestUrl() ?>"
+        name="<?= $catalogSearchHelper->getQueryParamName() ?>"
+        value="<?= $catalogSearchHelper->getEscapedQueryText() ?>"
+        maxlength="<?= $catalogSearchHelper->getMaxQueryLength(); ?>"
+        data-suggest-url="<?= $catalogSearchHelper->getSuggestUrl() ?>"
         required
         >
 
       <div class="input-group-btn">
-        <button class="btn btn-primary" type="submit" title="<?php echo $this->__('Search') ?>">
-          <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('search') ?>
-          <span class="btn-search-title"><?php echo $this->__('Search') ?></span>
+        <button class="btn btn-primary" type="submit" title="<?= $this->__('Search') ?>">
+          <?= Mage::helper('vr_kiwiberry')->getSvgIcon('search') ?>
+          <span class="btn-search-title"><?= $this->__('Search') ?></span>
         </button>
 
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -36,8 +36,8 @@ $catalogSearchHelper = $this->helper('catalogsearch');
           <span class="sr-only">Toggle Dropdown</span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-          <li><a href="<?php echo Mage::helper('catalogsearch')->getSearchTermUrl() ?>">Popular Search Terms</a></li>
-          <li><a href="<?php echo Mage::helper('catalogsearch')->getAdvancedSearchUrl() ?>">Advanced Search</a></li>
+          <li><a href="<?= Mage::helper('catalogsearch')->getSearchTermUrl() ?>">Popular Search Terms</a></li>
+          <li><a href="<?= Mage::helper('catalogsearch')->getAdvancedSearchUrl() ?>">Advanced Search</a></li>
         </ul>
       </div>
 

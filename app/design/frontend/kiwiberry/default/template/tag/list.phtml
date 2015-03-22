@@ -1,32 +1,32 @@
 <div class="well">
 
-  <h2><?php echo $this->__('Product Tags') ?></h2>
+  <h2><?= $this->__('Product Tags') ?></h2>
 
-  <?php echo $this->getChildHtml('list_before') ?>
+  <?= $this->getChildHtml('list_before') ?>
 
   <?php if ($this->getCount()): ?>
 
-    <h3><?php echo $this->__('Other people marked this product with these tags:') ?></h3>
+    <h3><?= $this->__('Other people marked this product with these tags:') ?></h3>
 
-    <ul id="<?php echo $this->getUniqueHtmlId('product-tags_'); ?>" class="list-inline">
-      <?php echo $this->renderTags('<li><a href="%1$s">%2$s</a> (%3$s)</li>') ?>
+    <ul id="<?= $this->getUniqueHtmlId('product-tags_'); ?>" class="list-inline">
+      <?= $this->renderTags('<li><a href="%1$s">%2$s</a> (%3$s)</li>') ?>
     </ul>
 
   <?php endif; ?>
 
-  <form id="addTagForm" action="<?php echo $this->getFormAction(); ?>" method="get" role="form">
+  <form id="addTagForm" action="<?= $this->getFormAction(); ?>" method="get" role="form">
 
     <div class="form-group">
-      <label for="productTagName"><?php echo $this->__('Add Your Tags:') ?></label>
+      <label for="productTagName"><?= $this->__('Add Your Tags:') ?></label>
 
       <input type="text" class="form-control required-entry" name="productTagName" id="productTagName">
     </div>
 
-    <button id="add-tag" type="button" title="<?php echo $this->__('Add Tags') ?>" class="btn btn-default">
-      <?php echo $this->__('Add Tags') ?>
+    <button id="add-tag" type="button" title="<?= $this->__('Add Tags') ?>" class="btn btn-default">
+      <?= $this->__('Add Tags') ?>
     </button>
   </form>
 
-  <p class="text-info"><?php echo $this->__("Use spaces to separate tags. Use single quotes (') for phrases.") ?></p>
+  <p class="text-info"><?= $this->__("Use spaces to separate tags. Use single quotes (') for phrases.") ?></p>
 
 </div>

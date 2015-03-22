@@ -9,79 +9,79 @@
 <div class="account-login<?php if (!$this->helper('customer')->isRegistrationAllowed()) echo ' login-only' ?>">
 
   <h1>
-    <?php echo $this->helper('customer')->isRegistrationAllowed() ?
+    <?= $this->helper('customer')->isRegistrationAllowed() ?
       $this->__('Login or Create an Account') : $this->__('Login');
     ?>
   </h1>
 
-  <?php echo $this->getMessagesBlock()->toHtml() ?>
+  <?= $this->getMessagesBlock()->toHtml() ?>
 
-  <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form" role="form">
+  <form action="<?= $this->getPostActionUrl() ?>" method="post" id="login-form" role="form">
 
-    <?php echo $this->getBlockHtml('formkey'); ?>
+    <?= $this->getBlockHtml('formkey'); ?>
 
     <div class="row">
 
       <?php if ($this->helper('customer')->isRegistrationAllowed()): ?>
         <div class="col-md-6 new-users">
-          <h2><?php echo $this->__('New Here?') ?></h2>
+          <h2><?= $this->__('New Here?') ?></h2>
 
-          <p class="text-info"><?php echo $this->__('Registration is free and easy!') ?></p>
+          <p class="text-info"><?= $this->__('Registration is free and easy!') ?></p>
 
           <ul>
-            <li><?php echo $this->__('Faster checkout') ?></li>
-            <li><?php echo $this->__('Save multiple shipping addresses') ?></li>
-            <li><?php echo $this->__('View and track orders and more') ?></li>
+            <li><?= $this->__('Faster checkout') ?></li>
+            <li><?= $this->__('Save multiple shipping addresses') ?></li>
+            <li><?= $this->__('View and track orders and more') ?></li>
           </ul>
 
-          <a title="<?php echo $this->__('Create an Account') ?>"
+          <a title="<?= $this->__('Create an Account') ?>"
              class="btn btn-default"
-             href="<?php echo Mage::helper('persistent')->getCreateAccountUrl($this->getCreateAccountUrl()) ?>">
-            <?php echo $this->__('Create an Account') ?>
+             href="<?= Mage::helper('persistent')->getCreateAccountUrl($this->getCreateAccountUrl()) ?>">
+            <?= $this->__('Create an Account') ?>
           </a>
         </div>
       <?php endif; ?>
 
       <?php // This column should be col-md-12 if the registration column is not displayed ?>
       <div class="<?php if ($this->helper('customer')->isRegistrationAllowed()): ?>col-md-6<?php else: ?>col-md-12<?php endif; ?> registered-users">
-        <h2><?php echo $this->__('Already registered?') ?></h2>
+        <h2><?= $this->__('Already registered?') ?></h2>
 
-        <p class="text-info"><?php echo $this->__('If you have an account with us, please log in.') ?></p>
+        <p class="text-info"><?= $this->__('If you have an account with us, please log in.') ?></p>
 
-        <p class="text-danger"><?php echo $this->__('* Required Fields') ?></p>
+        <p class="text-danger"><?= $this->__('* Required Fields') ?></p>
 
         <div class="form-group">
-          <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+          <label for="email" class="required"><em>*</em><?= $this->__('Email Address') ?></label>
           <input type="email"
                  autocapitalize="off"
                  autocorrect="off"
                  spellcheck="false"
                  name="login[username]"
-                 value="<?php echo $this->escapeHtml($this->getUsername()) ?>"
+                 value="<?= $this->escapeHtml($this->getUsername()) ?>"
                  id="email"
                  class="form-control required-entry validate-email"
-                 title="<?php echo $this->__('Email Address') ?>"/>
+                 title="<?= $this->__('Email Address') ?>"/>
         </div>
 
         <div class="form-group">
-          <label for="pass" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+          <label for="pass" class="required"><em>*</em><?= $this->__('Password') ?></label>
           <input type="password"
                  name="login[password]"
                  class="form-control required-entry validate-password"
                  id="pass"
-                 title="<?php echo $this->__('Password') ?>"/>
+                 title="<?= $this->__('Password') ?>"/>
         </div>
 
-        <?php echo $this->getChildHtml('form.additional.info'); ?>
+        <?= $this->getChildHtml('form.additional.info'); ?>
 
-        <a href="<?php echo $this->getForgotPasswordUrl() ?>" class="text-info">
-          <?php echo $this->__('Forgot Your Password?') ?>
+        <a href="<?= $this->getForgotPasswordUrl() ?>" class="text-info">
+          <?= $this->__('Forgot Your Password?') ?>
         </a>
 
-        <?php echo $this->getChildHtml('persistent.remember.me'); ?>
+        <?= $this->getChildHtml('persistent.remember.me'); ?>
 
-        <button type="submit" class="btn btn-default" title="<?php echo $this->__('Login') ?>" name="send" id="send2">
-          <?php echo $this->__('Login') ?>
+        <button type="submit" class="btn btn-default" title="<?= $this->__('Login') ?>" name="send" id="send2">
+          <?= $this->__('Login') ?>
         </button>
       </div>
 

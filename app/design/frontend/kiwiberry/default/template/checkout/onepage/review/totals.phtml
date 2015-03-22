@@ -6,15 +6,15 @@
 <?php if ($this->getTotals()): ?>
   <tfoot>
   <?php $_colspan = $this->helper('tax')->displayCartBothPrices() ? 5 : 3; ?>
-  <?php echo $this->renderTotals(null, $_colspan); ?>
-  <?php echo $this->renderTotals('footer', $_colspan); ?>
+  <?= $this->renderTotals(null, $_colspan); ?>
+  <?= $this->renderTotals('footer', $_colspan); ?>
   <?php if ($this->needDisplayBaseGrandtotal()): ?>
     <tr>
-      <td colspan="<?php echo $_colspan; ?>">
-        <small><?php echo $this->helper('sales')->__('Your credit card will be charged for') ?></small>
+      <td colspan="<?= $_colspan; ?>">
+        <small><?= $this->helper('sales')->__('Your credit card will be charged for') ?></small>
       </td>
       <td>
-        <small><?php echo $this->displayBaseGrandtotal() ?></small>
+        <small><?= $this->displayBaseGrandtotal() ?></small>
       </td>
     </tr>
   <?php endif ?>

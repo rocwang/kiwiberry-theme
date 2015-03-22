@@ -1,27 +1,27 @@
-<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+<div id="messages_product_view"><?= $this->getMessagesBlock()->toHtml() ?></div>
 
-<h1><?php echo Mage::helper('contacts')->__('Contact Us') ?></h1>
+<h1><?= Mage::helper('contacts')->__('Contact Us') ?></h1>
 
-<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post" role="form">
+<form action="<?= $this->getFormAction(); ?>" id="contactForm" method="post" role="form">
 
-  <p class="text-danger"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+  <p class="text-danger"><?= Mage::helper('contacts')->__('* Required Fields') ?></p>
 
   <div class="form-group">
-    <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name') ?></label>
+    <label for="name" class="required"><em>*</em><?= Mage::helper('contacts')->__('Name') ?></label>
     <input name="name"
            id="name"
-           title="<?php echo Mage::helper('contacts')->__('Name') ?>"
-           value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>"
+           title="<?= Mage::helper('contacts')->__('Name') ?>"
+           value="<?= $this->escapeHtml($this->helper('contacts')->getUserName()) ?>"
            class="required-entry form-control"
            type="text"/>
   </div>
 
   <div class="form-group">
-    <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
+    <label for="email" class="required"><em>*</em><?= Mage::helper('contacts')->__('Email') ?></label>
     <input name="email"
            id="email"
-           title="<?php echo Mage::helper('contacts')->__('Email') ?>"
-           value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>"
+           title="<?= Mage::helper('contacts')->__('Email') ?>"
+           value="<?= $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>"
            class="form-control required-entry validate-email"
            type="email"
            autocapitalize="off"
@@ -30,28 +30,28 @@
   </div>
 
   <div class="form-group">
-    <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
+    <label for="telephone"><?= Mage::helper('contacts')->__('Telephone') ?></label>
     <input name="telephone"
            id="telephone"
-           title="<?php echo Mage::helper('contacts')->__('Telephone') ?>"
+           title="<?= Mage::helper('contacts')->__('Telephone') ?>"
            value=""
            class="form-control"
            type="tel">
   </div>
 
   <div class="form-group">
-    <label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Comment') ?></label>
+    <label for="comment" class="required"><em>*</em><?= Mage::helper('contacts')->__('Comment') ?></label>
     <textarea name="comment"
               id="comment"
-              title="<?php echo Mage::helper('contacts')->__('Comment') ?>"
+              title="<?= Mage::helper('contacts')->__('Comment') ?>"
               class="required-entry form-control"
               rows="5"></textarea>
   </div>
 
   <input type="text" name="hideit" id="hideit" value="" style="display:none !important;">
 
-  <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="btn btn-default">
-    <?php echo Mage::helper('contacts')->__('Submit') ?>
+  <button type="submit" title="<?= Mage::helper('contacts')->__('Submit') ?>" class="btn btn-default">
+    <?= Mage::helper('contacts')->__('Submit') ?>
   </button>
 
 </form>

@@ -1,11 +1,11 @@
 <?php if ($_products = $this->getRecentlyComparedProducts()): ?>
   <div class="panel panel-default">
-    <div class="panel-heading"><?php echo $this->__('Recently Compared Products') ?></div>
+    <div class="panel-heading"><?= $this->__('Recently Compared Products') ?></div>
     <ul id="recently-compared-items" class="list-group">
       <?php foreach ($_products as $_item): ?>
         <li class="list-group-item">
-          <a href="<?php echo $this->getProductUrl($_item) ?>">
-            <?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
+          <a href="<?= $this->getProductUrl($_item) ?>">
+            <?= $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
           </a>
         </li>
       <?php endforeach; ?>

@@ -1,6 +1,6 @@
-<form id="newsletter-validate-detail" action="<?php echo $this->getFormActionUrl() ?>" method="post" role="form">
+<form id="newsletter-validate-detail" action="<?= $this->getFormActionUrl() ?>" method="post" role="form">
   <label class="footer-label" for="newsletter">
-    <?php echo $this->__('Sign Up for Our Newsletter:') ?>
+    <?= $this->__('Sign Up for Our Newsletter:') ?>
   </label>
 
   <div class="input-group input-group-subscription input-group-sm">
@@ -11,14 +11,14 @@
            spellcheck="false"
            name="email"
            id="newsletter"
-           title="<?php echo $this->__('Sign up for our newsletter') ?>"
+           title="<?= $this->__('Sign up for our newsletter') ?>"
            placeholder="john@example.com"
            class="form-control"
            required
       >
     <sapn class="input-group-btn">
-      <button type="submit" title="<?php echo $this->__('Subscribe') ?>" class="btn btn-primary">
-        <?php echo $this->__('Subscribe') ?>
+      <button type="submit" title="<?= $this->__('Subscribe') ?>" class="btn btn-primary">
+        <?= $this->__('Subscribe') ?>
       </button>
     </sapn>
   </div>

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 
   <div class="panel-heading">
-    <?php echo $this->__('Popular Tags'); ?>
+    <?= $this->__('Popular Tags'); ?>
   </div>
 
   <div class="panel-body">
@@ -9,9 +9,9 @@
     <ul class="list-inline">
       <?php foreach ($this->getTags() as $_tag): ?>
         <li>
-          <a href="<?php echo $_tag->getTaggedProductsUrl() ?>"
-             style="font-size:<?php echo $_tag->getRatio() * 70 + 75 ?>%;">
-            <?php echo $this->escapeHtml($_tag->getName()) ?>
+          <a href="<?= $_tag->getTaggedProductsUrl() ?>"
+             style="font-size:<?= $_tag->getRatio() * 70 + 75 ?>%;">
+            <?= $this->escapeHtml($_tag->getName()) ?>
           </a>
         </li>
       <?php endforeach; ?>
@@ -20,8 +20,8 @@
   </div>
 
   <div class="panel-footer">
-    <a href="<?php echo $this->getUrl('tag/list') ?>" class="btn btn-default">
-      <?php echo $this->__('View All Tags') ?>
+    <a href="<?= $this->getUrl('tag/list') ?>" class="btn btn-default">
+      <?= $this->__('View All Tags') ?>
     </a>
   </div>
 

@@ -14,23 +14,23 @@ $_u = 'p[url]=' . $_productUrl
 ?>
 
 <?php if ($this->canEmailToFriend()): ?>
-  <a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"
+  <a href="<?= $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"
      class="btn btn-default"
-     title="<?php echo $this->__('Email to a Friend') ?>">
-    <?php echo $this->__('Email to a Friend') ?>
+     title="<?= $this->__('Email to a Friend') ?>">
+    <?= $this->__('Email to a Friend') ?>
   </a>
 <?php endif; ?>
 
-<a href="<?php echo 'http://www.facebook.com/sharer.php?s=100&' . $_u; ?>"
+<a href="<?= 'http://www.facebook.com/sharer.php?s=100&' . $_u; ?>"
    target="_blank"
-   title="<?php echo $this->__('Share on Facebook') ?>"
+   title="<?= $this->__('Share on Facebook') ?>"
    class="btn btn-default">
-  <?php echo $this->__('Share Facebook') ?>
+  <?= $this->__('Share Facebook') ?>
 </a>
-<a href="<?php echo 'http://twitter.com/home?status=' . $_productName . '+' . $_productUrl; ?>"
+<a href="<?= 'http://twitter.com/home?status=' . $_productName . '+' . $_productUrl; ?>"
    target="_blank"
-   title="<?php echo $this->__('Share on Twitter') ?>"
+   title="<?= $this->__('Share on Twitter') ?>"
    class="btn btn-default">
-  <?php echo $this->__('Share on Twitter') ?>
+  <?= $this->__('Share on Twitter') ?>
 </a>
 

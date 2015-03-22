@@ -1,8 +1,8 @@
 <?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
   <?php $_helper = $this->helper('catalog/output'); ?>
 
-  <h2><?php echo $this->__('New Products') ?></h2>
+  <h2><?= $this->__('New Products') ?></h2>
 
-  <?php echo $this->getChild('product-collection-new')->setProductCollection($_products)->toHtml() ?>
+  <?= $this->getChild('product-collection-new')->setProductCollection($_products)->toHtml() ?>
 
 <?php endif; ?>

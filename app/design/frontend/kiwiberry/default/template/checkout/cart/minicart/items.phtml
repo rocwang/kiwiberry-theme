@@ -17,33 +17,33 @@ if (empty($_cartQty)) {
   <?php if (count($_items)): ?>
 
     <div class="panel-heading">
-      <?php echo $this->__('Recently added item(s)') ?>
+      <?= $this->__('Recently added item(s)') ?>
     </div>
 
     <div id="minicart-error-message" class="minicart-message"></div>
     <div id="minicart-success-message" class="minicart-message"></div>
 
-    <ul id="cart-sidebar" class="list-group" data-formkey="<?php echo $this->getFormKey(); ?>">
+    <ul id="cart-sidebar" class="list-group" data-formkey="<?= $this->getFormKey(); ?>">
       <?php foreach ($_items as $_item): ?>
-        <?php echo $this->getItemHtml($_item) ?>
+        <?= $this->getItemHtml($_item) ?>
       <?php endforeach; ?>
 
       <li class="list-group-item minicart-subtotal">
         <?php if ($this->canApplyMsrp()): ?>
 
-          <?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?>
+          <?= $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?>
 
         <?php else: ?>
 
-          <?php echo $this->__('Cart Subtotal:') ?>
+          <?= $this->__('Cart Subtotal:') ?>
 
-          <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+          <?= Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
 
           <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
             <br/>
             (
-            <?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?>
-            <?php echo Mage::helper('tax')->getIncExcText(true) ?>
+            <?= Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?>
+            <?= Mage::helper('tax')->getIncExcText(true) ?>
             )
           <?php endif; ?>
 
@@ -51,23 +51,23 @@ if (empty($_cartQty)) {
       </li>
     </ul>
 
-    <?php echo $this->getChildHtml('cart_promotion') ?>
+    <?= $this->getChildHtml('cart_promotion') ?>
 
     <div class="panel-footer">
       <?php if ($_cartQty && $this->isPossibleOnepageCheckout()): ?>
-        <?php echo $this->getChildHtml('extra_actions') ?>
+        <?= $this->getChildHtml('extra_actions') ?>
       <?php endif ?>
 
       <div class="btn-group btn-group-justified" role="group">
-        <a class="btn btn-info" href="<?php echo $this->getUrl('checkout/cart'); ?>">
-          <?php echo $this->__('View Cart'); ?>
+        <a class="btn btn-info" href="<?= $this->getUrl('checkout/cart'); ?>">
+          <?= $this->__('View Cart'); ?>
         </a>
 
         <?php if ($_cartQty && $this->isPossibleOnepageCheckout()): ?>
-          <a title="<?php echo $this->__('Checkout') ?>"
+          <a title="<?= $this->__('Checkout') ?>"
              class="btn btn-primary"
-             href="<?php echo $this->getCheckoutUrl() ?>">
-            <?php echo $this->__('Checkout') ?>
+             href="<?= $this->getCheckoutUrl() ?>">
+            <?= $this->__('Checkout') ?>
           </a>
         <?php endif ?>
       </div>
@@ -77,7 +77,7 @@ if (empty($_cartQty)) {
   <?php else: ?>
 
     <div class="panel-body">
-      <?php echo $this->__('You have no items in your shopping cart.') ?>
+      <?= $this->__('You have no items in your shopping cart.') ?>
     </div>
 
   <?php endif ?>

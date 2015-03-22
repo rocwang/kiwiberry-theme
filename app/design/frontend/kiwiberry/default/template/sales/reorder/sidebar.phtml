@@ -8,15 +8,15 @@
 <?php $_items = $this->getItems() ?>
 <?php if ($_items): ?>
 
-  <form method="post" action="<?php echo $this->getFormActionUrl() ?>" id="reorder-validate-detail" role="form">
+  <form method="post" action="<?= $this->getFormActionUrl() ?>" id="reorder-validate-detail" role="form">
 
-    <?php echo $this->getBlockHtml('formkey'); ?>
+    <?= $this->getBlockHtml('formkey'); ?>
 
     <div class="panel panel-default">
 
-      <div class="panel-heading"><?php echo $this->__('My Orders') ?></div>
+      <div class="panel-heading"><?= $this->__('My Orders') ?></div>
 
-      <div class="panel-body"><?php echo $this->__('Last Ordered Items') ?></div>
+      <div class="panel-body"><?= $this->__('Last Ordered Items') ?></div>
 
       <ul id="cart-sidebar-reorder" class="list-group">
         <?php $_showAddButtonFlag = false ?>
@@ -28,21 +28,21 @@
                 <label>
                   <input type="checkbox"
                          name="order_items[]"
-                         id="reorder-item-<?php echo $_item->getId() ?>"
-                         value="<?php echo $_item->getId() ?>"
-                         title="<?php echo $this->__('Add to Cart') ?>"
+                         id="reorder-item-<?= $_item->getId() ?>"
+                         value="<?= $_item->getId() ?>"
+                         title="<?= $this->__('Add to Cart') ?>"
                          class="validate-one-required-by-name js-reorder-sidebar-checkbox">
 
-                  <a href="<?php echo $_item->getProduct()->getProductUrl() ?>">
-                    <?php echo $this->escapeHtml($_item->getName()) ?>
+                  <a href="<?= $_item->getProduct()->getProductUrl() ?>">
+                    <?= $this->escapeHtml($_item->getName()) ?>
                   </a>
                 </label>
 
               </div>
             <?php else: ?>
 
-              <a href="<?php echo $_item->getProduct()->getProductUrl() ?>">
-                <?php echo $this->escapeHtml($_item->getName()) ?>
+              <a href="<?= $_item->getProduct()->getProductUrl() ?>">
+                <?= $this->escapeHtml($_item->getName()) ?>
               </a>
 
             <?php endif; ?>
@@ -54,20 +54,20 @@
         <p class="text-danger" id="cart-sidebar-reorder-advice-container"></p>
 
         <?php if ($_showAddButtonFlag): ?>
-          <button type="submit" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-default">
-            <?php echo $this->__('Add to Cart') ?>
+          <button type="submit" title="<?= $this->__('Add to Cart') ?>" class="btn btn-default">
+            <?= $this->__('Add to Cart') ?>
           </button>
         <?php endif; ?>
 
-        <a href="<?php echo $this->getUrl('customer/account') ?>" class="btn btn-default">
-          <?php echo $this->__('View All'); ?>
+        <a href="<?= $this->getUrl('customer/account') ?>" class="btn btn-default">
+          <?= $this->__('View All'); ?>
         </a>
       </div>
 
     </div>
   </form>
 
-  <?php echo $this->getPagerHtml(); ?>
+  <?= $this->getPagerHtml(); ?>
 
 <?php endif ?>
 

@@ -38,8 +38,8 @@ $_accountId = $_helper->getAccountId();
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            <?php echo $this->_getPageTrackingCode($_accountId) ?>
-            <?php echo $this->_getOrdersTrackingCode() ?>
+            <?= $this->_getPageTrackingCode($_accountId) ?>
+            <?= $this->_getOrdersTrackingCode() ?>
 
         //]]>
         </script>
@@ -49,8 +49,8 @@ $_accountId = $_helper->getAccountId();
         <script type="text/javascript">
         //<![CDATA[
             var _gaq = _gaq || [];
-            <?php echo $this->_getPageTrackingCode($_accountId) ?>
-            <?php echo $this->_getOrdersTrackingCode() ?>
+            <?= $this->_getPageTrackingCode($_accountId) ?>
+            <?= $this->_getOrdersTrackingCode() ?>
 
             (function() {
                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

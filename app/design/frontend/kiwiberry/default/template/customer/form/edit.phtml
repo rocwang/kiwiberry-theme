@@ -1,50 +1,50 @@
 <div class="page-header">
-  <h1><?php echo $this->__('Edit Account Information') ?></h1>
+  <h1><?= $this->__('Edit Account Information') ?></h1>
 </div>
 
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
-<form action="<?php echo $this->getUrl('customer/account/editPost') ?>"
+<form action="<?= $this->getUrl('customer/account/editPost') ?>"
       method="post"
       autocomplete="off"
       id="form-validate-account-info"
       role="form"
       enctype="multipart/form-data">
 
-  <?php echo $this->getBlockHtml('formkey') ?>
+  <?= $this->getBlockHtml('formkey') ?>
 
-  <h2><?php echo $this->__('Account Information') ?></h2>
+  <h2><?= $this->__('Account Information') ?></h2>
 
-  <p class="text-danger"><?php echo $this->__('* Required Fields') ?></p>
+  <p class="text-danger"><?= $this->__('* Required Fields') ?></p>
 
-  <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
+  <?= $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
 
   <div class="form-group">
-    <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+    <label for="email" class="required"><em>*</em><?= $this->__('Email Address') ?></label>
     <input type="email"
            autocapitalize="off"
            autocorrect="off"
            spellcheck="false"
            name="email"
            id="email"
-           value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>"
-           title="<?php echo $this->__('Email Address') ?>"
+           value="<?= $this->escapeHtml($this->getCustomer()->getEmail()) ?>"
+           title="<?= $this->__('Email Address') ?>"
            class="form-control required-entry validate-email"/>
   </div>
 
   <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
   <?php if ($_dob->isEnabled()): ?>
-    <?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?>
+    <?= $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?>
   <?php endif ?>
 
   <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
   <?php if ($_taxvat->isEnabled()): ?>
-    <?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?>
+    <?= $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?>
   <?php endif ?>
 
   <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
   <?php if ($_gender->isEnabled()): ?>
-    <?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?>
+    <?= $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?>
   <?php endif ?>
 
   <div class="checkbox">
@@ -53,28 +53,28 @@
              name="change_password"
              id="change_password"
              value="1"
-             title="<?php echo $this->__('Change Password') ?>"
+             title="<?= $this->__('Change Password') ?>"
         <?php if ($this->getCustomer()->getChangePassword() == 1): ?> checked="checked"<?php endif; ?>
         >
-      <?php echo $this->__('Change Password') ?>
+      <?= $this->__('Change Password') ?>
     </label>
   </div>
 
   <div id="form-field-change-password" style="display:none">
-    <h2><?php echo $this->__('Change Password') ?></h2>
+    <h2><?= $this->__('Change Password') ?></h2>
 
     <div class="form-group"
          <?php if (!$this->getCustomer()->getChangePassword()): ?>style="display:none;"<?php endif ?>
       >
       <label for="current_password" class="required">
-        <em>*</em><?php echo $this->__('Current Password') ?>
+        <em>*</em><?= $this->__('Current Password') ?>
       </label>
 
       <!-- This is a dummy hidden field to trick firefox from auto filling the password -->
       <input type="text" class="form-control hidden" name="dummy" id="dummy">
 
       <input type="password"
-             title="<?php echo $this->__('Current Password') ?>"
+             title="<?= $this->__('Current Password') ?>"
              class="form-control<?php if ($this->getCustomer()->getChangePassword()): ?> required-entry<?php endif ?>"
              name="current_password"
              id="current_password">
@@ -82,11 +82,11 @@
 
     <div class="form-group">
       <label for="password" class="required">
-        <em>*</em><?php echo $this->__('New Password') ?>
+        <em>*</em><?= $this->__('New Password') ?>
       </label>
 
       <input type="password"
-             title="<?php echo $this->__('New Password') ?>"
+             title="<?= $this->__('New Password') ?>"
              class="form-control validate-password"
              name="password<?php if ($this->getCustomer()->getChangePassword()): ?> required-entry<?php endif ?>"
              id="password">
@@ -94,23 +94,23 @@
 
     <div class="form-group">
       <label for="confirmation" class="required">
-        <em>*</em><?php echo $this->__('Confirm New Password') ?>
+        <em>*</em><?= $this->__('Confirm New Password') ?>
       </label>
 
       <input type="password"
-             title="<?php echo $this->__('Confirm New Password') ?>"
+             title="<?= $this->__('Confirm New Password') ?>"
              class="form-control validate-cpassword<?php if ($this->getCustomer()->getChangePassword()): ?> required-entry<?php endif ?>"
              name="confirmation"
              id="confirmation">
     </div>
   </div>
 
-  <a class="btn btn-default" href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>">
-    <?php echo $this->__('Back') ?>
+  <a class="btn btn-default" href="<?= $this->escapeUrl($this->getBackUrl()) ?>">
+    <?= $this->__('Back') ?>
   </a>
 
-  <button type="submit" title="<?php echo $this->__('Save') ?>" class="btn btn-default">
-    <?php echo $this->__('Save') ?>
+  <button type="submit" title="<?= $this->__('Save') ?>" class="btn btn-default">
+    <?= $this->__('Save') ?>
   </button>
 
 </form>

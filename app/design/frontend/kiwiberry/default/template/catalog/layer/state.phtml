@@ -12,10 +12,10 @@ $_renderers = $this->getParentBlock()->getChild('state_renderers')->getSortedChi
 <?php if (!empty($_filters)): ?>
   <div class="panel panel-default">
 
-    <div class="panel-heading"><?php echo $this->__('Currently Shopping by:') ?></div>
+    <div class="panel-heading"><?= $this->__('Currently Shopping by:') ?></div>
 
     <div class="panel-body">
-      <a class="btn btn-default" href="<?php echo $this->getClearUrl() ?>"><?php echo $this->__('Clear All') ?></a>
+      <a class="btn btn-default" href="<?= $this->getClearUrl() ?>"><?= $this->__('Clear All') ?></a>
     </div>
 
     <ul class="list-group">
@@ -37,28 +37,28 @@ $_renderers = $this->getParentBlock()->getChild('state_renderers')->getSortedChi
         ?>
 
           <li class="list-group-item">
-            <strong><?php echo $this->__($_filter->getName()) ?>:</strong>
-            <span><?php echo $this->stripTags($_filter->getLabel()) ?></span>
+            <strong><?= $this->__($_filter->getName()) ?>:</strong>
+            <span><?= $this->stripTags($_filter->getLabel()) ?></span>
 
             <?php
             $clearLinkUrl = $_filter->getClearLinkUrl();
             if ($clearLinkUrl):
             ?>
-              <a href="<?php echo $_filter->getRemoveUrl() ?>"
-                 title="<?php echo $this->__('Previous') ?>">
-                <?php echo $this->__('Previous') ?>
+              <a href="<?= $_filter->getRemoveUrl() ?>"
+                 title="<?= $this->__('Previous') ?>">
+                <?= $this->__('Previous') ?>
               </a>
 
-              <a title="<?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
-                 href="<?php echo $clearLinkUrl ?>">
-                <?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>
+              <a title="<?= $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
+                 href="<?= $clearLinkUrl ?>">
+                <?= $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>
               </a>
             <?php else: ?>
               <a class="close"
-                 href="<?php echo $_filter->getRemoveUrl() ?>"
-                 title="<?php echo $this->__('Remove This Item') ?>">
+                 href="<?= $_filter->getRemoveUrl() ?>"
+                 title="<?= $this->__('Remove This Item') ?>">
                 <span aria-hidden="true">&times;</span>
-                <span class="sr-only"><?php echo $this->__('Remove This Item') ?></span>
+                <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
               </a>
             <?php endif; ?>
 

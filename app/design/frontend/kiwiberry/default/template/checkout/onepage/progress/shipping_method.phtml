@@ -1,37 +1,37 @@
 <?php if ($this->getCheckout()->getStepData('shipping_method', 'complete')): ?>
 
   <div class="panel-heading js-complete">
-    <?php echo $this->__('Shipping Method') ?>
+    <?= $this->__('Shipping Method') ?>
 
     <button type="button"
             class="btn btn-default js-btn-edit-opc"
             data-target="shipping_method">
       <i class="fa fa-pencil-square"></i>
-      <?php echo $this->__('Change') ?>
+      <?= $this->__('Change') ?>
     </button>
   </div>
 
   <div class="panel-body js-panel-body js-complete">
     <?php if ($this->getShippingMethod()): ?>
 
-      <?php echo $this->getShippingDescription() ?>
+      <?= $this->getShippingDescription() ?>
 
       <?php $_excl = $this->getShippingPriceExclTax(); ?>
       <?php $_incl = $this->getShippingPriceInclTax(); ?>
 
       <?php if ($this->helper('tax')->displayShippingPriceIncludingTax()): ?>
-        <?php echo $_incl; ?>
+        <?= $_incl; ?>
       <?php else: ?>
-        <?php echo $_excl; ?>
+        <?= $_excl; ?>
       <?php endif; ?>
 
       <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
-        (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+        (<?= $this->__('Incl. Tax'); ?> <?= $_incl; ?>)
       <?php endif; ?>
 
     <?php else: ?>
 
-      <?php echo $this->__('Shipping method has not been selected yet') ?>
+      <?= $this->__('Shipping method has not been selected yet') ?>
 
     <?php endif; ?>
   </div>
@@ -39,7 +39,7 @@
 <?php else: ?>
 
   <div class="panel-heading">
-    <?php echo $this->__('Shipping Method') ?>
+    <?= $this->__('Shipping Method') ?>
   </div>
 
 <?php endif; ?>

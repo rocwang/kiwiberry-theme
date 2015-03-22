@@ -4,7 +4,7 @@
   <?php if (!$_product->isGrouped()): ?>
     <div class="form-group">
       <label for="qty" class="col-sm-2 control-label">
-        <?php echo $this->__('Qty:') ?>
+        <?= $this->__('Qty:') ?>
       </label>
 
       <div class="col-sm-10">
@@ -13,8 +13,8 @@
                name="qty"
                id="qty"
                maxlength="12"
-               value="<?php echo max($this->getProductDefaultQty() * 1, 1) ?>"
-               title="<?php echo $this->__('Qty') ?>"
+               value="<?= max($this->getProductDefaultQty() * 1, 1) ?>"
+               title="<?= $this->__('Qty') ?>"
                class="form-control">
       </div>
     </div>
@@ -24,14 +24,14 @@
     <div class="col-sm-offset-2 col-sm-10">
       <?php $buttonTitle = $this->__('Add to Cart'); ?>
       <button type="button"
-              title="<?php echo $buttonTitle ?>"
+              title="<?= $buttonTitle ?>"
               class="btn btn-primary"
               id="add_to_cart">
-        <?php echo $buttonTitle ?>
+        <?= $buttonTitle ?>
       </button>
     </div>
   </div>
 
-  <?php echo $this->getChildHtml('', true, true) ?>
+  <?= $this->getChildHtml('', true, true) ?>
 
 <?php endif; ?>

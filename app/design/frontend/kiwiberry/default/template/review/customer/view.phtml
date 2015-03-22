@@ -1,37 +1,37 @@
 <?php if ($this->getProductData()->getId()): ?>
 
   <div class="page-header">
-    <h1><?php echo $this->__('Review Details') ?></h1>
+    <h1><?= $this->__('Review Details') ?></h1>
   </div>
 
   <div class="row">
     <div class="col-md-4">
-      <a href="<?php echo $this->getProductData()->getProductUrl() ?>"
-         title="<?php echo $this->escapeHtml($this->getProductData()->getName()) ?>"
+      <a href="<?= $this->getProductData()->getProductUrl() ?>"
+         title="<?= $this->escapeHtml($this->getProductData()->getName()) ?>"
          class="product-image">
-        <img src="<?php echo $this->helper('catalog/image')->init($this->getProductData(), 'small_image')->resize(325, 325); ?>"
+        <img src="<?= $this->helper('catalog/image')->init($this->getProductData(), 'small_image')->resize(325, 325); ?>"
              class="img-responsive"
-             alt="<?php echo $this->escapeHtml($this->getProductData()->getName()) ?>">
+             alt="<?= $this->escapeHtml($this->getProductData()->getName()) ?>">
       </a>
     </div>
 
     <div class="col-md-8">
-      <h2 class="product-name"><?php echo $this->escapeHtml($this->getProductData()->getName()) ?></h2>
+      <h2 class="product-name"><?= $this->escapeHtml($this->getProductData()->getName()) ?></h2>
 
       <?php if ($this->getRating() && $this->getRating()->getSize()): ?>
-        <h3><?php echo $this->__('Average Customer Rating:') ?></h3>
-        <?php echo $this->getReviewsSummaryHtml($this->getProductData()) ?>
+        <h3><?= $this->__('Average Customer Rating:') ?></h3>
+        <?= $this->getReviewsSummaryHtml($this->getProductData()) ?>
       <?php endif; ?>
 
       <?php if ($this->getRating() && $this->getRating()->getSize()): ?>
 
-        <h3><?php echo ($this->isReviewOwner()) ? $this->__('Your Rating:') : $this->__('Rating:'); ?></h3>
+        <h3><?= ($this->isReviewOwner()) ? $this->__('Your Rating:') : $this->__('Rating:'); ?></h3>
 
         <dl class="dl-horizontal">
           <?php foreach ($this->getRating() as $_rating): ?>
             <?php if ($_rating->getPercent()): ?>
-              <dt><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></dt>
-              <dd><?php echo $this->getChild('rating')->setPercent($_rating->getPercent())->toHtml() ?></dd>
+              <dt><?= $this->escapeHtml($_rating->getRatingCode()) ?></dt>
+              <dd><?= $this->getChild('rating')->setPercent($_rating->getPercent())->toHtml() ?></dd>
             <?php endif; ?>
           <?php endforeach; ?>
         </dl>
@@ -39,21 +39,21 @@
 
       <h3>
         <?php if ($this->isReviewOwner()): ?>
-          <?php echo $this->__('Your Review (submitted on %s):', $this->dateFormat($this->getReviewData()->getCreatedAt())) ?>
+          <?= $this->__('Your Review (submitted on %s):', $this->dateFormat($this->getReviewData()->getCreatedAt())) ?>
         <?php else : ?>
-          <?php echo $this->__('Review (submitted on %s):', $this->dateFormat($this->getReviewData()->getCreatedAt())) ?>
+          <?= $this->__('Review (submitted on %s):', $this->dateFormat($this->getReviewData()->getCreatedAt())) ?>
         <?php endif; ?>
       </h3>
 
       <p>
-        <?php echo nl2br($this->escapeHtml($this->getReviewData()->getDetail())) ?>
+        <?= nl2br($this->escapeHtml($this->getReviewData()->getDetail())) ?>
       </p>
     </div>
   </div>
 
-  <a href="<?php echo $this->getBackUrl() ?>" class="btn btn-default">
+  <a href="<?= $this->getBackUrl() ?>" class="btn btn-default">
     <i class="fa fa-angle-double-left"></i>
-    <?php echo $this->__('Back to My Reviews') ?>
+    <?= $this->__('Back to My Reviews') ?>
   </a>
 
 <?php endif; ?>

@@ -4,7 +4,7 @@
 
 <?php if (!$_shippingRateGroups): ?>
 
-  <p class="text-info"><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></p>
+  <p class="text-info"><?= $this->__('Sorry, no quotes are available for this order at this time.') ?></p>
 
 <?php else: ?>
 
@@ -13,7 +13,7 @@
 
     foreach ($_shippingRateGroups as $code => $_rates): ?>
 
-      <dt><?php echo $this->escapeHtml($this->getCarrierName($code)) ?></dt>
+      <dt><?= $this->escapeHtml($this->getCarrierName($code)) ?></dt>
 
       <dd>
         <ul class="list-unstyled">
@@ -24,44 +24,44 @@
 
               <?php if ($_rate->getErrorMessage()): ?>
 
-                <p class="text-danger"><?php echo $this->escapeHtml($_rate->getErrorMessage()) ?></p>
+                <p class="text-danger"><?= $this->escapeHtml($_rate->getErrorMessage()) ?></p>
 
               <?php else: ?>
 
 
                 <div class="radio">
-                  <label for="s_method_<?php echo $_rate->getCode() ?>">
+                  <label for="s_method_<?= $_rate->getCode() ?>">
                     <?php if ($_sole) : ?>
 
                       <input name="shipping_method"
                              class="hidden"
                              type="radio"
-                             value="<?php echo $_rate->getCode() ?>"
-                             data-price="<?php echo (float)$_rate->getPrice() ?>"
-                             id="s_method_<?php echo $_rate->getCode() ?>"
+                             value="<?= $_rate->getCode() ?>"
+                             data-price="<?= (float)$_rate->getPrice() ?>"
+                             id="s_method_<?= $_rate->getCode() ?>"
                              checked="checked">
 
                     <?php else: ?>
 
                       <input name="shipping_method"
                              type="radio"
-                             value="<?php echo $_rate->getCode() ?>"
-                             data-price="<?php echo (float)$_rate->getPrice() ?>"
-                             id="s_method_<?php echo $_rate->getCode() ?>"
+                             value="<?= $_rate->getCode() ?>"
+                             data-price="<?= (float)$_rate->getPrice() ?>"
+                             id="s_method_<?= $_rate->getCode() ?>"
                         <?php if ($_rate->getCode() === $this->getAddressShippingMethod()): ?>
                           checked="checked"
-                          data-last-price="<?php echo (float)$_rate->getPrice() ?>"
+                          data-last-price="<?= (float)$_rate->getPrice() ?>"
                         <?php endif; ?>
                         >
 
                     <?php endif; ?>
 
-                    <?php echo $this->escapeHtml($_rate->getMethodTitle()) ?>
+                    <?= $this->escapeHtml($_rate->getMethodTitle()) ?>
                     <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
                     <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
-                    <?php echo $_excl; ?>
+                    <?= $_excl; ?>
                     <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
-                      (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                      (<?= $this->__('Incl. Tax'); ?> <?= $_incl; ?>)
                     <?php endif; ?>
                   </label>
                 </div>

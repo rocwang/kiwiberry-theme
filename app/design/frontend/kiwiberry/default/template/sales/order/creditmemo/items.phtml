@@ -1,53 +1,53 @@
 <?php $_order = $this->getOrder() ?>
 
 <p>
-  <a href="<?php echo $this->getPrintAllCreditmemosUrl($_order) ?>"
+  <a href="<?= $this->getPrintAllCreditmemosUrl($_order) ?>"
      target="_blank"
      class="btn btn-default">
-    <?php echo $this->__('Print All Refunds') ?>
+    <?= $this->__('Print All Refunds') ?>
   </a>
 </p>
 
 <?php foreach ($_order->getCreditmemosCollection() as $_creditmemo): ?>
 
   <h2>
-    <?php echo $this->__('Refund #') . $_creditmemo->getIncrementId(); ?>
+    <?= $this->__('Refund #') . $_creditmemo->getIncrementId(); ?>
 
     <small>
-      <a href="<?php echo $this->getPrintCreditmemoUrl($_creditmemo) ?>"
+      <a href="<?= $this->getPrintCreditmemoUrl($_creditmemo) ?>"
          target="_blank">
-        <?php echo $this->__('Print Refund') ?>
+        <?= $this->__('Print Refund') ?>
       </a>
     </small>
   </h2>
 
-  <h3><?php echo $this->__('Items Refunded') ?></h3>
+  <h3><?= $this->__('Items Refunded') ?></h3>
 
-  <table class="table table-bordered table-creditmemo" id="my-refund-table-<?php echo $_creditmemo->getId(); ?>">
+  <table class="table table-bordered table-creditmemo" id="my-refund-table-<?= $_creditmemo->getId(); ?>">
 
     <thead>
     <tr>
-      <th><?php echo $this->__('Product Name') ?></th>
-      <th><?php echo $this->__('SKU') ?></th>
-      <th><?php echo $this->__('Price') ?></th>
-      <th><?php echo $this->__('Qty') ?></th>
-      <th><?php echo $this->__('Subtotal') ?></th>
-      <th><?php echo $this->__('Discount Amount') ?></th>
-      <th><?php echo $this->__('Row Total') ?></th>
+      <th><?= $this->__('Product Name') ?></th>
+      <th><?= $this->__('SKU') ?></th>
+      <th><?= $this->__('Price') ?></th>
+      <th><?= $this->__('Qty') ?></th>
+      <th><?= $this->__('Subtotal') ?></th>
+      <th><?= $this->__('Discount Amount') ?></th>
+      <th><?= $this->__('Row Total') ?></th>
     </tr>
     </thead>
 
-    <tfoot><?php echo $this->getTotalsHtml($_creditmemo); ?></tfoot>
+    <tfoot><?= $this->getTotalsHtml($_creditmemo); ?></tfoot>
 
     <tbody>
     <?php foreach ($_creditmemo->getAllItems() as $_item): ?>
       <?php if ($_item->getOrderItem()->getParentItem()) continue; ?>
-      <?php echo $this->getItemHtml($_item) ?>
+      <?= $this->getItemHtml($_item) ?>
     <?php endforeach; ?>
     </tbody>
 
   </table>
 
-  <?php echo $this->getCommentsHtml($_creditmemo) ?>
+  <?= $this->getCommentsHtml($_creditmemo) ?>
 
 <?php endforeach; ?>

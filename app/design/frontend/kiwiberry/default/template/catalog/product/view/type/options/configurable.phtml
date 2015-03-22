@@ -5,7 +5,7 @@ $_jsonConfig = $this->getJsonConfig();
 $_renderers = $this->getChild('attr_renderers')->getSortedChildren();
 ?>
 <?php if ($_product->isSaleable() && count($_attributes)): ?>
-  <div id="sp_config" data-sp-config="<?php echo $this->escapeHtml($_jsonConfig) ?>">
+  <div id="sp_config" data-sp-config="<?= $this->escapeHtml($_jsonConfig) ?>">
     <?php foreach ($_attributes as $_attribute): ?>
       <?php
       $_rendered = false;
@@ -24,15 +24,15 @@ $_renderers = $this->getChild('attr_renderers')->getSortedChildren();
         ?>
 
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="attribute<?php echo $_attribute->getAttributeId() ?>">
-            <em>*</em><?php echo $_attribute->getLabel() ?>
+          <label class="col-sm-2 control-label" for="attribute<?= $_attribute->getAttributeId() ?>">
+            <em>*</em><?= $_attribute->getLabel() ?>
           </label>
 
           <div class="col-sm-10">
-            <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]"
-                    id="attribute<?php echo $_attribute->getAttributeId() ?>"
+            <select name="super_attribute[<?= $_attribute->getAttributeId() ?>]"
+                    id="attribute<?= $_attribute->getAttributeId() ?>"
                     class="required-entry super-attribute-select form-control">
-              <option><?php echo $this->__('Choose an Option...') ?></option>
+              <option><?= $this->__('Choose an Option...') ?></option>
             </select>
           </div>
         </div>
@@ -41,6 +41,6 @@ $_renderers = $this->getChild('attr_renderers')->getSortedChildren();
     <?php endforeach; ?>
   </div>
 
-  <?php echo $this->getChildHtml('after') ?>
+  <?= $this->getChildHtml('after') ?>
 
 <?php endif; ?>

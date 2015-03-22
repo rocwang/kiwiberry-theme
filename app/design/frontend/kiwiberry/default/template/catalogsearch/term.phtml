@@ -1,13 +1,13 @@
-<h1><?php echo $this->__('Popular Search Terms') ?></h1>
+<h1><?= $this->__('Popular Search Terms') ?></h1>
 
 <?php if (sizeof($this->getTerms()) > 0): ?>
 
   <ul class="list-unstyled">
     <?php foreach ($this->getTerms() as $_term): ?>
       <li>
-        <a href="<?php echo $this->getSearchUrl($_term) ?>"
-           style="font-size:<?php echo $_term->getRatio() * 70 + 75 ?>%;">
-          <?php echo $this->escapeHtml($_term->getName()) ?>
+        <a href="<?= $this->getSearchUrl($_term) ?>"
+           style="font-size:<?= $_term->getRatio() * 70 + 75 ?>%;">
+          <?= $this->escapeHtml($_term->getName()) ?>
         </a>
       </li>
     <?php endforeach; ?>
@@ -15,6 +15,6 @@
 
 <?php else: ?>
 
-  <p class="text-info"><?php echo $this->__('There are no search terms available.'); ?></p>
+  <p class="text-info"><?= $this->__('There are no search terms available.'); ?></p>
 
 <?php endif; ?>

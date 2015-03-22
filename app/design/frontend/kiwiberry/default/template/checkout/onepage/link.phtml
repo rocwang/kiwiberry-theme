@@ -1,7 +1,7 @@
 <?php if ($this->isPossibleOnepageCheckout()): ?>
-  <a title="<?php echo $this->__('Proceed to Checkout') ?>"
+  <a title="<?= $this->__('Proceed to Checkout') ?>"
      class="btn btn-primary<?php if ($this->isDisabled()): ?> disabled<?php endif; ?>"
-     href="<?php echo $this->getCheckoutUrl() ?>">
-    <?php echo $this->__('Proceed to Checkout') ?>
+     href="<?= $this->getCheckoutUrl() ?>">
+    <?= $this->__('Proceed to Checkout') ?>
   </a>
 <?php endif ?>

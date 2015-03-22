@@ -3,12 +3,12 @@
   <div class="panel panel-default">
 
     <div class="panel-heading">
-      <?php echo $this->__('My Wishlist') ?>
-      <span class="badge"><?php echo $this->getItemCount() ?></span>
+      <?= $this->__('My Wishlist') ?>
+      <span class="badge"><?= $this->getItemCount() ?></span>
     </div>
 
     <div class="panel-body">
-      <?php echo $this->__('Last Added Items:') ?>
+      <?= $this->__('Last Added Items:') ?>
     </div>
 
     <?php if ($this->hasWishlistItems()): ?>
@@ -18,37 +18,37 @@
           <?php $product = $_item->getProduct(); ?>
           <li class="list-group-item">
             <div class="media">
-              <a href="<?php echo $this->getProductUrl($_item) ?>"
-                 title="<?php echo $this->escapeHtml($product->getName()) ?>"
+              <a href="<?= $this->getProductUrl($_item) ?>"
+                 title="<?= $this->escapeHtml($product->getName()) ?>"
                  class="media-left">
                 <img
-                  src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail')->resize(50); ?>"
+                  src="<?= $this->helper('catalog/image')->init($product, 'thumbnail')->resize(50); ?>"
                   class="img-responsive"
-                  alt="<?php echo $this->escapeHtml($product->getName()) ?>">
+                  alt="<?= $this->escapeHtml($product->getName()) ?>">
               </a>
 
               <div class="media-body">
 
-                <a href="<?php echo $this->getItemRemoveUrl($_item) ?>"
-                   title="<?php echo $this->__('Remove This Item') ?>"
-                   data-confirmation="<?php echo $this->__('Are you sure you would like to remove this item from the wishlist?') ?>"
+                <a href="<?= $this->getItemRemoveUrl($_item) ?>"
+                   title="<?= $this->__('Remove This Item') ?>"
+                   data-confirmation="<?= $this->__('Are you sure you would like to remove this item from the wishlist?') ?>"
                    class="close js-confirm">
                   <span aria-hidden="true">&times;</span>
-                  <span class="sr-only"><?php echo $this->__('Remove This Item') ?></span>
+                  <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
                 </a>
 
                 <h5 class="media-heading">
-                  <a href="<?php echo $this->getProductUrl($_item) ?>">
-                    <?php echo $this->escapeHtml($product->getName()) ?>
+                  <a href="<?= $this->getProductUrl($_item) ?>">
+                    <?= $this->escapeHtml($product->getName()) ?>
                   </a>
                 </h5>
 
-                <?php echo $this->getPriceHtml($product, false, '-wishlist') ?>
+                <?= $this->getPriceHtml($product, false, '-wishlist') ?>
 
                 <?php if ($product->isSaleable() && $product->isVisibleInSiteVisibility()): ?>
-                  <a href="<?php echo $this->getItemAddToCartUrl($_item) ?>"
+                  <a href="<?= $this->getItemAddToCartUrl($_item) ?>"
                      class="btn btn-default">
-                    <?php echo $this->__('Add to Cart') ?>
+                    <?= $this->__('Add to Cart') ?>
                   </a>
                 <?php endif; ?>
               </div>
@@ -59,16 +59,16 @@
       </ul>
 
       <div class="panel-footer">
-        <a href="<?php echo $this->helper('wishlist')->getListUrl() ?>"
+        <a href="<?= $this->helper('wishlist')->getListUrl() ?>"
            class="btn btn-primary">
-          <?php echo $this->__('Go to Wishlist') ?>
+          <?= $this->__('Go to Wishlist') ?>
         </a>
       </div>
 
     <?php else: ?>
 
       <div class="panel-body">
-        <p class="text-info"><?php echo $this->__('You have no items in your wishlist.') ?></p>
+        <p class="text-info"><?= $this->__('You have no items in your wishlist.') ?></p>
       </div>
 
     <?php endif ?>

@@ -8,8 +8,8 @@
 <?php if (count($this->getStores()) > 1): ?>
   <div class="language-switcher btn-group btn-group-sm dropup">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-      <?php echo Mage::helper('vr_kiwiberry')->getSvgIcon('language') ?>
-      <span class="title"><?php echo $this->__('Language') ?></span>
+      <?= Mage::helper('vr_kiwiberry')->getSvgIcon('language') ?>
+      <span class="title"><?= $this->__('Language') ?></span>
       <span class="caret"></span>
     </button>
 
@@ -17,8 +17,8 @@
       <?php foreach ($this->getStores() as $_lang): ?>
 
         <li <?php if ($_lang->getId() == $this->getCurrentStoreId()): ?>class="active"<?php endif ?>>
-          <a href="<?php echo $_lang->getCurrentUrl() ?>">
-            <?php echo $this->escapeHtml($_lang->getName()) ?>
+          <a href="<?= $_lang->getCurrentUrl() ?>">
+            <?= $this->escapeHtml($_lang->getName()) ?>
           </a>
         </li>
 

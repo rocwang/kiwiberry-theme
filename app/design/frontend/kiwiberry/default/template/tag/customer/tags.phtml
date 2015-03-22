@@ -1,19 +1,19 @@
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <div class="page-header">
-  <h1><?php echo $this->__('My Tags') ?></h1>
+  <h1><?= $this->__('My Tags') ?></h1>
 </div>
 
 <?php if ($this->getTags()): ?>
 
-  <p class="text-info"><?php echo $this->__('Click on a tag to view your corresponding products.') ?></p>
+  <p class="text-info"><?= $this->__('Click on a tag to view your corresponding products.') ?></p>
 
   <ul class="list-inline">
     <?php foreach ($this->getTags() as $_tag): ?>
       <li>
-        <a href="<?php echo $this->getUrl('tag/customer/view', array('tagId' => $_tag->getTagId())) ?>"
-           style="font-size:<?php echo $_tag->getRatio() * 70 + 75 ?>%;">
-          <?php echo $this->escapeHtml($_tag->getName()) ?>
+        <a href="<?= $this->getUrl('tag/customer/view', array('tagId' => $_tag->getTagId())) ?>"
+           style="font-size:<?= $_tag->getRatio() * 70 + 75 ?>%;">
+          <?= $this->escapeHtml($_tag->getName()) ?>
         </a>
       </li>
     <?php endforeach; ?>
@@ -21,11 +21,11 @@
 
 <?php else: ?>
 
-  <p class="text-info"><?php echo $this->__('You have not tagged any products yet.') ?></p>
+  <p class="text-info"><?= $this->__('You have not tagged any products yet.') ?></p>
 
 <?php endif; ?>
 
-<a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="btn btn-default">
+<a href="<?= $this->escapeUrl($this->getBackUrl()) ?>" class="btn btn-default">
   <i class="fa fa-angle-double-left"></i>
-  <?php echo $this->__('Back') ?>
+  <?= $this->__('Back') ?>
 </a>

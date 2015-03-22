@@ -1,33 +1,33 @@
 <div class="page-title">
-  <h1><?php echo $this->__('Checkout') ?></h1>
+  <h1><?= $this->__('Checkout') ?></h1>
 </div>
 
 <ol id="checkoutSteps"
-    class="opc opc-firststep-<?php echo $this->getActiveStep() ?>"
-    data-active-step="opc-<?php echo $this->getActiveStep() ?>"
-    data-progress-url="<?php echo $this->getUrl('checkout/onepage/progress') ?>"
-    data-review-url="<?php echo $this->getUrl('checkout/onepage/review') ?>"
-    data-save-method-url="<?php echo $this->getUrl('checkout/onepage/saveMethod') ?>"
-    data-failure-url="<?php echo $this->getUrl('checkout/cart') ?>"
+    class="opc opc-firststep-<?= $this->getActiveStep() ?>"
+    data-active-step="opc-<?= $this->getActiveStep() ?>"
+    data-progress-url="<?= $this->getUrl('checkout/onepage/progress') ?>"
+    data-review-url="<?= $this->getUrl('checkout/onepage/review') ?>"
+    data-save-method-url="<?= $this->getUrl('checkout/onepage/saveMethod') ?>"
+    data-failure-url="<?= $this->getUrl('checkout/cart') ?>"
   >
   <?php
   foreach ($this->getSteps() as $_stepId => $_stepInfo):
     if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()): continue; endif;
     ?>
 
-    <li id="opc-<?php echo $_stepId ?>"
+    <li id="opc-<?= $_stepId ?>"
         class="section<?php
         echo !empty($_stepInfo['allow']) ? ' allow' : '';
         echo !empty($_stepInfo['complete']) ? ' saved' : '' ?>">
 
       <h2 class="step-title">
-        <?php echo $_stepInfo['label'] ?>
-        <small><a href="#"><?php echo $this->__('Edit') ?></a></small>
+        <?= $_stepInfo['label'] ?>
+        <small><a href="#"><?= $this->__('Edit') ?></a></small>
       </h2>
 
 
-      <div id="checkout-step-<?php echo $_stepId ?>" class="step a-item" style="display:none;">
-        <?php echo $this->getChildHtml($_stepId) ?>
+      <div id="checkout-step-<?= $_stepId ?>" class="step a-item" style="display:none;">
+        <?= $this->getChildHtml($_stepId) ?>
       </div>
 
     </li>

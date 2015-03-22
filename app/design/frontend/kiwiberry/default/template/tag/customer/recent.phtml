@@ -2,8 +2,8 @@
 
   <div class="panel-heading">
     <h2 class="panel-title">
-      <?php echo $this->__('My Recent Tags') ?>
-      <small><a href="<?php echo $this->getAllTagsUrl() ?>"><?php echo $this->__('View All Tags') ?></a></small>
+      <?= $this->__('My Recent Tags') ?>
+      <small><a href="<?= $this->getAllTagsUrl() ?>"><?= $this->__('View All Tags') ?></a></small>
     </h2>
   </div>
 
@@ -12,18 +12,18 @@
 
       <li class="list-group-item">
         <h3 class="product-name">
-          <a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a>
+          <a href="<?= $_item->getProductUrl() ?>"><?= $this->escapeHtml($_item->getName()) ?></a>
         </h3>
 
         <div>
-          <strong><?php echo $this->__('Tags:') ?></strong>
+          <strong><?= $this->__('Tags:') ?></strong>
 
           <ul class="list-inline">
             <?php foreach ($_item->getProductTags() as $_tag): ?>
 
               <li>
-                <a href="<?php echo $_tag->getViewTagUrl() ?>">
-                  <?php echo $this->escapeHtml($_tag->getName()) ?>
+                <a href="<?= $_tag->getViewTagUrl() ?>">
+                  <?= $this->escapeHtml($_tag->getName()) ?>
                 </a>
               </li>
 

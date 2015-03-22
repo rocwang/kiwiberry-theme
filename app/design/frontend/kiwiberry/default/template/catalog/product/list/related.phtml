@@ -1,12 +1,12 @@
 <input type="hidden" name="related_product" id="related-products-field" value="">
 
 <?php if ($this->getItems()->getSize()): ?>
-  <h2><?php echo $this->__('Related Products') ?></h2>
+  <h2><?= $this->__('Related Products') ?></h2>
 
   <p class="block-subtitle">
-    <?php echo $this->__('Check items to add to the cart or') ?>&nbsp;
+    <?= $this->__('Check items to add to the cart or') ?>&nbsp;
     <a id="select-all-related" href="#">
-      <?php echo $this->__('select all') ?>
+      <?= $this->__('select all') ?>
     </a>
   </p>
 
@@ -21,32 +21,32 @@
         ): ?>
           <input type="checkbox"
                  class="cb-related-product pull-left js-related-checkbox"
-                 id="related-checkbox<?php echo $_item->getId() ?>"
+                 id="related-checkbox<?= $_item->getId() ?>"
                  name="related_products[]"
-                 value="<?php echo $_item->getId() ?>"/>
+                 value="<?= $_item->getId() ?>"/>
         <?php endif; ?>
 
         <div class="related-product media">
-          <a href="<?php echo $_item->getProductUrl() ?>"
-             title="<?php echo $this->escapeHtml($_item->getName()) ?>"
+          <a href="<?= $_item->getProductUrl() ?>"
+             title="<?= $this->escapeHtml($_item->getName()) ?>"
              class="pull-left">
-            <img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(75) ?>"
+            <img src="<?= $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(75) ?>"
                  class="img-responsive media-object"
-                 alt="<?php echo $this->escapeHtml($_item->getName()) ?>"/>
+                 alt="<?= $this->escapeHtml($_item->getName()) ?>"/>
           </a>
 
           <div class="media-body">
             <h4 class="media-heading">
-              <a href="<?php echo $_item->getProductUrl() ?>">
-                <?php echo $this->escapeHtml($_item->getName()) ?>
+              <a href="<?= $_item->getProductUrl() ?>">
+                <?= $this->escapeHtml($_item->getName()) ?>
               </a>
             </h4>
 
-            <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+            <?= $this->getPriceHtml($_item, true, '-related') ?>
 
             <?php if ($this->helper('wishlist')->isAllow()) : ?>
-              <a href="<?php echo $this->getAddToWishlistUrl($_item) ?>">
-                <?php echo $this->__('Add to Wishlist') ?>
+              <a href="<?= $this->getAddToWishlistUrl($_item) ?>">
+                <?= $this->__('Add to Wishlist') ?>
               </a>
             <?php endif; ?>
           </div>

@@ -4,35 +4,35 @@
 $captcha = $this->getCaptchaModel();
 ?>
 
-<div id="captcha-input-box-<?php echo $this->getFormId() ?>" class="form-group">
-  <label for="captcha_<?php echo $this->getFormId() ?>">
-    <em>*</em><?php echo $this->__('Please type the letters below') ?>
+<div id="captcha-input-box-<?= $this->getFormId() ?>" class="form-group">
+  <label for="captcha_<?= $this->getFormId() ?>">
+    <em>*</em><?= $this->__('Please type the letters below') ?>
   </label>
 
-  <input name="<?php echo Mage_Captcha_Helper_Data::INPUT_NAME_FIELD_VALUE ?>[<?php echo $this->getFormId() ?>]"
+  <input name="<?= Mage_Captcha_Helper_Data::INPUT_NAME_FIELD_VALUE ?>[<?= $this->getFormId() ?>]"
          type="text"
          class="form-control required-entry"
-         id="captcha_<?php echo $this->getFormId() ?>">
+         id="captcha_<?= $this->getFormId() ?>">
 </div>
 
-<div id="captcha-image-box-<?php echo $this->getFormId() ?>">
+<div id="captcha-image-box-<?= $this->getFormId() ?>">
 
-  <img id="<?php echo $this->getFormId() ?>"
+  <img id="<?= $this->getFormId() ?>"
        class="js-captcha-img"
-       height="<?php echo $this->getImgHeight() ?>"
-       src="<?php echo $captcha->getImgSrc() ?>"
-       data-refresh-url="<?php echo $this->getRefreshUrl() ?>"
+       height="<?= $this->getImgHeight() ?>"
+       src="<?= $captcha->getImgSrc() ?>"
+       data-refresh-url="<?= $this->getRefreshUrl() ?>"
     >
 
-  <a href="#<?php echo $this->getFormId() ?>"
+  <a href="#<?= $this->getFormId() ?>"
      class="js-captcha-refresh captcha-refresh"
-     title="<?php echo $this->__('Reload captcha') ?>">
+     title="<?= $this->__('Reload captcha') ?>">
     <i class="fa fa-refresh"></i>
   </a>
 
   <?php if ($captcha->isCaseSensitive()) : ?>
     <p class="text-info">
-      <?php echo $this->__('<strong>Attention</strong>: Captcha is case sensitive.') ?>
+      <?= $this->__('<strong>Attention</strong>: Captcha is case sensitive.') ?>
     </p>
   <?php endif; ?>
 </div>

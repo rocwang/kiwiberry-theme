@@ -17,24 +17,24 @@
       <?php if ($this->getShowAmounts()): ?>
         <?php if ($this->getLastPageNum() > 1): ?>
           <p class="amount amount-has-pages">
-            <?php echo $this->__('%s-%s of %s', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
+            <?= $this->__('%s-%s of %s', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
           </p>
         <?php else: ?>
           <p class="amount amount-no-pages">
-            <strong><?php echo $this->__('%s Item(s)', $this->getTotalNum()) ?></strong>
+            <strong><?= $this->__('%s Item(s)', $this->getTotalNum()) ?></strong>
           </p>
         <?php endif; ?>
       <?php endif ?>
 
       <?php if ($this->getShowPerPage()): ?>
         <div class="limiter">
-          <label><?php echo $this->__('Show') ?></label>
-          <select class="js-change-location" title="<?php echo $this->__('Results per page'); ?>">
+          <label><?= $this->__('Show') ?></label>
+          <select class="js-change-location" title="<?= $this->__('Results per page'); ?>">
             <?php foreach ($this->getAvailableLimit() as $_key => $_limit): ?>
-              <option value="<?php echo $this->getLimitUrl($_key) ?>"
+              <option value="<?= $this->getLimitUrl($_key) ?>"
                 <?php if ($this->isLimitCurrent($_key)): ?> selected="selected"<?php endif ?>
                 >
-                <?php echo $_limit ?>
+                <?= $_limit ?>
               </option>
             <?php endforeach; ?>
           </select>
@@ -50,53 +50,53 @@
         <?php if (!$this->isFirstPage()): ?>
           <li>
             <a class="previous<?php if (!$this->getAnchorTextForPrevious()): ?> i-previous<?php endif; ?>"
-               href="<?php echo $this->getPreviousPageUrl() ?>"
-               title="<?php echo $this->__('Previous') ?>">
+               href="<?= $this->getPreviousPageUrl() ?>"
+               title="<?= $this->__('Previous') ?>">
               <?php if (!$this->getAnchorTextForPrevious()): ?>
-                <span aria-hidden="true">&laquo;</span><span class="sr-only"><?php echo $this->__('Previous') ?></span>
+                <span aria-hidden="true">&laquo;</span><span class="sr-only"><?= $this->__('Previous') ?></span>
               <?php else: ?>
-                <?php echo $this->getAnchorTextForPrevious() ?>
+                <?= $this->getAnchorTextForPrevious() ?>
               <?php endif; ?>
             </a>
           </li>
         <?php endif; ?>
 
         <?php if ($this->canShowFirst()): ?>
-          <li><a class="first" href="<?php echo $this->getFirstPageUrl() ?>">1</a></li>
+          <li><a class="first" href="<?= $this->getFirstPageUrl() ?>">1</a></li>
         <?php endif; ?>
 
         <?php if ($this->canShowPreviousJump()): ?>
-          <li><a class="previous_jump" title="" href="<?php echo $this->getPreviousJumpUrl() ?>">...</a></li>
+          <li><a class="previous_jump" title="" href="<?= $this->getPreviousJumpUrl() ?>">...</a></li>
         <?php endif; ?>
 
 
         <?php foreach ($this->getFramePages() as $_page): ?>
           <?php if ($this->isPageCurrent($_page)): ?>
-            <li class="active"><span><?php echo $_page ?><span class="sr-only">(current)</span></span></li>
+            <li class="active"><span><?= $_page ?><span class="sr-only">(current)</span></span></li>
           <?php else: ?>
-            <li><a href="<?php echo $this->getPageUrl($_page) ?>"><?php echo $_page ?></a></li>
+            <li><a href="<?= $this->getPageUrl($_page) ?>"><?= $_page ?></a></li>
           <?php endif; ?>
         <?php endforeach; ?>
 
 
         <?php if ($this->canShowNextJump()): ?>
-          <li><a class="next_jump" title="" href="<?php echo $this->getNextJumpUrl() ?>">...</a></li>
+          <li><a class="next_jump" title="" href="<?= $this->getNextJumpUrl() ?>">...</a></li>
         <?php endif; ?>
 
         <?php if ($this->canShowLast()): ?>
-          <li><a class="last" href="<?php echo $this->getLastPageUrl() ?>"><?php echo $this->getLastPageNum() ?></a>
+          <li><a class="last" href="<?= $this->getLastPageUrl() ?>"><?= $this->getLastPageNum() ?></a>
           </li>
         <?php endif; ?>
 
         <?php if (!$this->isLastPage()): ?>
           <li>
             <a class="next<?php if (!$this->getAnchorTextForNext()): ?> i-next<?php endif; ?>"
-               href="<?php echo $this->getNextPageUrl() ?>"
-               title="<?php echo $this->__('Next') ?>">
+               href="<?= $this->getNextPageUrl() ?>"
+               title="<?= $this->__('Next') ?>">
               <?php if (!$this->getAnchorTextForNext()): ?>
-                <span aria-hidden="true">&raquo;</span><span class="sr-only"><?php echo $this->__('Next') ?></span>
+                <span aria-hidden="true">&raquo;</span><span class="sr-only"><?= $this->__('Next') ?></span>
               <?php else: ?>
-                <?php echo $this->getAnchorTextForNext() ?>
+                <?= $this->getAnchorTextForNext() ?>
               <?php endif; ?>
             </a>
           </li>

@@ -1,18 +1,18 @@
 <?php /* @var $this Mage_Core_Block_Template */ ?>
 
-<div <?php echo $this->getGridHtmlClass() ? ' class="' . $this->getGridHtmlClass() . '"' : '' ?>
-  <?php echo $this->getGridHtmlCss() ? ' style="' . $this->getGridHtmlCss() . '"' : '' ?>>
+<div <?= $this->getGridHtmlClass() ? ' class="' . $this->getGridHtmlClass() . '"' : '' ?>
+  <?= $this->getGridHtmlCss() ? ' style="' . $this->getGridHtmlCss() . '"' : '' ?>>
 
   <?php if ($caption = $this->getGridCaption()): ?>
-    <h2><?php echo $this->escapeHtml($caption) ?></h2>
+    <h2><?= $this->escapeHtml($caption) ?></h2>
   <?php endif; ?>
 
   <?php $gridElements = $this->getGridElements(); ?>
   <?php if ($gridElements): ?>
 
-    <?php echo $this->getChildHtml('pager'); ?>
+    <?= $this->getChildHtml('pager'); ?>
 
-    <table id="<?php echo $this->getGridHtmlId() ?>" class="table table-bordered table-hover">
+    <table id="<?= $this->getGridHtmlId() ?>" class="table table-bordered table-hover">
 
       <?php foreach ($this->getGridColumns() as $column): ?>
         <col <?php $width = $this->getObjectData($column, 'width');
@@ -25,7 +25,7 @@
           $nobr = $this->getObjectData($column, 'is_nobr') ? '<span class="nobr">%s</span>' : '%s';
           $title = $this->getObjectData($column, 'title');
           ?>
-          <th><?php echo $title ? sprintf($nobr, $this->escapeHtml($title)) : '&nbsp;' ?></th>
+          <th><?= $title ? sprintf($nobr, $this->escapeHtml($title)) : '&nbsp;' ?></th>
         <?php endforeach; ?>
       </tr>
       </thead>
@@ -56,11 +56,11 @@
 
     </table>
 
-    <?php echo $this->getChildHtml('pager'); ?>
+    <?= $this->getChildHtml('pager'); ?>
 
   <?php else: ?>
 
-    <p class="text-info"><?php echo $this->escapeHtml($this->getEmptyGridMessage()); ?></p>
+    <p class="text-info"><?= $this->escapeHtml($this->getEmptyGridMessage()); ?></p>
 
   <?php endif; ?>
 </div>

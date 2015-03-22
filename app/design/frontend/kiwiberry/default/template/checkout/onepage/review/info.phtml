@@ -1,12 +1,12 @@
-<?php echo $this->getChildHtml('items_before'); ?>
+<?= $this->getChildHtml('items_before'); ?>
 
 <div id="checkout-review-table-wrapper">
   <table class="table table-striped"
          id="checkout-review-table"
-         data-save-url="<?php echo $this->escapeHtml($this->getUrl(
+         data-save-url="<?= $this->escapeHtml($this->getUrl(
            'checkout/onepage/saveOrder',
            array('form_key' => Mage::getSingleton('core/session')->getFormKey()))) ?>"
-         data-success-url="<?php echo $this->escapeHtml($this->getUrl('checkout/onepage/success')) ?>"
+         data-success-url="<?= $this->escapeHtml($this->getUrl('checkout/onepage/success')) ?>"
 
     >
 
@@ -28,54 +28,54 @@
 
     <thead>
     <tr>
-      <th rowspan="<?php echo $rowspan ?>"><?php echo $this->__('Product') ?></th>
-      <th colspan="<?php echo $colspan ?>" class="a-center"><?php echo $this->__('Price') ?></th>
-      <th rowspan="<?php echo $rowspan ?>" class="a-center"><?php echo $this->__('Qty') ?></th>
-      <th colspan="<?php echo $colspan ?>" class="a-center"><?php echo $this->__('Subtotal') ?></th>
+      <th rowspan="<?= $rowspan ?>"><?= $this->__('Product') ?></th>
+      <th colspan="<?= $colspan ?>" class="a-center"><?= $this->__('Price') ?></th>
+      <th rowspan="<?= $rowspan ?>" class="a-center"><?= $this->__('Qty') ?></th>
+      <th colspan="<?= $colspan ?>" class="a-center"><?= $this->__('Subtotal') ?></th>
     </tr>
     <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
       <tr>
-        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
-        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
-        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
-        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+        <th><?= $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+        <th><?= $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+        <th><?= $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+        <th><?= $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
       </tr>
     <?php endif; ?>
     </thead>
 
-    <?php echo $this->getChildHtml('totals'); ?>
+    <?= $this->getChildHtml('totals'); ?>
 
     <tbody>
     <?php foreach ($this->getItems() as $_item): ?>
-      <?php echo $this->getItemHtml($_item) ?>
+      <?= $this->getItemHtml($_item) ?>
     <?php endforeach ?>
     </tbody>
 
   </table>
 </div>
 
-<?php echo $this->getChildHtml('items_after'); ?>
+<?= $this->getChildHtml('items_after'); ?>
 
 <div id="checkout-review-submit">
 
-  <?php echo $this->getChildHtml('agreements') ?>
+  <?= $this->getChildHtml('agreements') ?>
 
   <div class="buttons-set" id="review-buttons-container">
-    <?php echo $this->getChildHtml('button') ?>
+    <?= $this->getChildHtml('button') ?>
 
     <span class="please-wait" id="review-please-wait" style="display:none;">
       <i class="fa fa-spinner fa-spin"></i>
-      <?php echo $this->__('Submitting order information...') ?>
+      <?= $this->__('Submitting order information...') ?>
     </span>
 
     <p class="text-info">
-      <?php echo $this->__('Forgot an Item?') ?>
-      <a href="<?php echo $this->getUrl('checkout/cart') ?>"
+      <?= $this->__('Forgot an Item?') ?>
+      <a href="<?= $this->getUrl('checkout/cart') ?>"
          id="link-edit-cart"
-         data-title="<?php echo $this->__('Are you sure you want to leave this page?') ?>"
-         data-text="<?php echo $this->__('You will need to go through the checkout steps again.') ?>"
+         data-title="<?= $this->__('Are you sure you want to leave this page?') ?>"
+         data-text="<?= $this->__('You will need to go through the checkout steps again.') ?>"
         >
-        <?php echo $this->__('Edit Your Cart') ?>
+        <?= $this->__('Edit Your Cart') ?>
       </a>
     </p>
   </div>

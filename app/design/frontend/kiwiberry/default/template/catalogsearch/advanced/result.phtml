@@ -1,8 +1,8 @@
 <div class="page-header">
-  <h1><?php echo $this->__('Catalog Advanced Search') ?></h1>
+  <h1><?= $this->__('Catalog Advanced Search') ?></h1>
 </div>
 
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <?php if ($this->getResultCount()): ?>
 
@@ -16,9 +16,9 @@
 <?php else: ?>
 
   <p class="text-danger">
-    <?php echo $this->helper('catalogsearch')->__('No items were found using the following search criteria.'); ?>
-    <a href="<?php echo $this->getFormUrl(); ?>" class="btn btn-default">
-      <?php echo $this->helper('catalogsearch')->__('Modify your search'); ?>
+    <?= $this->helper('catalogsearch')->__('No items were found using the following search criteria.'); ?>
+    <a href="<?= $this->getFormUrl(); ?>" class="btn btn-default">
+      <?= $this->helper('catalogsearch')->__('Modify your search'); ?>
     </a>
   </p>
 
@@ -33,8 +33,8 @@
         <ul>
           <?php foreach ($searchCriterias[$side] as $criteria): ?>
             <li>
-              <strong><?php echo $this->escapeHtml($this->helper('catalog')->__($criteria['name'])); ?>:
-              </strong> <?php echo $this->escapeHtml($criteria['value']); ?>
+              <strong><?= $this->escapeHtml($this->helper('catalog')->__($criteria['name'])); ?>:
+              </strong> <?= $this->escapeHtml($criteria['value']); ?>
             </li>
           <?php endforeach; ?>
         </ul>
@@ -46,13 +46,13 @@
 
 <?php if ($this->getResultCount()): ?>
   <p class="text-info">
-    <?php echo $this->helper('catalogsearch')->__("Don't see what you're looking for?"); ?>
-    <a href="<?php echo $this->getFormUrl(); ?>" class="btn btn-default">
-      <?php echo $this->helper('catalogsearch')->__('Modify your search'); ?>
+    <?= $this->helper('catalogsearch')->__("Don't see what you're looking for?"); ?>
+    <a href="<?= $this->getFormUrl(); ?>" class="btn btn-default">
+      <?= $this->helper('catalogsearch')->__('Modify your search'); ?>
     </a>
   </p>
 <?php endif; ?>
 
 <?php if ($this->getResultCount()): ?>
-  <?php echo $this->getProductListHtml() ?>
+  <?= $this->getProductListHtml() ?>
 <?php endif; ?>

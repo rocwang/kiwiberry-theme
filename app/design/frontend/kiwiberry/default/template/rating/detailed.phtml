@@ -3,7 +3,7 @@
     <?php if ($_rating->getSummary()): ?>
 
       <div>
-        <?php echo $this->__($this->escapeHtml($_rating->getRatingCode())) ?>
+        <?= $this->__($this->escapeHtml($_rating->getRatingCode())) ?>
         <?php
         echo $this->getLayout()
           ->createBlock('core/template')

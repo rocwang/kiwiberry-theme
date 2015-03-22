@@ -1,22 +1,22 @@
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <div class="page-heading">
-  <h1><?php echo $this->__('My Tags') ?></h1>
+  <h1><?= $this->__('My Tags') ?></h1>
 </div>
 
 <p class="my-tag-edit">
-  <span class="label label-default"><?php echo $this->escapeHtml($this->getTagInfo()->getName()) ?></span>
+  <span class="label label-default"><?= $this->escapeHtml($this->getTagInfo()->getName()) ?></span>
   <a href="#"
-     title="<?php echo $this->__('Delete') ?>"
-     data-confirmation="<?php echo $this->__('Are you sure you want to delete this tag?') ?>"
-     data-remove-tag-url="<?php echo $this->getTagInfo()->getRemoveTagUrl(); ?>"
+     title="<?= $this->__('Delete') ?>"
+     data-confirmation="<?= $this->__('Are you sure you want to delete this tag?') ?>"
+     data-remove-tag-url="<?= $this->getTagInfo()->getRemoveTagUrl(); ?>"
     >
     <i class="fa fa-remove"></i>
-    <span class="sr-only"><?php echo $this->__('Delete') ?></span>
+    <span class="sr-only"><?= $this->__('Delete') ?></span>
   </a>
 </p>
 
-<?php echo $this->getToolbarHtml() ?>
+<?= $this->getToolbarHtml() ?>
 
 <?php if (sizeof($this->getMyProducts()) > 0): ?>
 
@@ -26,41 +26,41 @@
       <tr>
 
         <td>
-          <a href="<?php echo $_product->getProductUrl(); ?>"
-             title="<?php echo $this->escapeHtml($_product->getName()) ?>"
+          <a href="<?= $_product->getProductUrl(); ?>"
+             title="<?= $this->escapeHtml($_product->getName()) ?>"
              class="product-image">
-            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(100, 100); ?>"
+            <img src="<?= $this->helper('catalog/image')->init($_product, 'small_image')->resize(100, 100); ?>"
                  width="100"
                  height="100"
-                 alt="<?php echo $this->escapeHtml($_product->getName()) ?>">
+                 alt="<?= $this->escapeHtml($_product->getName()) ?>">
           </a>
         </td>
 
         <td>
           <h2 class="product-name">
-            <a href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a>
+            <a href="<?= $_product->getProductUrl() ?>"><?= $this->escapeHtml($_product->getName()) ?></a>
           </h2>
-          <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-          <?php echo $this->getPriceHtml($_product) ?>
-          <?php echo $this->escapeHtml($_product->getDescription()) ?>
+          <?= $this->getReviewsSummaryHtml($_product, 'short') ?>
+          <?= $this->getPriceHtml($_product) ?>
+          <?= $this->escapeHtml($_product->getDescription()) ?>
         </td>
 
         <td>
           <?php if ($_product->isSaleable()): ?>
             <?php $params[Mage_Core_Model_Url::FORM_KEY] = Mage::getSingleton('core/session')->getFormKey() ?>
             <?php $params['product'] = $_product->getId(); ?>
-            <a title="<?php echo $this->__('Add to Cart') ?>"
+            <a title="<?= $this->__('Add to Cart') ?>"
                class="btn btn-default"
-               href="<?php echo $this->getUrl('checkout/cart/add', $params) ?>"
+               href="<?= $this->getUrl('checkout/cart/add', $params) ?>"
               >
-              <?php echo $this->__('Add to Cart') ?>
+              <?= $this->__('Add to Cart') ?>
             </a>
           <?php endif; ?>
 
           <?php if ($this->helper('wishlist')->isAllow()) : ?>
-            <a href="<?php echo $this->getUrl('wishlist/index/add', array('product' => $_product->getId())) ?>"
+            <a href="<?= $this->getUrl('wishlist/index/add', array('product' => $_product->getId())) ?>"
                class="btn btn-default">
-              <?php echo $this->__('Add to Wishlist') ?>
+              <?= $this->__('Add to Wishlist') ?>
             </a>
           <?php endif; ?>
         </td>
@@ -73,7 +73,7 @@
 <?php else: ?>
 
   <p class="text-info">
-    <?php echo $this->__(
+    <?= $this->__(
       "Unable to find any products tagged with '%s' in the current store",
       $this->escapeHtml($this->getTagInfo()->getName())
     ) ?>
@@ -81,9 +81,9 @@
 
 <?php endif; ?>
 
-<?php echo $this->getToolbarHtml() ?>
+<?= $this->getToolbarHtml() ?>
 
-<a href="<?php echo $this->getUrl('*/*/') ?>" class="btn btn-default">
+<a href="<?= $this->getUrl('*/*/') ?>" class="btn btn-default">
   <i class="fa fa-angle-double-left"></i>
-  <?php echo $this->__('Back to Tags List') ?>
+  <?= $this->__('Back to Tags List') ?>
 </a>

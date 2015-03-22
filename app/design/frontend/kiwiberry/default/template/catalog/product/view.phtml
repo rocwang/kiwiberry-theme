@@ -10,83 +10,83 @@
 <?php $_product = $this->getProduct(); ?>
 
 <!-- Messages -->
-<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?= $this->getMessagesBlock()->toHtml() ?>
 
 <div class="row">
 
   <div class="col-sm-6">
     <!-- Product Images -->
-    <?php echo $this->getChildHtml('media') ?>
+    <?= $this->getChildHtml('media') ?>
   </div>
 
   <div class="col-sm-6">
     <!-- Product Name -->
-    <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+    <h1><?= $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
 
     <!-- Price -->
     <div>
-      <?php echo $this->getPriceHtml($_product); ?>
-      <?php echo $this->getChildHtml('bundle_prices') ?>
-      <?php echo $this->getTierPriceHtml() ?>
+      <?= $this->getPriceHtml($_product); ?>
+      <?= $this->getChildHtml('bundle_prices') ?>
+      <?= $this->getTierPriceHtml() ?>
     </div>
 
     <!-- Price Alert -->
-    <?php echo $this->getChildHtml('alert_urls') ?>
+    <?= $this->getChildHtml('alert_urls') ?>
 
     <!-- Reviews -->
-    <?php echo $this->getReviewsSummaryHtml($_product, 'default', false) ?>
+    <?= $this->getReviewsSummaryHtml($_product, 'default', false) ?>
 
     <!-- Availability -->
-    <?php echo $this->getChildHtml('product_type_availability'); ?>
+    <?= $this->getChildHtml('product_type_availability'); ?>
 
     <!-- Short Description -->
     <?php if ($_product->getShortDescription()): ?>
       <p>
-        <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+        <?= $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
       </p>
     <?php endif; ?>
 
     <!-- 'Back to Main Product Info' link in review page-->
-    <?php echo $this->getChildHtml('other'); ?>
+    <?= $this->getChildHtml('other'); ?>
 
-    <form action="<?php echo $this->getSubmitUrl($_product) ?>"
+    <form action="<?= $this->getSubmitUrl($_product) ?>"
           method="post"
           id="product_addtocart_form"
           role="form"
           class="form-horizontal"
-          data-options-price="<?php echo $this->escapeHtml($this->getJsonConfig()) ?>"
+          data-options-price="<?= $this->escapeHtml($this->getJsonConfig()) ?>"
       <?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 
       <!-- Hidden Stuff -->
-      <?php echo $this->getBlockHtml('formkey') ?>
-      <input type="hidden" name="product" value="<?php echo $_product->getId() ?>"/>
+      <?= $this->getBlockHtml('formkey') ?>
+      <input type="hidden" name="product" value="<?= $_product->getId() ?>"/>
 
       <!-- Product Options and Buttons Container 1 -->
       <?php if ($_product->isSaleable() && $this->hasOptions()): // Saleable and has options ?>
-        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+        <?= $this->getChildChildHtml('container1', '', true, true) ?>
       <?php endif; ?>
 
       <!-- 'Add to Cart' and some other buttons -->
       <div class="add-to-cart-wrapper">
-        <?php echo $this->getChildHtml('product_type_data') ?>
-        <?php echo $this->getChildHtml('extrahint') ?>
+        <?= $this->getChildHtml('product_type_data') ?>
+        <?= $this->getChildHtml('extrahint') ?>
 
         <?php if ($_product->isSaleable() && !$this->hasOptions()): ?>
-          <?php echo $this->getChildHtml('addtocart') ?>
+          <?= $this->getChildHtml('addtocart') ?>
         <?php endif; ?>
 
         <?php if (!$this->hasOptions()): ?>
-          <?php echo $this->getChildHtml('addto') ?>
-          <?php echo $this->getChildHtml('sharing') ?>
+          <?= $this->getChildHtml('addto') ?>
+          <?= $this->getChildHtml('sharing') ?>
         <?php endif; ?>
       </div>
 
       <!-- Related Products -->
-      <?php echo $this->getChildHtml('related_products') ?>
+      <?= $this->getChildHtml('related_products') ?>
 
       <!-- Product Options and Buttons Container 2 -->
       <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
-        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+        <?= $this->getChildChildHtml('container2', '', true, true) ?>
       <?php endif; ?>
     </form>
   </div>
@@ -99,8 +99,8 @@
     <?php $i = 0;
     foreach ($detailedInfoGroup as $alias => $html): ?>
       <li <?php if (++$i === 1) echo 'class="active"' ?>>
-        <a href="#<?php echo "tab-$alias" ?>" role="tab" data-toggle="tab">
-          <?php echo $this->escapeHtml($this->getChildData($alias, 'title')) ?>
+        <a href="#<?= "tab-$alias" ?>" role="tab" data-toggle="tab">
+          <?= $this->escapeHtml($this->getChildData($alias, 'title')) ?>
         </a>
       </li>
     <?php endforeach; ?>
@@ -109,13 +109,13 @@
   <div class="tab-content">
     <?php $i = 0;
     foreach ($detailedInfoGroup as $alias => $html): ?>
-      <div id="<?php echo "tab-$alias" ?>"
+      <div id="<?= "tab-$alias" ?>"
            class="tab-pane fade<?php if (++$i === 1) echo ' in active' ?>">
-        <?php echo $html ?>
+        <?= $html ?>
       </div>
     <?php endforeach; ?>
   </div>
 <?php endif; ?>
 
-<?php echo $this->getChildHtml('upsell_products') ?>
-<?php echo $this->getChildHtml('product_additional_data') ?>
+<?= $this->getChildHtml('upsell_products') ?>
+<?= $this->getChildHtml('product_additional_data') ?>
