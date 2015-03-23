@@ -30,7 +30,7 @@ test:
         directory: "app/"
 
     shell:
-        - "cd %BUILD_PATH% && gulp theme --dist"
+        - "export DISABLE_NOTIFIER=true && cd %BUILD_PATH% && gulp theme --dist"
 success:
     shell:
         - >

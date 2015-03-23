@@ -59,7 +59,7 @@
                 </action>
                 <action method="addItem">
                     <type>skin_css</type>
-                    <name>css/kiwiberry.css</name>
+                    <name>css/app.css</name>
                 </action>
 
                 <!-- Add Kiwiberry JS -->
@@ -176,7 +176,7 @@
                 </action>
                 <action method="addItem">
                     <type>skin_css</type>
-                    <name>css/kiwiberry.css</name>
+                    <name>css/app.css</name>
                 </action>
 
                 <!-- Add Kiwiberry JS -->

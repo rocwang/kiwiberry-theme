@@ -1,163 +1,160 @@
+// Load plugins
+var gulp                = require('gulp'),
+
+    // Utility plugins
+    util                = require('gulp-util'),
+    del                 = require('del'),
+    sourcemaps          = require('gulp-sourcemaps'),
+    merge               = require('merge-stream'),
+    livereload          = require('gulp-livereload'),
+    plumber             = require('gulp-plumber'),
+    notify              = require('gulp-notify'),
+    path                = require('path'),
+
+    // CSS plugins
+    less                = require('gulp-less'),
+    minifyCss           = require('gulp-minify-css'),
+    autoprefixer        = require('gulp-autoprefixer'),
+    combineMediaQueries = require('gulp-combine-media-queries'),
+
+    // JS plugins
+    jshint              = require('gulp-jshint'),
+    uglify              = require('gulp-uglify'),
+    concat              = require('gulp-concat'),
+
+    // Image plugins
+    imagemin            = require('gulp-imagemin'),
+    svgSprite           = require('gulp-svg-sprite');
+
+// Allows gulp --dist to be run for production compilation
+var isProduction = util.env.dist ? true : false;
+
 // Base paths
 var paths = {
   vendor: './bower_components/',
   src   : './skin/frontend/kiwiberry/default/'
 };
 
+// Target definitions
 var targets = {
   theme: {
-    styles : [
-      paths.src + 'less/vendor.less',
-      paths.src + 'less/kiwiberry.less'
+    less: [
+      'less/vendor.less',
+      'less/app.less'
     ],
-    scripts: require(paths.src + 'js/kiwiberry.json'),
-    images : paths.src + 'images/*',
-    fonts  : [
-      paths.vendor + 'bootstrap/dist/fonts/*',
-      paths.vendor + 'font-awesome/fonts/*'
+    js  : [
+      'js/vendor.js',
+      'js/app.js'
     ],
-    icons  : paths.src + 'icons/*.svg',
-
-    basedirDev : './test/',
-    basedirDist: './dist/',
-    dest       : 'skin/frontend/kiwiberry/default/'
+    img : 'images/*',
+    icon: 'icons/*.svg',
+    font: [
+      'bootstrap/dist/fonts/*',
+      'font-awesome/fonts/*'
+    ],
+    dest: (isProduction ? './dist/' : './test/') + 'skin/frontend/kiwiberry/default/'
   },
 
   styleGuide: {
-    styles : [
-      paths.src + 'less/style-guide-vendor.less',
-      paths.src + 'less/style-guide.less'
+    less: [
+      'less/style-guide-vendor.less',
+      'less/style-guide.less'
     ],
-    scripts: require(paths.src + 'js/style-guide.json'),
-    images : paths.src + 'images/*',
-    fonts  : [
-      paths.vendor + 'bootstrap/dist/fonts/*',
-      paths.vendor + 'font-awesome/fonts/*'
+    js  : [
+      'js/style-guide-vendor.js',
+      'js/style-guide.js'
     ],
-
+    img : 'images/*',
+    font: [
+      'bootstrap/dist/fonts/*',
+      'font-awesome/fonts/*'
+    ],
     dest: './style-guide/'
   }
 };
 
-// Load plugins
-var gulp                = require('gulp'),
-    util                = require('gulp-util'),
-    concat              = require('gulp-concat'),
-    path                = require('path'),
-    rimraf              = require('rimraf'),
-    sourcemaps          = require('gulp-sourcemaps'),
-    merge               = require('merge-stream'),
-    livereload          = require('gulp-livereload'),
-    plumber             = require('gulp-plumber'),
-
-
-    // CSS plugins
-    autoprefixer        = require('gulp-autoprefixer'),
-    combineMediaQueries = require('gulp-combine-media-queries'),
-    cssmin              = require('gulp-cssmin'),
-    less                = require('gulp-less'),
-
-    // JS plugins
-    jshint              = require('gulp-jshint'),
-    uglify              = require('gulp-uglify'),
-
-    // Image plugins
-    imagemin            = require('gulp-imagemin');
-svgSprite = require('gulp-svg-sprite');
-
-// Allows gulp --dist to be run for production compilation
-var isProduction = false;
-if (util.env.dist) {
-  isProduction = true;
-}
-
-var onError = function (err) {
-  util.beep();
-  console.log(err);
-  this.emit('end');
-};
+var onError = notify.onError("Error: <%= error.message %>");
 
 function buildCss(target) {
-  return gulp.src(target.styles)
-    .pipe(plumber({
-      errorHandler: onError
-    }))
-    .pipe(sourcemaps.init())
+  return gulp.src(target.less, {cwd: paths.src})
+
+    .pipe(plumber({errorHandler: onError}))
+    .on('error', console.error.bind(console))
+
+    .pipe(isProduction ? util.noop() : sourcemaps.init())
     .pipe(less({
-      paths  : [
+      paths: [
         paths.vendor
       ]
     }))
-    .on('error', console.error.bind(console))
-    .pipe(sourcemaps.write())
-    .pipe(sourcemaps.init({loadMaps:true}))
+    //.pipe(sourcemaps.write('.'))
+    //.pipe(sourcemaps.init({loadMaps: true}))
     .pipe(autoprefixer('last 2 version'))
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
-    .pipe(isProduction ? cssmin() : util.noop())
-    .pipe(isProduction ? util.noop() : sourcemaps.write('./'))
-    .pipe(gulp.dest(target.dest + 'css', {
-      cwd: isProduction ? target.basedirDist : target.basedirDev
-    }));
+    .pipe(isProduction ? minifyCss() : util.noop())
+    .pipe(isProduction ? util.noop() : sourcemaps.write('.'))
+
+    .pipe(gulp.dest(target.dest + 'css'));
 }
 
 function buildJs(target) {
   // Modernizr.js
   var modernizr = gulp.src(paths.vendor + 'modernizr/modernizr.js')
-    .pipe(plumber({
-      errorHandler: onError
-    }))
+
+    .pipe(plumber({errorHandler: onError}))
+    .on('error', console.error.bind(console))
+
     .pipe(isProduction ? uglify() : util.noop())
-    .pipe(gulp.dest(target.dest + 'js', {
-      cwd: isProduction ? target.basedirDist : target.basedirDev
-    }));
+    .pipe(gulp.dest(target.dest + 'js'));
 
   var mergedStream = merge(modernizr);
 
-  for (var filename in target.scripts) {
-    var stream = gulp.src(target.scripts[filename])
-      .pipe(plumber({
-        errorHandler: onError
-      }))
-      .pipe(sourcemaps.init())
-      .pipe(concat(filename))
+  target.js.forEach(function (val) {
+    var src = require(paths.src + val);
+    var stream = gulp.src(src, {cwd: paths.src + 'js'})
+
+      .pipe(plumber({errorHandler: onError}))
+      .on('error', console.error.bind(console))
+
+      .pipe(isProduction ? util.noop() : sourcemaps.init())
+      .pipe(concat(path.basename(val)))
       .pipe(isProduction ? uglify() : util.noop())
       .pipe(isProduction ? util.noop() : sourcemaps.write('./'))
-      .pipe(gulp.dest(target.dest + 'js', {
-        cwd: isProduction ? target.basedirDist : target.basedirDev
-      }));
+      .pipe(gulp.dest(target.dest + 'js'));
+
     mergedStream.add(stream);
-  }
+  });
 
   return mergedStream;
 }
 
 // Fonts
 function buildFont(target) {
-  return gulp.src(target.fonts)
-    .pipe(plumber({
-      errorHandler: onError
-    }))
-    .pipe(gulp.dest(target.dest + 'fonts', {
-      cwd: isProduction ? target.basedirDist : target.basedirDev
-    }));
+  return gulp.src(target.font, {cwd: paths.vendor})
+
+    .pipe(plumber({errorHandler: onError}))
+    .on('error', console.error.bind(console))
+
+    .pipe(gulp.dest(target.dest + 'fonts'));
 }
 
 function buildImg(target) {
-  return gulp.src(target.images)
-    .pipe(plumber({
-      errorHandler: onError
-    }))
+  return gulp.src(target.img, {cwd: paths.src})
+
+    .pipe(plumber({errorHandler: onError}))
+    .on('error', console.error.bind(console))
+
     .pipe(imagemin())
-    .pipe(gulp.dest(target.dest + 'images', {
-      cwd: isProduction ? target.basedirDist : target.basedirDev
-    }));
+
+    .pipe(gulp.dest(target.dest + 'images'));
 }
 
 function buildIcon(target) {
-  return gulp.src(target.icons)
-    .pipe(plumber({
-      errorHandler: onError
-    }))
+  return gulp.src(target.icon, {cwd: paths.src})
+
+    .pipe(plumber({errorHandler: onError}))
+    .on('error', console.error.bind(console))
+
     .pipe(svgSprite({
       mode: {
         symbol: {
@@ -167,14 +164,8 @@ function buildIcon(target) {
         }
       }
     }))
-    .pipe(gulp.dest(target.dest + 'images', {
-      cwd: isProduction ? target.basedirDist : target.basedirDev
-    }));
-}
 
-
-function clean(target, cb) {
-  rimraf(target.dest, cb);
+    .pipe(gulp.dest(target.dest + 'images'));
 }
 
 function runJekyll(options, cb) {
@@ -197,7 +188,7 @@ function runJekyll(options, cb) {
 
 
 gulp.task('theme:clean', function (cb) {
-  clean(targets.theme, cb);
+  del(targets.theme.dest + '**', cb);
 });
 gulp.task('theme:css', function () {
   return buildCss(targets.theme);
@@ -205,19 +196,19 @@ gulp.task('theme:css', function () {
 gulp.task('theme:js', function () {
   return buildJs(targets.theme);
 });
-gulp.task('theme:font', function () {
-  return buildFont(targets.theme);
-});
 gulp.task('theme:img', function () {
   return buildImg(targets.theme);
 });
-gulp.task('theme:icon', ['theme:css'], function () {
+gulp.task('theme:icon', function () {
   return buildIcon(targets.theme);
+});
+gulp.task('theme:font', function () {
+  return buildFont(targets.theme);
 });
 
 
 gulp.task('style-guide:clean', function (cb) {
-  clean(targets.styleGuide, cb);
+  del(targets.styleGuide.dest + '**', cb);
 });
 gulp.task('style-guide:css', function () {
   return buildCss(targets.styleGuide);
@@ -237,39 +228,35 @@ gulp.task('watch', ['theme'], function () {
 
   livereload.listen({host: null});
 
-  gulp.watch(paths.src + 'less/**/*', ['theme:css']);
-  gulp.watch(targets.theme.scripts['kiwiberry.js'], ['theme:js']);
-  gulp.watch(targets.theme.images, ['theme:img']);
-  gulp.watch(targets.theme.icons, ['theme:icon']);
+  gulp.watch('less/**', {cwd: paths.src}, ['theme:css']);
+  gulp.watch('js/**', {cwd: paths.src}, ['theme:js']);
+  gulp.watch('images/**', {cwd: paths.src}, ['theme:img']);
+  gulp.watch('icons/**', {cwd: paths.src}, ['theme:icon']);
   gulp.watch([
-    targets.theme.basedirDev + targets.theme.dest + '**/*.{css,js,jpg,png,gif}',
-    'app/design/frontend/kiwiberry/**/*.phtml',
-    'app/design/frontend/kiwiberry/**/*.xml'
+    targets.theme.dest + '**',
+    'app/design/frontend/kiwiberry/**',
   ]).on('change', livereload.changed);
 
 });
 
 gulp.task('watch:style-guide', ['style-guide'], function (cb) {
 
-  gulp.watch(paths.src + 'less/**/*', ['style-guide:css']);
-  gulp.watch(targets.styleGuide.scripts['vendor.js'], ['style-guide:js']);
-  gulp.watch(targets.styleGuide.images, ['style-guide:img']);
+  gulp.watch('less/**', {cwd: paths.src}, ['style-guide:css']);
+  gulp.watch('js/**', {cwd: paths.src} ['style-guide:js']);
+  gulp.watch('images/**', {cwd: paths.src}, ['style-guide:img']);
 
-  // Create LiveReload server
-  var server = require('gulp-livereload');
+  livereload.listen({host: null});
 
   gulp.watch([
     targets.styleGuide.dest + '_site/**/*'
-  ]).on('change', server.changed);
-
-  server.listen();
+  ]).on('change', livereload.changed);
 
   runJekyll(['serve', '-w', '--skip-initial-build'], cb);
 
 });
 
 // Build the theme
-gulp.task('theme', ['theme:css', 'theme:js', 'theme:font', 'theme:img', 'theme:icon'], function (cb) {
+gulp.task('theme', ['theme:css', 'theme:js', 'theme:img', 'theme:icon', 'theme:font'], function (cb) {
 
   if (isProduction) {
     require('child_process').execFile('./packaging.sh', function (error, stdout, stderr) {
