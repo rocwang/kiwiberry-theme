@@ -1,0 +1,89 @@
+// Mid small screen / tablet
+//** Deprecated `@screen-ms` as of v3.0.1
+@screen-ms: 480px;
+@screen-ms-min: @screen-ms;
+//** Deprecated `@screen-phablet` as of v3.0.1
+@screen-phablet: @screen-ms-min;
+@screen-ms-max: (@screen-sm-min - 1);
+
+// Mid small grid
+//
+// Columns, offsets, pushes, and pulls for extra small devices like
+// smartphones.
+
+@media (min-width : @screen-ms-min) {
+  .make-grid(ms);
+}
+
+// Generate the mid small columns
+.make-ms-column(@columns; @gutter: @grid-gutter-width) {
+  position      : relative;
+  min-height    : 1px;
+  padding-left  : (@gutter / 2);
+  padding-right : (@gutter / 2);
+
+  @media (min-width : @screen-ms-min) {
+    float : left;
+    width : percentage((@columns / @grid-columns));
+  }
+}
+
+.make-ms-column-offset(@columns) {
+  @media (min-width : @screen-ms-min) {
+    margin-left : percentage((@columns / @grid-columns));
+  }
+}
+
+.make-ms-column-push(@columns) {
+  @media (min-width : @screen-ms-min) {
+    left : percentage((@columns / @grid-columns));
+  }
+}
+
+.make-ms-column-pull(@columns) {
+  @media (min-width : @screen-ms-min) {
+    right : percentage((@columns / @grid-columns));
+  }
+}
+
+// Note: Deprecated .visible-xs, .visible-sm, .visible-md, and .visible-lg as of v3.2.0
+.visible-ms {
+  .responsive-invisibility();
+}
+
+.visible-ms-block,
+.visible-ms-inline,
+.visible-ms-inline-block {
+  display : none !important;
+}
+
+.visible-ms {
+  @media (min-width : @screen-ms-min) and (max-width : @screen-ms-max) {
+    .responsive-visibility();
+  }
+}
+
+.visible-ms-block {
+  @media (min-width : @screen-ms-min) and (max-width : @screen-ms-max) {
+    display : block !important;
+  }
+}
+
+.visible-ms-inline {
+  @media (min-width : @screen-ms-min) and (max-width : @screen-ms-max) {
+    display : inline !important;
+  }
+}
+
+.visible-ms-inline-block {
+  @media (min-width : @screen-ms-min) and (max-width : @screen-ms-max) {
+    display : inline-block !important;
+  }
+}
+
+.hidden-ms {
+  @media (min-width : @screen-ms-min) and (max-width : @screen-ms-max) {
+    .responsive-invisibility();
+  }
+}
+

@@ -17,14 +17,18 @@
 
   &.grid .showcase {
     .page-1-col & {
-      .col-width(6);
+      .col-width(12);
 
-      @media (min-width : @screen-sm) {
+      @media (min-width : @screen-ms) {
         .col-width(6);
       }
 
-      @media (min-width : @screen-md) {
+      @media (min-width : @screen-sm) {
         .col-width(4);
+      }
+
+      @media (min-width : @screen-md) {
+        .col-width(3);
       }
 
       @media (min-width : @screen-lg) {
