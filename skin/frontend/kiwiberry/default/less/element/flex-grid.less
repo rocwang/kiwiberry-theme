@@ -1,0 +1,64 @@
+.make-flex-row {
+  display      : flex;
+  flex-flow    : row wrap;
+  margin-left  : @grid-gutter-width / -2;
+  margin-right : @grid-gutter-width / -2;
+}
+
+.make-xs-flex-col(@columns; @gutter: @grid-gutter-width) {
+  flex-grow     : 0;
+  flex-shrink   : 0;
+  padding-left  : (@gutter / 2);
+  padding-right : (@gutter / 2);
+
+  flex-basis    : percentage(@columns / @grid-columns);
+  max-width     : percentage(@columns / @grid-columns);
+}
+
+.make-ms-flex-col(@columns; @gutter: @grid-gutter-width) {
+  flex-grow     : 0;
+  flex-shrink   : 0;
+  padding-left  : (@gutter / 2);
+  padding-right : (@gutter / 2);
+
+  @media (min-width : @screen-ms-min) {
+    flex-basis : percentage(@columns / @grid-columns);
+    max-width  : percentage(@columns / @grid-columns);
+  }
+}
+
+.make-sm-flex-col(@columns; @gutter: @grid-gutter-width) {
+  flex-grow     : 0;
+  flex-shrink   : 0;
+  padding-left  : (@gutter / 2);
+  padding-right : (@gutter / 2);
+
+  @media (min-width : @screen-sm-min) {
+    flex-basis : percentage(@columns / @grid-columns);
+    max-width  : percentage(@columns / @grid-columns);
+  }
+}
+
+.make-md-flex-col(@columns; @gutter: @grid-gutter-width) {
+  flex-grow     : 0;
+  flex-shrink   : 0;
+  padding-left  : (@gutter / 2);
+  padding-right : (@gutter / 2);
+
+  @media (min-width : @screen-md-min) {
+    flex-basis : percentage(@columns / @grid-columns);
+    max-width  : percentage(@columns / @grid-columns);
+  }
+}
+
+.make-lg-flex-col(@columns; @gutter: @grid-gutter-width) {
+  flex-grow     : 0;
+  flex-shrink   : 0;
+  padding-left  : (@gutter / 2);
+  padding-right : (@gutter / 2);
+
+  @media (min-width : @screen-lg-min) {
+    flex-basis : percentage(@columns / @grid-columns);
+    max-width  : percentage(@columns / @grid-columns);
+  }
+}

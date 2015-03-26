@@ -77,51 +77,53 @@ $_productCollection = $this->getProductCollection();
 
           <div class="btn-group" role="group" aria-label="...">
 
-            <!-- "Add to Compare" -->
-            <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
-              <a href="<?= $_compareUrl ?>"
-                 title="<?= $this->__('Add to Compare') ?>"
-                 class="btn btn-primary"
-                >
-                <?= Mage::helper('vr_kiwiberry')->getSvgIcon('columns') ?>
-                <span class="sr-only"><?= $this->__('Add to Compare') ?></span>
-              </a>
-            <?php endif; ?>
-
             <!-- "Add to Cart" or "View Details" or "Out of Stock"-->
             <?php if ($_product->isSaleable()): ?>
 
               <?php
               if ($_product->canConfigure()):
                 $href = $_product->getProductUrl();
-                $title = 'View Details';
+                $title = $this->__('View Details');
+                $class = "btn-view-details";
               else:
                 $href = $this->getAddToCartUrl($_product);
-                $title = 'Add to Cart';
+                $title = $this->__('Add to Cart');
+                $class = "btn-add-to-cart";
               endif
               ?>
 
               <a href="<?= $href ?>"
-                 class="btn btn-primary"
-                 title="<?= $this->__('Add to Cart') ?>"
+                 class="btn btn-primary <?= $class ?>"
+                 title="<?= $title ?>"
                  role="button"
                 >
-                <span><?= $this->__('Add to Cart') ?></span>
+                <span><?= $title ?></span>
               </a>
 
             <?php else: ?>
 
-              <button type="button" class="btn btn-primary" disabled="disabled">
+              <button type="button" class="btn btn-primary btn-out-of-stck" disabled="disabled">
                 <?= $this->__('Out of Stock') ?>
               </button>
 
+            <?php endif; ?>
+
+            <!-- "Add to Compare" -->
+            <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+              <a href="<?= $_compareUrl ?>"
+                 title="<?= $this->__('Add to Compare') ?>"
+                 class="btn btn-primary btn-add-to-compare"
+                >
+                <?= Mage::helper('vr_kiwiberry')->getSvgIcon('columns') ?>
+                <span class="sr-only"><?= $this->__('Add to Compare') ?></span>
+              </a>
             <?php endif; ?>
 
             <!-- "Add to Wishlist" -->
             <?php if ($this->helper('wishlist')->isAllow()) : ?>
               <a href="<?= $this->getAddToWishlistUrl($_product) ?>"
                  title="<?= $this->__('Add to Wishlist') ?>"
-                 class="btn btn-primary"
+                 class="btn btn-primary btn-add-to-wishlist"
                 >
                 <?= Mage::helper('vr_kiwiberry')->getSvgIcon('heart') ?>
                 <span class="sr-only"><?= $this->__('Add to Wishlist') ?></span>

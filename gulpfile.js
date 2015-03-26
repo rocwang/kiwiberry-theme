@@ -87,8 +87,6 @@ function buildCss(target) {
         paths.vendor
       ]
     }))
-    //.pipe(sourcemaps.write('.'))
-    //.pipe(sourcemaps.init({loadMaps: true}))
     .pipe(autoprefixer('last 2 version'))
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? minifyCss() : util.noop())
@@ -233,7 +231,9 @@ gulp.task('watch', ['theme'], function () {
   gulp.watch('images/**', {cwd: paths.src}, ['theme:img']);
   gulp.watch('icons/**', {cwd: paths.src}, ['theme:icon']);
   gulp.watch([
-    targets.theme.dest + '**',
+    targets.theme.dest + 'js/*.js',
+    targets.theme.dest + 'css/*.css',
+    targets.theme.dest + 'images/**',
     'app/design/frontend/kiwiberry/**',
   ]).on('change', livereload.changed);
 
