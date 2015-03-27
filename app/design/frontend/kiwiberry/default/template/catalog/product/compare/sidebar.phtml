@@ -4,57 +4,71 @@ $_helper = $this->helper('catalog/product_compare');
 $_items = $_helper->getItemCount() > 0 ? $_helper->getItemCollection() : null;
 ?>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
 
-  <div class="panel-heading">
-    <?= $this->__('Compare Products') ?>
+    <div class="panel-heading" role="tab" id="panel-heading-compare">
+        <div class="panel-title">
+            <a data-toggle="collapse"
+               aria-expanded="true"
+               aria-controls="panel-collapse-compare"
+               href="#panel-collapse-compare">
+                <?= $this->__('Compare Products') ?>
 
-    <?php if ($_helper->getItemCount() > 0): ?>
-      <span class="badge"><?= $_helper->getItemCount() ?></span>
-    <?php endif; ?>
+                <?php if ($_helper->getItemCount() > 0): ?>
+                    <span class="badge"><?= $_helper->getItemCount() ?></span>
+                <?php endif; ?>
+            </a>
+        </div>
   </div>
 
-  <?php if ($_helper->getItemCount() > 0): ?>
-    <ul class="list-group">
-      <?php foreach ($_items as $_index => $_item): ?>
+    <div class="panel-collapse collapse in"
+         id="panel-collapse-compare"
+         role="tabpanel"
+         aria-labelledby="panel-heading-compare"
+         aria-expanded="true"
+        >
+        <?php if ($_helper->getItemCount() > 0): ?>
+            <ul class="list-group">
+                <?php foreach ($_items as $_index => $_item): ?>
 
-        <li class="list-group-item">
-          <a href="<?= $this->getProductUrl($_item) ?>">
-            <?= $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
-          </a>
+                    <li class="list-group-item">
+                        <a href="<?= $this->getProductUrl($_item) ?>">
+                            <?= $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
+                        </a>
 
-          <a href="<?= $_helper->getRemoveUrl($_item) ?>"
-             title="<?= $this->__('Remove This Item') ?>"
-             data-confirmation="<?= $this->__('Are you sure you would like to remove this item from the compare products?') ?>"
-             class="close js-confirm">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
-          </a>
-        </li>
+                        <a href="<?= $_helper->getRemoveUrl($_item) ?>"
+                           title="<?= $this->__('Remove This Item') ?>"
+                           data-confirmation="<?= $this->__('Are you sure you would like to remove this item from the compare products?') ?>"
+                           class="close js-confirm">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
+                        </a>
+                    </li>
 
-      <?php endforeach; ?>
-    </ul>
+                <?php endforeach; ?>
+            </ul>
 
-    <div class="panel-footer">
-      <a title="<?= $this->__('Compare') ?>"
-         href="<?= $_helper->getListUrl() ?>"
-         class="btn btn-primary"
-         target="_blank">
-        <?= $this->__('Compare') ?>
-      </a>
+            <div class="panel-footer">
+                <a title="<?= $this->__('Compare') ?>"
+                   href="<?= $_helper->getListUrl() ?>"
+                   class="btn btn-default"
+                   target="_blank">
+                    <?= $this->__('Compare') ?>
+                </a>
 
-      <a href="<?= $_helper->getClearListUrl() ?>"
-         class="btn btn-danger js-confirm"
-         data-confirmation="<?= $this->__('Are you sure you would like to remove all products from your comparison?') ?>">
-        <?= $this->__('Clear All') ?>
-      </a>
+                <a href="<?= $_helper->getClearListUrl() ?>"
+                   class="btn btn-danger js-confirm"
+                   data-confirmation="<?= $this->__('Are you sure you would like to remove all products from your comparison?') ?>">
+                    <?= $this->__('Clear All') ?>
+                </a>
+            </div>
+
+        <?php else: ?>
+
+            <div class="panel-body">
+                <p class="text-info"><?= $this->__('You have no items to compare.') ?></p>
+            </div>
+
+        <?php endif; ?>
     </div>
-
-  <?php else: ?>
-
-    <div class="panel-body">
-      <p class="text-info"><?= $this->__('You have no items to compare.') ?></p>
-    </div>
-
-  <?php endif; ?>
 </div>

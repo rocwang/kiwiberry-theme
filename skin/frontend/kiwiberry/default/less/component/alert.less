@@ -6,22 +6,42 @@
     .list-unstyled();
     li {
       .alert();
+
+      a {
+        .alert-link();
+      }
     }
   }
 
   .success-msg li {
     .alert-success();
+
+    a {
+      color : darken(@alert-success-text, 10%);
+    }
   }
 
   .notice-msg li {
     .alert-info();
+
+    a {
+      color : darken(@alert-info-text, 10%);
+    }
   }
 
   .warning-msg li {
     .alert-warning();
+
+    a {
+      color : darken(@alert-warning-text, 10%);
+    }
   }
 
   .error-msg li {
     .alert-danger();
+
+    a {
+      color : darken(@alert-danger-text, 10%);
+    }
   }
 }

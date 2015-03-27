@@ -18,7 +18,7 @@
   <?php
   echo $this->getToolbarHtml();
 
-  echo $this->getChild('product-collection-category')
+    echo $this->getChild('product-collection')
     ->setMode($this->getMode())
     ->setProductCollection($_productCollection)
     ->toHtml();

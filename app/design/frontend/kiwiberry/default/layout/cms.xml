@@ -59,7 +59,7 @@
         <reference name="content">
             <block type="catalog/product_new" name="home.catalog.product.new" template="catalog/product/new.phtml"
                    after="cms_page">
-                <block type="catalog/product_new" name="product-collection-new"
+                <block type="catalog/product_new" name="product-collection"
                        template="catalog/product/collection.phtml">
                     <action method="setProductsCount">
                         <count>6</count>

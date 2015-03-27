@@ -3,7 +3,7 @@
     <div class="page-title">
         <h1><?= $this->__('Review Order') ?></h1>
     </div>
-    <?= $this->getMessagesBlock()->toHtml() ?>
+
     <form id="review-order-form" action="<?= $this->getPostActionUrl() ?>" method="post" onsubmit="return showLoader();">
         <?= $this->getBlockHtml('formkey'); ?>
         <div class="col2-set">

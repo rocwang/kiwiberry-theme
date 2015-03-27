@@ -29,7 +29,7 @@
         <h1><?= $this->__('Change Billing Address') ?></h1>
         <button type="button" title="<?= $this->__('Add New Address') ?>" class="button" onclick="setLocation('<?= $this->getAddNewUrl() ?>')"><span><span><?= $this->__('Add New Address') ?></span></span></button>
     </div>
-    <?= $this->getMessagesBlock()->toHtml() ?>
+
     <?php $_index=0 ?>
     <?php foreach ($this->getAddressCollection() as $_address): ?>
         <?php if($_index%3==0): ?><div class="col3-set"><?php endif; ?>

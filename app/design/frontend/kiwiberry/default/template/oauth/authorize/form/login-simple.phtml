@@ -36,8 +36,8 @@
             <h1><?= $this->__('Log In') ?></h1>
         </div>
         <div class="form-box">
-            <?= $this->getMessagesBlock()->toHtml() ?>
-            <?php if (!$this->getHasException()) : ?>
+
+        <?php if (!$this->getHasException()) : ?>
             <form method="post" action="<?= $this->getPostActionUrl() ?>" id="loginForm">
                 <div class="fieldset" class="fieldset">
                     <h2 class="legend"><?= $this->getFormTitle() ?></h2>

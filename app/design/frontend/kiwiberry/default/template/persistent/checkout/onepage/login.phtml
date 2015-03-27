@@ -118,9 +118,8 @@ if (!$this->helper('customer')->isRegistrationAllowed() && !$this->getQuote()->i
 
     <h3><?= $this->__('Returning Customers') ?></h3>
 
-    <?= $this->getMessagesBlock()->toHtml() ?>
 
-    <form id="login-form" action="<?= $this->getPostAction() ?>" method="post" role="form">
+      <form id="login-form" action="<?= $this->getPostAction() ?>" method="post" role="form">
 
       <p class="description"><?= $this->__('Sign in to speed up your checkout process') ?></p>
 

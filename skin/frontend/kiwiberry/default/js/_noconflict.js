@@ -22,7 +22,7 @@ var $j = jQuery.noConflict();
         },
 
         attach: function() {
-            this.attachBootstrapPrototypeCompatibility();
+            //this.attachBootstrapPrototypeCompatibility();
             this.attachMedia();
         },
 

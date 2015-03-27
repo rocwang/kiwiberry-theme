@@ -87,9 +87,18 @@ function buildCss(target) {
         paths.vendor
       ]
     }))
-    .pipe(autoprefixer('last 2 version'))
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? minifyCss() : util.noop())
+
+      // These 2 lines is for working around the source map issue with autoprefixer
+      .pipe(sourcemaps.write())
+      .pipe(sourcemaps.init({loadMaps: true}))
+
+      .pipe(autoprefixer({
+          browsers: 'last 2 version',
+          cascade : false
+      }))
+
     .pipe(isProduction ? util.noop() : sourcemaps.write('.'))
 
     .pipe(gulp.dest(target.dest + 'css'));
@@ -197,7 +206,8 @@ gulp.task('theme:js', function () {
 gulp.task('theme:img', function () {
   return buildImg(targets.theme);
 });
-gulp.task('theme:icon', function () {
+// Depending on theme:css to working around error with double soucemap invokings
+gulp.task('theme:icon', ['theme:css'], function () {
   return buildIcon(targets.theme);
 });
 gulp.task('theme:font', function () {

@@ -12,64 +12,76 @@
 
     <?= $this->getBlockHtml('formkey'); ?>
 
-    <div class="panel panel-default">
+      <div class="panel panel-primary">
 
-      <div class="panel-heading"><?= $this->__('My Orders') ?></div>
-
-      <div class="panel-body"><?= $this->__('Last Ordered Items') ?></div>
-
-      <ul id="cart-sidebar-reorder" class="list-group">
-        <?php $_showAddButtonFlag = false ?>
-        <?php foreach ($_items as $_item): ?>
-          <li class="list-group-item">
-            <?php if ($this->isItemAvailableForReorder($_item)): ?>
-              <?php $_showAddButtonFlag = true ?>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"
-                         name="order_items[]"
-                         id="reorder-item-<?= $_item->getId() ?>"
-                         value="<?= $_item->getId() ?>"
-                         title="<?= $this->__('Add to Cart') ?>"
-                         class="validate-one-required-by-name js-reorder-sidebar-checkbox">
-
-                  <a href="<?= $_item->getProduct()->getProductUrl() ?>">
-                    <?= $this->escapeHtml($_item->getName()) ?>
+          <div class="panel-heading" role="tab" id="panel-heading-reorder">
+              <div class="panel-title">
+                  <a data-toggle="collapse"
+                     aria-expanded="true"
+                     aria-controls="panel-collapse-reorder"
+                     href="#panel-collapse-reorder">
+                      <?= $this->__('Last Ordered Items') ?>
                   </a>
-                </label>
-
               </div>
-            <?php else: ?>
+          </div>
 
-              <a href="<?= $_item->getProduct()->getProductUrl() ?>">
-                <?= $this->escapeHtml($_item->getName()) ?>
-              </a>
 
-            <?php endif; ?>
-          </li>
-        <?php endforeach; ?>
-      </ul>
+          <div class="panel-collapse collapse in"
+               id="panel-collapse-reorder"
+               role="tabpanel"
+               aria-labelledby="panel-heading-reorder"
+               aria-expanded="true"
+              >
+              <ul id="cart-sidebar-reorder" class="list-group">
+                  <?php $_showAddButtonFlag = false ?>
+                  <?php foreach ($_items as $_item): ?>
+                      <li class="list-group-item">
+                          <?php if ($this->isItemAvailableForReorder($_item)): ?>
+                              <?php $_showAddButtonFlag = true ?>
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox"
+                                             name="order_items[]"
+                                             id="reorder-item-<?= $_item->getId() ?>"
+                                             value="<?= $_item->getId() ?>"
+                                             title="<?= $this->__('Add to Cart') ?>"
+                                             class="validate-one-required-by-name js-reorder-sidebar-checkbox">
 
-      <div class="panel-footer">
-        <p class="text-danger" id="cart-sidebar-reorder-advice-container"></p>
+                                      <a href="<?= $_item->getProduct()->getProductUrl() ?>">
+                                          <?= $this->escapeHtml($_item->getName()) ?>
+                                      </a>
+                                  </label>
 
-        <?php if ($_showAddButtonFlag): ?>
-          <button type="submit" title="<?= $this->__('Add to Cart') ?>" class="btn btn-default">
-            <?= $this->__('Add to Cart') ?>
-          </button>
-        <?php endif; ?>
+                              </div>
+                          <?php else: ?>
 
-        <a href="<?= $this->getUrl('customer/account') ?>" class="btn btn-default">
-          <?= $this->__('View All'); ?>
-        </a>
-      </div>
+                              <a href="<?= $_item->getProduct()->getProductUrl() ?>">
+                                  <?= $this->escapeHtml($_item->getName()) ?>
+                              </a>
 
+                          <?php endif; ?>
+                      </li>
+                  <?php endforeach; ?>
+              </ul>
+
+              <div class="panel-footer">
+                  <?= $this->getPagerHtml(); ?>
+
+                  <p class="text-danger" id="cart-sidebar-reorder-advice-container"></p>
+
+                  <?php if ($_showAddButtonFlag): ?>
+                      <button type="submit" title="<?= $this->__('Add to Cart') ?>" class="btn btn-primary">
+                          <?= $this->__('Add to Cart') ?>
+                      </button>
+                  <?php endif; ?>
+
+                  <a href="<?= $this->getUrl('customer/account') ?>" class="btn btn-default">
+                      <?= $this->__('View All'); ?>
+                  </a>
+              </div>
+
+          </div>
     </div>
   </form>
 
-  <?= $this->getPagerHtml(); ?>
-
 <?php endif ?>
-
-<script>
-</script>

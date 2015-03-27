@@ -1,40 +1,52 @@
 <?php if (isset($poll)) : ?>
-  <div class="panel panel-default">
-
-    <div class="panel-heading">
-      <?= $this->__('Community Poll') ?>
-    </div>
-
     <form id="pollForm" action="<?= $action ?>" method="post" role="form">
+        <div class="panel panel-primary">
 
-      <div class="panel-body">
-
-        <p><?= $this->escapeHtml($poll->getPollTitle()); ?></p>
-
-        <?php if ($poll_answers): ?>
-          <?php foreach ($poll_answers as $answer): ?>
-
-            <div class="radio">
-              <label for="vote_<?= $answer->getId() ?>">
-                <input type="radio"
-                       name="vote"
-                       id="vote_<?= $answer->getId() ?>"
-                       value="<?= $answer->getAnswerId() ?>"/>
-                <?= $this->escapeHtml($answer->getAnswerTitle()) ?>
-              </label>
+            <div class="panel-heading" role="tab" id="panel-heading-poll">
+                <div class="panel-title">
+                    <a data-toggle="collapse"
+                       aria-expanded="true"
+                       aria-controls="panel-collapse-poll"
+                       href="#panel-collapse-poll">
+                        <?= $this->__('Community Poll') ?>
+                    </a>
+                </div>
             </div>
 
-          <?php endforeach; ?>
-        <?php endif; ?>
+            <div class="panel-collapse collapse in"
+                 id="panel-collapse-poll"
+                 role="tabpanel"
+                 aria-labelledby="panel-heading-poll"
+                 aria-expanded="true"
+                >
+                <div class="panel-body">
+
+                    <p><?= $this->escapeHtml($poll->getPollTitle()); ?></p>
+
+                    <?php if ($poll_answers): ?>
+                        <?php foreach ($poll_answers as $answer): ?>
+
+                            <div class="radio">
+                                <label for="vote_<?= $answer->getId() ?>">
+                                    <input type="radio"
+                                           name="vote"
+                                           id="vote_<?= $answer->getId() ?>"
+                                           value="<?= $answer->getAnswerId() ?>"/>
+                                    <?= $this->escapeHtml($answer->getAnswerTitle()) ?>
+                                </label>
+                            </div>
+
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="submit" title="<?= $this->__('Vote') ?>" class="btn btn-default">
+                        <?= $this->__('Vote') ?>
+                    </button>
+                </div>
       </div>
 
-      <div class="panel-footer">
-        <button type="submit" title="<?= $this->__('Vote') ?>" class="btn btn-default">
-          <?= $this->__('Vote') ?>
-        </button>
-      </div>
-
+        </div>
     </form>
-
-  </div>
 <?php endif; ?>

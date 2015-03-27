@@ -4,70 +4,87 @@
  *
  * @see Mage_Catalog_Block_Layer_State
  */
-?>
-<?php
+
 $_filters = $this->getActiveFilters();
 $_renderers = $this->getParentBlock()->getChild('state_renderers')->getSortedChildren();
 ?>
+
 <?php if (!empty($_filters)): ?>
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
 
-    <div class="panel-heading"><?= $this->__('Currently Shopping by:') ?></div>
-
-    <div class="panel-body">
-      <a class="btn btn-default" href="<?= $this->getClearUrl() ?>"><?= $this->__('Clear All') ?></a>
+    <div class="panel-heading" role="tab" id="filter-state-heading">
+      <div class="panel-title">
+        <a data-toggle="collapse"
+           aria-expanded="true"
+           aria-controls="filter-state-collapse"
+           href="#filter-state-collapse">
+          <?= $this->__('Currently Shopping by:') ?>
+        </a>
+      </div>
     </div>
 
-    <ul class="list-group">
-      <?php foreach ($_filters as $_filter): ?>
+    <div class="panel-collapse collapse in"
+         id="filter-state-collapse"
+         role="tabpanel"
+         aria-labelledby="filter-state-heading"
+         aria-expanded="true"
+      >
 
-        <?php
-        $_rendered = false;
-        foreach ($_renderers as $_rendererName):
-          $_renderer = $this->getParentBlock()->getChild('state_renderers')->getChild($_rendererName);
-          if (method_exists($_renderer, 'shouldRender') && $_renderer->shouldRender($_filter)):
-            $_renderer->setFilter($_filter);
-            echo $_renderer->toHtml();
-            $_rendered = true;
-            break;
-          endif;
-        endforeach;
+      <ul class="list-group">
+        <?php foreach ($_filters as $_filter): ?>
 
-        if (!$_rendered):
-        ?>
+          <?php
+          $_rendered = false;
+          foreach ($_renderers as $_rendererName):
+            $_renderer = $this->getParentBlock()->getChild('state_renderers')->getChild($_rendererName);
+            if (method_exists($_renderer, 'shouldRender') && $_renderer->shouldRender($_filter)):
+              $_renderer->setFilter($_filter);
+              echo $_renderer->toHtml();
+              $_rendered = true;
+              break;
+            endif;
+          endforeach;
 
-          <li class="list-group-item">
-            <strong><?= $this->__($_filter->getName()) ?>:</strong>
-            <span><?= $this->stripTags($_filter->getLabel()) ?></span>
-
-            <?php
-            $clearLinkUrl = $_filter->getClearLinkUrl();
-            if ($clearLinkUrl):
+          if (!$_rendered):
             ?>
-              <a href="<?= $_filter->getRemoveUrl() ?>"
-                 title="<?= $this->__('Previous') ?>">
-                <?= $this->__('Previous') ?>
-              </a>
 
-              <a title="<?= $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
-                 href="<?= $clearLinkUrl ?>">
-                <?= $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>
-              </a>
-            <?php else: ?>
-              <a class="close"
-                 href="<?= $_filter->getRemoveUrl() ?>"
-                 title="<?= $this->__('Remove This Item') ?>">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
-              </a>
-            <?php endif; ?>
+            <li class="list-group-item">
+              <strong><?= $this->__($_filter->getName()) ?>:</strong>
+              <span><?= $this->stripTags($_filter->getLabel()) ?></span>
 
-          </li>
+              <?php
+              $clearLinkUrl = $_filter->getClearLinkUrl();
+              if ($clearLinkUrl):
+                ?>
+                <a href="<?= $_filter->getRemoveUrl() ?>"
+                   title="<?= $this->__('Previous') ?>">
+                  <?= $this->__('Previous') ?>
+                </a>
 
-        <?php endif; ?>
+                <a title="<?= $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
+                   href="<?= $clearLinkUrl ?>">
+                  <?= $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>
+                </a>
+              <?php else: ?>
+                <a class="close"
+                   href="<?= $_filter->getRemoveUrl() ?>"
+                   title="<?= $this->__('Remove This Item') ?>">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
+                </a>
+              <?php endif; ?>
 
-      <?php endforeach; ?>
-    </ul>
+            </li>
+
+          <?php endif; ?>
+
+        <?php endforeach; ?>
+      </ul>
+
+      <div class="panel-footer">
+        <a class="btn btn-default" href="<?= $this->getClearUrl() ?>"><?= $this->__('Clear All') ?></a>
+      </div>
+    </div>
 
   </div>
 <?php endif; ?>

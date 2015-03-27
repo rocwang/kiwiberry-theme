@@ -2,14 +2,12 @@
 <layout version="0.1.0">
 
     <catalog_category_default>
-        <!-- Mage_Tag -->
         <reference name="left">
             <block type="tag/popular" name="tags_popular" template="tag/popular.phtml"/>
         </reference>
     </catalog_category_default>
 
     <catalog_category_layered>
-        <!-- Mage_Tag -->
         <reference name="left">
             <block type="tag/popular" name="tags_popular" template="tag/popular.phtml"/>
         </reference>
@@ -80,9 +78,16 @@
     <tag_product_list translate="label">
         <label>Tagged Products List</label>
         <!-- Mage_Tag -->
+        <reference name="left">
+            <block type="tag/popular" name="tags_popular" template="tag/popular.phtml"/>
+        </reference>
         <reference name="content">
             <block type="tag/product_result" name="tag_products" template="catalogsearch/result.phtml">
                 <block type="catalog/product_list" name="search_result_list" template="catalog/product/list.phtml">
+
+                    <block type="catalog/product_list" name="product-collection"
+                           template="catalog/product/collection.phtml"/>
+
                     <block type="catalog/product_list_toolbar" name="product_list_toolbar"
                            template="catalog/product/list/toolbar.phtml">
                         <block type="page/html_pager" name="product_list_toolbar_pager"/>
@@ -90,7 +95,9 @@
                     <action method="setToolbarBlockName">
                         <name>product_list_toolbar</name>
                     </action>
+
                 </block>
+
                 <action method="setListOrders"/>
                 <action method="setListModes"/>
                 <action method="setListCollection"/>

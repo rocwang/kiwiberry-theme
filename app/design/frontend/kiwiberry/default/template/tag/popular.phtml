@@ -1,28 +1,41 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
 
-  <div class="panel-heading">
-    <?= $this->__('Popular Tags'); ?>
+    <div class="panel-heading" role="tab" id="panel-heading-tags">
+        <div class="panel-title">
+            <a data-toggle="collapse"
+               aria-expanded="true"
+               aria-controls="panel-collapse-tags"
+               href="#panel-collapse-tags">
+                <?= $this->__('Popular Tags'); ?>
+            </a>
+        </div>
   </div>
 
-  <div class="panel-body">
+    <div class="panel-collapse collapse in"
+         id="panel-collapse-tags"
+         role="tabpanel"
+         aria-labelledby="panel-heading-tags"
+         aria-expanded="true"
+        >
+        <div class="panel-body">
 
-    <ul class="list-inline">
-      <?php foreach ($this->getTags() as $_tag): ?>
-        <li>
-          <a href="<?= $_tag->getTaggedProductsUrl() ?>"
-             style="font-size:<?= $_tag->getRatio() * 70 + 75 ?>%;">
-            <?= $this->escapeHtml($_tag->getName()) ?>
-          </a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+            <ul class="list-inline">
+                <?php foreach ($this->getTags() as $_tag): ?>
+                    <li>
+                        <a href="<?= $_tag->getTaggedProductsUrl() ?>">
+                            <?= $this->escapeHtml($_tag->getName()) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
 
-  </div>
+        </div>
 
-  <div class="panel-footer">
-    <a href="<?= $this->getUrl('tag/list') ?>" class="btn btn-default">
-      <?= $this->__('View All Tags') ?>
-    </a>
+        <div class="panel-footer">
+            <a href="<?= $this->getUrl('tag/list') ?>" class="btn btn-default">
+                <?= $this->__('View All Tags') ?>
+            </a>
+        </div>
   </div>
 
 </div>

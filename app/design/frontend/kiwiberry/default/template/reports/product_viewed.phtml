@@ -1,36 +1,50 @@
 <?php /* @var $this Mage_Reports_Block_Product_Viewed */ ?>
 <?php if ($_products = $this->getRecentlyViewedProducts()): ?>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <?= $this->__('Recently Viewed Products') ?>
+    <div class="panel panel-primary">
+        <div class="panel-heading" role="tab" id="panel-heading-viewed">
+            <div class="panel-title">
+                <a data-toggle="collapse"
+                   aria-expanded="true"
+                   aria-controls="panel-collapse-viewed"
+                   href="#panel-collapse-viewed">
+                    <?= $this->__('Recently Viewed Products') ?>
+                </a>
+            </div>
     </div>
 
-    <ul class="list-group">
-      <?php foreach ($_products as $_item): ?>
+        <div class="panel-collapse collapse in"
+             id="panel-collapse-viewed"
+             role="tabpanel"
+             aria-labelledby="panel-heading-viewed"
+             aria-expanded="true"
+            >
+            <ul class="list-group">
+                <?php foreach ($_products as $_item): ?>
 
-        <li class="list-group-item">
-          <div class="media">
-            <a class="media-left media-middle"
-               href="<?= $this->getProductUrl($_item) ?>"
-               title="<?= $this->escapeHtml($_item->getName()) ?>">
-              <img
-                src="<?= $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50, 50)->setWatermarkSize('30x10'); ?>"
-                class="img-responsive"
-                alt="<?= $this->escapeHtml($_item->getName()) ?>">
-            </a>
+                    <li class="list-group-item">
+                        <div class="media">
+                            <a class="media-left media-middle"
+                               href="<?= $this->getProductUrl($_item) ?>"
+                               title="<?= $this->escapeHtml($_item->getName()) ?>">
+                                <img
+                                    src="<?= $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50, 50)->setWatermarkSize('30x10'); ?>"
+                                    class="media-object"
+                                    alt="<?= $this->escapeHtml($_item->getName()) ?>">
+                            </a>
 
-            <div class="media-body">
-              <h5 class="media-heading">
-                <a href="<?= $this->getProductUrl($_item) ?>">
-                  <?= $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
-                </a>
-              </h5>
+                            <div class="media-body">
+                                <h5 class="media-heading">
+                                    <a href="<?= $this->getProductUrl($_item) ?>">
+                                        <?= $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
+                                    </a>
+                                </h5>
+                            </div>
             </div>
-          </div>
-        </li>
+                    </li>
 
-      <?php endforeach; ?>
-    </ul>
+                <?php endforeach; ?>
+            </ul>
+        </div>
 
   </div>
 <?php endif; ?>

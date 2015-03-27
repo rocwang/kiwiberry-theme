@@ -6,33 +6,58 @@
  */
 ?>
 <?php if ($this->canShowBlock()): ?>
-  <div class="<?php if (!$this->getLayer()->getState()->getFilters()): ?> no-filters<?php endif; ?>">
 
     <h4><?= $this->__('Shop By') ?></h4>
 
     <?= $this->getStateHtml() ?>
 
-    <?php if ($this->canShowOptions()): ?>
+    <div class="panel-group panel-group-filter<?php if (!$this->getLayer()->getState()->getFilters()): ?> no-filter<?php endif; ?>"
+         id="accordion-filter"
+         role="tablist"
+         aria-multiselectable="true"
+        >
 
-      <div class="well">
+    <?php if ($this->canShowOptions()): ?>
 
         <?php $_filters = $this->getFilters() ?>
 
         <?php foreach ($_filters as $_filter): ?>
-          <?php if ($_filter->getItemsCount()): ?>
+            <?php if ($_filter->getItemsCount()): ?>
 
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <?= $this->__($_filter->getName()) ?>
+                <?php
+                $filterId = $_filter->getAttributeModel() ? $_filter->getAttributeModel()->getAttributeCode() : $_filter->getName();
+                $filterId = strtolower(str_replace('_', '-', $filterId));
+                $panelHeadingId = 'panel-heading-' . $filterId;
+                $listGroupId = 'panel-collapse-' . $filterId;
+                ?>
+                <div class="panel panel-primary">
+                    <div class="panel-heading" role="tab" id="<?= $panelHeadingId ?>">
+                        <div class="panel-title">
+                            <a data-toggle="collapse"
+                               data-parent="#accordion-filter"
+                               class="link-toggle-collapse"
+                               aria-expanded="false"
+                               aria-controls="<?= $listGroupId ?>"
+                               href="#<?= $listGroupId ?>">
+                                <?= $this->__($_filter->getName()) ?>
+                            </a>
               </div>
+                    </div>
+                    <div class="panel-collapse collapse"
+                         id="<?= $listGroupId ?>"
+                         role="tabpanel"
+                         aria-labelledby="<?= $listGroupId ?>"
+                         aria-expanded="false"
+                        >
               <?= $_filter->getHtml() ?>
             </div>
+                </div>
 
-          <?php endif; ?>
+            <?php endif; ?>
         <?php endforeach; ?>
 
-      </div>
     <?php endif; ?>
 
   </div>
+
 <?php endif; ?>
