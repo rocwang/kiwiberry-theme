@@ -1,87 +1,88 @@
 <?php /* @var $this Mage_Wishlist_Block_Customer_Sidebar */ ?>
 <?php if ($this->helper('wishlist')->isAllow()) : ?>
-    <div class="panel panel-primary">
+  <div class="panel panel-primary panel-collapse-mobile">
 
-        <div class="panel-heading" role="tab" id="panel-heading-wishlist">
-            <div class="panel-title">
-                <a data-toggle="collapse"
-                   aria-expanded="true"
-                   aria-controls="panel-collapse-wishlist"
-                   href="#panel-collapse-wishlist">
-                    <?= $this->__('Last Added Items in Wishlist') ?>
-                    <span class="badge"><?= $this->getItemCount() ?></span>
-                </a>
-            </div>
+    <div class="panel-heading" role="tab" id="panel-heading-wishlist">
+      <div class="panel-title">
+        <a data-toggle="collapse"
+           class="link-toggle-collapse"
+           aria-expanded="false"
+           aria-controls="panel-collapse-wishlist"
+           href="#panel-collapse-wishlist">
+          <?= $this->__('Last Added Items in Wishlist') ?>
+          <span class="badge"><?= $this->getItemCount() ?></span>
+        </a>
+      </div>
     </div>
 
-        <div class="panel-collapse collapse in"
-             id="panel-collapse-wishlist"
-             role="tabpanel"
-             aria-labelledby="panel-heading-wishlist"
-             aria-expanded="true"
-            >
-            <?php if ($this->hasWishlistItems()): ?>
-                <ul class="list-group">
-                    <?php foreach ($this->getWishlistItems() as $_item): ?>
+    <div class="panel-collapse collapse"
+         id="panel-collapse-wishlist"
+         role="tabpanel"
+         aria-labelledby="panel-heading-wishlist"
+         aria-expanded="false"
+      >
+      <?php if ($this->hasWishlistItems()): ?>
+        <ul class="list-group">
+          <?php foreach ($this->getWishlistItems() as $_item): ?>
 
-                        <?php $product = $_item->getProduct(); ?>
-                        <li class="list-group-item">
-                            <div class="media">
-                                <a href="<?= $this->getProductUrl($_item) ?>"
-                                   title="<?= $this->escapeHtml($product->getName()) ?>"
-                                   class="media-left">
-                                    <img
-                                        src="<?= $this->helper('catalog/image')->init($product, 'thumbnail')->resize(50); ?>"
-                                        class="img-responsive"
-                                        alt="<?= $this->escapeHtml($product->getName()) ?>">
+            <?php $product = $_item->getProduct(); ?>
+            <li class="list-group-item">
+              <div class="media">
+                <a href="<?= $this->getProductUrl($_item) ?>"
+                   title="<?= $this->escapeHtml($product->getName()) ?>"
+                   class="media-left">
+                  <img
+                    src="<?= $this->helper('catalog/image')->init($product, 'thumbnail')->resize(50); ?>"
+                    class="img-responsive"
+                    alt="<?= $this->escapeHtml($product->getName()) ?>">
                 </a>
 
-                                <div class="media-body">
+                <div class="media-body">
 
-                                    <a href="<?= $this->getItemRemoveUrl($_item) ?>"
-                                       title="<?= $this->__('Remove This Item') ?>"
-                                       data-confirmation="<?= $this->__('Are you sure you would like to remove this item from the wishlist?') ?>"
-                                       class="close js-confirm">
-                                        <span aria-hidden="true">&times;</span>
-                                        <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
+                  <a href="<?= $this->getItemRemoveUrl($_item) ?>"
+                     title="<?= $this->__('Remove This Item') ?>"
+                     data-confirmation="<?= $this->__('Are you sure you would like to remove this item from the wishlist?') ?>"
+                     class="close js-confirm">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only"><?= $this->__('Remove This Item') ?></span>
                   </a>
 
-                                    <h5 class="media-heading">
-                                        <a href="<?= $this->getProductUrl($_item) ?>">
-                                            <?= $this->escapeHtml($product->getName()) ?>
-                                        </a>
-                                    </h5>
-
-                                    <?= $this->getPriceHtml($product, false, '-wishlist') ?>
-
-                                    <?php if ($product->isSaleable() && $product->isVisibleInSiteVisibility()): ?>
-                                        <a href="<?= $this->getItemAddToCartUrl($_item) ?>"
-                                           class="btn btn-default">
-                                            <?= $this->__('Add to Cart') ?>
-                                        </a>
-                                    <?php endif; ?>
-                                </div>
-              </div>
-                        </li>
-
-                    <?php endforeach; ?>
-                </ul>
-
-                <div class="panel-footer">
-                    <a href="<?= $this->helper('wishlist')->getListUrl() ?>"
-                       class="btn btn-default">
-                        <?= $this->__('Go to Wishlist') ?>
+                  <h5 class="media-heading">
+                    <a href="<?= $this->getProductUrl($_item) ?>">
+                      <?= $this->escapeHtml($product->getName()) ?>
                     </a>
+                  </h5>
+
+                  <?= $this->getPriceHtml($product, false, '-wishlist') ?>
+
+                  <?php if ($product->isSaleable() && $product->isVisibleInSiteVisibility()): ?>
+                    <a href="<?= $this->getItemAddToCartUrl($_item) ?>"
+                       class="btn btn-default">
+                      <?= $this->__('Add to Cart') ?>
+                    </a>
+                  <?php endif; ?>
                 </div>
+              </div>
+            </li>
 
-            <?php else: ?>
+          <?php endforeach; ?>
+        </ul>
 
-                <div class="panel-body">
-                    <p class="text-info"><?= $this->__('You have no items in your wishlist.') ?></p>
-                </div>
-
-            <?php endif ?>
+        <div class="panel-footer">
+          <a href="<?= $this->helper('wishlist')->getListUrl() ?>"
+             class="btn btn-default">
+            <?= $this->__('Go to Wishlist') ?>
+          </a>
         </div>
+
+      <?php else: ?>
+
+        <div class="panel-body">
+          <p class="text-info"><?= $this->__('You have no items in your wishlist.') ?></p>
+        </div>
+
+      <?php endif ?>
+    </div>
 
   </div>
 <?php endif ?>

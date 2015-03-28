@@ -18,6 +18,7 @@
       <div class="footer-col-language-currency">
         <h5 class="footer-label">Language and Currency</h5>
         <div class="btn-group language-currency" role="group" aria-label="Language and Currency">
+          <?= $this->getChildHtml('store_switcher') ?>
           <?= $this->getChildHtml('store_language') ?>
           <?= $this->getChildHtml('footer_currency') ?>
         </div>

@@ -1,14 +1,34 @@
 <?php if ($_products = $this->getRecentlyComparedProducts()): ?>
-    <div class="panel panel-primary">
-    <div class="panel-heading"><?= $this->__('Recently Compared Products') ?></div>
-    <ul id="recently-compared-items" class="list-group">
-      <?php foreach ($_products as $_item): ?>
-        <li class="list-group-item">
-          <a href="<?= $this->getProductUrl($_item) ?>">
-            <?= $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
-          </a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+  <div class="panel panel-primary panel-collapse-mobile">
+
+    <div class="panel-heading" role="tab" id="panel-heading-compared">
+      <div class="panel-title">
+        <a data-toggle="collapse"
+           class="link-toggle-collapse"
+           aria-expanded="false"
+           aria-controls="panel-collapse-compared"
+           href="#panel-collapse-compared">
+          <?= $this->__('Recently Compared Products') ?>
+        </a>
+      </div>
+    </div>
+
+    <div class="panel-collapse collapse"
+         id="panel-collapse-compared"
+         role="tabpanel"
+         aria-labelledby="panel-heading-compared"
+         aria-expanded="false"
+      >
+      <ul id="recently-compared-items" class="list-group">
+        <?php foreach ($_products as $_item): ?>
+          <li class="list-group-item">
+            <a href="<?= $this->getProductUrl($_item) ?>">
+              <?= $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?>
+            </a>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+
   </div>
 <?php endif; ?>
