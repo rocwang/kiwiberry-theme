@@ -118,6 +118,13 @@ function buildJs(target) {
 
   target.js.forEach(function (val) {
     var src = require(paths.src + val);
+
+    if (val === 'js/vendor.js' && !isProduction) {
+      src.push('./_livereload.js');
+      src.push('../../../../../bower_components/livereload/dist/livereload.js');
+    }
+
+
     var stream = gulp.src(src, {cwd: paths.src + 'js'})
 
       .pipe(plumber({errorHandler: onError}))

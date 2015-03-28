@@ -38,6 +38,8 @@ success:
                 && ./mage list-installed | grep -q  Interface_Frontend_Kiwiberry
                 && ./mage uninstall community Interface_Frontend_Kiwiberry
                 && ./mage install-file %BUILD_PATH%/Interface_Frontend_Kiwiberry-0.1.0.tgz
+                && php ./shell/indexer.php reindexall
+                && n98-magerun cache:flush
     email:
         committer: false
         addresses:
