@@ -15,6 +15,7 @@
         "js-beautify" : "1.x",
         "bootstrap"   : "3.x",
         "sweetalert"  : "0.x",
-        "imagesloaded": "3.x"
+        "imagesloaded": "3.x",
+        "spinkit"     : "1.x"
     }
 }

@@ -970,28 +970,26 @@ jQuery(function ($) {
     );
   }
 
-  // Configurable Swatches
-  $j(document).on('product-media-loaded', function () {
-    ConfigurableMediaImages.init(configurableSwatches.imageType);
+  //<editor-fold desc="Configurable Swatches">
 
-    for (productId in configurableSwatches.imageFallback) {
-      ConfigurableMediaImages.setImageFallback(
-        productId,
-        configurableSwatches.imageFallback[productId]
-      );
+  // Configurable swatches for product list
+  if (window.configurableMediaImagesData) {
+    // Initialize configurable media images
+    ConfigurableMediaImages.init(window.configurableMediaImagesData.imageType);
+
+    for (productId in window.configurableMediaImagesData.imageFallback) {
+      ConfigurableMediaImages.setImageFallback(productId, window.configurableMediaImagesData.imageFallback[productId]);
     }
 
+    // Initialize configurable swatches list
     ConfigurableSwatchesList.init();
-  });
-
-  // Todo: start configurable swatches properly
-  if (window.configurableSwatches) {
-    $j(document).trigger('product-media-loaded');
   }
 
-  if (window.configurableSwatches && window.spConfig) {
+  // Configurable swatches for product view
+  if (window.spConfig) {
     var swatchesConfig = new Product.ConfigurableSwatches(window.spConfig);
   }
+  //</editor-fold>
 
   // Cookie Notice
   $('#allow-save-cookie').click(function (e) {

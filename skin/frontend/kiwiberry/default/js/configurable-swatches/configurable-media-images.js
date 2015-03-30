@@ -156,16 +156,12 @@ var ConfigurableMediaImages = {
   },
 
   swapListImage: function (productId, imageObject) {
-    var originalImage = $j('#product-collection-image-' + productId);
+    var originalImage = $j('#image-' + productId + '-product-collection');
 
     if (imageObject[0].complete) { //swap image immediately
 
-      //remove old image
-      originalImage.addClass('hidden');
-      $j('.product-collection-image-' + productId).remove();
-
-      //add new image
-      imageObject.insertAfter(originalImage);
+      // replace the image src attribute
+      originalImage.attr('src', imageObject.attr('src'));
 
     } else { //need to load image
 
@@ -179,12 +175,8 @@ var ConfigurableMediaImages = {
         //remove spinner
         wrapper.removeClass('loading');
 
-        //remove old image
-        originalImage.addClass('hidden');
-        $j('.product-collection-image-' + productId).remove();
-
-        //add new image
-        imageObject.insertAfter(originalImage);
+        // replace the image src attribute
+        originalImage.attr('src', imageObject.attr('src'));
       });
 
     }

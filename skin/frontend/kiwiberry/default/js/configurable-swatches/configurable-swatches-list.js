@@ -4,10 +4,10 @@ var ConfigurableSwatchesList = {
     init: function()
     {
         var that = this;
-        $j('.configurable-swatch-list li').each(function() {
+        $j('.js-swatch-item').each(function() {
             that.initSwatch(this);
             var $swatch = $j(this);
-            if ($swatch.hasClass('filter-match')) {
+            if ($swatch.hasClass('js-filter-match')) {
                 that.handleSwatchSelect($swatch);
             }
         });

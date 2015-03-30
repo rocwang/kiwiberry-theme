@@ -32,12 +32,12 @@ if (Mage::helper('configurableswatches')->isEnabled() && $_product && $_product-
         $_liClasses[] = 'wide-swatch';
       }
       if (Mage::helper('configurableswatches/productlist')->swatchMatchesFilter($_optionValue)) {
-        $_liClasses[] = 'filter-match';
+        $_liClasses[] = 'js-filter-match';
       }
       $_liClass = (!empty($_liClasses)) ? ' ' . implode(' ', $_liClasses) : '';
       ?>
 
-      <li class="option-<?= $_optionCode; ?><?= $_liClass; ?>"
+      <li class="js-swatch-item option-<?= $_optionCode; ?><?= $_liClass; ?>"
           data-product-id="<?= $_product->getId() ?>"
           data-option-label="<?= $_optionLabel ?>">
         <a href="javascript:void(0)"

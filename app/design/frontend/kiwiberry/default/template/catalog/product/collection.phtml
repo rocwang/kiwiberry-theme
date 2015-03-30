@@ -20,12 +20,16 @@ $_productCollection = $this->getProductCollection();
              title="<?= $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
              class="product-img-link"
             >
-            <!-- FIXME: This breaks the js logic for color swatch -->
             <img id="image-<?= $_product->getId() . '-' . $this->getNameInLayout() ?>"
                  class="product-img"
-                 src="<?= $this->helper('vr_kiwiberry/image')->init($_product, 'small_image')->adaptiveResize(300, 400); ?>"
+                 src="<?= $this->helper('catalog/image')
+                   ->init($_product, 'small_image')
+                   ->keepFrame($this->getmode() === 'grid')
+                   ->resize(Mage::getStoreConfig(Mage_Catalog_Helper_Image::XML_NODE_PRODUCT_SMALL_IMAGE_WIDTH)) ?>"
                  alt="<?= $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
               >
+
+            <div class="sk-spinner sk-spinner-rotating-plane"></div>
           </a>
 
           <?php
@@ -102,7 +106,7 @@ $_productCollection = $this->getProductCollection();
 
             <?php else: ?>
 
-                <button type="button" class="btn btn-primary btn-out-of-stock" disabled="disabled">
+              <button type="button" class="btn btn-primary btn-out-of-stock" disabled="disabled">
                 <?= $this->__('Out of Stock') ?>
               </button>
 
