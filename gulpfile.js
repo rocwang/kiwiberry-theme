@@ -46,7 +46,7 @@ var targets = {
       'js/vendor.js',
       'js/app.js'
     ],
-    img : 'images/*',
+    img : 'images/**',
     icon: 'icons/*.svg',
     font: [
       'bootstrap/dist/fonts/*',
@@ -64,7 +64,7 @@ var targets = {
       'js/style-guide-vendor.js',
       'js/style-guide.js'
     ],
-    img : 'images/*',
+    img : 'images/**',
     font: [
       'bootstrap/dist/fonts/*',
       'font-awesome/fonts/*'
