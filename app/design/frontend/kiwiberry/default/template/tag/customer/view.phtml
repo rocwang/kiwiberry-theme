@@ -84,6 +84,6 @@
 <?= $this->getToolbarHtml() ?>
 
 <a href="<?= $this->getUrl('*/*/') ?>" class="btn btn-default">
-  <i class="fa fa-angle-double-left"></i>
+      <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
   <?= $this->__('Back to Tags List') ?>
 </a>

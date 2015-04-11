@@ -8,11 +8,24 @@ select:not(.form-control) {
   .help-block();
 
   .has-success & {
-    color: @state-success-text;
+    color : @state-success-text;
   }
 
   .has-error & {
-    color: @state-danger-text;
+    color : @state-danger-text;
   }
 
+}
+
+// The star for "Required Fields"
+label.required::after {
+  content : '*';
+  .text-danger();
+}
+
+@media (min-width : @screen-ms) {
+  input,
+  select {
+    max-width : @form-field-max-width;
+  }
 }

@@ -13,8 +13,8 @@
     <p><?= $this->__('Enter your destination to get a shipping estimate.') ?></p>
 
     <div class="form-group">
-      <label for="country" class="required col-sm-2 control-label">
-        <em>*</em><?= $this->__('Country') ?>
+      <label for="country" class="required col-sm-2 control-label required">
+        <?= $this->__('Country') ?>
       </label>
 
       <div class="col-sm-10">
@@ -27,15 +27,14 @@
     /*
        Removing the conditional check for whether the region is required, because it doesn't work
        <label for="region_id"<?php if ($this->isStateProvinceRequired()) echo ' class="required"' ?>>
-         <?php if ($this->isStateProvinceRequired()) echo '<em>*</em>' ?>
          <?= $this->__('State/Province') ?>
        </label>
     */
     ?>
     <div class="form-group">
 
-      <label for="region_id" class="required col-sm-2 control-label">
-        <em>*</em><?= $this->__('State/Province') ?>
+      <label for="region_id" class="required col-sm-2 control-label required">
+        <?= $this->__('State/Province') ?>
       </label>
 
       <div class="col-sm-10">
@@ -43,7 +42,7 @@
                 name="region_id"
                 title="<?= $this->__('State/Province') ?>"
                 style="display:none;"
-                class="form-control<?=($this->isStateProvinceRequired() ? ' validate-select' : '') ?>"
+                class="form-control<?= ($this->isStateProvinceRequired() ? ' validate-select' : '') ?>"
                 defaultValue="<?= $this->getEstimateRegionId() ?>">
           <option value=""><?= $this->__('Please select region, state or province') ?></option>
         </select>
@@ -65,7 +64,7 @@
       <div class="form-group">
         <label for="city"
                class="control-label col-sm-2<?php if ($this->isCityRequired()) echo ' required' ?>">
-          <?php if ($this->isCityRequired()) echo '<em>*</em>' ?><?= $this->__('City') ?>
+          <?= $this->__('City') ?>
         </label>
 
         <div class="col-sm-10">
@@ -83,13 +82,12 @@
       /*
         Removing the conditional check for whether the postal code is required, because it doesn't work
         <label for="postcode"<?php if ($this->isZipCodeRequired()) echo ' class="required"' ?>>
-          <?php if ($this->isZipCodeRequired()) echo '<em>*</em>' ?>
           <?= $this->__('Zip/Postal Code') ?>
         </label>
       */
       ?>
       <label for="postcode" class="required control-label col-sm-2">
-        <em>*</em><?= $this->__('Zip') ?>
+        <?= $this->__('Zip') ?>
       </label>
 
       <div class="col-sm-10">

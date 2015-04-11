@@ -47,7 +47,7 @@
     </div>
 
     <div class="form-group">
-      <label for="telephone" class="required"><em>*</em><?= $this->__('Telephone') ?></label>
+      <label for="telephone" class="required"><?= $this->__('Telephone') ?></label>
       <input type="tel"
              name="telephone"
              value="<?= $this->escapeHtml($this->getAddress()->getTelephone()) ?>"
@@ -73,7 +73,7 @@
 
     <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
     <div class="form-group">
-      <label for="street_1" class="required"><em>*</em><?= $this->__('Street Address') ?></label>
+      <label for="street_1" class="required"><?= $this->__('Street Address') ?></label>
       <input type="text"
              name="street[]"
              value="<?= $this->escapeHtml($this->getAddress()->getStreet(1)) ?>"
@@ -108,7 +108,7 @@
     <?php endif; ?>
 
     <div class="form-group">
-      <label for="city" class="required"><em>*</em><?= $this->__('City') ?></label>
+      <label for="city" class="required"><?= $this->__('City') ?></label>
       <input type="text"
              name="city"
              value="<?= $this->escapeHtml($this->getAddress()->getCity()) ?>"
@@ -118,7 +118,7 @@
     </div>
 
     <div class="form-group">
-      <label for="region_id" class="required"><em>*</em><?= $this->__('State/Province') ?></label>
+      <label for="region_id" class="required"><?= $this->__('State/Province') ?></label>
 
       <select id="region_id"
               name="region_id"
@@ -138,7 +138,7 @@
     </div>
 
     <div class="form-group">
-      <label for="zip" class="required"><em>*</em><?= $this->__('Zip/Postal Code') ?></label>
+      <label for="zip" class="required"><?= $this->__('Zip/Postal Code') ?></label>
 
       <input type="text"
              name="postcode"
@@ -149,7 +149,7 @@
     </div>
 
     <div class="form-group">
-      <label for="country" class="required"><em>*</em><?= $this->__('Country') ?></label>
+      <label for="country" class="required"><?= $this->__('Country') ?></label>
       <?= $this->getCountryHtmlSelect() ?>
     </div>
   </div>

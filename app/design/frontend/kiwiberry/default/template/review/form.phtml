@@ -51,8 +51,8 @@
       <?php endif; ?>
 
       <div class="form-group">
-        <label for="review_field">
-          <em>*</em><?= $this->__('Let us know your thoughts') ?>
+        <label for="review_field" class="required">
+          <?= $this->__('Let us know your thoughts') ?>
         </label>
 
         <textarea name="detail"
@@ -62,8 +62,8 @@
       </div>
 
       <div class="form-group">
-        <label for="summary_field">
-          <em>*</em><?= $this->__('Summary of Your Review') ?>
+        <label for="summary_field" class="required">
+          <?= $this->__('Summary of Your Review') ?>
         </label>
 
         <input type="text"
@@ -75,7 +75,7 @@
 
       <div class="form-group">
         <label for="nickname_field" class="required">
-          <em>*</em><?= $this->__("What's your nickname?") ?>
+          <?= $this->__("What's your nickname?") ?>
         </label>
 
         <input type="text"

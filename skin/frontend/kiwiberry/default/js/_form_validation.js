@@ -13,9 +13,9 @@ if (window.VarienForm) {
       var container = jQuery(elm).closest('.form-group, .checkbox, .radio');
 
       if (result) {
-        container.removeClass('has-success').addClass('has-error');
-      } else {
         container.removeClass('has-error').addClass('has-success');
+      } else {
+        container.removeClass('has-success').addClass('has-error');
       }
     }});
 

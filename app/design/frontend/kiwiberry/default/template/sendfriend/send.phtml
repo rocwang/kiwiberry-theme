@@ -76,20 +76,20 @@
             <ul class="form-list" id="sender_options">
                 <li class="fields">
                     <div class="field">
-                        <label for="sender_name" class="required"><em>*</em><?= $this->__('Name:') ?></label>
+                        <label for="sender_name" class="required"><?= $this->__('Name:') ?></label>
                         <div class="input-box">
                             <input name="sender[name]" value="<?= $this->escapeHtml($this->getUserName()) ?>" title="<?= $this->__('Name') ?>" id="sender_name" type="text" class="input-text required-entry" />
                         </div>
                     </div>
                     <div class="field">
-                       <label for="sender_email" class="required"><em>*</em><?= $this->__('Email:') ?></label>
+                       <label for="sender_email" class="required"><?= $this->__('Email:') ?></label>
                        <div class="input-box">
                            <input name="sender[email]" value="<?= $this->escapeHtml($this->getEmail()) ?>" title="<?= $this->__('Email Address') ?>" id="sender_email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" class="input-text required-entry validate-email" />
                        </div>
                     </div>
                 </li>
                 <li class="wide">
-                    <label for="sender_message" class="required"><em>*</em><?= $this->__('Message:') ?></label>
+                    <label for="sender_message" class="required"><?= $this->__('Message:') ?></label>
                     <div class="input-box">
                         <textarea name="sender[message]" class="input-text required-entry" id="sender_message" cols="3" rows="3"><?= $this->escapeHtml($this->getMessage())?></textarea>
                     </div>
@@ -101,13 +101,13 @@
             <ul class="form-list" id="recipients_options">
                 <li class="fields">
                     <div class="field">
-                        <label for="recipients_name" class="required"><em>*</em><?= $this->__('Name:') ?></label>
+                        <label for="recipients_name" class="required"><?= $this->__('Name:') ?></label>
                         <div class="input-box">
                             <input name="recipients[name][]" type="text" class="input-text required-entry" id="recipients_name" />
                         </div>
                     </div>
                     <div class="field">
-                        <label for="recipients_email" class="required"><em>*</em><?= $this->__('Email Address:') ?></label>
+                        <label for="recipients_email" class="required"><?= $this->__('Email Address:') ?></label>
                         <div class="input-box">
                             <input name="recipients[email][]" value="" title="<?= $this->__('Email Address') ?>" id="recipients_email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" class="input-text required-entry validate-email" />
                         </div>

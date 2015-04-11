@@ -12,7 +12,7 @@
 
   <div class="form-group">
     <label for="email_address" class="required">
-      <em>*</em>
+
       <?= $this->__('Email addresses, separated by commas') ?>
     </label>
     <textarea name="emails"
@@ -51,7 +51,7 @@
 
   <div>
     <a href="<?= $this->getBackUrl(); ?>" class="btn btn-default">
-      <i class="fa fa-angle-double-left"></i>
+          <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
       <?= $this->__('Back') ?>
     </a>
 

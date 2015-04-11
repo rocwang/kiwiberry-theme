@@ -1,7 +1,6 @@
 <div class="form-group">
   <label for="<?= $this->getFieldId('taxvat') ?>"
     <?php if ($this->isRequired()) echo ' class="required"' ?>>
-    <?php if ($this->isRequired()) echo '<em>*</em>' ?>
     <?= $this->__('Tax/VAT number') ?>
   </label>
   <input type="text"

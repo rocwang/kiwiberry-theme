@@ -661,9 +661,11 @@ jQuery(function ($) {
   }
 
   // Registration page
-  var registrationForm = document.getElementById('form-validate');
+  var registrationForm = document.getElementById('form-registration');
   if (registrationForm) {
-    var dataForm = new VarienForm('form-validate', true);
+
+    new VarienForm('form-registration', true);
+
     if ($(registrationForm).data('show-address-fields')) {
       new RegionUpdater('country', 'region', 'region_id', $(registrationForm).data('region-json'), undefined, 'zip');
     }
@@ -671,12 +673,12 @@ jQuery(function ($) {
 
   // Forgot password page
   if (document.getElementById('form-validate-forgot-password')) {
-    var dataForm = new VarienForm('form-validate-forgot-password', true);
+    new VarienForm('form-validate-forgot-password', true);
   }
 
   // Reset password page
   if (document.getElementById('form-validate-reset-password')) {
-    var dataForm = new VarienForm('form-validate-reset-password', true);
+    new VarienForm('form-validate-reset-password', true);
   }
 
   // Products comparison page

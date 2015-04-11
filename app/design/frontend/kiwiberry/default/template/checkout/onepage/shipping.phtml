@@ -50,7 +50,7 @@
 
   <div class="form-group">
     <label for="shipping:street1" class="required">
-      <em>*</em>
+
       <?= $this->__('Address') ?>
     </label>
 
@@ -97,7 +97,7 @@
 
   <div class="form-group">
     <label for="shipping:city" class="required">
-      <em>*</em>
+
       <?= $this->__('City') ?>
     </label>
     <input type="text"
@@ -111,7 +111,7 @@
 
   <div class="form-group">
     <label for="shipping:region" class="required">
-      <em>*</em>
+
       <?= $this->__('State/Province') ?>
     </label>
 
@@ -142,7 +142,7 @@
 
   <div class="form-group">
     <label for="shipping:postcode" class="required">
-      <em>*</em>
+
       <?= $this->__('Zip/Postal Code') ?>
     </label>
     <input type="text"
@@ -156,7 +156,7 @@
 
   <div class="form-group">
     <label for="shipping:country_id" class="required">
-      <em>*</em>
+
       <?= $this->__('Country') ?>
     </label>
     <?= $this->getCountryHtmlSelect('shipping') ?>
@@ -164,7 +164,7 @@
 
   <div class="form-group">
     <label for="shipping:telephone" class="required">
-      <em>*</em>
+
       <?= $this->__('Telephone') ?>
     </label>
     <input type="tel"
@@ -228,7 +228,7 @@
   <button type="button"
           class="btn btn-primary btn-sm js-opc-back"
           title="<?= $this->__('Back') ?>">
-    <i class="fa fa-angle-double-left"></i>
+        <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
     <?= $this->__('Back') ?>
   </button>
 

@@ -25,57 +25,50 @@
  */
 ?>
 <div id="customer-dob"
-     class="form-group"
+     class="form-group form-group-dob"
      data-is_required="<?= $this->isRequired() ? 'true' : 'false' ?>"
      data-date-format="<?= $this->getDateFormat() ?>">
 
   <label for="<?= $this->getFieldId('month') ?>"
     <?php if ($this->isRequired()) echo ' class="required"' ?>>
-    <?php if ($this->isRequired()) echo '<em>*</em>' ?>
     <?= $this->__('Date of Birth') ?>
   </label>
 
   <?php ob_start() ?>
-  <div class="form-group dob-day">
-    <label for="<?php $this->getFieldId('day') ?>">
-      <?= $this->__('DD') ?>
-    </label>
-    <input type="text"
+  <div class="col-xs-4 dob-day">
+    <input type="number"
            id="<?= $this->getFieldId('day') ?>"
            name="<?= $this->getFieldName('day') ?>"
            value="<?= $this->getDay() ?>"
            title="<?= $this->__('Day') ?>"
            class="form-control validate-custom"
+           placeholder="<?= $this->__('DD') ?>"
       <?php $this->getFieldParams() ?>>
   </div>
   <?php $dateInputDay = ob_get_clean() ?>
 
   <?php ob_start() ?>
-  <div class="form-group dob-month">
-    <label for="<?php $this->getFieldId('month') ?>">
-      <?= $this->__('MM') ?>
-    </label>
+  <div class="col-xs-4 dob-month">
     <input type="text"
            id="<?= $this->getFieldId('month') ?>"
            name="<?= $this->getFieldName('month') ?>"
            value="<?= $this->getMonth() ?>"
            title="<?= $this->__('Month') ?>"
            class="form-control validate-custom"
+           placeholder="<?= $this->__('MM') ?>"
       <?php $this->getFieldParams() ?>>
   </div>
   <?php $dateInputMonth = ob_get_clean() ?>
 
   <?php ob_start() ?>
-  <div class="form-group dob-year">
-    <label for="<?php $this->getFieldId('year') ?>">
-      <?= $this->__('YYYY') ?>
-    </label>
+  <div class="col-xs-4 dob-year">
     <input type="text"
            id="<?= $this->getFieldId('year') ?>"
            name="<?= $this->getFieldName('year') ?>"
            value="<?= $this->getYear() ?>"
            title="<?= $this->__('Year') ?>"
            class="form-control validate-custom"
+           placeholder="<?= $this->__('YYYY') ?>"
       <?php $this->getFieldParams() ?>>
   </div>
   <?php $dateInputYear = ob_get_clean() ?>
@@ -84,12 +77,13 @@
   $this->setDateInput('d', $dateInputDay);
   $this->setDateInput('m', $dateInputMonth);
   $this->setDateInput('y', $dateInputYear);
-  echo $this->getSortedDateInputs();
   ?>
 
-  <div class="dob-full" style="display:none;">
-    <input type="hidden" id="<?= $this->getFieldId('dob') ?>" name="<?= $this->getFieldName('dob') ?>"/>
+  <div class="row">
+    <?= $this->getSortedDateInputs() ?>
   </div>
+
+  <input type="hidden" id="<?= $this->getFieldId('dob') ?>" name="<?= $this->getFieldName('dob') ?>"/>
 
   <div class="validation-advice" style="display:none;"></div>
 

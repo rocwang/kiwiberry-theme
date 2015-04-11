@@ -46,7 +46,7 @@
   <?php endif; ?>
 
   <a href="<?= $this->getBackUrl() ?>" class="btn btn-default">
-    <i class="fa fa-angle-double-left"></i>
+        <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
     <?= $this->getBackTitle() ?>
   </a>
 </div>

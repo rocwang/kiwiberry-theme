@@ -46,7 +46,7 @@ $_orderUrl = $this->helper('authorizenet')->getPlaceOrderFrontUrl();
 <dd>
 <ul id="payment_form_<?= $_code ?>" class="form-list">
     <li>
-        <label for="<?= $_code ?>_cc_type" class="required"><em>*</em><?= $this->__('Credit Card Type') ?></label>
+        <label for="<?= $_code ?>_cc_type" class="required"><?= $this->__('Credit Card Type') ?></label>
         <div class="input-box">
             <select id="<?= $_code ?>_cc_type" name="payment[cc_type]" class="required-entry validate-cc-type-select">
                 <option value=""><?= $this->__('--Please Select--')?></option>
@@ -58,13 +58,13 @@ $_orderUrl = $this->helper('authorizenet')->getPlaceOrderFrontUrl();
         </div>
     </li>
     <li>
-        <label for="<?= $_code ?>_cc_number" class="required"><em>*</em><?= $this->__('Credit Card Number') ?></label>
+        <label for="<?= $_code ?>_cc_number" class="required"><?= $this->__('Credit Card Number') ?></label>
         <div class="input-box">
             <input type="text" pattern="\d*" id="<?= $_code ?>_cc_number" name="payment[cc_number]" title="<?= $this->__('Credit Card Number') ?>" class="input-text validate-cc-number validate-cc-type" value="" />
         </div>
     </li>
     <li id="<?= $_code ?>_cc_type_exp_div">
-        <label for="<?= $_code ?>_expiration" class="required"><em>*</em><?= $this->__('Expiration Date') ?></label>
+        <label for="<?= $_code ?>_expiration" class="required"><?= $this->__('Expiration Date') ?></label>
         <div class="input-box">
             <div class="v-fix">
                 <select id="<?= $_code ?>_expiration" name="payment[cc_exp_month]" class="month validate-cc-exp required-entry">
@@ -87,7 +87,7 @@ $_orderUrl = $this->helper('authorizenet')->getPlaceOrderFrontUrl();
     <?= $_form->getChildHtml() ?>
     <?php if($_form->hasVerification()): ?>
     <li id="<?= $_code ?>_cc_type_cvv_div">
-        <label for="<?= $_code ?>_cc_cid" class="required"><em>*</em><?= $this->__('Card Verification Number') ?></label>
+        <label for="<?= $_code ?>_cc_cid" class="required"><?= $this->__('Card Verification Number') ?></label>
         <div class="input-box">
             <div class="v-fix">
                 <input type="text" pattern="\d*" title="<?= $this->__('Card Verification Number') ?>" class="input-text cvv required-entry validate-cc-cvn" id="<?= $_code ?>_cc_cid" name="payment[cc_cid]" value="" />

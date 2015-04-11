@@ -1,0 +1,42 @@
+.row-login {
+  .make-flex-row();
+
+  .col-new-users {
+    .make-xs-flex-col(12);
+    .make-ms-flex-col(6);
+  }
+
+  .col-registered-users {
+    .make-xs-flex-col(12);
+    .make-ms-flex-col(6);
+
+    .login-only & {
+      .make-xs-flex-col(12);
+    }
+  }
+}
+
+.col-new-users {
+  display     : flex;
+  flex-flow   : column nowrap;
+  align-items : flex-start;
+
+  .registration-benefits {
+    flex-grow : 1;
+  }
+}
+
+.registration-benefits {
+
+  .icon {
+    .center-block();
+    .square(@benefit-icon-size);
+    fill : @brand-primary;
+  }
+
+  .media-heading {
+    line-height   : @benefit-icon-size;
+    margin-bottom : 0;
+  }
+
+}

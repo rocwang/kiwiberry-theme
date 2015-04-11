@@ -8,7 +8,8 @@ class VR_Kiwiberry_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Render SVG icon
      *
-     * @param $iconName The icon name, which is used as class name as well.
+     * @param string $iconName The icon name, which is used as class name as well.
+     * @param string $extraClasses Extra class names.
      * @return string The SVG icon
      */
     function getSvgIcon($iconName, $extraClasses = '')

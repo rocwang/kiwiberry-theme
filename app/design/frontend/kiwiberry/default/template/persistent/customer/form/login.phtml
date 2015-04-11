@@ -8,49 +8,83 @@
 ?>
 <div class="account-login<?php if (!$this->helper('customer')->isRegistrationAllowed()) echo ' login-only' ?>">
 
-  <h1>
-    <?= $this->helper('customer')->isRegistrationAllowed() ?
-      $this->__('Login or Create an Account') : $this->__('Login');
-    ?>
-  </h1>
+  <div class="page-header">
+    <h1>
+      <?= $this->helper('customer')->isRegistrationAllowed() ?
+        $this->__('Login or Create an Account') : $this->__('Login');
+      ?>
+    </h1>
+  </div>
 
+  <div class="row-login">
 
-    <form action="<?= $this->getPostActionUrl() ?>" method="post" id="login-form" role="form">
+    <?php // Registration Column ?>
+    <?php if ($this->helper('customer')->isRegistrationAllowed()): ?>
+      <div class="col-new-users">
 
-    <?= $this->getBlockHtml('formkey'); ?>
+        <h2><?= $this->__('New Here?') ?></h2>
 
-    <div class="row">
-
-      <?php if ($this->helper('customer')->isRegistrationAllowed()): ?>
-        <div class="col-md-6 new-users">
-          <h2><?= $this->__('New Here?') ?></h2>
+        <div class="registration-benefits">
 
           <p class="text-info"><?= $this->__('Registration is free and easy!') ?></p>
 
-          <ul>
-            <li><?= $this->__('Faster checkout') ?></li>
-            <li><?= $this->__('Save multiple shipping addresses') ?></li>
-            <li><?= $this->__('View and track orders and more') ?></li>
+          <ul class="media-list">
+            <li class="media">
+              <div class="media-left">
+                <?= Mage::helper('vr_kiwiberry')->getSvgIcon('rocket', 'media-object') ?>
+              </div>
+              <div class="media-body">
+                <h3 class="media-heading"><?= $this->__('Faster checkout') ?></h3>
+              </div>
+            </li>
+            <li class="media">
+              <div class="media-left">
+                <?= Mage::helper('vr_kiwiberry')->getSvgIcon('truck', 'media-object') ?>
+              </div>
+              <div class="media-body">
+                <h3 class="media-heading"><?= $this->__('Save multiple shipping addresses') ?></h3>
+              </div>
+            </li>
+            <li class="media">
+              <div class="media-left">
+                <?= Mage::helper('vr_kiwiberry')->getSvgIcon('binoculars', 'media-object') ?>
+              </div>
+              <div class="media-body">
+                <h3 class="media-heading"><?= $this->__('View and track orders and more') ?></h3>
+              </div>
+            </li>
           </ul>
 
-          <a title="<?= $this->__('Create an Account') ?>"
-             class="btn btn-default"
-             href="<?= Mage::helper('persistent')->getCreateAccountUrl($this->getCreateAccountUrl()) ?>">
-            <?= $this->__('Create an Account') ?>
-          </a>
         </div>
-      <?php endif; ?>
 
-      <?php // This column should be col-md-12 if the registration column is not displayed ?>
-      <div class="<?php if ($this->helper('customer')->isRegistrationAllowed()): ?>col-md-6<?php else: ?>col-md-12<?php endif; ?> registered-users">
-        <h2><?= $this->__('Already registered?') ?></h2>
+        <a title="<?= $this->__('Create an Account') ?>"
+           class="btn btn-primary btn-lg"
+           href="<?= Mage::helper('persistent')->getCreateAccountUrl($this->getCreateAccountUrl()) ?>">
+          <?= $this->__('Create an Account') ?>
+        </a>
+
+      </div>
+    <?php endif; ?>
+
+    <?php // Login Column ?>
+    <div class="col-registered-users">
+
+      <h2><?= $this->__('Already registered?') ?></h2>
+
+      <form action="<?= $this->getPostActionUrl() ?>" method="post" id="login-form" role="form">
+
+        <?= $this->getBlockHtml('formkey'); ?>
+
+        <?php if (Mage::helper('checkout')->isContextCheckout()): ?>
+          <input name="context" type="hidden" value="checkout"/>
+        <?php endif; ?>
 
         <p class="text-info"><?= $this->__('If you have an account with us, please log in.') ?></p>
 
         <p class="text-danger"><?= $this->__('* Required Fields') ?></p>
 
         <div class="form-group">
-          <label for="email" class="required"><em>*</em><?= $this->__('Email Address') ?></label>
+          <label for="email" class="required"><?= $this->__('Email Address') ?></label>
           <input type="email"
                  autocapitalize="off"
                  autocorrect="off"
@@ -63,7 +97,7 @@
         </div>
 
         <div class="form-group">
-          <label for="pass" class="required"><em>*</em><?= $this->__('Password') ?></label>
+          <label for="pass" class="required"><?= $this->__('Password') ?></label>
           <input type="password"
                  name="login[password]"
                  class="form-control required-entry validate-password"
@@ -79,15 +113,13 @@
 
         <?= $this->getChildHtml('persistent.remember.me'); ?>
 
-        <button type="submit" class="btn btn-default" title="<?= $this->__('Login') ?>" name="send" id="send2">
+        <button type="submit" class="btn btn-primary btn-lg" title="<?= $this->__('Login') ?>" name="send" id="send2">
           <?= $this->__('Login') ?>
         </button>
-      </div>
-
+      </form>
     </div>
 
-    <?php if (Mage::helper('checkout')->isContextCheckout()): ?>
-      <input name="context" type="hidden" value="checkout"/>
-    <?php endif; ?>
-  </form>
-</div>
+  </div>
+  <!-- .row-login -->
+
+</div><!-- .account-login -->

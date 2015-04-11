@@ -32,6 +32,23 @@
   .make-lg-column(4);
 }
 
+// Sticky footer for pages with spare content
+body {
+  display    : flex;
+  flex-flow  : column nowrap;
+  min-height : 100vh;
+
+  > .container-body {
+    flex-grow : 1;
+  }
+
+  @media (max-width : @screen-ms-max) {
+    .container {
+      width : 100%;
+    }
+  }
+}
+
 footer {
   background-color : @color-footer-bg;
   color            : @color-footer-text;

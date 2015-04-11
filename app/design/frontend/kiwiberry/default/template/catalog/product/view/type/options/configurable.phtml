@@ -24,8 +24,8 @@ $_renderers = $this->getChild('attr_renderers')->getSortedChildren();
         ?>
 
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="attribute<?= $_attribute->getAttributeId() ?>">
-            <em>*</em><?= $_attribute->getLabel() ?>
+          <label class="col-sm-2 control-label required" for="attribute<?= $_attribute->getAttributeId() ?>">
+            <?= $_attribute->getLabel() ?>
           </label>
 
           <div class="col-sm-10">

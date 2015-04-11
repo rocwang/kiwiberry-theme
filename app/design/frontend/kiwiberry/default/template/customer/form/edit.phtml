@@ -19,7 +19,7 @@
   <?= $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
 
   <div class="form-group">
-    <label for="email" class="required"><em>*</em><?= $this->__('Email Address') ?></label>
+    <label for="email" class="required"><?= $this->__('Email Address') ?></label>
     <input type="email"
            autocapitalize="off"
            autocorrect="off"
@@ -66,7 +66,7 @@
          <?php if (!$this->getCustomer()->getChangePassword()): ?>style="display:none;"<?php endif ?>
       >
       <label for="current_password" class="required">
-        <em>*</em><?= $this->__('Current Password') ?>
+        <?= $this->__('Current Password') ?>
       </label>
 
       <!-- This is a dummy hidden field to trick firefox from auto filling the password -->
@@ -81,7 +81,7 @@
 
     <div class="form-group">
       <label for="password" class="required">
-        <em>*</em><?= $this->__('New Password') ?>
+        <?= $this->__('New Password') ?>
       </label>
 
       <input type="password"
@@ -93,7 +93,7 @@
 
     <div class="form-group">
       <label for="confirmation" class="required">
-        <em>*</em><?= $this->__('Confirm New Password') ?>
+        <?= $this->__('Confirm New Password') ?>
       </label>
 
       <input type="password"

@@ -74,7 +74,7 @@
 //]]>
 </script>
 
-<dt><label <?php if ($_option->getIsRequire()) echo ' class="required"' ?>><?php if ($_option->getIsRequire()) echo '<em>*</em>' ?><?=  $this->escapeHtml($_option->getTitle()) ?></label>
+<dt><label <?php if ($_option->getIsRequire()) echo ' class="required"' ?>><?=  $this->escapeHtml($_option->getTitle()) ?></label>
     <?= $this->getFormatedPrice() ?></dt>
 <dd<?php if ($_option->decoratedIsLast){?> class="last"<?php }?>>
     <?php if ($_fileExists): ?>
