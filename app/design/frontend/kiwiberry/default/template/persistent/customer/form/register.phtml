@@ -5,7 +5,6 @@
  * @see app/design/frontend/base/default/template/customer/form/register.phtml
  * @var $this Mage_Customer_Block_Form_Register
  */
-$this->setShowAddressFields(true);
 ?>
 <div class="page-header"><h1><?= $this->__('Create an Account') ?></h1></div>
 
@@ -15,9 +14,11 @@ $this->setShowAddressFields(true);
       method="post"
       id="form-registration"
       role="form"
-      data-show-address-fields="<?= $this->getShowAddressFields() ? 'true' : 'false'; ?>"
-      data-region-json="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()); ?>"
-      enctype="multipart/form-data">
+      enctype="multipart/form-data"
+  <?php if ($this->getShowAddressFields()) : ?>
+    data-region-json="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()); ?>"
+  <?php endif ?>
+  >
 
   <input type="hidden" name="success_url" value="<?= $this->getSuccessUrl() ?>"/>
   <input type="hidden" name="error_url" value="<?= $this->getErrorUrl() ?>"/>
@@ -30,7 +31,10 @@ $this->setShowAddressFields(true);
 
   <p class="text-danger"><?= $this->__('* Required Fields') ?></p>
 
-  <div class="row-create-account">
+  <div class="row-create-account
+      <?php if ($this->getShowAddressFields()) : ?>with-address<?php else: ?>without-address<?php endif ?>"
+    >
+
     <div class="col-personal-info">
 
       <?php
@@ -56,6 +60,112 @@ $this->setShowAddressFields(true);
       if ($_taxvat->isEnabled()): echo $_taxvat->setTaxvat($this->getFormData()->getTaxvat())->toHtml(); endif;
       ?>
 
+    </div>
+    <!-- .col-personal-info -->
+
+    <?php if ($this->getShowAddressFields()): ?>
+      <div class="col-address">
+        <input type="hidden" name="create_address" value="1">
+        <input type="hidden" name="default_billing" value="1"/>
+        <input type="hidden" name="default_shipping" value="1"/>
+
+        <div class="form-group">
+          <label for="company"><?= $this->__('Company') ?></label>
+          <input type="text"
+                 name="company"
+                 id="company"
+                 value="<?= $this->escapeHtml($this->getFormData()->getCompany()) ?>"
+                 title="<?= $this->__('Company') ?>"
+                 class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('company') ?>">
+        </div>
+
+        <div class="form-group">
+          <label for="telephone" class="required"><?= $this->__('Telephone') ?></label>
+          <input type="tel"
+                 name="telephone"
+                 id="telephone"
+                 value="<?= $this->escapeHtml($this->getFormData()->getTelephone()) ?>"
+                 title="<?= $this->__('Telephone') ?>"
+                 class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>">
+        </div>
+
+        <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
+        <div class="form-group">
+          <label for="street_1" class="required"><?= $this->__('Street Address') ?></label>
+          <input type="text"
+                 name="street[]"
+                 value="<?= $this->escapeHtml($this->getFormData()->getStreet(0)) ?>"
+                 title="<?= $this->__('Street Address') ?>"
+                 id="street_1"
+                 class="form-control <?= $_streetValidationClass ?>">
+        </div>
+
+        <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+        <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+          <div class="form-group">
+            <label for="billing:street<?= $_i ?>"><?= $this->__('Street Address %s', $_i) ?></label>
+            <input type="text"
+                   name="street[]"
+                   value="<?= $this->escapeHtml($this->getFormData()->getStreet($_i - 1)) ?>"
+                   title="<?= $this->__('Street Address %s', $_i) ?>"
+                   id="street_<?= $_i ?>"
+                   class="form-control <?= $_streetValidationClass ?>">
+          </div>
+        <?php endfor; ?>
+
+        <div class="form-group">
+          <label for="city" class="required"><?= $this->__('City') ?></label>
+          <input type="text"
+                 name="city"
+                 value="<?= $this->escapeHtml($this->getFormData()->getCity()) ?>"
+                 title="<?= $this->__('City') ?>"
+                 class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('city') ?>"
+                 id="city">
+        </div>
+
+        <div class="form-group">
+          <label for="region_id" class="required"><?= $this->__('State/Province') ?></label>
+          <select id="region_id"
+                  name="region_id"
+                  title="<?= $this->__('State/Province') ?>"
+                  class="form-control validate-select"
+                  defaultValue="<?= $this->getFormData()->getRegionId() ?>"
+                  style="display:none;">
+            <option value=""><?= $this->__('Please select region, state or province') ?></option>
+          </select>
+
+          <input type="text"
+                 id="region"
+                 name="region"
+                 value="<?= $this->escapeHtml($this->getRegion()) ?>"
+                 title="<?= $this->__('State/Province') ?>"
+                 class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('region') ?>"
+                 style="display:none;">
+        </div>
+
+        <div class="form-group">
+          <label for="zip" class="required"><?= $this->__('Zip/Postal Code') ?></label>
+          <input type="text"
+                 name="postcode"
+                 value="<?= $this->escapeHtml($this->getFormData()->getPostcode()) ?>"
+                 title="<?= $this->__('Zip/Postal Code') ?>"
+                 id="zip"
+                 class="form-control validate-zip-international <?php
+                 echo $this->helper('customer/address')->getAttributeValidationClass('postcode')
+                 ?>"
+            >
+        </div>
+
+        <div class="form-group">
+          <label for="country" class="required"><?= $this->__('Country') ?></label>
+          <?= $this->getCountryHtmlSelect() ?>
+        </div>
+
+      </div><!-- .col-address -->
+    <?php endif; ?>
+
+    <div class="col-account-info">
+
       <div class="form-group">
         <label for="email_address" class="required"><?= $this->__('Email Address') ?></label>
         <input type="email"
@@ -66,6 +176,7 @@ $this->setShowAddressFields(true);
                id="email_address"
                value="<?= $this->escapeHtml($this->getFormData()->getEmail()) ?>"
                title="<?= $this->__('Email Address') ?>"
+               required
                class="form-control validate-email required-entry">
       </div>
 
@@ -75,6 +186,7 @@ $this->setShowAddressFields(true);
                name="password"
                id="password"
                title="<?= $this->__('Password') ?>"
+               required
                class="form-control required-entry validate-password">
       </div>
 
@@ -84,138 +196,42 @@ $this->setShowAddressFields(true);
                name="confirmation"
                title="<?= $this->__('Confirm Password') ?>"
                id="confirmation"
+               required
                class="form-control required-entry validate-cpassword">
       </div>
 
-    </div>
+      <?= $this->getChildHtml('form.additional.info'); ?>
 
-    <?php if ($this->getShowAddressFields()): ?>
-    <div class="col-address">
-      <input type="hidden" name="create_address" value="1">
-      <input type="hidden" name="default_billing" value="1"/>
-      <input type="hidden" name="default_shipping" value="1"/>
-
-      <div class="form-group">
-        <label for="company"><?= $this->__('Company') ?></label>
-        <input type="text"
-               name="company"
-               id="company"
-               value="<?= $this->escapeHtml($this->getFormData()->getCompany()) ?>"
-               title="<?= $this->__('Company') ?>"
-               class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('company') ?>">
-      </div>
-
-      <div class="form-group">
-        <label for="telephone" class="required"><?= $this->__('Telephone') ?></label>
-        <input type="tel"
-               name="telephone"
-               id="telephone"
-               value="<?= $this->escapeHtml($this->getFormData()->getTelephone()) ?>"
-               title="<?= $this->__('Telephone') ?>"
-               class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>">
-      </div>
-
-      <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
-      <div class="form-group">
-        <label for="street_1" class="required"><?= $this->__('Street Address') ?></label>
-        <input type="text"
-               name="street[]"
-               value="<?= $this->escapeHtml($this->getFormData()->getStreet(0)) ?>"
-               title="<?= $this->__('Street Address') ?>"
-               id="street_1"
-               class="form-control <?= $_streetValidationClass ?>">
-      </div>
-
-      <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
-      <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
-        <div class="form-group">
-          <label for="billing:street<?= $_i ?>"><?= $this->__('Street Address %s', $_i) ?></label>
-          <input type="text"
-                 name="street[]"
-                 value="<?= $this->escapeHtml($this->getFormData()->getStreet($_i - 1)) ?>"
-                 title="<?= $this->__('Street Address %s', $_i) ?>"
-                 id="street_<?= $_i ?>"
-                 class="form-control <?= $_streetValidationClass ?>">
+      <?php if ($this->isNewsletterEnabled()): ?>
+        <div class="checkbox">
+          <label for="is_subscribed">
+            <input type="checkbox"
+                   name="is_subscribed"
+                   title="<?= $this->__('Sign Up for Newsletter') ?>"
+                   value="1"
+                   id="is_subscribed"
+                   <?php if ($this->getFormData()->getIsSubscribed()): ?>checked<?php endif; ?>
+              >
+            <?= $this->__('Sign Up for Newsletter') ?>
+          </label>
         </div>
-      <?php endfor; ?>
+      <?php endif ?>
 
-      <div class="form-group">
-        <label for="city" class="required"><?= $this->__('City') ?></label>
-        <input type="text"
-               name="city"
-               value="<?= $this->escapeHtml($this->getFormData()->getCity()) ?>"
-               title="<?= $this->__('City') ?>"
-               class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('city') ?>"
-               id="city">
-      </div>
+      <?= $this->getChildHtml('persistent.remember.me'); ?>
 
-      <div class="form-group">
-        <label for="region_id" class="required"><?= $this->__('State/Province') ?></label>
-        <select id="region_id"
-                name="region_id"
-                title="<?= $this->__('State/Province') ?>"
-                class="form-control validate-select"
-                defaultValue="<?= $this->getFormData()->getRegionId() ?>"
-                style="display:none;">
-          <option value=""><?= $this->__('Please select region, state or province') ?></option>
-        </select>
+      <a href="<?= $this->escapeUrl($this->getBackUrl()) ?>" class="btn btn-default">
+        <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
+        <?= $this->__('Back') ?>
+      </a>
 
-        <input type="text"
-               id="region"
-               name="region"
-               value="<?= $this->escapeHtml($this->getRegion()) ?>"
-               title="<?= $this->__('State/Province') ?>"
-               class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('region') ?>"
-               style="display:none;">
-      </div>
-
-      <div class="form-group">
-        <label for="zip" class="required"><?= $this->__('Zip/Postal Code') ?></label>
-        <input type="text"
-               name="postcode"
-               value="<?= $this->escapeHtml($this->getFormData()->getPostcode()) ?>"
-               title="<?= $this->__('Zip/Postal Code') ?>"
-               id="zip"
-               class="form-control validate-zip-international <?php
-               echo $this->helper('customer/address')->getAttributeValidationClass('postcode')
-               ?>"
-          >
-      </div>
-
-      <div class="form-group">
-        <label for="country" class="required"><?= $this->__('Country') ?></label>
-        <?= $this->getCountryHtmlSelect() ?>
-      </div>
+      <button type="submit" title="<?= $this->__('Register') ?>" class="btn btn-primary">
+        <?= $this->__('Register') ?>
+      </button>
 
     </div>
+    <!-- .col-account-info -->
+
   </div>
-<?php endif; ?>
-
-  <?= $this->getChildHtml('form.additional.info'); ?>
-
-  <?php if ($this->isNewsletterEnabled()): ?>
-    <div class="checkbox">
-      <label for="is_subscribed">
-        <input type="checkbox"
-               name="is_subscribed"
-               title="<?= $this->__('Sign Up for Newsletter') ?>"
-               value="1"
-               id="is_subscribed"<?php if ($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?>
-          >
-        <?= $this->__('Sign Up for Newsletter') ?>
-      </label>
-    </div>
-  <?php endif ?>
-
-  <?= $this->getChildHtml('persistent.remember.me'); ?>
-
-  <a href="<?= $this->escapeUrl($this->getBackUrl()) ?>" class="btn btn-default">
-    <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
-    <?= $this->__('Back') ?>
-  </a>
-
-  <button type="submit" title="<?= $this->__('Register') ?>" class="btn btn-primary">
-    <?= $this->__('Register') ?>
-  </button>
+  <!-- .row-create-account -->
 
 </form>

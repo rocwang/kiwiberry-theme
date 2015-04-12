@@ -9,5 +9,7 @@
          value="<?= $this->escapeHtml($this->getTaxvat()) ?>"
          title="<?= $this->__('Tax/VAT number') ?>"
          class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('taxvat') ?>"
-    <?= $this->getFieldParams() ?>>
+         <?php if ($this->isRequired()) : ?>required<?php endif ?>
+    <?= $this->getFieldParams() ?>
+    >
 </div>

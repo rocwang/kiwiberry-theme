@@ -1,15 +1,35 @@
 .row-create-account {
   .make-row();
 
-  .col-personal-info {
-    .make-ms-column(6);
+  &.without-address {
+    .col-personal-info {
+      .make-ms-column(6);
+    }
+
+    .col-account-info {
+      .make-ms-column(6);
+    }
   }
 
-  .col-address {
-    .make-ms-column(6);
+  &.with-address {
+    .col-personal-info {
+      .make-sm-column(4);
+    }
+
+    .col-address {
+      .make-sm-column(4);
+    }
+
+    .col-account-info {
+      .make-sm-column(4);
+    }
   }
 }
 
 .form-group-dob {
   max-width : @form-field-max-width;
+
+  .dob-full {
+    display : none;
+  }
 }

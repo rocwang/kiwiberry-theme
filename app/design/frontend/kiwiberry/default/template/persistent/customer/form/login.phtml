@@ -93,7 +93,9 @@
                  value="<?= $this->escapeHtml($this->getUsername()) ?>"
                  id="email"
                  class="form-control required-entry validate-email"
-                 title="<?= $this->__('Email Address') ?>"/>
+                 title="<?= $this->__('Email Address') ?>"
+                 required
+            >
         </div>
 
         <div class="form-group">
@@ -102,7 +104,9 @@
                  name="login[password]"
                  class="form-control required-entry validate-password"
                  id="pass"
-                 title="<?= $this->__('Password') ?>"/>
+                 title="<?= $this->__('Password') ?>"
+                 required
+            >
         </div>
 
         <?= $this->getChildHtml('form.additional.info'); ?>

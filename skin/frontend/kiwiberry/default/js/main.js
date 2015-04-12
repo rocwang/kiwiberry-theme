@@ -291,9 +291,6 @@ jQuery(function ($) {
     }
   }
 
-  // What's "Remember Me"
-  $('.what-is-remember-me').popover();
-
   if (document.getElementById('customer-dob')) {
     var customer_dob = new Varien.DOB(
       '#customer-dob',
@@ -666,8 +663,9 @@ jQuery(function ($) {
 
     new VarienForm('form-registration', true);
 
-    if ($(registrationForm).data('show-address-fields')) {
-      new RegionUpdater('country', 'region', 'region_id', $(registrationForm).data('region-json'), undefined, 'zip');
+    var regionJson = $(registrationForm).data('region-json');
+    if (regionJson) {
+      new RegionUpdater('country', 'region', 'region_id', regionJson, undefined, 'zip');
     }
   }
 
@@ -844,9 +842,6 @@ jQuery(function ($) {
     wishlistAllCartForm.form.submit();
   });
 
-  // Show configurable products options in wishlist
-  $('.js-wishlist-view-details').popover();
-
   $('.js-add-witem-to-cart').click(function () {
     var itemId = $(this).data('item-id');
     var url = $(this).data('url-add-to-cart');
@@ -1011,6 +1006,7 @@ jQuery(function ($) {
 
   // Tooltips
   $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
 
   // Mini Cart
   //truncateOptions();

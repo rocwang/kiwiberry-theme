@@ -43,32 +43,35 @@
            title="<?= $this->__('Day') ?>"
            class="form-control validate-custom"
            placeholder="<?= $this->__('DD') ?>"
+           <?php if ($this->isRequired()) : ?>required<?php endif ?>
       <?php $this->getFieldParams() ?>>
   </div>
   <?php $dateInputDay = ob_get_clean() ?>
 
   <?php ob_start() ?>
   <div class="col-xs-4 dob-month">
-    <input type="text"
+    <input type="number"
            id="<?= $this->getFieldId('month') ?>"
            name="<?= $this->getFieldName('month') ?>"
            value="<?= $this->getMonth() ?>"
            title="<?= $this->__('Month') ?>"
            class="form-control validate-custom"
            placeholder="<?= $this->__('MM') ?>"
+           <?php if ($this->isRequired()) : ?>required<?php endif ?>
       <?php $this->getFieldParams() ?>>
   </div>
   <?php $dateInputMonth = ob_get_clean() ?>
 
   <?php ob_start() ?>
   <div class="col-xs-4 dob-year">
-    <input type="text"
+    <input type="number"
            id="<?= $this->getFieldId('year') ?>"
            name="<?= $this->getFieldName('year') ?>"
            value="<?= $this->getYear() ?>"
            title="<?= $this->__('Year') ?>"
            class="form-control validate-custom"
            placeholder="<?= $this->__('YYYY') ?>"
+           <?php if ($this->isRequired()) : ?>required<?php endif ?>
       <?php $this->getFieldParams() ?>>
   </div>
   <?php $dateInputYear = ob_get_clean() ?>
@@ -83,7 +86,10 @@
     <?= $this->getSortedDateInputs() ?>
   </div>
 
-  <input type="hidden" id="<?= $this->getFieldId('dob') ?>" name="<?= $this->getFieldName('dob') ?>"/>
+  <!-- The .dob-full container here is for DOB validation working properly, which is hidden by CSS -->
+  <div class="dob-full">
+    <input type="hidden" id="<?= $this->getFieldId('dob') ?>" name="<?= $this->getFieldName('dob') ?>">
+  </div>
 
   <div class="validation-advice" style="display:none;"></div>
 

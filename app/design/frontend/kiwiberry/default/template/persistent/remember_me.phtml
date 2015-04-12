@@ -10,19 +10,20 @@
   <label for="<?= $rememberMeId; ?>">
     <input type="checkbox"
            name="persistent_remember_me"
-           id="<?= $rememberMeId; ?>"<?php if ($this->isRememberMeChecked()): ?>
-      checked="checked"<?php endif; ?>
-           title="<?= $this->__('Remember Me') ?>">
+           id="<?= $rememberMeId; ?>"
+           title="<?= $this->__('Remember Me') ?>"
+           <?php if ($this->isRememberMeChecked()): ?>checked<?php endif; ?>
+      >
     <?= $this->__('Remember Me') ?>
   </label>
 
-  <button type="button"
-          class="what-is-remember-me btn btn-link"
-          data-toggle="popover"
-          data-placement="top"
-          data-trigger="focus"
-          data-content="<?= $this->__('Checking &quot;Remember Me&quot; will let you access your shopping cart on this computer when you are logged out'); ?>">
+  <a tabindex="0"
+     role="button"
+     data-toggle="popover"
+     data-trigger="focus"
+     data-placement="top"
+     data-content="<?= $this->__('Checking &quot;Remember Me&quot; will let you access your shopping cart on this computer when you are logged out'); ?>">
     <?= $this->__('What\'s this?') ?>
-  </button>
+  </a>
 </div>
 
