@@ -16,15 +16,21 @@
 
   <base href="<?php echo $this->getBaseUrl() . 'skin/frontend/kiwiberry/default/' ?>">
 
+  <?php //Todo: Place favicon.ico to 'skin/frontend/kiwiberry/default/' ?>
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="css/vendor.css" type="text/css">
-  <link rel="stylesheet" href="css/kiwiberry.css" type="text/css">
+  <link rel="stylesheet" href="css/app.css" type="text/css">
 </head>
 <body>
-  <div class="container">
-    <?php require_once $contentTemplate ?>
-  </div>
+<div class="container">
+
+  <img src="images/logo.png"
+       alt="Logo"
+       class="img-responsive logo-error">
+
+  <?php require_once $contentTemplate ?>
+</div>
 </body>
 </html>

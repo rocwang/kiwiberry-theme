@@ -17,7 +17,7 @@
   </div>
 
   <?php if ($this->showErrorMsg): ?>
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-danger" role="alert">
       Please fill all required fields with valid information
     </div>
   <?php endif; ?>
@@ -30,49 +30,58 @@
 
     <h2>Personal Information</h2>
 
-    <div class="form-group">
-      <label for="firstname" class="required"><em>*</em>First Name</label>
-      <input type="text"
-             name="firstname"
-             id="firstname"
-             value="<?php echo $this->postData['firstName'] ?>"
-             title="First Name"
-             class="required-entry form-control">
-    </div>
+    <div class="row">
+      <div class="col-sm-6">
 
-    <div class="form-group">
-      <label for="lastname" class="required"><em>*</em>Last Name </label>
-      <input type="text"
-             name="lastname"
-             id="lastname"
-             value="<?php echo $this->postData['lastName'] ?>"
-             title="Last Name"
-             class="required-entry form-control">
-    </div>
+        <div class="form-group">
+          <label for="firstname" class="required"><em>*</em>First Name</label>
+          <input type="text"
+                 name="firstname"
+                 id="firstname"
+                 value="<?php echo $this->postData['firstName'] ?>"
+                 title="First Name"
+                 class="required-entry form-control">
+        </div>
 
-    <div class="form-group">
-      <label for="firstname" class="required"><em>*</em>Email Address</label>
-      <input type="text"
-             name="email"
-             id="email_address"
-             value="<?php echo $this->postData['email'] ?>"
-             title="Email Address"
-             class="validate-email required-entry form-control">
-    </div>
+        <div class="form-group">
+          <label for="lastname" class="required"><em>*</em>Last Name </label>
+          <input type="text"
+                 name="lastname"
+                 id="lastname"
+                 value="<?php echo $this->postData['lastName'] ?>"
+                 title="Last Name"
+                 class="required-entry form-control">
+        </div>
 
-    <div class="form-group">
-      <label for="firstname">Telephone</label>
-      <input type="text"
-             name="telephone"
-             id="telephone"
-             value="<?php echo $this->postData['telephone'] ?>"
-             title="Telephone"
-             class="form-control">
-    </div>
+        <div class="form-group">
+          <label for="email" class="required"><em>*</em>Email Address</label>
+          <input type="text"
+                 name="email"
+                 id="email_address"
+                 value="<?php echo $this->postData['email'] ?>"
+                 title="Email Address"
+                 class="validate-email required-entry form-control">
+        </div>
 
-    <div class="form-group">
-      <label for="firstname">Comment</label>
-      <textarea name="comment" rows="3" class="form-control"><?php echo $this->postData['comment'] ?></textarea>
+      </div>
+      <div class="col-sm-6">
+
+        <div class="form-group">
+          <label for="telephone">Telephone</label>
+          <input type="text"
+                 name="telephone"
+                 id="telephone"
+                 value="<?php echo $this->postData['telephone'] ?>"
+                 title="Telephone"
+                 class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="comment">Comment</label>
+          <textarea name="comment" rows="4" class="form-control"><?php echo $this->postData['comment'] ?></textarea>
+        </div>
+
+      </div>
     </div>
 
     <p class="text-danger">* Required Fields</p>
@@ -81,8 +90,9 @@
       Submit
     </button>
 
-
   </form>
+
+  <hr>
 
 <?php elseif ('' == $this->reportAction): ?>
 
@@ -92,11 +102,14 @@
 
 <?php if ($this->reportAction == 'print'): ?>
   <h2>Technical Details:</h2>
-  <pre>
-    <?php echo $this->reportData[0] ?><br>
-    <strong>Trace:</strong>
-    <?php echo htmlspecialchars($this->reportData[1]) ?><br>
-  </pre>
+
+  <p>Error Message:</p>
+
+  <pre><?php echo $this->reportData[0] ?></pre>
+
+  <p>Trace:</p>
+
+  <pre><?php echo htmlspecialchars($this->reportData[1]) ?></pre>
 <?php endif; ?>
 
 <?php if ($this->reportId && $this->reportUrl): ?>
