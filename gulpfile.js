@@ -27,7 +27,7 @@ var gulp                = require('gulp'),
     svgSprite           = require('gulp-svg-sprite');
 
 // Allows gulp --dist to be run for production compilation
-var isProduction = util.env.dist ? true : false;
+var isProduction = util.env.dist;
 
 // Base paths
 var paths = {
@@ -90,14 +90,14 @@ function buildCss(target) {
     .pipe(isProduction ? combineMediaQueries({log: true}) : util.noop())
     .pipe(isProduction ? minifyCss() : util.noop())
 
-      // These 2 lines is for working around the source map issue with autoprefixer
-      .pipe(sourcemaps.write())
-      .pipe(sourcemaps.init({loadMaps: true}))
+    // These 2 lines is for working around the source map issue with autoprefixer
+    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.init({loadMaps: true}))
 
-      .pipe(autoprefixer({
-          browsers: 'last 2 version',
-          cascade : false
-      }))
+    .pipe(autoprefixer({
+      browsers: 'last 2 version',
+      cascade : false
+    }))
 
     .pipe(isProduction ? util.noop() : sourcemaps.write('.'))
 
