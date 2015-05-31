@@ -5,157 +5,149 @@
  * @var $this Mage_Checkout_Block_Cart
  */
 ?>
+
 <?php $_priceDisplay = ($this->helper('tax')->displayCartBothPrices()) ? 'display-both-prices' : 'display-single-price'; ?>
 <div class="cart <?= $_priceDisplay; ?>">
 
-  <h1><?= $this->__('Shopping Cart') ?></h1>
+  <div class="page-header">
+    <h1><?= $this->__('Shopping Cart') ?></h1>
 
-  <?php if (!$this->hasError()): ?>
-    <div>
+    <?php if (!$this->hasError()): ?>
       <?php foreach ($this->getMethods('top_methods') as $method): ?>
         <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
           <?= $methodHtml; ?>
-        <?php endif; ?>
+        <?php endif ?>
       <?php endforeach; ?>
-    </div>
-  <?php endif; ?>
+    <?php endif ?>
+  </div>
 
-
-
-    <?= $this->getChildHtml('form_before') ?>
+  <?= $this->getChildHtml('form_before') ?>
 
   <form action="<?= $this->getUrl('checkout/cart/updatePost') ?>" method="post" role="form">
 
     <?= $this->getBlockHtml('formkey'); ?>
 
-    <table id="shopping-cart-table" class="table table-striped">
+    <div class="table-responsive">
 
-      <col width="1"/>
-      <col width="1"/>
-      <col width="1"/>
-      <col width="1"/>
-      <col width="1"/>
-      <col width="1"/>
-      <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
-        <col width="1"/>
-        <col width="1"/>
-      <?php endif; ?>
+      <table id="shopping-cart-table" class="table table-striped">
 
-      <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+        <colgroup>
+          <col width="1"/>
+          <col width="1"/>
+          <col width="1"/>
+          <col width="1"/>
+          <col width="1"/>
+          <col width="1"/>
+          <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+            <col width="1"/>
+            <col width="1"/>
+          <?php endif ?>
+        </colgroup>
 
-      <thead>
-      <tr>
-        <th rowspan="<?= $mergedCells; ?>">
-          <?= $this->__('Product') ?>
-        </th>
-
-        <th rowspan="<?= $mergedCells; ?>">&nbsp;</th>
-
-        <th colspan="<?= $mergedCells; ?>">
-          <?= $this->__('Price') ?>
-        </th>
-
-        <th rowspan="<?= $mergedCells; ?>">
-          <?= $this->__('Qty') ?>
-        </th>
-
-        <th colspan="<?= $mergedCells; ?>">
-          <?= $this->__('Subtotal') ?>
-        </th>
-
-        <th rowspan="<?= $mergedCells; ?>">&nbsp;</th>
-
-      </tr>
-
-      <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+        <thead>
         <tr>
-          <th><?= $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
-          <th><?= $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
-          <th><?= $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
-          <th><?= $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+          <th><?= $this->__('Product') ?></th>
+
+          <th>&nbsp;</th>
+
+
+          <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+            <th><?= $this->__('Price') . $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+            <th><?= $this->__('Price') . $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+          <?php else: ?>
+            <th><?= $this->__('Price') ?></th>
+          <?php endif ?>
+
+          <th><?= $this->__('Qty') ?></th>
+
+          <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+            <th><?= $this->__('Subtotal') . $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+            <th><?= $this->__('Subtotal') . $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+          <?php else: ?>
+            <th><?= $this->__('Subtotal') ?></th>
+          <?php endif ?>
+
+          <th>&nbsp;</th>
         </tr>
-      <?php endif; ?>
-      </thead>
+        </thead>
 
-      <tfoot>
-      <tr>
-        <td colspan="50">
+        <tfoot>
+        <tr>
+          <td colspan="50">
 
-          <!-- Make this button the first responder rather than empty cart -->
-          <!--          <button type="submit"-->
-          <!--                  style="visibility:hidden;"-->
-          <!--                  name="update_cart_action"-->
-          <!--                  value="update_qty"-->
-          <!--                  title="--><?php //echo $this->__('Update Shopping Cart'); ?><!--"-->
-          <!--                  class="btn btn-default">-->
-          <!--            --><?php //echo $this->__('Update Shopping Cart'); ?>
-          <!--          </button>-->
-          <div class="pull-right">
+            <div class="pull-right">
+              <button type="submit"
+                      name="update_cart_action"
+                      value="update_qty"
+                      title="<?= $this->__('Update Shopping Cart'); ?>"
+                      class="btn btn-default">
+                <?= $this->__('Update Shopping Cart'); ?>
+              </button>
+
+              <?php if ($this->getContinueShoppingUrl()): ?>
+                <a title="<?= $this->__('Continue Shopping') ?>"
+                   class="btn btn-default"
+                   href="<?= $this->getContinueShoppingUrl() ?>">
+                  <?= $this->__('Continue Shopping') ?>
+                </a>
+              <?php endif ?>
+            </div>
+
             <button type="submit"
                     name="update_cart_action"
-                    value="update_qty"
-                    title="<?= $this->__('Update Shopping Cart'); ?>"
-                    class="btn btn-primary">
-              <?= $this->__('Update Shopping Cart'); ?>
+                    value="empty_cart"
+                    title="<?= $this->__('Empty Cart'); ?>"
+                    class="btn btn-danger"
+                    id="empty_cart_button">
+              <?= $this->__('Empty Cart'); ?>
             </button>
 
-            <?php if ($this->getContinueShoppingUrl()): ?>
-              <a title="<?= $this->__('Continue Shopping') ?>"
-                 class="btn btn-primary"
-                 href="<?= $this->getContinueShoppingUrl() ?>">
-                <?= $this->__('Continue Shopping') ?>
-              </a>
-            <?php endif; ?>
-          </div>
+          </td>
+        </tr>
+        </tfoot>
 
-          <button type="submit"
-                  name="update_cart_action"
-                  value="empty_cart"
-                  title="<?= $this->__('Empty Cart'); ?>"
-                  class="btn btn-danger"
-                  id="empty_cart_button">
-            <?= $this->__('Empty Cart'); ?>
-          </button>
+        <tbody>
+        <?php foreach ($this->getItems() as $_item): ?>
+          <?= $this->getItemHtml($_item) ?>
+        <?php endforeach ?>
+        </tbody>
 
-        </td>
-      </tr>
-      </tfoot>
-
-      <tbody>
-      <?php foreach ($this->getItems() as $_item): ?>
-        <?= $this->getItemHtml($_item) ?>
-      <?php endforeach ?>
-      </tbody>
-
-    </table>
+      </table>
+    </div>
   </form>
 
   <?= $this->getChildHtml('shopping.cart.table.after'); ?>
 
-  <div class="cart-forms">
-    <?php /* Extensions placeholder */ ?>
-    <?= $this->getChildHtml('checkout_cart_widget') ?>
-    <?= $this->getChildHtml('coupon') ?>
-    <?= $this->getChildHtml('checkout.cart.extra') ?>
-    <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
-  </div>
+  <div class="cart-bottom">
+    <div class="cart-forms">
 
-  <div class="cart-totals">
+      <div class="cart-forms-row">
+        <div class="cart-coupon">
+          <?php /* Extensions placeholder */ ?>
+          <?= $this->getChildHtml('checkout_cart_widget') ?>
+          <?= $this->getChildHtml('coupon') ?>
+          <?= $this->getChildHtml('checkout.cart.extra') ?>
+        </div>
+        <div class="cart-shipping">
+          <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif ?>
+        </div>
+      </div>
 
-    <?= $this->getChildHtml('totals'); ?>
+    </div>
+    <div class="cart-totals">
 
-    <?php if (!$this->hasError()): ?>
-      <div>
+      <?= $this->getChildHtml('totals'); ?>
+
+      <?php if (!$this->hasError()): ?>
         <?php foreach ($this->getMethods('methods') as $method): ?>
           <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
             <?= $methodHtml; ?>
-          <?php endif; ?>
+          <?php endif ?>
         <?php endforeach; ?>
-      </div>
-    <?php endif; ?>
+      <?php endif ?>
 
+    </div>
   </div>
 
   <?= $this->getChildHtml('crosssell') ?>
-
 </div>

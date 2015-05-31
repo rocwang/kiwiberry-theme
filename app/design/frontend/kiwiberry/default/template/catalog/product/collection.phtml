@@ -3,7 +3,9 @@
 $_productCollection = $this->getProductCollection();
 ?>
 
-<?php if ($_productCollection instanceof Varien_Data_Collection && $_productCollection->getSize()): ?>
+<?php if ($_productCollection instanceof Varien_Data_Collection && $_productCollection->getSize()
+  || is_array($_productCollection) && count($_productCollection)
+): ?>
 
   <?php $_helper = $this->helper('catalog/output'); ?>
 

@@ -1,12 +1,12 @@
 module.exports = [
-  "_noconflict.js",
-  "_pointer_manager.js",
-  "_date_option.js",
-  "_custom_options.js",
-  //"_product-media-manager.js",
-  "configurable-swatches/configurable-media-images.js",
-  "configurable-swatches/configurable-swatches-list.js",
-  "configurable-swatches/_swatches-product.js",
-  "_form_validation.js",
-  "main.js"
+  "app/noconflict.js",
+  "app/pointer_manager.js",
+  "app/date_option.js",
+  "app/custom_options.js",
+  //"app/product-media-manager.js",
+  "app/configurable-swatches/configurable-media-images.js",
+  "app/configurable-swatches/configurable-swatches-list.js",
+  "app/configurable-swatches/swatches-product.js",
+  "app/form_validation.js",
+  "app/main.js"
 ];

@@ -151,7 +151,10 @@
           <label>Shopping Cart Items After</label>
         </block>
         <block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell"
-               template="checkout/cart/crosssell.phtml"/>
+               template="checkout/cart/crosssell.phtml">
+          <block type="checkout/cart_crosssell" name="product-collection"
+                 template="catalog/product/collection.phtml"/>
+        </block>
 
         <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals"
                template="checkout/cart/totals.phtml"/>

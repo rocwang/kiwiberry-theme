@@ -1,0 +1,27 @@
+.table-total {
+  text-align : right;
+
+  td:last-child {
+    white-space : nowrap;
+  }
+}
+
+.summary-total {
+  color           : @link-color;
+  text-decoration : none;
+  cursor          : pointer;
+
+  &:hover,
+  &:focus {
+    color           : @link-hover-color;
+    text-decoration : @link-hover-decoration;
+  }
+}
+
+.summary-details {
+  display : none;
+
+  &.is-visiable {
+    display : table-row;
+  }
+}

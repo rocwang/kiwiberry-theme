@@ -1,3 +1,3 @@
 module.exports = [
-  "style-guide-main.js"
+  "style-guide/main.js"
 ]

@@ -1,44 +1,54 @@
-<form id="discount-coupon-form"
-      class="form-inline"
-      action="<?= $this->getUrl('checkout/cart/couponPost') ?>"
-      method="post"
-      role="form"
-  >
-
-  <input type="hidden" name="remove" id="remove-coupon" value="0"/>
-
-  <h2><?= $this->__('Discount Codes') ?></h2>
-
-  <div class="form-group">
-
-    <label class="sr-only" for="coupon_code"><?= $this->__('Discount Codes') ?></label>
-
-    <input class="form-control"
-           type="text"
-           id="coupon_code"
-           name="coupon_code"
-           placeholder="<?= $this->__('Discount Codes') ?>"
-           value="<?= $this->escapeHtml($this->getCouponCode()) ?>"/>
-
-    <button type="button"
-            id="btn_coupon_apply"
-            title="<?= $this->__('Apply') ?>"
-            class="btn btn-primary"
-            value="<?= $this->__('Apply') ?>">
-      <?= $this->__('Apply') ?>
-    </button>
-
-    <?php if (strlen($this->getCouponCode())): ?>
-      <button type="button"
-              id="btn_coupon_remove"
-              title="<?= $this->__('Cancel') ?>"
-              class="btn btn-danger"
-              value="<?= $this->__('Cancel') ?>">
-        <?= $this->__('Cancel') ?>
-      </button>
-    <?php endif; ?>
-
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><?= $this->__('Discount Codes') ?></h2>
   </div>
 
-</form>
+  <div class="panel-body">
+    <form id="discount-coupon-form"
+          action="<?= $this->getUrl('checkout/cart/couponPost') ?>"
+          method="post"
+          role="form"
+      >
 
+      <input type="hidden" name="remove" id="remove-coupon" value="0"/>
+
+      <div class="form-group">
+
+        <label class="sr-only" for="coupon_code"><?= $this->__('Discount Codes') ?></label>
+
+        <div class="input-group">
+          <input class="form-control"
+                 type="text"
+                 id="coupon_code"
+                 name="coupon_code"
+                 placeholder="<?= $this->__('Discount Codes') ?>"
+                 value="<?= $this->escapeHtml($this->getCouponCode()) ?>"/>
+
+          <span class="input-group-btn">
+            <button type="button"
+                    id="btn_coupon_apply"
+                    title="<?= $this->__('Apply') ?>"
+                    class="btn btn-default"
+                    value="<?= $this->__('Apply') ?>">
+              <?= $this->__('Apply') ?>
+            </button>
+          </span>
+
+          <?php if (strlen($this->getCouponCode())): ?>
+            <span class="input-group-btn">
+              <button type="button"
+                      id="btn_coupon_remove"
+                      title="<?= $this->__('Cancel') ?>"
+                      class="btn btn-danger"
+                      value="<?= $this->__('Cancel') ?>">
+                <?= $this->__('Cancel') ?>
+              </button>
+            </span>
+          <?php endif; ?>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -24,8 +24,10 @@ label.required::after {
 }
 
 @media (min-width : @screen-ms) {
-  input,
-  select {
-    max-width : @form-field-max-width;
+  .form-group {
+    > input,
+    > select {
+      max-width : @form-field-max-width;
+    }
   }
 }

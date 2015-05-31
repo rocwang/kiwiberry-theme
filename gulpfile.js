@@ -91,8 +91,8 @@ function buildCss(target) {
     .pipe(isProduction ? minifyCss() : util.noop())
 
     // These 2 lines is for working around the source map issue with autoprefixer
-    .pipe(sourcemaps.write())
-    .pipe(sourcemaps.init({loadMaps: true}))
+    //.pipe(sourcemaps.write())
+    //.pipe(sourcemaps.init({loadMaps: true}))
 
     .pipe(autoprefixer({
       browsers: 'last 2 version',
@@ -120,14 +120,13 @@ function buildJs(target) {
     var src = require(paths.src + val);
 
     if (val === 'js/vendor.js' && !isProduction) {
-      src.push('./_livereload.js');
+      src.push('app/livereload.js');
       src.push('../../../../../bower_components/livereload/dist/livereload.js');
     }
 
-
-    var stream = gulp.src(src, {cwd: paths.src + 'js'})
-
-      .pipe(plumber({errorHandler: onError}))
+    var stream = gulp.src(src, {
+      cwd  : paths.src + 'js/',
+    }).pipe(plumber({errorHandler: onError}))
       .on('error', console.error.bind(console))
 
       .pipe(isProduction ? util.noop() : sourcemaps.init())
@@ -186,7 +185,7 @@ function runJekyll(options, cb) {
   options.push('--config');
   options.push('style-guide/_config.yml');
 
-  var spawn = require('child_process').spawn,
+  var spawn  = require('child_process').spawn,
       jekyll = spawn('jekyll', options);
 
   jekyll.stdout.on('data', function (data) {

@@ -1,43 +1,30 @@
 <?php /** @var $this Mage_Checkout_Block_Cart_Shipping */ ?>
-<div class="shipping">
 
-  <h2><?= $this->__('Estimate Shipping and Tax') ?></h2>
+<div class="panel panel-default">
+  <div class="panel-heading">
 
-  <form action="<?= $this->getUrl('checkout/cart/estimatePost') ?>"
-        method="post"
-        id="shipping-zip-form"
-        class="form-horizontal"
-        data-region-json="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()) ?>"
-        role="form">
+    <h2 class="panel-title"><?= $this->__('Estimate Shipping and Tax') ?></h2>
 
-    <p><?= $this->__('Enter your destination to get a shipping estimate.') ?></p>
+  </div>
+  <div class="panel-body">
+    <form action="<?= $this->getUrl('checkout/cart/estimatePost') ?>"
+          method="post"
+          id="shipping-zip-form"
+          class="shipping-zip-form"
+          data-region-json="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()) ?>"
+          role="form">
 
-    <div class="form-group">
-      <label for="country" class="required col-sm-2 control-label required">
-        <?= $this->__('Country') ?>
-      </label>
+      <p class="text-info"><?= $this->__('Enter your destination to get a shipping estimate.') ?></p>
 
-      <div class="col-sm-10">
+      <div class="form-group">
+        <label for="country" class="required"><?= $this->__('Country') ?></label>
+
         <?= Mage::getBlockSingleton('directory/data')->getCountryHtmlSelect($this->getEstimateCountryId()) ?>
       </div>
-    </div>
 
-    <?php // if($this->getStateActive()): ?>
-    <?php
-    /*
-       Removing the conditional check for whether the region is required, because it doesn't work
-       <label for="region_id"<?php if ($this->isStateProvinceRequired()) echo ' class="required"' ?>>
-         <?= $this->__('State/Province') ?>
-       </label>
-    */
-    ?>
-    <div class="form-group">
+      <div class="form-group">
+        <label for="region_id" class="required"><?= $this->__('State/Province') ?></label>
 
-      <label for="region_id" class="required col-sm-2 control-label required">
-        <?= $this->__('State/Province') ?>
-      </label>
-
-      <div class="col-sm-10">
         <select id="region_id"
                 name="region_id"
                 title="<?= $this->__('State/Province') ?>"
@@ -54,78 +41,59 @@
                title="<?= $this->__('State/Province') ?>"
                placeholder="<?= $this->__('State/Province') ?>"
                class="form-control"
-               style="display:none;"/>
+               style="display:none;">
       </div>
 
-    </div>
-    <?php // endif; ?>
+      <?php if ($this->getCityActive()): ?>
+        <div class="form-group">
+          <label for="city" class="<?php if ($this->isCityRequired()) echo ' required' ?>">
+            <?= $this->__('City') ?>
+          </label>
 
-    <?php if ($this->getCityActive()): ?>
-      <div class="form-group">
-        <label for="city"
-               class="control-label col-sm-2<?php if ($this->isCityRequired()) echo ' required' ?>">
-          <?= $this->__('City') ?>
-        </label>
-
-        <div class="col-sm-10">
           <input class="form-control<?php if ($this->isCityRequired()): ?> required-entry<?php endif; ?>"
                  id="city"
                  type="text"
                  name="estimate_city"
-                 value="<?= $this->escapeHtml($this->getEstimateCity()) ?>"/>
+                 value="<?= $this->escapeHtml($this->getEstimateCity()) ?>">
         </div>
-      </div>
-    <?php endif; ?>
+      <?php endif; ?>
 
-    <div class="form-group">
-      <?php
-      /*
-        Removing the conditional check for whether the postal code is required, because it doesn't work
-        <label for="postcode"<?php if ($this->isZipCodeRequired()) echo ' class="required"' ?>>
-          <?= $this->__('Zip/Postal Code') ?>
+      <div class="form-group">
+        <label for="postcode" class="required">
+          <?= $this->__('Zip') ?>
         </label>
-      */
-      ?>
-      <label for="postcode" class="required control-label col-sm-2">
-        <?= $this->__('Zip') ?>
-      </label>
 
-      <div class="col-sm-10">
         <input class="form-control validate-postcode<?php if ($this->isZipCodeRequired()): ?> required-entry<?php endif; ?>"
                type="text"
                id="postcode"
                name="estimate_postcode"
-               value="<?= $this->escapeHtml($this->getEstimatePostcode()) ?>"/>
+               title="<?= $this->__('Zip') ?>"
+               placeholder="<?= $this->__('Zip') ?>"
+               value="<?= $this->escapeHtml($this->getEstimatePostcode()) ?>">
       </div>
-    </div>
 
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="button"
-                id="btn_estimate_shipping"
-                title="<?= $this->__('Estimate') ?>"
-                class="btn btn-primary">
-          <?= $this->__('Estimate') ?>
-        </button>
-      </div>
-    </div>
+      <button type="button"
+              id="btn_estimate_shipping"
+              title="<?= $this->__('Estimate') ?>"
+              class="btn btn-default">
+        <?= $this->__('Estimate') ?>
+      </button>
 
-  </form>
+    </form>
 
-  <?php if (($_shippingRateGroups = $this->getEstimateRates())): ?>
-    <form id="co-shipping-method-form"
-          action="<?= $this->getUrl('checkout/cart/estimateUpdatePost') ?>"
-          class="form-horizontal"
-          role="form">
+    <?php if (($_shippingRateGroups = $this->getEstimateRates())): ?>
+      <form id="cart-shipping-method-form"
+            action="<?= $this->getUrl('checkout/cart/estimateUpdatePost') ?>"
+            role="form">
 
-      <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
+        <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
 
-        <h5><?= $this->escapeHtml($this->getCarrierName($code)) ?></h5>
+          <div class="form-group">
 
-        <?php foreach ($_rates as $_rate): ?>
-          <div class="form-group<?php if ($_rate->getErrorMessage()) echo ' error-msg'; ?>">
+            <label><?= $this->escapeHtml($this->getCarrierName($code)) ?></label>
 
-            <div class="col-sm-offset-2 col-sm-10">
+            <?php foreach ($_rates as $_rate): ?>
+
               <?php if ($_rate->getErrorMessage()): ?>
 
                 <?= $this->escapeHtml($_rate->getErrorMessage()) ?>
@@ -133,12 +101,12 @@
               <?php else: ?>
 
                 <div class="radio">
-
                   <label for="s_method_<?= $_rate->getCode() ?>">
                     <input name="estimate_method"
                            type="radio"
                            value="<?= $this->escapeHtml($_rate->getCode()) ?>"
-                           id="s_method_<?= $_rate->getCode() ?>"<?php if ($_rate->getCode() === $this->getAddressShippingMethod()) echo ' checked="checked"' ?>
+                           id="s_method_<?= $_rate->getCode() ?>"
+                           <?php if ($_rate->getCode() === $this->getAddressShippingMethod()): ?>checked=<?php endif ?>
                       >
 
                     <?= $this->escapeHtml($_rate->getMethodTitle()) ?>
@@ -154,25 +122,22 @@
                 </div>
 
               <?php endif ?>
-            </div>
+
+            <?php endforeach; ?>
+
           </div>
+
         <?php endforeach; ?>
 
-      <?php endforeach; ?>
+        <button type="submit"
+                title="<?= $this->__('Update Total') ?>"
+                class="btn btn-default"
+                name="do"
+                value="<?= $this->__('Update Total') ?>">
+          <?= $this->__('Update Total') ?>
+        </button>
 
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit"
-                  title="<?= $this->__('Update Total') ?>"
-                  class="btn btn-primary"
-                  name="do"
-                  value="<?= $this->__('Update Total') ?>">
-            <?= $this->__('Update Total') ?>
-          </button>
-        </div>
-      </div>
-
-    </form>
-  <?php endif; ?>
-
+      </form>
+    <?php endif; ?>
+  </div>
 </div>

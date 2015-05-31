@@ -590,7 +590,7 @@ jQuery(function ($) {
        */
 
       // Default values for rendered fields - options
-      values    : {
+      values: {
         number: '•••• •••• •••• ••••',
         name  : 'Joe Bloggs',
         expiry: '••/••••',
@@ -1027,6 +1027,11 @@ jQuery(function ($) {
   }
   var Mini = new Minicart(minicartOptions);
   Mini.init();
-})
-;
+
+  // Expand tax details in totals
+  $('.js-toggle-tax-details').click(function (e) {
+    e.preventDefault();
+    $($(this).data('target')).toggleClass('is-visiable');
+  });
+});
 

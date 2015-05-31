@@ -8,19 +8,20 @@
 ?>
 <?php if ($this->canApplyMsrp()): ?>
 
-    <div class="cart-msrp-totals"><?= $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></div>
+  <p class="cart-msrp-totals text-info">
+    <?= $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?>
+  </p>
 
 <?php else: ?>
 
-    <table id="shopping-cart-totals-table" class="table table-hover table-condensed">
-        <col />
-        <col width="1" />
-        <tfoot>
-            <?= $this->renderTotals('footer'); ?>
-        </tfoot>
-        <tbody>
-            <?= $this->renderTotals(); ?>
-        </tbody>
-    </table>
+  <table id="shopping-cart-totals-table" class="table-total table table-hover table-bordered">
+    <colgroup>
+      <col>
+      <col width="1">
+    </colgroup>
+
+    <tfoot><?= $this->renderTotals('footer'); ?></tfoot>
+    <tbody><?= $this->renderTotals(); ?></tbody>
+  </table>
 
 <?php endif; ?>
