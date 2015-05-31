@@ -8,7 +8,12 @@
 <?php $_items = $this->getItems() ?>
 <?php if ($_items): ?>
 
-  <form method="post" action="<?= $this->getFormActionUrl() ?>" id="reorder-validate-detail" role="form">
+  <form method="post"
+        action="<?= $this->getFormActionUrl() ?>"
+        id="reorder-validate-detail"
+        role="form"
+        class="js-validate-form"
+    >
 
     <?= $this->getBlockHtml('formkey'); ?>
 

@@ -15,8 +15,9 @@
       id="form-registration"
       role="form"
       enctype="multipart/form-data"
+      class="js-validate-form"
   <?php if ($this->getShowAddressFields()) : ?>
-    data-region-json="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()); ?>"
+    data-regions="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()); ?>"
   <?php endif ?>
   >
 

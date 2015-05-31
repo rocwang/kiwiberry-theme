@@ -11,7 +11,7 @@
           method="post"
           id="shipping-zip-form"
           class="shipping-zip-form"
-          data-region-json="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()) ?>"
+          data-regions="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()) ?>"
           role="form">
 
       <p class="text-info"><?= $this->__('Enter your destination to get a shipping estimate.') ?></p>
@@ -59,13 +59,13 @@
       <?php endif; ?>
 
       <div class="form-group">
-        <label for="postcode" class="required">
+        <label for="zip" class="required">
           <?= $this->__('Zip') ?>
         </label>
 
         <input class="form-control validate-postcode<?php if ($this->isZipCodeRequired()): ?> required-entry<?php endif; ?>"
                type="text"
-               id="postcode"
+               id="zip"
                name="estimate_postcode"
                title="<?= $this->__('Zip') ?>"
                placeholder="<?= $this->__('Zip') ?>"

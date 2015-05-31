@@ -1,10 +1,8 @@
-
-
 <div class="page-header">
   <h1><?= $this->__('Share Your Wishlist') ?></h1>
 </div>
 
-<form action="<?= $this->getSendUrl() ?>" id="form-validate-share-wishlist" method="post">
+<form action="<?= $this->getSendUrl() ?>" id="form-validate-share-wishlist" method="post" class="js-validate-form">
 
   <?= $this->getBlockHtml('formkey') ?>
 
@@ -51,7 +49,7 @@
 
   <div>
     <a href="<?= $this->getBackUrl(); ?>" class="btn btn-default">
-          <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
+      <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
       <?= $this->__('Back') ?>
     </a>
 

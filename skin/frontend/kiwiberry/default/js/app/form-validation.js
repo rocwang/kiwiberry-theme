@@ -39,69 +39,22 @@ if (window.VarienForm) {
 
 jQuery(function ($) {
 
-  // Contact us page
-  if (document.getElementById('contactForm')) {
-    new VarienForm('contactForm', true);
-  }
-
-  // Login page
-  if (document.getElementById('login-form')) {
-    new VarienForm('login-form', true);
-  }
-
-  // Forgot password page
-  if (document.getElementById('form-validate-forgot-password')) {
-    new VarienForm('form-validate-forgot-password', true);
-  }
-
-  // Reset password page
-  if (document.getElementById('form-validate-reset-password')) {
-    new VarienForm('form-validate-reset-password', true);
-  }
-
-  // Advanced search page
-  if (document.getElementById('form-validate-advanced-search')) {
-    new VarienForm('form-validate-advanced-search', true);
-  }
-
-  // Reorder sidebar
-  if (document.getElementById('reorder-validate-detail')) {
-    new VarienForm('reorder-validate-detail');
-  }
-
-  // Orders and Returns page for guest
-  if (document.getElementById('oar_widget_orders_and_returns_form')) {
-    new VarienForm('oar_widget_orders_and_returns_form', true);
-  }
-
-  // Registration page
-  if (document.getElementById('form-registration')) {
-    new VarienForm('form-registration', true);
-  }
-
-  // Product review form validation
-  if (document.getElementById('review-form')) {
-    new VarienForm('review-form');
-  }
-
-  // My account information page
-  if (document.getElementById('form-validate-account-info')) {
-    new VarienForm('form-validate-account-info', true);
-  }
-
-  // New address page
-  if (document.getElementById('form-validate-address-edit')) {
-    new VarienForm('form-validate-address-edit', true);
-  }
-
-  // Share wishlist page
-  if (document.getElementById('form-validate-share-wishlist')) {
-    new VarienForm('form-validate-share-wishlist', true);
-  }
-
-  // My Newsletters page
-  if (document.getElementById('form-validate-newsletter')) {
-    new VarienForm('form-validate-newsletter', true);
-  }
+  // Form validation used in:
+  // * Contact us page
+  // * Login page
+  // * Registration page
+  // * Forgot password page
+  // * Reset password page
+  // * Advanced search page
+  // * Reorder sidebar
+  // * Orders and Returns page for guest
+  // * Product review form
+  // * My account information page
+  // * New address page
+  // * Share wishlist page
+  // * My Newsletters page
+  $('.js-validate-form').each(function () {
+    new VarienForm(this, true);
+  });
 
 });
