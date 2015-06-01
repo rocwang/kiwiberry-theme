@@ -4,11 +4,7 @@
  *
  * @var $this Mage_Checkout_Block_Onepage_Payment_Methods
  */
-?>
-
-<?php
 $methods = $this->getMethods();
-$oneMethod = count($methods) <= 1;
 ?>
 
 <?php if (empty($methods)): ?>
@@ -16,50 +12,30 @@ $oneMethod = count($methods) <= 1;
   <p class="text-info"><?= $this->__('No Payment Methods') ?></p>
 
 <?php else: ?>
-  <?php
-  foreach ($methods as $_method):
-    $_code = $_method->getCode();
-    ?>
+
+  <?php foreach ($methods as $_method): ?>
+    <?php $_code = $_method->getCode() ?>
 
     <div class="radio">
       <label for="p_method_<?= $_code ?>">
-        <?php if (!$oneMethod): ?>
-          <input id="p_method_<?= $_code ?>"
-                 value="<?= $_code ?>"
-                 type="radio"
-                 name="payment[method]"
-                 title="<?= $this->escapeHtml($_method->getTitle()) ?>"
-                 onclick="payment.switchMethod('<?= $_code ?>')"
-                 <?php if ($this->getSelectedMethodCode() == $_code): ?>checked="checked"<?php endif; ?>
-                 class="radio"/>
-        <?php else: ?>
-          <input id="p_method_<?= $_code ?>"
-                 value="<?= $_code ?>"
-                 type="radio"
-                 name="payment[method]"
-                 checked="checked"
-                 class="radio"/>
-          <?php $oneMethod = $_code; ?>
-        <?php endif; ?>
+        <input id="p_method_<?= $_code ?>"
+               value="<?= $_code ?>"
+               type="radio"
+               name="payment[method]"
+               title="<?= $this->escapeHtml($_method->getTitle()) ?>"
+               <?php if ($this->getSelectedMethodCode() == $_code): ?>checked="checked"<?php endif ?>
+               class="radio js-payment-method">
         <?= $this->escapeHtml($this->getMethodTitle($_method)) ?>
         <?= $this->getMethodLabelAfterHtml($_method) ?>
       </label>
     </div>
 
-    <?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
-    <?= $html; ?>
-  <?php endif; ?>
+    <?php if ($html = $this->getPaymentMethodFormHtml($_method)) echo $html ?>
 
-  <?php endforeach; ?>
-<?php endif; ?>
+  <?php endforeach ?>
 
-<?= $this->getChildChildHtml('additional'); ?>
-<script type="text/javascript">
-  //<![CDATA[
-  <?= $this->getChildChildHtml('scripts'); ?>
-  payment.init();
-  <?php if (is_string($oneMethod)): ?>
-  payment.switchMethod('<?= $oneMethod ?>');
-  <?php endif; ?>
-  //]]>
-</script>
+<?php endif ?>
+
+<?= $this->getChildChildHtml('additional') ?>
+
+<script><?= $this->getChildChildHtml('scripts') ?></script>

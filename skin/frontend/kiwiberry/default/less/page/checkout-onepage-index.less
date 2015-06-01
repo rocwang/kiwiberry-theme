@@ -1,8 +1,43 @@
-.link-edit-opc {
-  float : right;
+.panel-checkout {
+  .panel-default();
+
+  .link-opc-edit-step {
+    float   : right;
+    display : none;
+  }
+
+  &.active {
+    .panel-primary();
+  }
+
+  &.allow:not(.active) {
+    .panel-success();
+
+    .panel-heading {
+      cursor : pointer;
+
+      &:hover,
+      &:focus {
+        background : @panel-success-border;
+      }
+    }
+
+    .link-opc-edit-step {
+      display : inline;
+    }
+  }
+
+  .btn-opc-back {
+    float : right;
+  }
 }
 
 .opc-block-progress {
+
+  .link-edit-opc {
+    float : right;
+  }
+
   address,
   p {
     margin-bottom : 0;

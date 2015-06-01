@@ -1,9 +1,19 @@
 module.exports = [
   "app/noconflict.js",
+  "app/common.js",
+  "app/form-validation.js",
+  "app/region-updater.js",
 
   "app/cart.js",
   "app/checkout.js",
-  "app/common.js",
+  "app/checkout/billing.js",
+  "app/checkout/login.js",
+  "app/checkout/payment.js",
+  "app/checkout/progress.js",
+  "app/checkout/review.js",
+  "app/checkout/shipping-method.js",
+  "app/checkout/shipping.js",
+
   "app/compare.js",
   "app/configurable-swatches/configurable-media-images.js",
   "app/configurable-swatches/configurable-swatches-list.js",
@@ -11,7 +21,6 @@ module.exports = [
   "app/cookie-notice.js",
   "app/custom_options.js",
   "app/date-option.js",
-  "app/form-validation.js",
   "app/guest-order.js",
   "app/logout.js",
   "app/mini-cart.js",
@@ -23,6 +32,5 @@ module.exports = [
   "app/product-list.js",
   "app/product-media-manager.js",
   "app/product-view.js",
-  "app/region-updater.js",
   "app/reorder.js"
 ];

@@ -1,40 +1,36 @@
-if (window.VarienForm) {
-  VarienForm.prototype.initialize = function (formId, firstFieldFocus) {
-    this.form = $(formId);
-    if (!this.form) {
-      return;
+if (Validation) {
+  Validation.defaultOptions.onElementValidate = function (result, elm) {
+    var $this = jQuery(elm);
+    var container = $this.closest('.form-group, .checkbox, .radio');
+
+    if (result) {
+
+      container.removeClass('has-error').addClass('has-success');
+
+      if ($this.is('input.form-control')) {
+        container.addClass('has-feedback')
+          .find('.js-feedback-icon').remove()
+          .end().append(
+          '<span class="glyphicon glyphicon-ok form-control-feedback js-feedback-icon" aria-hidden="true"></span>'
+          + '<span class="sr-only js-feedback-icon">(success)</span>'
+        );
+      }
+
+    } else {
+
+      container.removeClass('has-success').addClass('has-error');
+
+      if ($this.is('input.form-control')) {
+        container.addClass('has-feedback')
+          .find('.js-feedback-icon').remove()
+          .end().append(
+          '<span class="glyphicon glyphicon-remove form-control-feedback js-feedback-icon" aria-hidden="true"></span>'
+          + '<span class="sr-only js-feedback-icon">(error)</span>'
+        );
+      }
+
     }
-    this.cache = $A();
-    this.currLoader = false;
-    this.currDataIndex = false;
-
-    this.validator = new Validation(this.form, {
-      onElementValidate: function (result, elm) {
-        var container = jQuery(elm).closest('.form-group, .checkbox, .radio');
-
-        if (result) {
-          container.removeClass('has-error').addClass('has-success');
-        } else {
-          container.removeClass('has-success').addClass('has-error');
-        }
-      }
-    });
-
-    this.elementFocus = this.elementOnFocus.bindAsEventListener(this);
-    this.elementBlur = this.elementOnBlur.bindAsEventListener(this);
-    this.childLoader = this.onChangeChildLoad.bindAsEventListener(this);
-    this.highlightClass = 'highlight';
-    this.extraChildParams = '';
-    this.firstFieldFocus = firstFieldFocus || false;
-    this.bindElements();
-    if (this.firstFieldFocus) {
-      try {
-        Form.Element.focus(Form.findFirstElement(this.form))
-      }
-      catch (e) {
-      }
-    }
-  }
+  };
 }
 
 jQuery(function ($) {

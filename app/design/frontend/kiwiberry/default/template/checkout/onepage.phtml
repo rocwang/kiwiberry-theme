@@ -10,13 +10,11 @@
      data-save-method-url="<?= $this->getUrl('checkout/onepage/saveMethod') ?>"
      data-failure-url="<?= $this->getUrl('checkout/cart') ?>"
   >
-  <?php
-  foreach ($this->getSteps() as $_stepId => $_stepInfo):
-    if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()): continue; endif;
-    ?>
+  <?php foreach ($this->getSteps() as $_stepId => $_stepInfo): ?>
+    <?php if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()) continue ?>
 
     <div id="opc-<?= $_stepId ?>"
-         class="panel panel-primary section<?php
+         class="panel panel-checkout section<?php
          echo !empty($_stepInfo['allow']) ? ' allow' : '';
          echo !empty($_stepInfo['complete']) ? ' saved' : '' ?>"
       >
@@ -24,7 +22,10 @@
       <div class="panel-heading">
         <h2 class="step-title panel-title">
           <?= $_stepInfo['label'] ?>
-          <small><a href="#"><?= $this->__('Edit') ?></a></small>
+          <a href="#" class="link-opc-edit-step">
+            <i class="fa fa-pencil"></i>
+            <span class="sr-only"><?= $this->__('Edit') ?></span>
+          </a>
         </h2>
       </div>
 

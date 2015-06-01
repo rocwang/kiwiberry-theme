@@ -10,20 +10,18 @@
 
 <?= $this->getChildChildHtml('additional') ?>
 
+<!-- Don't put buttons inside the form, otherwise they will be disabed when payment object is initialized. -->
 <div id="payment-buttons-container">
-  <button type="button"
-          class="btn btn-primary btn-sm js-opc-back"
-          title="<?= $this->__('Back') ?>">
-        <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
-    <?= $this->__('Back') ?>
-  </button>
-
   <button id="btn_save_payment" type="button" class="btn btn-primary">
+    <span class="please-wait" id="payment-please-wait" style="display:none;">
+      <i class="fa fa-spinner fa-spin"></i>
+      <span class="sr-only"><?= $this->__('Loading next step...') ?></span>
+    </span>
     <?= $this->__('Continue') ?>
   </button>
 
-  <span class="please-wait" id="payment-please-wait" style="display:none;">
-    <i class="fa fa-spinner fa-spin"></i>
-    <?= $this->__('Loading next step...') ?>
-  </span>
+  <button type="button" class="btn btn-default btn-opc-back js-opc-back" title="<?= $this->__('Back') ?>">
+    <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
+    <?= $this->__('Back') ?>
+  </button>
 </div>

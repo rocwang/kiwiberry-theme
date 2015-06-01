@@ -1,3 +1,5 @@
+<?php /** @var Mage_Checkout_Block_Onepage_Shipping $this */ ?>
+
 <form id="co-shipping-form"
       action=""
       data-address-url="<?= $this->getUrl('checkout/onepage/getAddress') ?>address/"
@@ -6,245 +8,202 @@
       data-regions="<?= $this->escapeHtml($this->helper('directory')->getRegionJsonByStore()) ?>"
   >
 
-<?php if ($this->customerHasAddresses()): ?>
-  <div class="form-group">
-    <label for="shipping-address-select">
-      <?= $this->__('Select a shipping address from your address book or enter a new address.') ?>
-    </label>
-    <?= $this->getAddressesHtmlSelect('shipping') ?>
-  </div>
-<?php endif ?>
-
-<div id="shipping-new-address-form"
-     <?php if ($this->customerHasAddresses()): ?>style="display:none;"<?php endif ?>
-  >
-
-  <p class="text-danger"><?= $this->__('* Required Fields') ?></p>
-
-  <input type="hidden"
-         name="shipping[address_id]"
-         value="<?= $this->getAddress()->getId() ?>"
-         id="shipping:address_id">
-
-  <?php
-  echo $this->getLayout()
-    ->createBlock('customer/widget_name')
-    ->setObject($this->getAddress())
-    ->setFieldIdFormat('shipping:%s')
-    ->setFieldNameFormat('shipping[%s]')
-    ->toHtml();
-  ?>
-
-  <div class="form-group">
-    <label for="shipping:company"><?= $this->__('Company') ?></label>
-    <input type="text"
-           id="shipping:company"
-           name="shipping[company]"
-           value="<?= $this->escapeHtml($this->getAddress()->getCompany()) ?>"
-           title="<?= $this->__('Company') ?>"
-           class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('company') ?>"
-      >
-  </div>
-
-  <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
-
-  <div class="form-group">
-    <label for="shipping:street1" class="required">
-
-      <?= $this->__('Address') ?>
-    </label>
-
-    <input type="text"
-           title="<?= $this->__('Street Address') ?>"
-           name="shipping[street][]"
-           id="shipping:street1"
-           value="<?= $this->escapeHtml($this->getAddress()->getStreet(1)) ?>"
-           class="form-control <?= $_streetValidationClass ?>"
-      >
-  </div>
-
-  <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
-
-  <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+  <?php if ($this->customerHasAddresses()): ?>
     <div class="form-group">
-      <label for="billing:street<?= $_i ?>">
-        <?= $this->__('Address') ?>
-        <?= $_i ?>
+      <label for="shipping-address-select">
+        <?= $this->__('Select a shipping address from your address book or enter a new address.') ?>
       </label>
+      <?= $this->getAddressesHtmlSelect('shipping') ?>
+    </div>
+  <?php endif ?>
+
+  <div id="shipping-new-address-form" <?php if ($this->customerHasAddresses()): ?>style="display:none;"<?php endif ?>>
+
+    <p class="text-danger"><?= $this->__('* Required Fields') ?></p>
+
+    <input type="hidden"
+           name="shipping[address_id]"
+           value="<?= $this->getAddress()->getId() ?>"
+           id="shipping:address_id">
+
+    <!-- Name -->
+    <?php
+    echo $this->getLayout()
+      ->createBlock('customer/widget_name')
+      ->setObject($this->getAddress())
+      ->setFieldIdFormat('shipping:%s')
+      ->setFieldNameFormat('shipping[%s]')
+      ->toHtml();
+    ?>
+
+    <!-- Company -->
+    <div class="form-group">
+      <label for="shipping:company"><?= $this->__('Company') ?></label>
       <input type="text"
-             title="<?= $this->__('Street Address %s', $_i) ?>"
+             id="shipping:company"
+             name="shipping[company]"
+             value="<?= $this->escapeHtml($this->getAddress()->getCompany()) ?>"
+             title="<?= $this->__('Company') ?>"
+             class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('company') ?>">
+    </div>
+
+    <!-- Street -->
+    <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
+    <div class="form-group">
+      <label for="shipping:street1" class="required"><?= $this->__('Address') ?></label>
+      <input type="text"
+             title="<?= $this->__('Street Address') ?>"
              name="shipping[street][]"
-             id="shipping:street<?= $_i ?>"
-             value="<?= $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>"
-             class="form-control <?= $_streetValidationClass ?>"
-        >
+             id="shipping:street1"
+             value="<?= $this->escapeHtml($this->getAddress()->getStreet(1)) ?>"
+             class="form-control <?= $_streetValidationClass ?>">
     </div>
-  <?php endfor; ?>
 
-  <?php if ($this->helper('customer/address')->isVatAttributeVisible()) : ?>
+    <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+    <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+      <div class="form-group">
+        <label for="billing:street<?= $_i ?>"><?= $this->__('Street Address %s', $_i) ?></label>
+        <input type="text"
+               title="<?= $this->__('Street Address %s', $_i) ?>"
+               name="shipping[street][]"
+               id="shipping:street<?= $_i ?>"
+               value="<?= $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>"
+               class="form-control <?= $_streetValidationClass ?>">
+      </div>
+    <?php endfor; ?>
+
+    <!-- VAT Number -->
+    <?php if ($this->helper('customer/address')->isVatAttributeVisible()) : ?>
+      <div class="form-group">
+        <label for="billing:vat_id">
+          <?= $this->__('VAT Number'); ?>
+        </label>
+        <input type="text"
+               id="shipping:vat_id"
+               name="shipping[vat_id]"
+               value="<?= $this->escapeHtml($this->getAddress()->getVatId()); ?>"
+               title="<?= $this->__('VAT Number'); ?>"
+               class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('vat_id') ?>">
+      </div>
+    <?php endif; ?>
+
+    <!-- City -->
     <div class="form-group">
-      <label for="billing:vat_id">
-        <?= $this->__('VAT Number'); ?>
-      </label>
+      <label for="shipping:city" class="required"><?= $this->__('City') ?></label>
       <input type="text"
-             id="shipping:vat_id"
-             name="shipping[vat_id]"
-             value="<?= $this->escapeHtml($this->getAddress()->getVatId()); ?>"
-             title="<?= $this->__('VAT Number'); ?>"
-             class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('vat_id') ?>">
-    </div>
-  <?php endif; ?>
-
-  <div class="form-group">
-    <label for="shipping:city" class="required">
-
-      <?= $this->__('City') ?>
-    </label>
-    <input type="text"
-           title="<?= $this->__('City') ?>"
-           name="shipping[city]"
-           value="<?= $this->escapeHtml($this->getAddress()->getCity()) ?>"
-           class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('city') ?>"
-           id="shipping:city"
-      >
-  </div>
-
-  <div class="form-group">
-    <label for="shipping:region" class="required">
-
-      <?= $this->__('State/Province') ?>
-    </label>
-
-    <select id="shipping:region_id"
-            name="shipping[region_id]"
-            title="<?= $this->__('State/Province') ?>"
-            class="form-control validate-select"
-            style="display:none;">
-      <option value="">
-        <?= $this->__('Please select region, state or province') ?>
-      </option>
-    </select>
-
-    <script type="text/javascript">
-      //<![CDATA[
-      $('shipping:region_id').setAttribute('defaultValue', "<?= $this->getAddress()->getRegionId() ?>");
-      //]]>
-    </script>
-
-    <input type="text"
-           id="shipping:region"
-           name="shipping[region]"
-           value="<?= $this->escapeHtml($this->getAddress()->getRegion()) ?>"
-           title="<?= $this->__('State/Province') ?>"
-           class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('region') ?>"
-           style="display:none;">
-  </div>
-
-  <div class="form-group">
-    <label for="shipping:postcode" class="required">
-
-      <?= $this->__('Zip/Postal Code') ?>
-    </label>
-    <input type="text"
-           title="<?= $this->__('Zip/Postal Code') ?>"
-           name="shipping[postcode]"
-           id="shipping:postcode"
-           value="<?= $this->escapeHtml($this->getAddress()->getPostcode()) ?>"
-           class="form-control validate-zip-international <?= $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>"
-      >
-  </div>
-
-  <div class="form-group">
-    <label for="shipping:country_id" class="required">
-
-      <?= $this->__('Country') ?>
-    </label>
-    <?= $this->getCountryHtmlSelect('shipping') ?>
-  </div>
-
-  <div class="form-group">
-    <label for="shipping:telephone" class="required">
-
-      <?= $this->__('Telephone') ?>
-    </label>
-    <input type="tel"
-           name="shipping[telephone]"
-           value="<?= $this->escapeHtml($this->getAddress()->getTelephone()) ?>"
-           title="<?= $this->__('Telephone') ?>"
-           class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>"
-           id="shipping:telephone"
-           onchange="shipping.setSameAsBilling(false);"/>
-  </div>
-
-  <div class="form-group">
-    <label for="shipping:fax">
-      <?= $this->__('Fax') ?>
-    </label>
-    <input type="tel"
-           name="shipping[fax]"
-           value="<?= $this->escapeHtml($this->getAddress()->getFax()) ?>"
-           title="<?= $this->__('Fax') ?>"
-           class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('fax') ?>"
-           id="shipping:fax"
-      >
-  </div>
-
-  <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()): ?>
-
-    <div class="checkbox">
-      <label for="shipping:save_in_address_book">
-        <input type="checkbox"
-               name="shipping[save_in_address_book]"
-               value="1"
-               title="<?= $this->__('Save in address book') ?>"
-               id="shipping:save_in_address_book"
-          <?php if ($this->getAddress()->getSaveInAddressBook()): ?> checked="checked"<?php endif; ?>
-          >
-        <?= $this->__('Save in address book') ?>
-      </label>
+             title="<?= $this->__('City') ?>"
+             name="shipping[city]"
+             value="<?= $this->escapeHtml($this->getAddress()->getCity()) ?>"
+             class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('city') ?>"
+             id="shipping:city">
     </div>
 
-  <?php else: ?>
+    <!-- Region -->
+    <div class="form-group">
+      <label for="shipping:region" class="required"><?= $this->__('State/Province') ?></label>
+      <select id="shipping:region_id"
+              name="shipping[region_id]"
+              title="<?= $this->__('State/Province') ?>"
+              class="form-control validate-select"
+              defaultValue="<?= $this->getAddress()->getRegionId() ?>"
+              style="display:none;">
+        <option value="">
+          <?= $this->__('Please select region, state or province') ?>
+        </option>
+      </select>
+      <input type="text"
+             id="shipping:region"
+             name="shipping[region]"
+             value="<?= $this->escapeHtml($this->getAddress()->getRegion()) ?>"
+             title="<?= $this->__('State/Province') ?>"
+             class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('region') ?>"
+             style="display:none;">
+    </div>
 
-    <input type="hidden" name="shipping[save_in_address_book]" value="1">
+    <!-- Postal Code -->
+    <div class="form-group">
+      <label for="shipping:postcode" class="required"><?= $this->__('Zip/Postal Code') ?></label>
+      <input type="text"
+             title="<?= $this->__('Zip/Postal Code') ?>"
+             name="shipping[postcode]"
+             id="shipping:postcode"
+             value="<?= $this->escapeHtml($this->getAddress()->getPostcode()) ?>"
+             class="form-control validate-zip-international <?= $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>">
+    </div>
 
-  <?php endif; ?>
+    <!-- Country -->
+    <div class="form-group">
+      <label for="shipping:country_id" class="required"><?= $this->__('Country') ?></label>
+      <?= $this->getCountryHtmlSelect('shipping') ?>
+    </div>
 
-</div>
+    <!-- Telephone -->
+    <div class="form-group">
+      <label for="shipping:telephone" class="required"><?= $this->__('Telephone') ?></label>
+      <input type="tel"
+             name="shipping[telephone]"
+             value="<?= $this->escapeHtml($this->getAddress()->getTelephone()) ?>"
+             title="<?= $this->__('Telephone') ?>"
+             class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>"
+             id="shipping:telephone">
+    </div>
 
-<div class="checkbox">
-  <label for="shipping:same_as_billing">
-    <input type="checkbox"
-           name="shipping[same_as_billing]"
-           id="shipping:same_as_billing"
-           value="1"<?php if ($this->getAddress()->getSameAsBilling()): ?> checked="checked"<?php endif; ?>
-           title="<?= $this->__('Use Billing Address') ?>"
-           class="checkbox">
-    <?= $this->__('Use Billing Address') ?>
-  </label>
-</div>
+    <!-- Fax -->
+    <div class="form-group">
+      <label for="shipping:fax"><?= $this->__('Fax') ?></label>
+      <input type="tel"
+             name="shipping[fax]"
+             value="<?= $this->escapeHtml($this->getAddress()->getFax()) ?>"
+             title="<?= $this->__('Fax') ?>"
+             class="form-control <?= $this->helper('customer/address')->getAttributeValidationClass('fax') ?>"
+             id="shipping:fax">
+    </div>
 
-<div id="shipping-buttons-container">
-  <button type="button"
-          class="btn btn-primary btn-sm js-opc-back"
-          title="<?= $this->__('Back') ?>">
-        <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
-    <?= $this->__('Back') ?>
-  </button>
+    <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()): ?>
+      <!-- Save in address book -->
+      <div class="checkbox">
+        <label for="shipping:save_in_address_book">
+          <input type="checkbox"
+                 name="shipping[save_in_address_book]"
+                 value="1"
+                 title="<?= $this->__('Save in address book') ?>"
+                 id="shipping:save_in_address_book"
+            <?php if ($this->getAddress()->getSaveInAddressBook()): ?> checked="checked"<?php endif; ?>
+            >
+          <?= $this->__('Save in address book') ?>
+        </label>
+      </div>
+    <?php else: ?>
+      <input type="hidden" name="shipping[save_in_address_book]" value="1">
+    <?php endif; ?>
+  </div>
 
-  <button type="button"
-          id="shipping_btn_continue"
-          class="btn btn-primary"
-          title="<?= $this->__('Continue') ?>"
-    >
-    <?= $this->__('Continue') ?>
-  </button>
+  <!-- Usd Billing Address -->
+  <div class="checkbox">
+    <label for="shipping:same_as_billing">
+      <input type="checkbox"
+             name="shipping[same_as_billing]"
+             id="shipping:same_as_billing"
+             value="1"<?php if ($this->getAddress()->getSameAsBilling()): ?> checked="checked"<?php endif; ?>
+             title="<?= $this->__('Use Billing Address') ?>"
+             class="checkbox">
+      <?= $this->__('Use Billing Address') ?>
+    </label>
+  </div>
 
-  <span id="shipping-please-wait" class="please-wait" style="display:none;">
-    <i class="fa fa-spinner fa-spin"></i>
-    <?= $this->__('Loading next step...') ?>
-  </span>
-</div>
+  <div id="shipping-buttons-container">
+    <button type="button" id="shipping_btn_continue" class="btn btn-primary">
+      <span id="shipping-please-wait" class="please-wait" style="display:none;">
+        <i class="fa fa-spinner fa-spin"></i>
+        <span class="sr-only"><?= $this->__('Loading next step...') ?></span>
+      </span>
+      <?= $this->__('Continue') ?>
+    </button>
 
+    <button type="button" class="btn btn-default btn-opc-back js-opc-back" title="<?= $this->__('Back') ?>">
+      <?= Mage::helper('vr_kiwiberry')->getSvgIcon('chevron-left') ?>
+      <?= $this->__('Back') ?>
+    </button>
+  </div>
 </form>
 
