@@ -1,24 +1,26 @@
 <?php if ($this->getCheckout()->getStepData('payment', 'complete')): ?>
 
-  <div class="panel-heading js-complete">
-    <?= $this->__('Payment Method') ?>
+  <div class="panel-heading is-completed">
+    <h3 class="panel-title">
+      <?= $this->__('Payment Method') ?>
 
-    <button type="button"
-            class="btn btn-default js-btn-edit-opc"
-            data-target="payment">
-      <i class="fa fa-pencil-square"></i>
-      <?= $this->__('Change') ?>
-    </button>
+      <a href="#" class="js-link-edit-opc link-edit-opc" data-target="payment">
+        <i class="fa fa-pencil"></i>
+        <span class="sr-only"><?= $this->__('Change') ?></span>
+      </a>
+    </h3>
   </div>
 
-  <div class="panel-body js-panel-body js-complete">
+  <div class="panel-body js-panel-body is-completed">
     <?= $this->getPaymentHtml() ?>
   </div>
 
 <?php else: ?>
 
   <div class="panel-heading">
-    <?= $this->__('Payment Method') ?>
+    <h3 class="panel-title">
+      <?= $this->__('Payment Method') ?>
+    </h3>
   </div>
 
 <?php endif; ?>

@@ -41,10 +41,10 @@ jQuery(function ($) {
         var progressDiv = $('#' + this.steps[i] + '-progress-opcheckout');
 
         //Remove "complete" status
-        progressDiv.find('.js-complete').removeClass('js-complete');
+        progressDiv.find('.is-completed').removeClass('is-completed');
 
         //Remove the "Change" button
-        progressDiv.find('.js-btn-edit-opc').remove();
+        progressDiv.find('.js-link-edit-opc').remove();
 
         //Remove the content
         progressDiv.find('.js-panel-body').remove();
@@ -423,7 +423,8 @@ jQuery(function ($) {
   });
 
   // Checkout progress
-  $('#checkout-progress-wrapper').on('click', '.js-btn-edit-opc', function () {
+  $('#opc-block-progress').on('click', '.js-link-edit-opc', function (e) {
+    e.preventDefault();
     window.checkout.changeSection($(this).data('target'));
   });
 });

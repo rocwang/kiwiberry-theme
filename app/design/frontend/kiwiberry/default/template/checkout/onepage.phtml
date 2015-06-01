@@ -1,37 +1,40 @@
-<div class="page-title">
+<div class="page-header">
   <h1><?= $this->__('Checkout') ?></h1>
 </div>
 
-<ol id="checkoutSteps"
-    class="opc opc-firststep-<?= $this->getActiveStep() ?>"
-    data-active-step="opc-<?= $this->getActiveStep() ?>"
-    data-progress-url="<?= $this->getUrl('checkout/onepage/progress') ?>"
-    data-review-url="<?= $this->getUrl('checkout/onepage/review') ?>"
-    data-save-method-url="<?= $this->getUrl('checkout/onepage/saveMethod') ?>"
-    data-failure-url="<?= $this->getUrl('checkout/cart') ?>"
+<div id="checkoutSteps"
+     class="panel-group opc opc-firststep-<?= $this->getActiveStep() ?>"
+     data-active-step="opc-<?= $this->getActiveStep() ?>"
+     data-progress-url="<?= $this->getUrl('checkout/onepage/progress') ?>"
+     data-review-url="<?= $this->getUrl('checkout/onepage/review') ?>"
+     data-save-method-url="<?= $this->getUrl('checkout/onepage/saveMethod') ?>"
+     data-failure-url="<?= $this->getUrl('checkout/cart') ?>"
   >
   <?php
   foreach ($this->getSteps() as $_stepId => $_stepInfo):
     if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()): continue; endif;
     ?>
 
-    <li id="opc-<?= $_stepId ?>"
-        class="section<?php
-        echo !empty($_stepInfo['allow']) ? ' allow' : '';
-        echo !empty($_stepInfo['complete']) ? ' saved' : '' ?>">
+    <div id="opc-<?= $_stepId ?>"
+         class="panel panel-primary section<?php
+         echo !empty($_stepInfo['allow']) ? ' allow' : '';
+         echo !empty($_stepInfo['complete']) ? ' saved' : '' ?>"
+      >
 
-      <h2 class="step-title">
-        <?= $_stepInfo['label'] ?>
-        <small><a href="#"><?= $this->__('Edit') ?></a></small>
-      </h2>
+      <div class="panel-heading">
+        <h2 class="step-title panel-title">
+          <?= $_stepInfo['label'] ?>
+          <small><a href="#"><?= $this->__('Edit') ?></a></small>
+        </h2>
+      </div>
 
 
-      <div id="checkout-step-<?= $_stepId ?>" class="step a-item" style="display:none;">
+      <div id="checkout-step-<?= $_stepId ?>" class="panel-body step a-item" style="display:none;">
         <?= $this->getChildHtml($_stepId) ?>
       </div>
 
-    </li>
+    </div>
 
   <?php endforeach ?>
-</ol>
+</div>
 
