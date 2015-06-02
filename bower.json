@@ -11,11 +11,11 @@
         "modernizr"   : "2.x",
         "underscore"  : "1.x",
         "livereload"  : "e1d943628005ad8d18a50ee1e8c29858ca748d10",
-        "prism"       : "git@github.com:LeaVerou/prism.git",
         "js-beautify" : "1.x",
         "bootstrap"   : "3.x",
         "sweetalert"  : "0.x",
         "imagesloaded": "3.x",
-        "spinkit"     : "1.x"
+        "SpinKit"     : "1.x",
+	"prism": "git@github.com:PrismJS/prism.git"
     }
 }
